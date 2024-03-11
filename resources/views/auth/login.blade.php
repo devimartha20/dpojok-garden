@@ -48,7 +48,7 @@
                     <div class="login-card card-block auth-body mr-auto ml-auto">
                         <form class="md-float-material">
                             <div class="text-center">
-                                <img src="assets/images/logo.png" alt="logo.png">
+                                <img src="{{ asset('main/assets/images/logo.png') }}" alt="logo.png">
                             </div>
                             <div class="auth-box">
                                 <div class="row m-b-20">
@@ -91,7 +91,7 @@
                                         <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
                                     </div>
                                     <div class="col-md-2">
-                                        <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
+                                        <img src="{{ asset('main/assets/images/auth/Logo-small-bottom.png') }}" alt="small-logo.png">
                                     </div>
                                 </div>
 
@@ -152,16 +152,16 @@
 <![endif]-->
     <!-- Warning Section Ends -->
     <!-- Required Jquery -->
-    <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ asset('main/assets/js/jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('main/assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('main/assets/js/popper.js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('main/assets/js/bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="{{ asset('main/assets/js/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
     <!-- modernizr js -->
-    <script type="text/javascript" src="assets/js/modernizr/modernizr.js"></script>
-    <script type="text/javascript" src="assets/js/modernizr/css-scrollbars.js"></script>
-    <script type="text/javascript" src="assets/js/common-pages.js"></script>
+    <script type="text/javascript" src="{{ asset('main/assets/js/modernizr/modernizr.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('main/assets/js/modernizr/css-scrollbars.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('main/assets/js/common-pages.js') }}"></script>
 </body>
 
 </html>
