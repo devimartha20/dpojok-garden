@@ -46,7 +46,8 @@
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
                     <div class="login-card card-block auth-body mr-auto ml-auto">
-                        <form class="md-float-material">
+                        <form class="md-float-material" method="POST" action="{{ route('login') }}">
+                            @csrf
                             <div class="text-center">
                                 <img src="{{ asset('main/assets/images/logo.png') }}" alt="logo.png">
                             </div>
@@ -58,30 +59,38 @@
                                 </div>
                                 <hr/>
                                 <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Your Email Address">
+                                    <input type="email" name="email" value="{{ old('email') }}" required class="form-control" placeholder="Your Email Address">
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     <span class="md-line"></span>
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" placeholder="Password"
+                                    name="password"
+                                    required
+                                    autocomplete="current-password"
+                                    >
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     <span class="md-line"></span>
                                 </div>
                                 <div class="row m-t-25 text-left">
                                     <div class="col-sm-7 col-xs-12">
                                         <div class="checkbox-fade fade-in-primary">
                                             <label>
-                                                <input type="checkbox" value="">
+                                                <input id="remember_me" type="checkbox" name="remember">
                                                 <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                                 <span class="text-inverse">Remember me</span>
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5 col-xs-12 forgot-phone text-right">
-                                        <a href="auth-reset-password.html" class="text-right f-w-600 text-inverse"> Forgot Your Password?</a>
-                                    </div>
+                                    @if (Route::has('password.request'))
+                                        <div class="col-sm-5 col-xs-12 forgot-phone text-right">
+                                            <a href="{{ route('password.request') }}" class="text-right f-w-600 text-inverse"> Forgot Your Password?</a>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button>
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button>
                                     </div>
                                 </div>
                                 <hr/>
