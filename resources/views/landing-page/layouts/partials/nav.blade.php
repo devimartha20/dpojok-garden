@@ -27,8 +27,13 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Masuk</a>
                     <div class="dropdown-menu border-light m-0">
+<<<<<<< HEAD
                         <a href="project.html" class="dropdown-item">Login</a>
                         <a href="{{ route('register') }}" class="dropdown-item">Register</a>
+=======
+                        <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+                        <a href="feature.html" class="dropdown-item">Register</a>
+>>>>>>> 5ac4fdf4f6a0c7473334afe8dc298252df9dfb94
                         {{-- <a href="team.html" class="dropdown-item">Team Member</a>
                         <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                         <a href="404.html" class="dropdown-item">404 Page</a> --}}
