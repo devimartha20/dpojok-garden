@@ -22,6 +22,7 @@
 
     </div>
     <div class="card-block table-border-style">
+        <a href="" class="btn btn-info btn-round">Tambah</a>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -33,12 +34,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    @forelse ($productCategory as $pc)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $pc->nama }}</td>
+                            <td>{{ $pc->deskripsi }}</td>
+                            <td>
+                                <button class="btn btn-danger btn-round btn-sm"><i class="ti-trash"></i> Hapus</button>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">No Data</td>
+                        </tr>
+                    @endforelse
+
                 </tbody>
             </table>
         </div>

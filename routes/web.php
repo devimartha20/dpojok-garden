@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         return view('user.admin.dashboard');
     })->name('dashboard');
 
-    Route::get('/admin/product-category', function(){
-        return view('user.admin.product_category.product_category');
-    })->name('product-category.index');
+    Route::get('/admin/product-category', [ProductCategoryController::class, 'index'])->name('product-category.index');
 
 
 });
