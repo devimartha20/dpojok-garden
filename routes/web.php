@@ -27,6 +27,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
         return view('user.admin.dashboard');
     })->name('dashboard');
 
+    Route::get('/admin/product-category', function(){
+        return view('user.admin.product_category.product_category');
+    })->name('product-category.index');
 
 
 });

@@ -2,10 +2,10 @@
     <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
     <div class="pcoded-inner-navbar main-menu">
 
-        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
+        <div class="pcoded-navigatio-lavel">Layout</div>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="active">
-                <a href="index.html">
+            <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}">
                     <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                     <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                     <span class="pcoded-mcaret"></span>
@@ -92,10 +92,10 @@
                 </ul>
             </li> --}}
         </ul>
-        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Produk</div>
+        <div class="pcoded-navigatio-lavel">Produk</div>
         <ul class="pcoded-item pcoded-left-item">
-            <li>
-                <a href="form-elements-component.html">
+            <li class="{{ Request::routeIs('product-category.index') ? 'active' : '' }}">
+                <a href="{{ route('product-category.index') }}">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext">Kategori Produk</span>
                     <span class="pcoded-mcaret"></span>
