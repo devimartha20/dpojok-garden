@@ -123,6 +123,7 @@
 </div>
 <![endif]-->
 <!-- Warning Section Ends -->
+
 <!-- Required Jquery -->
 <script type="text/javascript" src="{{ asset('main/assets/js/jquery/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('main/assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
