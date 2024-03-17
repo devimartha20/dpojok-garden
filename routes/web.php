@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     //Route Khusus Admin
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('product-category', ProductCategoryController::class);
-
+        
     });
 
     // Route Khusus Kasir

@@ -2,7 +2,7 @@
     <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
     <div class="pcoded-inner-navbar main-menu">
 
-        <div class="pcoded-navigatio-lavel">Layout</div>
+        <div class="pcoded-navigatio-lavel">Dashboard</div>
         <ul class="pcoded-item pcoded-left-item">
             <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
                 <a href="{{ route('dashboard') }}">

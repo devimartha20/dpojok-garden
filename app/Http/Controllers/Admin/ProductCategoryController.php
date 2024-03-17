@@ -22,7 +22,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        return view('user.admin.product_category.add_product_category');
+        return redirect()->route('product-category.index');
     }
 
     /**
@@ -30,7 +30,28 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+        [
+            'nama' => 'required|unique:product_categories,nama',
+            'deskripsi' => 'required',
+        ],
+        [
+            'nama.required' => 'Kategori Wajib Diisi',
+            'nama.unique' => 'Kategori Sudah Ada',
+            'deskripsi.required' => 'Deskripsi Wajib Diisi',
+        ]);
+
+        $kategori = ProductCategory::create([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        if ($kategori)
+        {
+            return redirect()->back()->with('success', 'Kategori Berhasil Ditambahkan!');
+        }
+
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     /**
@@ -38,7 +59,7 @@ class ProductCategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return redirect()->route('product-category.index');
     }
 
     /**
@@ -46,7 +67,7 @@ class ProductCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return redirect()->route('product-category.index');
     }
 
     /**
@@ -54,7 +75,28 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(
+            [
+                'nama' => 'required|unique:product_categories,nama,'.$id,
+                'deskripsi' => 'required',
+            ],
+            [
+                'nama.required' => 'Kategori Wajib Diisi',
+                'nama.unique' => 'Kategori Sudah Ada',
+                'deskripsi.required' => 'Deskripsi Wajib Diisi',
+            ]);
+
+            $kategori = ProductCategory::findOrFail($id)->update([
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi,
+            ]);
+
+            if ($kategori)
+            {
+                return redirect()->back()->with('success', 'Kategori Berhasil Diubah!');
+            }
+
+            return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     /**
@@ -62,6 +104,7 @@ class ProductCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        ProductCategory::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Kategori Berhasil Dihapus!');
     }
 }
