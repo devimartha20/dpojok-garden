@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductCategoryController;
@@ -18,20 +19,49 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 Route::get('/', function () {
     return view('landing-page.landing-page');
 });
-Route::get('/test', function () {
-    return view('user.admin.dashboard');
-});
 
 Route::middleware(['auth', 'verified'])->group(function(){
 
-    Route::get('/dashboard', function(){
-        return view('user.admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/admin/product-category', [ProductCategoryController::class, 'index'])->name('product-category.index');
+    //Route Khusus Admin
+    Route::middleware(['role:admin'])->group(function () {
+        Route::resource('product-category', ProductCategoryController::class);
 
+    });
+
+    // Route Khusus Kasir
+    Route::middleware(['role:kasir'])->group(function () {
+
+
+    });
+
+    // Route Khusus Koki
+    Route::middleware(['role:koki'])->group(function () {
+
+
+    });
+
+    //Route Khusus Pelayan
+    Route::middleware(['role:pelayan'])->group(function () {
+
+
+    });
+
+    // Route Khusus Owner
+    Route::middleware(['role:owner'])->group(function () {
+
+
+    });
+
+    // Route Khusus Pelanggan
+    Route::middleware(['role:pelanggan'])->group(function () {
+
+
+    });
 
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
