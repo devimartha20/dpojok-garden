@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\UnitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     //Route Khusus Admin
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('product-category', ProductCategoryController::class);
-        
+        Route::resource('unit', UnitController::class);
     });
 
     // Route Khusus Kasir
