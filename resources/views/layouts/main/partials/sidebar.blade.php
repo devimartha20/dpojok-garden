@@ -94,7 +94,7 @@
         </ul>
         <div class="pcoded-navigatio-lavel">Produk</div>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="{{ Request::routeIs('product-category.index') ? 'active' : '' }}">
+            <li class="{{ Request::routeIs('product-category.*') ? 'active' : '' }}">
                 <a href="{{ route('product-category.index') }}">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext">Kategori Produk</span>

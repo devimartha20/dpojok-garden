@@ -22,7 +22,7 @@
 
     </div>
     <div class="card-block table-border-style">
-        <a href="" class="btn btn-info btn-round">Tambah</a>
+        <a href="{{route('product-category.create')  }}" class="btn btn-info btn-round">Tambah</a>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>

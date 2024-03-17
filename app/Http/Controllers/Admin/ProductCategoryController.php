@@ -22,7 +22,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.admin.product_category.add_product_category');
     }
 
     /**
