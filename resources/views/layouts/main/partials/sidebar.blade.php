@@ -105,14 +105,14 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="{{ route('product-category.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Kategori Produk</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Daftar Produk</span>
                             <span class="pcoded-mcaret"></span>
@@ -168,14 +168,14 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jam Kerja</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Lembur</span>
                             <span class="pcoded-mcaret"></span>
@@ -203,14 +203,14 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Daftar Pelanggan</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">News Letter</span>
                             <span class="pcoded-mcaret"></span>
@@ -231,14 +231,14 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Penjualan</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Kinerja Karyawan</span>
                             <span class="pcoded-mcaret"></span>
@@ -363,7 +363,7 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Absensi</span>
                             <span class="pcoded-mcaret"></span>
@@ -413,14 +413,14 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Penjualan</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Kinerja Karyawan</span>
                             <span class="pcoded-mcaret"></span>
@@ -482,7 +482,7 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
-                        <a href="auth-normal-sign-in.html">
+                        <a href="">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Login</span>
                             <span class="pcoded-mcaret"></span>
