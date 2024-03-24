@@ -56,6 +56,7 @@
                             <td>{{ $p->harga_produksi }}</td>
                             <td>{{ $p->stok }}</td>
                             <td>{{ $p->productCategory->nama }}</td>
+                            <td>{{ $p->image }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $p->id }}">
                                     Edit
