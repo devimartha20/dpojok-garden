@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\MaterialController;
+use App\Http\Controllers\Kasir\OrderTransController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     // Route Khusus Kasir
     Route::middleware(['role:kasir'])->group(function () {
-
+        Route::get('/ordertrans', [OrderTransController::class, 'index'])->name('ordertrans.index');
 
     });
 
