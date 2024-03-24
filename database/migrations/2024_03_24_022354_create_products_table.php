@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama')->unique();
             $table->string('deskripsi');
+            $table->string('image')->nullable();
             $table->decimal('harga_jual');
             $table->decimal('harga_produksi')->nullable();
             $table->integer('stok')->default(1);

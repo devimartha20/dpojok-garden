@@ -15,8 +15,8 @@
                     </div>
                 </div>
             </div>
-            <a href="index.html">
-                <img class="img-fluid" src="{{ asset('main/assets/images/logo.png') }}" alt="Theme-Logo" />
+            <a href="/">
+                <img class="img-fluid" src="{{ asset('main/assets/images/logo-pojok.png') }}" alt="Theme-Logo" />
             </a>
             <a class="mobile-options">
                 <i class="ti-more"></i>
