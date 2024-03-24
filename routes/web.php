@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\UnitController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('product-category', ProductCategoryController::class);
         Route::resource('unit', UnitController::class);
         Route::resource('material', MaterialController::class);
+        Route::resource('product', ProductController::class);
     });
 
     // Route Khusus Kasir
