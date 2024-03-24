@@ -128,6 +128,15 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li class=" ">
+                            <a href="{{ route('material.index') }}">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="">Bahan Baku</span>
+                                <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="pcoded-submenu">
+                        <li class=" ">
                             <a href="{{ route('unit.index') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="">Satuan</span>
