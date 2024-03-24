@@ -12,7 +12,7 @@ class OrderProsController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.koki.order');
     }
 
     /**

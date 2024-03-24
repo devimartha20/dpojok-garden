@@ -11,8 +11,9 @@ class Pos extends Component
 
     public function addOrder()
     {
+        $no_order = time();
         $order = Order::create([
-            
+
         ]);
     }
     public function render()

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Kasir\OrderTransController;
+use App\Http\Controllers\Koki\OrderProsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -44,7 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     // Route Khusus Koki
     Route::middleware(['role:koki'])->group(function () {
-
+        Route::get('/orderpros', [OrderProsController::class, 'index'])->name('orderpros.index');
 
     });
 
