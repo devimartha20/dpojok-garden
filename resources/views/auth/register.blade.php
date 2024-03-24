@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Gradient Able bootstrap admin template by codedthemes </title>
+    <title>Register</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,12 +47,12 @@
                         <form class="md-float-material" method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="text-center">
-                                <img src="{{ asset('main/assets/images/logo.png') }}" alt="logo.png">
+                                <img src="{{ asset('main/assets/images/logo-pojok.png') }}" alt="logo-pojok.png">
                             </div>
                             <div class="auth-box">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
-                                        <h3 class="text-center txt-primary">Sign up. It is fast and easy.</h3>
+                                        <h3 class="text-center txt-primary">Sign up</h3>
                                     </div>
                                 </div>
                                 <hr/>
@@ -79,7 +79,7 @@
                                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                     <span class="md-line"></span>
                                 </div>
-                                <div class="row m-t-25 text-left">
+                                {{-- <div class="row m-t-25 text-left">
                                     <div class="col-md-12">
                                         <div class="checkbox-fade fade-in-primary">
                                             <label>
@@ -98,14 +98,14 @@
                                             </label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now.</button>
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now</button>
                                     </div>
                                 </div>
                                 <hr/>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-md-10">
                                         <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
                                         <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
@@ -113,7 +113,7 @@
                                     <div class="col-md-2">
                                         <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </form>
                         <!-- end of form -->

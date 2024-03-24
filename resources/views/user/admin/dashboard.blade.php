@@ -31,8 +31,8 @@
         <div class="card bg-c-yellow order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Revenue</h6>
-                <h2 class="text-right"><i class="ti-reload f-left"></i><span>$42,562</span></h2>
-                <p class="m-b-0">This Month<span class="f-right">$5,032</span></p>
+                <h2 class="text-right"><i class="ti-reload f-left"></i><span>Rp. 12.000.000</span></h2>
+                <p class="m-b-0">This Month<span class="f-right">Rp.1.200.000</span></p>
             </div>
         </div>
     </div>
@@ -40,8 +40,8 @@
         <div class="card bg-c-pink order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Total Profit</h6>
-                <h2 class="text-right"><i class="ti-wallet f-left"></i><span>$9,562</span></h2>
-                <p class="m-b-0">This Month<span class="f-right">$542</span></p>
+                <h2 class="text-right"><i class="ti-wallet f-left"></i><span>Rp.15.000.000</span></h2>
+                <p class="m-b-0">This Month<span class="f-right">Rp.500.000</span></p>
             </div>
         </div>
     </div>
@@ -94,7 +94,7 @@
         <div class="card tabs-card">
             <div class="card-block p-0">
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs md-tabs" role="tablist">
+                {{-- <ul class="nav nav-tabs md-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#home3" role="tab"><i class="fa fa-home"></i>Home</a>
                         <div class="slide"></div>
@@ -111,7 +111,7 @@
                         <a class="nav-link" data-toggle="tab" href="#settings3" role="tab"><i class="fa fa-database"></i>Big Data</a>
                         <div class="slide"></div>
                     </li>
-                </ul>
+                </ul> --}}
                 <!-- Tab panes -->
                 <div class="tab-content card-block">
                     <div class="tab-pane active" id="home3" role="tabpanel">
@@ -127,7 +127,7 @@
                                     <th>Transaction ID</th>
                                 </tr>
                                 <tr>
-                                    <td><img src="{{ asset('main/assets/images/product/prod2.jpg') }}" alt="prod img" class="img-fluid"></td>
+                                    {{-- <td><img src="{{ asset('main/assets/images/product/squash-lemon.jpg') }}" alt="prod img" class="img-fluid"></td> --}}
                                     <td>PNG002344</td>
                                     <td>John Deo</td>
                                     <td>05-01-2017</td>
@@ -135,7 +135,7 @@
                                     <td>#7234486</td>
                                 </tr>
                                 <tr>
-                                    <td><img src="{{ asset('main/assets/images/product/prod3.jpg') }}" alt="prod img" class="img-fluid"></td>
+                                    {{-- <td><img src="{{ asset('main/assets/images/product/prod3.jpg') }}" alt="prod img" class="img-fluid"></td> --}}
                                     <td>PNG002653</td>
                                     <td>Eugine Turner</td>
                                     <td>04-01-2017</td>
@@ -143,7 +143,7 @@
                                     <td>#7234417</td>
                                 </tr>
                                 <tr>
-                                    <td><img src="{{ asset('main/assets/images/product/prod4.jpg') }}" alt="prod img" class="img-fluid"></td>
+                                    {{-- <td><img src="{{ asset('main/assets/images/product/prod4.jpg') }}" alt="prod img" class="img-fluid"></td> --}}
                                     <td>PNG002156</td>
                                     <td>Jacqueline Howell</td>
                                     <td>03-01-2017</td>
@@ -203,7 +203,7 @@
                                     <th>Transaction ID</th>
                                 </tr>
                                 <tr>
-                                    <td><img src="{{ asset('main/assets/images/product/prod1.jpg') }}" alt="prod img" class="img-fluid"></td>
+                                    <td><img src="{{ asset('main/assets/images/product/squash-lemon.jpg') }}" alt="prod img" class="img-fluid"></td>
                                     <td>PNG002413</td>
                                     <td>Jane Elliott</td>
                                     <td>06-01-2017</td>
@@ -245,7 +245,7 @@
                                     <td>#7234421</td>
                                 </tr>
                                 <tr>
-                                    <td><img src="{{ asset('main/assets/images/product/prod2.jpg') }}" alt="prod img" class="img-fluid"></td>
+                                    <td><img src="{{ asset('main/assets/images/product/squas-lemon.jpg') }}" alt="prod img" class="img-fluid"></td>
                                     <td>PNG002344</td>
                                     <td>John Deo</td>
                                     <td>05-01-2017</td>

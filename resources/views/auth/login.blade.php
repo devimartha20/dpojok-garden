@@ -49,7 +49,7 @@
                         <form class="md-float-material" method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="text-center">
-                                <img src="{{ asset('main/assets/images/logo.png') }}" alt="logo.png">
+                                <img src="{{ asset('main/assets/images/logo-pojok.png') }}" alt="logo-pojok.png">
                             </div>
                             <div class="auth-box">
                                 <div class="row m-b-20">
@@ -94,7 +94,7 @@
                                     </div>
                                 </div>
                                 <hr/>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-md-10">
                                         <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
                                         <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
@@ -102,7 +102,7 @@
                                     <div class="col-md-2">
                                         <img src="{{ asset('main/assets/images/auth/Logo-small-bottom.png') }}" alt="small-logo.png">
                                     </div>
-                                </div>
+                                </div> --}}
 
                             </div>
                         </form>

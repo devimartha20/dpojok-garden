@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\Unit;
 
 class UnitController extends Controller
 {
@@ -12,7 +13,8 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
+        $unit = Unit::all();
+        return view('user.admin.unit.unit', compact('unit'));
     }
 
     /**
@@ -20,7 +22,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->route('unit.index');
     }
 
     /**
@@ -28,7 +30,25 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'satuan' => 'required|unique:units,satuan',
+            ],
+            [
+                'satuan.required' => 'satuan Wajib Diisi',
+                'satuan.unique' => 'Satuan Sudah Ada',
+            ]);
+
+            $satuan = unit::create([
+                'satuan' => $request->satuan,
+            ]);
+
+            if ($satuan)
+            {
+                return redirect()->back()->with('success', 'Satuan Berhasil Ditambahkan!');
+            }
+
+            return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     /**
@@ -36,7 +56,7 @@ class UnitController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return redirect()->route('unit.index');
     }
 
     /**
@@ -44,7 +64,7 @@ class UnitController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return redirect()->route('unit.index');
     }
 
     /**
@@ -52,7 +72,25 @@ class UnitController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(
+            [
+                'satuan' => 'required|unique:units,satuan,'.$id,
+            ],
+            [
+                'satuan.required' => 'Satuan Wajib Diisi',
+                'satuan.unique' => 'Satuan Sudah Ada',
+            ]);
+
+            $satuan = Unit::findOrFail($id)->update([
+                'satuan' => $request->satuan,
+            ]);
+
+            if ($satuan)
+            {
+                return redirect()->back()->with('success', 'Satuan Berhasil Diubah!');
+            }
+
+            return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     /**
@@ -60,6 +98,7 @@ class UnitController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Unit::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Satuan Berhasil Dihapus!');
     }
 }

@@ -60,9 +60,14 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                     <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">About Us</p>
-                    <h1 class="display-5 mb-4">Suasana rumahan dan harga murah menjadi andalan kami</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
-                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+                    <h1 class="display-5 mb-4">Suasana rumahan dan harga murah menjadi ciri khas cafe kami</h1>
+                    <p class="mb-4">Selamat datang di Cafe D'Podjok Garden!
+
+                        Kami adalah sebuah tempat yang menghadirkan suasana rumahan yang hangat dan tenang, yang dirancang untuk menjadi tempat bersantai ideal bagi Anda dan teman-teman. Tersembunyi di tengah-tengah kebun yang indah, kami mengundang Anda untuk menikmati momen berharga sambil menikmati hidangan lezat kami.
+
+                        Dengan semangat kekinian, kami bangga menyajikan beragam hidangan yang nikmat dengan harga yang ramah di kantong. Dari santapan makanan yang memanjakan lidah hingga minuman segar yang menyegarkan dan dessert yang menggoda, kami memiliki segala sesuatu yang Anda butuhkan untuk memuaskan selera Anda.
+
+                        Menu kami tidak hanya mempersembahkan hidangan klasik, tetapi juga menghadirkan sentuhan kreatif yang unik. Nikmati pengalaman kuliner yang menggembirakan dengan cita rasa yang autentik dan inovatif.
                     </p>
                     <div class="border rounded p-4">
                         <nav>
@@ -161,26 +166,26 @@
             <div class="row g-5">
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
                     <i class="fa fa-users fa-3x text-white mb-3"></i>
-                    <h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
+                    <h1 class="display-4 text-white" data-toggle="counter-up">112</h1>
                     <span class="fs-5 text-white">Happy Clients</span>
                     <hr class="bg-white w-25 mx-auto mb-0">
                 </div>
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
                     <i class="fa fa-check fa-3x text-white mb-3"></i>
-                    <h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
+                    <h1 class="display-4 text-white" data-toggle="counter-up">52</h1>
                     <span class="fs-5 text-white">Our Menu</span>
                     <hr class="bg-white w-25 mx-auto mb-0">
                 </div>
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
                     <i class="fa fa-users-cog fa-3x text-white mb-3"></i>
-                    <h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
+                    <h1 class="display-4 text-white" data-toggle="counter-up">4</h1>
                     <span class="fs-5 text-white">Dedicated Staff</span>
                     <hr class="bg-white w-25 mx-auto mb-0">
                 </div>
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
                     <i class="fa fa-award fa-3x text-white mb-3"></i>
-                    <h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
-                    <span class="fs-5 text-white">Awards Achieved</span>
+                    <h1 class="display-4 text-white" data-toggle="counter-up">3</h1>
+                    <span class="fs-5 text-white">Review</span>
                     <hr class="bg-white w-25 mx-auto mb-0">
                 </div>
             </div>
@@ -421,44 +426,44 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Our Projects</p>
+                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Our Menus</p>
                 <h1 class="display-5 mb-5">We Have Completed Latest Projects</h1>
             </div>
             <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.3s">
                 <div class="project-item pe-5 pb-5">
                     <div class="project-img mb-3">
-                        <img class="img-fluid rounded" src="{{ asset('landing-page-template/img/service-1.jpg') }}" alt="">
+                        <img class="img-fluid rounded" src="{{ asset('landing-page-template/img/mix_platter.jpg') }}" alt="">
                         <a href=""><i class="fa fa-link fa-3x text-primary"></i></a>
                     </div>
                     <div class="project-title">
-                        <h4 class="mb-0">Financial Planning</h4>
+                        <h4 class="mb-0">Mix Platter</h4>
                     </div>
                 </div>
                 <div class="project-item pe-5 pb-5">
                     <div class="project-img mb-3">
-                        <img class="img-fluid rounded" src="{{ asset('landing-page-template/img/service-2.jpg') }}" alt="">
+                        <img class="img-fluid rounded" src="{{ asset('landing-page-template/img/mac_and_cheese.jpg') }}" alt="">
                         <a href=""><i class="fa fa-link fa-3x text-primary"></i></a>
                     </div>
                     <div class="project-title">
-                        <h4 class="mb-0">Cash Investment</h4>
+                        <h4 class="mb-0">Mac & Cheese</h4>
                     </div>
                 </div>
                 <div class="project-item pe-5 pb-5">
                     <div class="project-img mb-3">
-                        <img class="img-fluid rounded" src="{{ asset('landing-page-template/img/service-3.jpg') }}" alt="">
+                        <img class="img-fluid rounded" src="{{ asset('landing-page-template/img/cireng.jpg') }}" alt="">
                         <a href=""><i class="fa fa-link fa-3x text-primary"></i></a>
                     </div>
                     <div class="project-title">
-                        <h4 class="mb-0">Financial Consultancy</h4>
+                        <h4 class="mb-0">Cireng</h4>
                     </div>
                 </div>
                 <div class="project-item pe-5 pb-5">
                     <div class="project-img mb-3">
-                        <img class="img-fluid rounded" src="{{ asset('landing-page-template/img/service-4.jpg') }}" alt="">
+                        <img class="img-fluid rounded" src="{{ asset('landing-page-template/img/spaghetti_bolognese.jpg') }}" alt="">
                         <a href=""><i class="fa fa-link fa-3x text-primary"></i></a>
                     </div>
                     <div class="project-title">
-                        <h4 class="mb-0">Business Loans</h4>
+                        <h4 class="mb-0">Spaghetti Bolognese</h4>
                     </div>
                 </div>
             </div>
@@ -539,36 +544,41 @@
                         <div class="btn-square bg-white border rounded-circle">
                             <i class="fa fa-quote-right fa-2x text-primary"></i>
                         </div>
-                        Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem
-                        lorem magna ut et, nonumy et labore et tempor diam tempor erat.
+                        Saya sangat terkesan dengan pilihan main course dan snack di cafe ini. Dari roti bakar yang renyah hingga menu best seller lainnya,
+                        semuanya disajikan dengan presentasi yang menarik dan rasa yang menggugah selera.
+                        Stafnya pun sangat ramah dan membantu. Ini adalah tempat yang sempurna untuk menikmati santapan ringan sambil menikmati suasana yang menyenangkan.
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('landing-page-template/img/testimonial-1.jpg') }}" alt="">
-                    <h4>Client Name</h4>
-                    <span>Profession</span>
+                    <h4>Muhammad Rifa'I</h4>
+                    <span>Mahasiswa</span>
                 </div>
                 <div class="testimonial-item">
                     <div class="testimonial-text border rounded p-4 pt-5 mb-5">
                         <div class="btn-square bg-white border rounded-circle">
                             <i class="fa fa-quote-right fa-2x text-primary"></i>
                         </div>
-                        Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem
-                        lorem magna ut et, nonumy et labore et tempor diam tempor erat.
+                        Saya sangat terkesan dengan variasi minuman dingin yang disediakan oleh cafe ini! Seperti varian non-coffee segar hingga varian milk base,
+                        mereka memiliki sesuatu untuk semua orang. Minuman-minuman mereka disajikan dengan kreativitas dan rasa yang segar.
+                        Saya juga senang melihat bahwa mereka menawarkan minuman-minuman unik, seperti ice cream float dengan kombinasi rasa yang menarik.
+                        Dengan suasana yang menyenangkan dan staf yang ramah, Cafe D’Podjok Garden ini benar-benar menjadi destinasi yang menyegarkan di hari yang panas.
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('landing-page-template/img/testimonial-2.jpg') }}" alt="">
-                    <h4>Client Name</h4>
-                    <span>Profession</span>
+                    <h4>Diah Rahman</h4>
+                    <span>Mahasiswa</span>
                 </div>
                 <div class="testimonial-item">
                     <div class="testimonial-text border rounded p-4 pt-5 mb-5">
                         <div class="btn-square bg-white border rounded-circle">
                             <i class="fa fa-quote-right fa-2x text-primary"></i>
                         </div>
-                        Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem
-                        lorem magna ut et, nonumy et labore et tempor diam tempor erat.
+                        Suasana di cafe ini sungguh menakjubkan. Dekorasinya yang modern dan hangat membuatnya menjadi tempat yang sempurna untuk berkumpul dengan teman atau kerja kelompok.
+                        Musiknya tidak terlalu keras, sehingga memungkinkan untuk berbicara tanpa kesulitan.
+                        Sudut-sudut yang nyaman dan pencahayaan yang lembut menambah kenyamanan.
+                        Ini adalah tempat yang saya pastikan akan saya kunjungi lagi dan lagi!
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('landing-page-template/img/testimonial-3.jpg') }}" alt="">
-                    <h4>Client Name</h4>
-                    <span>Profession</span>
+                    <h4>Sintia Bela A</h4>
+                    <span>Mahasiswa</span>
                 </div>
                 <div class="testimonial-item">
                     <div class="testimonial-text border rounded p-4 pt-5 mb-5">

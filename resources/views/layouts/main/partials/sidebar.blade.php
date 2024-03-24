@@ -119,12 +119,22 @@
                         </a>
                     </li>
                 </ul>
-                <li>
-                    <a href="">
-                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                        <span class="pcoded-mtext" >Bahan Baku</span>
+
+                <li class="pcoded-hasmenu">
+                    <a>
+                        <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                        <span class="pcoded-mtext">Bahan Baku</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
+                    <ul class="pcoded-submenu">
+                        <li class=" ">
+                            <a href="{{ route('unit.index') }}">
+                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                <span class="pcoded-mtext" data-i18n="">Satuan</span>
+                                <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </li>
         </ul>

@@ -17,7 +17,7 @@
       <meta name="keywords" content="free dashboard template, free admin, free bootstrap template, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
       <meta name="author" content="codedthemes">
       <!-- Favicon icon -->
-      <link rel="icon" href="{{ asset('main/assets/images/favicon.ico') }}" type="image/x-icon">
+      <link rel="icon" href="{{ asset('main/assets/images/logo-pojok.png') }}" type="image/x-icon">
       <!-- Google font-->
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
       <!-- Required Fremwork -->

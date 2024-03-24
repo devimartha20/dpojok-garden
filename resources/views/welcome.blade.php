@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>D Pojok Garden</title>
+        <title>D'Podjok Garden</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
