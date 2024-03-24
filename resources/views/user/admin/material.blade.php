@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Kelola Satuan Bahan Baku
+    Kelola Bahan Baku
 @endsection
 @section('styles')
  <!-- Notification.css -->
@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h5>Satuan Bahan Baku</h5>
+        <h5>Bahan Baku</h5>
         {{-- <span>use class <code>table-hover</code> inside table element</span> --}}
         <div class="card-header-right">
             <ul class="list-unstyled card-option">
@@ -28,7 +28,7 @@
         @endif
         <br>
         <button type="button" class="btn btn-sm btn-info btn-round" data-toggle="modal" data-target="#tambahModal">
-            Tambah Satuan Bahan Baku
+            Tambah Bahan Baku
         </button>
         <br>
         <div class="table-responsive">
@@ -36,41 +36,54 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Nama</th>
+                        <th>Stok</th>
                         <th>Satuan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($unit as $u)
+                    @forelse ($material as $m)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $u->satuan }}</td>
+                            <td>{{ $m->nama }}</td>
+                            <td>{{ $m->stok }}</td>
+                            <td>{{ $m->unit->satuan }}</td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $u->id }}">
+                                <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $m->id }}">
                                     Edit
                                   </button>
-                                <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $u->id }}">
+                                <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $m->id }}">
                                     Hapus
                                 </button>
                             </td>
                         </tr>
                         <!-- Modal Edit -->
-                        <div class="modal fade" id="editModal{{ $u->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="editModal{{ $m->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Satuan Bahan Baku</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Bahan Baku</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('unit.update', $u->id) }}" method="POST">
+                                    <form action="{{ route('material.update', $m->id) }}" method="POST">
                                         @method('PUT')
                                         @csrf
                                         <div class="form-group">
-                                        <label for="recipient-name" class="col-form-label">Nama Satuan</label>
-                                        <input type="text" class="form-control" placeholder="Nama Satuan" name="satuan" required value="{{ $u->satuan }}">
+                                        <label for="recipient-name" class="col-form-label">Nama Bahan Baku</label>
+                                        <input type="text" class="form-control" placeholder="Nama Bahan Baku" name="nama" required value="{{ $m->nama }}">
+                                        <label for="recipient-name" class="col-form-label">Stok</label>
+                                        <input type="number" min="0" class="form-control" placeholder="Stok" name="stok" required value="{{ $m->stok }}">
+                                        <label for="recipient-name" class="col-form-label">Satuan</label>
+                                        <select name="unit" class="form-control" required>
+                                            <option>Pilih Satuan</option>
+                                            @foreach ($unit as $u)
+                                                <option value="{{ $u->id }}" {{ $m->unit_id == $u->id ? 'selected' : '' }}>{{ $u->satuan }}</option>
+                                            @endforeach
+                                        </select>
                                         </div>
                                 </div>
                                 <div class="modal-footer">
@@ -82,7 +95,7 @@
                             </div>
                         </div>
                         <!-- Modal Hapus -->
-                        <div class="modal fade" id="hapusModal{{ $u->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="hapusModal{{ $m->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -92,11 +105,11 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    Apakah Anda yakin untuk menghapus satuan {{ $u->satuan }} ?
+                                    Apakah Anda yakin untuk menghapus bahan baku {{ $m->material }} ?
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <form action="{{ route('unit.destroy', $u->id) }}" method="POST">
+                                <form action="{{ route('material.destroy', $m->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Hapus</button>
@@ -114,37 +127,82 @@
                 </tbody>
             </table>
         </div>
-        <!-- Modal Tambah -->
-        <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Satuan Bahan Baku</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('unit.store') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">Nama Satuan</label>
-                          <input type="text" class="form-control" placeholder="Nama Satuan" name="satuan" required>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
-                </div>
-            </div>
-            </div>
-        </div>
-            </div>
-            <div id="styleSelector">
 
+    </div>
+    <!-- Modal Tambah -->
+    <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Bahan Baku</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('material.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nama Bahan Baku</label>
+                        <input type="text" class="form-control" placeholder="Nama Bahan Baku" name="nama" required>
+                        <label for="recipient-name" class="col-form-label">Stok</label>
+                        <input type="number" min="0" class="form-control" placeholder="Stok" name="stok" required>
+                        <label for="recipient-name" class="col-form-label">Satuan</label>
+                        <select name="unit" class="form-control" required>
+                            <option>Pilih Satuan</option>
+                            @foreach ($unit as $u)
+                                <option value="{{ $u->id }}">{{ $u->satuan }}</option>
+                            @endforeach
+                        </select>
+                        </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
             </div>
         </div>
+        </div>
+    </div>
+    <!-- Modal Tambah -->
+    <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Bahan Baku</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('material.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nama Bahan Baku</label>
+                        <input type="text" class="form-control" placeholder="Nama Bahan Baku" name="nama" required>
+                        <label for="recipient-name" class="col-form-label">Stok</label>
+                        <input type="number" class="form-control" placeholder="Stok" name="stok" required>
+                        <label for="recipient-name" class="col-form-label">Satuan</label>
+                        <select name="unit" class="form-control" required>
+                            <option value="opt1">Pilih Satuan</option>
+                            @foreach ($unit as $u)
+                                <option value="{{ $u->id }}">{{ $u->satuan }}</option>
+                            @endforeach
+                        </select>
+                        </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="styleSelector">
+
+    </div>
+</div>
 @endsection
 @section('scripts')
 <!-- notification js -->
@@ -192,18 +250,6 @@
         });
     };
 
-
-    // $('#notif').on('click',function(e){
-    //     e.preventDefault();
-    //     var nFrom = $(this).attr('data-from');
-    //     var nAlign = $(this).attr('data-align');
-    //     var nIcons = $(this).attr('data-icon');
-    //     var nType = $(this).attr('data-type');
-    //     var nAnimIn = $(this).attr('data-animation-in');
-    //     var nAnimOut = $(this).attr('data-animation-out');
-
-    //     notify(nFrom, nAlign, nIcons, nType, nAnimIn, nAnimOut);
-    // });
 </script>
 @if (Session::has('success'))
 <script>

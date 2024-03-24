@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('product-category', ProductCategoryController::class);
         Route::resource('unit', UnitController::class);
+        Route::resource('material', MaterialController::class);
     });
 
     // Route Khusus Kasir
