@@ -6,7 +6,7 @@
 
 @endsection
 @section('content')
-
+@livewire('pos')
 @endsection
 @section('scripts')
 

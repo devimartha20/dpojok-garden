@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kasir;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Product;
 use Illuminate\Http\Request;
 
 class OrderTransController extends Controller
@@ -12,8 +13,8 @@ class OrderTransController extends Controller
      */
     public function index()
     {
-    
-        return view('user.kasir.order');
+        $product = Product::all();
+        return view('user.kasir.order', compact('product'));
     }
 
     /**
