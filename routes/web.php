@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\TableController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Kasir\OrderTransController;
 use App\Http\Controllers\Koki\OrderProsController;
 use App\Http\Controllers\DashboardController;
@@ -42,7 +43,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
     // Route Khusus Kasir
     Route::middleware(['role:kasir'])->group(function () {
         Route::get('/ordertrans', [OrderTransController::class, 'index'])->name('ordertrans.index');
-
+        Route::get('/ordertrans/create/{onlineOrOffline}', [OrderTransController::class, 'create'])->name('ordertrans.create');
+        Route::get('/payment/{order_id}', [PaymentController::class, 'create'])->name('payment.create');
     });
 
     // Route Khusus Koki

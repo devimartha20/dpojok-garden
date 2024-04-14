@@ -91,11 +91,15 @@ class TableController extends Controller
             'image' => 'nullable|image',
 
         ]);
+        $table = Table::FindOrFail($id);
+        $path = $table->image;
 
-        $imageName = time().'.'.$request->image->extension();
+        if($request->file('image')){
+            $imageName = time().'.'.$request->image->extension();
 
-        $request->image->move(public_path('images'), $imageName);
-        $path = 'images/'.$imageName;
+            $request->image->move(public_path('images'), $imageName);
+            $path = 'images/'.$imageName;
+        }
 
         $table = Table::findOrFail($id)->update([
             'no_meja' => $request->no_meja,
