@@ -34,9 +34,11 @@ class TableController extends Controller
         $request->validate(
         [
             'no_meja' => 'required|unique:tables,no_meja',
-            'jumlah_kursi' => 'required',
+            'jumlah_kursi' => 'required|integer',
             'status' => 'required',
             'image' => 'required|image',
+        ], [
+            'no_meja.required' => 'No Meja wajib diiis!',
         ]);
 
         $imageName = time().'.'.$request->image->extension();

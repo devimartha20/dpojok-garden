@@ -15,7 +15,4 @@ class Table extends Model
         'image',
     ];
 
-    public function Table(){
-        return $this->hasMany(Table::class);
-    }
 }

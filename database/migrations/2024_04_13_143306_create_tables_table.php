@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->string('no_meja')->unique();
-            $table->integer('jumlah_kursi')->nullable();
+            $table->string('deskripsi')->nullable();
+            $table->integer('jumlah_kursi')->nullable()->default(1);
             $table->enum('status', ['disewa', 'tersedia'])->default('tersedia');
             $table->string('image')->nullable();
         });

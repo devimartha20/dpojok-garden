@@ -109,7 +109,7 @@ class MaterialController extends Controller
 
             if($bahan_baku)
             {
-                return redirect()->back()->with('success', 'Bahan Baku Berhasil Ditambahkan');
+                return redirect()->back()->with('success', 'Pemesanan berhasil diubah');
             }
 
             return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
@@ -120,7 +120,10 @@ class MaterialController extends Controller
      */
     public function destroy(string $id)
     {
-        Material::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Kategori Berhasil Dihapus!');
+        $destroy = Material::destroy($id);
+        if($destroy){
+            return redirect()->back()->with('success', 'Bahan Baku Berhasil Dihapus!');
+        }
+
     }
 }

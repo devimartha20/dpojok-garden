@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="card-footer text-right">
-                <a href="{{ route('table-category.index') }}" class="btn btn-round btn-secondary">Kembali</a>
+                <a href="{{ route('table.index') }}" class="btn btn-round btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-round btn-primary">Simpan</button>
             </div>
         </div>

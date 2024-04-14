@@ -20,7 +20,7 @@
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#home7" role="tab" aria-expanded="true">
                 <i class="ti-timer"></i>
-            Menunggu</a>
+                Menunggu</a>
             <div class="slide"></div>
         </li>
         <li class="nav-item">
@@ -58,7 +58,6 @@
                         </div>
                         <div class="col float-end text-right">
                                 <span><i>Dipesan sejak 2 menit yang lalu</i></span>
-
                         </div>
                     </div>
 
