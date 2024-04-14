@@ -5,10 +5,10 @@
             <small><i class="fa fa-map-marker-alt text-primary me-2"></i>Gg Sukagalih No.1 No 5, Karanganyar, Subang</small>
             <small class="ms-4"><i class="fa fa-clock text-primary me-2"></i>11.00 am - 11.00 pm</small>
         </div>
-        <div class="col-lg-6 px-5 text-end">
+        {{-- <div class="col-lg-6 px-5 text-end">
             <small><i class="fa fa-envelope text-primary me-2"></i>info@example.com</small>
             <small class="ms-4"><i class="fa fa-phone-alt text-primary me-2"></i>+012 345 6789</small>
-        </div>
+        </div> --}}
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">

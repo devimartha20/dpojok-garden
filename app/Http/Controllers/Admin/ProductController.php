@@ -128,6 +128,6 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         Product::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Kategori Berhasil Dihapus!');
+        return redirect()->back()->with('success', 'Produk Berhasil Dihapus!');
     }
 }

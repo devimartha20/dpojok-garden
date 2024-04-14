@@ -52,7 +52,7 @@
 
 
     <!-- About Start -->
-    <div class="container-xxl py-5">
+    {{-- <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-4 align-items-end mb-4">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -156,7 +156,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- About End -->
 
 
@@ -184,7 +184,7 @@
                 </div>
                 <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
                     <i class="fa fa-award fa-3x text-white mb-3"></i>
-                    <h1 class="display-4 text-white" data-toggle="counter-up">3</h1>
+                    <h1 class="display-4 text-white" data-toggle="counter-up">4</h1>
                     <span class="fs-5 text-white">Review</span>
                     <hr class="bg-white w-25 mx-auto mb-0">
                 </div>
@@ -195,7 +195,7 @@
 
 
     <!-- Features Start -->
-    <div class="container-xxl feature py-5">
+    {{-- <div class="container-xxl feature py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -245,12 +245,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Features End -->
 
 
     <!-- Service Start -->
-    <div class="container-xxl service py-5">
+    {{-- <div class="container-xxl service py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Our Services</p>
@@ -363,12 +363,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Service End -->
 
 
     <!-- Callback Start -->
-    <div class="container-fluid callback my-5 pt-5">
+    {{-- <div class="container-fluid callback my-5 pt-5">
         <div class="container pt-5">
             <div class="row justify-content-center">
                 <div class="col-lg-7">
@@ -418,7 +418,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Callback End -->
 
 
@@ -427,7 +427,7 @@
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Our Menus</p>
-                <h1 class="display-5 mb-5">We Have Completed Latest Projects</h1>
+                <h1 class="display-5 mb-5">Menu</h1>
             </div>
             <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.3s">
                 <div class="project-item pe-5 pb-5">
@@ -473,7 +473,7 @@
 
 
     <!-- Team Start -->
-    <div class="container-xxl py-5">
+    {{-- <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Our Team</p>
@@ -527,7 +527,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Team End -->
 
 
@@ -546,7 +546,7 @@
                         </div>
                         Saya sangat terkesan dengan pilihan main course dan snack di cafe ini. Dari roti bakar yang renyah hingga menu best seller lainnya,
                         semuanya disajikan dengan presentasi yang menarik dan rasa yang menggugah selera.
-                        Stafnya pun sangat ramah dan membantu. Ini adalah tempat yang sempurna untuk menikmati santapan ringan sambil menikmati suasana yang menyenangkan.
+                        Stafnya pun sangat ramah dan membantu.
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('landing-page-template/img/testimonial-1.jpg') }}" alt="">
                     <h4>Muhammad Rifa'I</h4>
@@ -557,10 +557,8 @@
                         <div class="btn-square bg-white border rounded-circle">
                             <i class="fa fa-quote-right fa-2x text-primary"></i>
                         </div>
-                        Saya sangat terkesan dengan variasi minuman dingin yang disediakan oleh cafe ini! Seperti varian non-coffee segar hingga varian milk base,
-                        mereka memiliki sesuatu untuk semua orang. Minuman-minuman mereka disajikan dengan kreativitas dan rasa yang segar.
-                        Saya juga senang melihat bahwa mereka menawarkan minuman-minuman unik, seperti ice cream float dengan kombinasi rasa yang menarik.
-                        Dengan suasana yang menyenangkan dan staf yang ramah, Cafe D’Podjok Garden ini benar-benar menjadi destinasi yang menyegarkan di hari yang panas.
+                        Suasananya yang tenang membuat nyaman saat berkumpul ataupun mengerjakan tugas, tempat ini cocok untuk mahasiswa.
+                        Selain harganya yang ramah di kantong, makanan yang cocok di lidah dan tempat yang menyuguhkan pemandangan indah.
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('landing-page-template/img/testimonial-2.jpg') }}" alt="">
                     <h4>Diah Rahman</h4>
@@ -571,10 +569,9 @@
                         <div class="btn-square bg-white border rounded-circle">
                             <i class="fa fa-quote-right fa-2x text-primary"></i>
                         </div>
-                        Suasana di cafe ini sungguh menakjubkan. Dekorasinya yang modern dan hangat membuatnya menjadi tempat yang sempurna untuk berkumpul dengan teman atau kerja kelompok.
+                        Suasana di cafe ini sungguh menakjubkan. Dekorasinya yang modern dan hangat membuatnya menjadi tempat yang sempurna
+                        untuk berkumpul dengan teman atau kerja kelompok.
                         Musiknya tidak terlalu keras, sehingga memungkinkan untuk berbicara tanpa kesulitan.
-                        Sudut-sudut yang nyaman dan pencahayaan yang lembut menambah kenyamanan.
-                        Ini adalah tempat yang saya pastikan akan saya kunjungi lagi dan lagi!
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('landing-page-template/img/testimonial-3.jpg') }}" alt="">
                     <h4>Sintia Bela A</h4>
@@ -585,12 +582,12 @@
                         <div class="btn-square bg-white border rounded-circle">
                             <i class="fa fa-quote-right fa-2x text-primary"></i>
                         </div>
-                        Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem
-                        lorem magna ut et, nonumy et labore et tempor diam tempor erat.
+                        Dengan fasilitas permainan billiard yang disediakan, menjadikan tempat ini ramai dikunjungi anak muda baik mahasiswa ataupun anak sekolahan.
+                        Dengan harga yang terjangkau menjadikan cafe ini menjadi tujuan utama anak remaja untuk bermain maupun nongkrong santai.
                     </div>
                     <img class="rounded-circle mb-3" src="{{ asset('landing-page-template/img/testimonial-4.jpg') }}" alt="">
-                    <h4>Client Name</h4>
-                    <span>Profession</span>
+                    <h4>Lutfi Munajat</h4>
+                    <span>Murid SMA</span>
                 </div>
             </div>
         </div>

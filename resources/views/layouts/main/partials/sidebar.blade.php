@@ -148,6 +148,18 @@
             </li>
         </ul>
 
+        {{-- Meja --}}
+        <div class="pcoded-navigatio-lavel">Meja</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a href="{{ route('table.index') }}">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" >Meja</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+
         {{-- Penjualan --}}
         <div class="pcoded-navigatio-lavel">Penjualan</div>
         <ul class="pcoded-item pcoded-left-item">

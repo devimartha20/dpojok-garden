@@ -238,7 +238,7 @@
                                 </tr>
                                 <tr>
                                     <td><img src="{{ asset('main/assets/images/product/prod1.jpg') }}" alt="prod img" class="img-fluid"></td>
-                                    <td>PNG002413</td>
+                                    <td>Vanilla Late</td>
                                     <td>Jane Elliott</td>
                                     <td>06-01-2017</td>
                                     <td><span class="label label-primary">Shipping</span></td>
@@ -246,7 +246,7 @@
                                 </tr>
                                 <tr>
                                     <td><img src="{{ asset('main/assets/images/product/squas-lemon.jpg') }}" alt="prod img" class="img-fluid"></td>
-                                    <td>PNG002344</td>
+                                    <td>Mix Platter</td>
                                     <td>John Deo</td>
                                     <td>05-01-2017</td>
                                     <td><span class="label label-danger">Faild</span></td>
@@ -265,7 +265,7 @@
     <!-- tabs card end -->
 
     <!-- social statustic start -->
-    <div class="col-md-12 col-lg-4">
+    {{-- <div class="col-md-12 col-lg-4">
         <div class="card">
             <div class="card-block text-center">
                 <i class="fa fa-envelope-open text-c-blue d-block f-40"></i>
@@ -274,8 +274,8 @@
                 <button class="btn btn-primary btn-sm btn-round">Manage List</button>
             </div>
         </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
+    </div> --}}
+    {{-- <div class="col-md-6 col-lg-4">
         <div class="card">
             <div class="card-block text-center">
                 <i class="fa fa-twitter text-c-green d-block f-40"></i>
@@ -284,8 +284,8 @@
                 <button class="btn btn-success btn-sm btn-round">Check them out</button>
             </div>
         </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
+    </div> --}}
+    {{-- <div class="col-md-6 col-lg-4">
         <div class="card">
             <div class="card-block text-center">
                 <i class="fa fa-puzzle-piece text-c-pink d-block f-40"></i>
@@ -294,11 +294,11 @@
                 <button class="btn btn-danger btn-sm btn-round">Upgrade to VIP</button>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- social statustic end -->
 
     <!-- users visite and profile start -->
-    <div class="col-md-4">
+    {{-- <div class="col-md-4">
         <div class="card user-card">
             <div class="card-header">
                 <h5>Profile</h5>
@@ -406,7 +406,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- users visite and profile end -->
 
 </div>
