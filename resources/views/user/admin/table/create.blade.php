@@ -4,6 +4,9 @@
 @endsection
 @section('styles')
  <!-- Notification.css -->
+ <style>
+    #imagePreview{display: none; max-width: 300px; max-height: auto;}
+ </style>
  <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/assets/pages/notification/notification.css">
 @endsection
 @section('content')
@@ -19,43 +22,61 @@
 
         </div>
         <div class="card-block">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             {{-- <h4 class="sub-title">Form Tambah Produk</h4> --}}
             <form action="{{ route('table.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
-                    {{-- <label class="col-sm-2 col-form-label">Kategori Produk</label>
-                    <div class="col-sm-10">
-                        <select name="table_category_id" required class="form-control">
-                            <option>Pilih Jenis Kategori</option>
-                            @foreach ($tableCategory as $c)
-                                <option value="{{ $c->id }}">{{ $c->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div> --}}
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nomor Meja</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan Nomor Meja" required value="{{ old('nomor_meja') }}" name="nomor_meja">
+                        <input type="text" class="form-control" placeholder="Masukkan Nomor Meja" required value="{{ old('no_meja') }}" name="no_meja">
+                        @error('no_meja')
+                            {{ $message }}
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Deskripsi</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Deskripsi" required value="{{ old('deskripsi') }}" name="deskripsi">
+                        @error('deskripsi')
+                            {{ $message }}
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Jumlah Kursi</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan Jumlah Kursi" required name="jumlah_kursi">
+                        <input type="number" min="1"  class="form-control" placeholder="Masukkan Jumlah Kursi" value="{{ old('jumlah_kursi') }}" required name="jumlah_kursi">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Status</label>
                     <div class="col-sm-10">
-                        <input type="number" min=1 class="form-control" placeholder="Masukkan Status Meja" required name="status">
+                        <select name="status" required class="form-control">
+                            <option value="tersedia" selected>Tersedia</option>
+                            <option value="disewa">Disewa</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Upload Gambar Produk</label>
+                    <label class="col-sm-2 col-form-label">Upload Gambar Meja</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" name="image">
+                        <input type="file" accept="image/*" class="form-control" id="imageInput" name="image" onchange="previewImage(event)">
+                        <hr>
+                        <img id="imagePreview" src="" alt="Preview Image" class="img-fluid">
                     </div>
+
                 </div>
             </div>
             <div class="card-footer text-right">
@@ -67,6 +88,20 @@
     </form>
 @endsection
 @section('scripts')
+<script>
+   function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+
+        reader.onload = function() {
+            var img = document.getElementById('imagePreview');
+            img.src = reader.result;
+            img.style.display = 'block';
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>
 <!-- notification js -->
 <script type="text/javascript" src="{{ asset('main/assets/js/bootstrap-growl.min.js') }}"></script>
 <script>

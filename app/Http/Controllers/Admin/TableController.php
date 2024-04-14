@@ -42,19 +42,20 @@ class TableController extends Controller
         ]);
 
         $imageName = time().'.'.$request->image->extension();
-
         $request->image->move(public_path('images'), $imageName);
+        $path = 'images/'.$imageName;
 
         $table = Table::create([
             'no_meja' => $request->no_meja,
-            'jumlah_kursi' => $request->jumlah_meja,
+            'deskripsi' => $request->deskripsi,
+            'jumlah_kursi' => $request->jumlah_kursi,
             'status' => $request->status,
-            'image' => $imageName,
+            'image' => $path,
         ]);
 
         if ($table)
         {
-            return redirect()->back()->with('success', 'Meja Berhasil Ditambahkan!');
+            return redirect()->route('table.index')->with('success', 'Meja Berhasil Ditambahkan!');
         }
 
         return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
@@ -94,12 +95,14 @@ class TableController extends Controller
         $imageName = time().'.'.$request->image->extension();
 
         $request->image->move(public_path('images'), $imageName);
+        $path = 'images/'.$imageName;
 
         $table = Table::findOrFail($id)->update([
             'no_meja' => $request->no_meja,
-            'jumlah_kursi' => $request->jumlah_meja,
+            'deskripsi' => $request->deskripsi,
+            'jumlah_kursi' => $request->jumlah_kursi,
             'status' => $request->status,
-            'image' => $request->image,
+            'image' => $path,
         ]);
 
         if ($table)

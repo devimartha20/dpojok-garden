@@ -35,7 +35,9 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Nomor Meja</th>
+                        <th>Deskripsi</th>
                         <th>Jumlah Kursi</th>
                         <th>Status</th>
                         <th>Gambar Meja</th>
@@ -47,11 +49,11 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $t->no_meja }}</td>
+                            <td>{{ $t->deskripsi ?? '-' }}</td>
                             <td>{{ $t->jumlah_kursi }}</td>
                             <td>{{ $t->status }}</td>
-                            <td>{{ $t->image }}</td>
                             <td>
-                                <img src="{{ asset('images/'.$t->image )}}" style="width: 25%; height:auto"/>
+                                <img src="{{ asset($t->image) }}" alt="Gambar Meja" class="image-fluid" style="max-width: 200px; max-height: auto;">
                             </td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $t->id }}">
@@ -89,7 +91,7 @@
                         </div>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center">No Data</td>
+                            <td colspan="5" class="text-center">No Data</td>
                         </tr>
                     @endforelse
 
