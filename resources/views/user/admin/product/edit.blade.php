@@ -7,8 +7,97 @@
  <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/assets/pages/notification/notification.css">
 @endsection
 @section('content')
+<div class="card">
+    <div class="card-header">
+        <h4>Form Edit Produk</h4>
+        {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
+        <div class="card-header-right"><i class="icofont icofont-spinner-alt-5"></i></div>
+
+            <div class="card-header-right">
+                <i class="icofont icofont-spinner-alt-5"></i>
+            </div>
+
+        </div>
+        <div class="card-block">
+            {{-- <h4 class="sub-title">Form Tambah Produk</h4> --}}
+            <form action="{{ route('product.update',$product->id) }}" method="POST" enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Kategori Produk</label>
+                    <div class="col-sm-10">
+                        <select name="product_category_id" required class="form-control">
+                            @foreach ($productCategory as $c)
+                                <option value="{{ $c->id }}" {{ $c->id == $product->product_category_id ? 'selected' : '' }}>{{ $c->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nama Produk</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Produk" required value="{{ $product->nama }}" name="nama">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Deskripsi Produk</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Deskripsi Produk" required value="{{ $product->deskripsi }}"name="deskripsi">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Harga Jual</label>
+                    <div class="col-sm-10">
+                        <input type="number" min=1 class="form-control" placeholder="Harga Jual" required value="{{ $product->harga_jual }}" name="harga_jual">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Harga Produksi</label>
+                    <div class="col-sm-10">
+                        <input type="number" min=1 class="form-control" placeholder="Harga Produksi" required value="{{ $product->harga_produksi }}" name="harga_produksi">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Stok Awal</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" placeholder="Stok" name="stok" required value="{{ $product->stok }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Upload Gambar Meja</label>
+                    <div class="col-sm-10">
+                        <input type="file" accept="image/*" class="form-control" id="imageInput" name="image" onchange="previewImage(event)">
+                        <hr>
+                        <img id="imagePreview" src="{{ asset('images/'.$product->image) }}" alt="Preview Image" class="img-fluid">
+                        @error('image')
+                            {{ $message }}
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                <a href="{{ route('product.index') }}" class="btn btn-round btn-secondary">Kembali</a>
+                <button type="submit" class="btn btn-round btn-primary">Simpan</button>
+            </div>
+        </div>
+
+    </form>
 @endsection
 @section('scripts')
+<script>
+    function previewImage(event) {
+         var input = event.target;
+         var reader = new FileReader();
+
+         reader.onload = function() {
+             var img = document.getElementById('imagePreview');
+             img.src = reader.result;
+             img.style.display = 'block';
+         };
+
+         reader.readAsDataURL(input.files[0]);
+     }
+ </script>
 <!-- notification js -->
 <script type="text/javascript" src="{{ asset('main/assets/js/bootstrap-growl.min.js') }}"></script>
 <script>

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\MaterialController;
+use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Kasir\OrderTransController;
 use App\Http\Controllers\Koki\OrderProsController;
@@ -37,6 +39,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('material', MaterialController::class);
         Route::resource('product', ProductController::class);
         Route::resource('table', TableController::class);
+        Route::resource('metode', PaymentMethodController::class);
+        Route::resource('customer', CustomerController::class);
     });
 
     // Route Khusus Kasir

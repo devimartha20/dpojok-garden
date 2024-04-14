@@ -10,9 +10,9 @@ class PaymentMethod extends Model
     use HasFactory;
 
     protected $fillable = [
+        'jenis',
         'nama',
-        'nomor',
-        'penerima',
+        'deskripsi',
     ];
 
     public function payment(){

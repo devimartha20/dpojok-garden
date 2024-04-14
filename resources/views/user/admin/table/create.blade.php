@@ -76,7 +76,6 @@
                         <hr>
                         <img id="imagePreview" src="" alt="Preview Image" class="img-fluid">
                     </div>
-
                 </div>
             </div>
             <div class="card-footer text-right">

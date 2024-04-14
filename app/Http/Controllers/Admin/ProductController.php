@@ -100,14 +100,20 @@ class ProductController extends Controller
 
         ]);
 
-        $imageName = time().'.'.$request->image->extension();
+        $product = Product::findOrFail($id);
 
-        $request->image->move(public_path('images'), $imageName);
+        $path= $product->image;
+
+        if($request->file('image')){
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $path = $imageName;
+        }
 
         $product = Product::findOrFail($id)->update([
             'product_category_id' => $request->product_category_id,
             'nama' => $request->nama,
-            'image' => $request->image,
+            'image' => $path,
             'harga_jual' => $request->harga_jual,
             'harga_produksi' => $request->harga_produksi,
             'deskripsi' => $request->deskripsi,
@@ -116,7 +122,7 @@ class ProductController extends Controller
 
         if ($product)
         {
-            return redirect()->back()->with('success', 'Produk Berhasil Ditambahkan!');
+            return redirect()->route('product.index')->with('success', 'Produk Berhasil Ditambahkan!');
         }
 
         return redirect()->back()->with('fail', 'Terjadi Kesalahan!');

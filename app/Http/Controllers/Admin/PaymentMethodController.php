@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\PaymentMethod;
 use Illuminate\Http\Request;
 
 class PaymentMethodController extends Controller
@@ -12,7 +13,8 @@ class PaymentMethodController extends Controller
      */
     public function index()
     {
-        //
+        $metode = PaymentMethod::all();
+        return view('user.admin.payment_method.index', compact('metode'));
     }
 
     /**
@@ -20,7 +22,8 @@ class PaymentMethodController extends Controller
      */
     public function create()
     {
-        //
+        $metode = PaymentMethod::all();
+        return view('user.admin.payment_method.create', compact('metode'));
     }
 
     /**
@@ -28,7 +31,31 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'jenis' => 'required',
+                'nama' => 'required|unique:payment_methods,nama',
+                'deskripsi' => 'required',
+            ],
+
+            [
+                'jenis.required' => 'jenis metode pembayaran wajib dipilih!',
+                'nama.required' => 'nama metode pembayaran wajib dipilih!',
+            ]);
+
+
+            $metode = PaymentMethod::create([
+                'jenis' => $request->jenis,
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi,
+            ]);
+
+            if ($metode)
+            {
+                return redirect()->route('metode.index')->with('success', 'Metode Pembayaran Berhasil Ditambahkan!');
+            }
+
+            return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     /**
@@ -36,7 +63,8 @@ class PaymentMethodController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $metode = PaymentMethod::findOrFail($id);
+        return view('user.admin.payment_method.edit', compact('metode'));
     }
 
     /**
@@ -44,7 +72,8 @@ class PaymentMethodController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $metode = PaymentMethod::findOrFail($id);
+        return view('user.admin.payment_method.edit', compact('metode'));
     }
 
     /**
@@ -52,7 +81,25 @@ class PaymentMethodController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'jenis' => 'required',
+            'nama' => 'required|unique:payment_methods,nama,'.$id,
+            'deskripsi' => 'required',
+
+        ]);
+
+        $metode = PaymentMethod::findOrFail($id)->update([
+            'jenis' => $request->jenis,
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        if ($metode)
+        {
+            return redirect()->route('metode.index')->with('success', 'Metode Pembayaran Berhasil Ditambahkan!');
+        }
+
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     /**
@@ -60,6 +107,7 @@ class PaymentMethodController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        PaymentMethod::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Metode Pembayaran Berhasil Dihapus!');
     }
 }

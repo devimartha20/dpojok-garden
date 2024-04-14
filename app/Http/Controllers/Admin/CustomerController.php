@@ -22,7 +22,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-
+        $customer = Customer::all();
+        return view('user.admin.customer.create', compact('customer'));
     }
 
     /**
@@ -30,37 +31,29 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required|unique:products,nama',
-            'image' => 'required|image',
-            'deskripsi' => 'required',
-            'product_category_id' => 'required',
-            'harga_jual' => 'required',
-            'harga_produksi' => 'required',
-            'stok' => 'required',
+        $request->validate(
+            [
+                'nama' => 'required|unique:customer,nama',
+                'email' => 'required',
+                'telepon' => 'required',
+                'alamat' => 'required',
+            ], [
+                'nama.required' => 'Nama wajib diiis!',
+            ]);
 
-        ]);
+            $customer = Customer::create([
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'telepon' => $request->telepon,
+                'alamat' => $request->alamat,
+            ]);
 
-        $imageName = time().'.'.$request->image->extension();
+            if ($customer)
+            {
+                return redirect()->route('customer.index')->with('success', 'Data Pelanggan Berhasil Ditambahkan!');
+            }
 
-        $request->image->move(public_path('images'), $imageName);
-
-        $product = Product::create([
-            'product_category_id' => $request->product_category_id,
-            'nama' => $request->nama,
-            'image' => $imageName,
-            'harga_jual' => $request->harga_jual,
-            'harga_produksi' => $request->harga_produksi,
-            'deskripsi' => $request->deskripsi,
-            'stok' => $request->stok,
-        ]);
-
-        if ($product)
-        {
-            return redirect()->back()->with('success', 'Produk Berhasil Ditambahkan!');
-        }
-
-        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+            return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     /**
@@ -68,7 +61,8 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+        return view('user.admin.customer.edit', compact('customer'));
     }
 
     /**
@@ -76,7 +70,8 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-
+        $customer = Customer::findOrFail($id);
+        return view('user.admin.customer.edit', compact('customer'));
     }
 
     /**
@@ -84,7 +79,29 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(
+            [
+                'nama' => 'required|unique:customer,nama,'.$id,
+                'email' => 'required',
+                'telepon' => 'required',
+                'alamat' => 'required',
+            ], [
+                'nama.required' => 'Nama wajib diiis!',
+            ]);
+
+            $customer = Customer::create([
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'telepon' => $request->telepon,
+                'alamat' => $request->alamat,
+            ]);
+
+            if ($customer)
+            {
+                return redirect()->route('customer.index')->with('success', 'Data Pelanggan Berhasil Ditambahkan!');
+            }
+
+            return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     /**

@@ -1,26 +1,24 @@
 @extends('layouts.main.layout')
 @section('title')
-    Tambah Meja
+    Edit Metode Pembayaran
 @endsection
 @section('styles')
  <!-- Notification.css -->
- <style>
-    #imagePreview{display: block; max-width: 300px; max-height: auto;}
- </style>
  <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/assets/pages/notification/notification.css">
 @endsection
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4>Form Tambah Meja</h4>
+        <h4>Form Edit Metode Pembayaran</h4>
         {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
         <div class="card-header-right"><i class="icofont icofont-spinner-alt-5"></i></div>
+
             <div class="card-header-right">
                 <i class="icofont icofont-spinner-alt-5"></i>
             </div>
+
         </div>
-        <div class="card-block">
-            @if ($errors->any())
+        @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -29,65 +27,37 @@
                     </ul>
                 </div>
             @endif
+        <div class="card-block">
             {{-- <h4 class="sub-title">Form Tambah Produk</h4> --}}
-            <form action="{{ route('table.update',$table->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('metode.update',$metode->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="form-group row">
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nomor Meja</label>
+                    <label class="col-sm-2 col-form-label">Jenis Metode Pembayaran</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan Nomor Meja" required value="{{$table->no_meja}}" name="no_meja">
-                        @error('no_meja')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Deskripsi</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Deskripsi" required value="{{$table->deskripsi}}" name="deskripsi">
-                        @error('deskripsi')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Jumlah Kursi</label>
-                    <div class="col-sm-10">
-                        <input type="number" min="1"  class="form-control" placeholder="Masukkan Jumlah Kursi" value="{{$table->jumlah_kursi}}" required name="jumlah_kursi">
-                        @error('jumlah_kursi')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-sm-10">
-                        <select name="status" required class="form-control">
-                            <option value="tersedia" {{ $table->status == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
-                            <option value="disewa" {{ $table->status == 'disewa' ? 'selected' : '' }}>Disewa</option>
+                        <select name="jenis" required class="form-control">
+                            <option>Pilih Jenis Metode Pembayaran</option>
+                            <option value="e-wallet" {{ $metode->jenis == 'e-wallet' ? 'selected' : '' }}>E-Wallet</option>
+                            <option value="transfer_bank" {{ $metode->jenis == 'transfer_bank' ? 'selected' : '' }}>Transfer Bank</option>
+                            <option value="cash" {{ $metode->jenis == 'cash' ? 'selected' : '' }}>Cash</option>
                         </select>
-                        @error('status')
-                            {{ $message }}
-                        @enderror
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Upload Gambar Meja</label>
+                    <label class="col-sm-2 col-form-label">Nama Metode Pembayaran</label>
                     <div class="col-sm-10">
-                        <input type="file" accept="image/*" class="form-control" id="imageInput" name="image" onchange="previewImage(event)">
-                        <hr>
-                        <img id="imagePreview" src="{{ asset($table->image) }}" alt="Preview Image" class="img-fluid">
-                        @error('image')
-                            {{ $message }}
-                        @enderror
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Metode Pembayaran" required value="{{$metode->nama}}" name="nama">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Deskripsi Metode Pembayaran</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Deskripsi Metode Pembayaran" required value="{{$metode->deskripsi}}" name="deskripsi">
                     </div>
                 </div>
             </div>
             <div class="card-footer text-right">
-                <a href="{{ route('table.index') }}" class="btn btn-round btn-secondary">Kembali</a>
+                <a href="{{ route('metode.index') }}" class="btn btn-round btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-round btn-primary">Simpan</button>
             </div>
         </div>
@@ -95,20 +65,6 @@
     </form>
 @endsection
 @section('scripts')
-<script>
-   function previewImage(event) {
-        var input = event.target;
-        var reader = new FileReader();
-
-        reader.onload = function() {
-            var img = document.getElementById('imagePreview');
-            img.src = reader.result;
-            img.style.display = 'block';
-        };
-
-        reader.readAsDataURL(input.files[0]);
-    }
-</script>
 <!-- notification js -->
 <script type="text/javascript" src="{{ asset('main/assets/js/bootstrap-growl.min.js') }}"></script>
 <script>

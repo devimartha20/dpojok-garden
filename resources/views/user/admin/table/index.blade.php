@@ -56,12 +56,12 @@
                                 <img src="{{ asset($t->image) }}" alt="Gambar Meja" class="image-fluid" style="max-width: 200px; max-height: auto;">
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $t->id }}">
+                                <a href="{{ route('table.edit',$t->id) }}" type="button" class="btn btn-primary btn-round btn-sm">
                                     Edit
-                                  </button>
-                                <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $t->id }}">
+                                </a>
+                                <a type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $t->id }}">
                                     Hapus
-                                </button>
+                                </a>
                             </td>
                         </tr>
                         <!-- Modal Edit -->

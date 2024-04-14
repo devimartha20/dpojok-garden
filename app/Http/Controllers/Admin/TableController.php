@@ -85,17 +85,21 @@ class TableController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'no_meja' => 'required|unique:tables,no_meja'.$id,
+            'no_meja' => 'required|unique:tables,no_meja,'.$id,
             'jumlah_kursi' => 'required',
             'status' => 'required',
             'image' => 'nullable|image',
 
         ]);
+        $table = Table::FindOrFail($id);
+        $path = $table->image;
 
-        $imageName = time().'.'.$request->image->extension();
+        if($request->file('image')){
+            $imageName = time().'.'.$request->image->extension();
 
-        $request->image->move(public_path('images'), $imageName);
-        $path = 'images/'.$imageName;
+            $request->image->move(public_path('images'), $imageName);
+            $path = 'images/'.$imageName;
+        }
 
         $table = Table::findOrFail($id)->update([
             'no_meja' => $request->no_meja,
@@ -107,7 +111,7 @@ class TableController extends Controller
 
         if ($table)
         {
-            return redirect()->back()->with('success', 'Meja Berhasil Ditambahkan!');
+            return redirect()->route('table.index')->with('success', 'Meja Berhasil Ditambahkan!');
         }
 
         return redirect()->back()->with('fail', 'Terjadi Kesalahan!');

@@ -60,9 +60,9 @@
                                 <img src="{{ asset('images/'.$p->image )}}" style="width: 25%; height:auto"/>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $p->id }}">
+                                <a href="{{ route('product.edit',$p->id) }}" type="button" class="btn btn-primary btn-round btn-sm">
                                     Edit
-                                  </button>
+                                </a>
                                 <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $p->id }}">
                                     Hapus
                                 </button>
