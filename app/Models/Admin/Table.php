@@ -16,4 +16,6 @@ class Table extends Model
         'deskripsi',
     ];
 
+    
 }
+
