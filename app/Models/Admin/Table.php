@@ -13,6 +13,7 @@ class Table extends Model
         'jumlah_kursi',
         'status',
         'image',
+        'deskripsi',
     ];
 
 }
