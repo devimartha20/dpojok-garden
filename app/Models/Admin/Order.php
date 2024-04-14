@@ -33,7 +33,7 @@ class Order extends Model
     {
         return $this->belongsTo(Employee::class);
     }
-    public function detailOrder()
+    public function detailOrders()
     {
         return $this->hasMany(DetailOrder::class);
     }
