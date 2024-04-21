@@ -360,10 +360,10 @@
         @hasrole('kasir')
         <div class="pcoded-navigatio-lavel">Kelola Pemesanan</div>
         <ul class="pcoded-item pcoded-left-item">
-            <li>
+            <li class="{{ request()->routeIs('ordertrans.*') ? 'active' : '' }}">
                 <a href="{{ route('ordertrans.index') }}">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                    <span class="pcoded-mtext" >Point Of Sales</span>
+                    <span class="pcoded-mtext" >Pesanan</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
@@ -371,13 +371,6 @@
                 <a href="">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Reservasi</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                    <span class="pcoded-mtext" >Pemesanan</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>

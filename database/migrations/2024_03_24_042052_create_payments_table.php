@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('no_payment')->unique();
             $table->unsignedBigInteger('payment_method_id')->nullable();
-            $table->decimal('jumlah');
+            $table->bigInteger('total_bayar');
             $table->timestamps();
 
             $table->foreign('payment_method_id')->references('id')->on('payment_methods');

@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('user.kasir.order', compact('orders'));
+        return view('user.kasir.order.order', compact('orders'));
     }
 
     /**
@@ -23,24 +23,24 @@ class OrderController extends Controller
      */
     public function create($OfflineorOnline = 0)
     {
-    // Get current date and time
-    $currentDateTime = new DateTime();
-    // Format date and time components
-    $year = $currentDateTime->format('Y');
-    $month = $currentDateTime->format('m');
-    $day = $currentDateTime->format('d');
-    $time = $currentDateTime->format('His'); // Hours, minutes, seconds
-    $hour = $currentDateTime->format('H');
-    $minute = $currentDateTime->format('i');
-    $second = $currentDateTime->format('s');
-    // Get authenticated employee ID (assuming you have a function to retrieve this)
-    $userId = auth()->user()->id;
-    // Get the last order ID
-    $lastOrderId = Order::latest()->first()->id;
+        // Get current date and time
+        $currentDateTime = new DateTime();
+        // Format date and time components
+        $year = $currentDateTime->format('Y');
+        $month = $currentDateTime->format('m');
+        $day = $currentDateTime->format('d');
+        $time = $currentDateTime->format('His'); // Hours, minutes, seconds
+        $hour = $currentDateTime->format('H');
+        $minute = $currentDateTime->format('i');
+        $second = $currentDateTime->format('s');
+        // Get authenticated employee ID (assuming you have a function to retrieve this)
+        $userId = auth()->user()->id;
+        // Get the last order ID
+        $lastOrderId = Order::latest()->first()->id;
 
-    // Generate order number by concatenating components
-    $orderNo = $OfflineorOnline .$year . $month . $day . $hour. $minute. $second . $userId . ($lastOrderId + 1);
-
+        // Generate order number by concatenating components
+        $orderNo = 'ORDER-'.$OfflineorOnline .$year . $month . $day . $hour. $minute. $second . $userId . ($lastOrderId + 1);
+        return view('user.kasir.order.create', compact('orderNo'));
     }
 
     /**

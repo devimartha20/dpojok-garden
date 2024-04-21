@@ -1,12 +1,17 @@
 @extends('layouts.main.layout')
 @section('title')
-    Pemesanan
+    Pembayaran
 @endsection
 @section('styles')
 
+
 @endsection
 @section('content')
-@livewire('pos')
+@if (Session::has('success'))
+<div class="alert alert-success">
+    {{ Session::get('success') }}
+</div>
+@endif
 @endsection
 @section('scripts')
 
