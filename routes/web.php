@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Customer\Order\OnlineOrderController;
 use App\Http\Controllers\Kasir\OrderTransController;
 use App\Http\Controllers\Koki\OrderProsController;
 use App\Http\Controllers\DashboardController;
@@ -26,6 +27,8 @@ use App\Http\Controllers\Admin\ProductController;
 Route::get('/', function () {
     return view('landing-page.landing-page');
 });
+
+Route::get('/checkout', [OnlineOrderController::class, 'checkout'])->name('checkout');
 
 Route::middleware(['auth', 'verified'])->group(function(){
 

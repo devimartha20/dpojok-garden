@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('no_pesanan')->unique();
+            $table->enum('tipe', ['in_store', 'online'])->default('in_store');
             $table->enum('progress', ['menunggu', 'diproses', 'selesai'])->default('menunggu');
             $table->enum('status', ['lunas', 'belum_lunas'])->default('belum_lunas');
             $table->unsignedBigInteger('employee_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('payment_id')->nullable();
             $table->string('pemesan')->nullable();
-            $table->decimal('total_harga')->default(0);
+            $table->bigInteger('total_harga')->default(0);
             $table->integer('jumlah_pesanan')->default(0);
             $table->timestamps();
 
