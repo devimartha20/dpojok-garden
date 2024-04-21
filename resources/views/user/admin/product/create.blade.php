@@ -83,7 +83,7 @@
             </div>
             <div class="card-footer text-right">
                 <a href="{{ route('product.index') }}" class="btn btn-round btn-secondary">Kembali</a>
-                <a href="{{ route('product.index') }}" type="submit" class="btn btn-round btn-primary">Simpan</a>
+                <button type="submit" class="btn btn-round btn-primary">Simpan</button>
             </div>
         </div>
 
