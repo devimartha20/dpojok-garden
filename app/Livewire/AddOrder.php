@@ -97,7 +97,7 @@ class AddOrder extends Component
         $order = Order::create([
             'no_pesanan' => $this->orderNo,
             'pemesan' => $this->pemesan,
-            'employee_id' => $employee->id,
+            'employee_id' => Auth::user()->id,
             'total_harga' => collect($this->productOrders)->sum('total_harga'),
             'jumlah_pesanan' => collect($this->productOrders)->sum('jumlah'),
             'progress' => 'menunggu_pembayaran',
