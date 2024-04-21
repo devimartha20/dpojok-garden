@@ -99,7 +99,7 @@
         <ul class="pcoded-item pcoded-left-item">
             <li class="pcoded-hasmenu">
                 <a>
-                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                    <span class="pcoded-micon"><i class="ti-menu"></i></span>
                     <span class="pcoded-mtext">Produk</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
@@ -122,7 +122,7 @@
 
                 <li class="pcoded-hasmenu">
                     <a>
-                        <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                        <span class="pcoded-micon"><i class="ti-menu-alt"></i></span>
                         <span class="pcoded-mtext">Bahan Baku</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
@@ -154,7 +154,19 @@
             <li>
                 <a href="{{ route('table.index') }}">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                    <span class="pcoded-mtext" >Meja</span>
+                    <span class="pcoded-mtext" >Daftar Meja</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+
+        {{-- Metode Pembayaran --}}
+        <div class="pcoded-navigatio-lavel">Metode Pembayaran</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a href="{{ route('metode.index') }}">
+                    <span class="pcoded-micon"><i class="ti-credit-card"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" >Daftar Metode Pembayaran</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
@@ -165,14 +177,14 @@
         <ul class="pcoded-item pcoded-left-item">
             <li>
                 <a href="">
-                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-micon"><i class="ti-shopping-cart"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Pemesanan Menu</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
             <li>
                 <a href="map-google.html">
-                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-micon"><i class="ti-map-alt"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Reservasi Tempat</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
@@ -184,7 +196,7 @@
         <ul class="pcoded-item pcoded-left-item">
             <li>
                 <a href="">
-                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Absensi Karyawan</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
@@ -193,7 +205,7 @@
         <ul class="pcoded-item pcoded-left-item">
             <li class="pcoded-hasmenu">
                 <a href="">
-                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                    <span class="pcoded-micon"><i class="ti-agenda"></i></span>
                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Jadwal Kerja</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
@@ -228,14 +240,14 @@
         <ul class="pcoded-item pcoded-left-item">
             <li class="pcoded-hasmenu">
                 <a href="">
-                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                    <span class="pcoded-micon"><i class="ti-id-badge"></i></span>
                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Pelanggan</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
                         <a href="">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-micon"><i class="ti-id-badge"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Daftar Pelanggan</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
@@ -256,7 +268,7 @@
         <ul class="pcoded-item pcoded-left-item">
             <li class="pcoded-hasmenu">
                 <a href="">
-                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                    <span class="pcoded-micon"><i class="ti-file"></i></span>
                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Laporan</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
@@ -284,7 +296,7 @@
         <ul class="pcoded-item pcoded-left-item">
             <li>
                 <a href="">
-                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-micon"><i class="ti-id-badge"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Daftar Pengguna</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
@@ -296,7 +308,7 @@
         <ul class="pcoded-item pcoded-left-item">
             <li>
                 <a href="">
-                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Profil</span>
                     <span class="pcoded-mcaret"></span>
                 </a>

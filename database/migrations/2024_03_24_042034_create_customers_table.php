@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('email');
             $table->string('alamat');
+            $table->string('telepon');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

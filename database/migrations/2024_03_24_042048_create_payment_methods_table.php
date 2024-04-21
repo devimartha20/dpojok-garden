@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
+            $table-> enum('jenis', ['e-wallet', 'transfer_bank', 'cash']);
             $table->string('nama')->unique();
-            $table->string('nomor')->nullable();
-            $table->string('penerima');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }

@@ -18,6 +18,15 @@
             </div>
 
         </div>
+        @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <div class="card-block">
             {{-- <h4 class="sub-title">Form Tambah Produk</h4> --}}
             <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
@@ -64,15 +73,17 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Upload Gambar Produk</label>
+                    <label class="col-sm-2 col-form-label">Upload Gambar Meja</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" name="image">
+                        <input type="file" accept="image/*" class="form-control" id="imageInput" name="image" onchange="previewImage(event)">
+                        <hr>
+                        <img id="imagePreview" src="" alt="Preview Image" class="img-fluid">
                     </div>
                 </div>
             </div>
             <div class="card-footer text-right">
-                <a href="{{ route('product-category.index') }}" class="btn btn-round btn-secondary">Kembali</a>
-                <button type="submit" class="btn btn-round btn-primary">Simpan</button>
+                <a href="{{ route('product.index') }}" class="btn btn-round btn-secondary">Kembali</a>
+                <a href="{{ route('product.index') }}" type="submit" class="btn btn-round btn-primary">Simpan</a>
             </div>
         </div>
 
