@@ -68,10 +68,19 @@ Route::middleware(['auth', 'verified'])->group(function(){
     });
 
     // Route Khusus Pelanggan
-    Route::middleware(['role:pelanggan'])->group(function () {
-
-
+Route::middleware(['role:pelanggan'])->group(function () {
+        Route::get('/search-products', function () {
+            return view('user/pelanggan/searchproduct');
+        })->name('searchproduct.route');
+        Route::get('/cart', function () {
+            return view('user/pelanggan/cart');
+        })->name('cart.route');
+        Route::get('/check-out', function () {
+            return view('user/pelanggan/checkout');
+        })->name('checksout.route');
     });
+
+
 
 });
 
