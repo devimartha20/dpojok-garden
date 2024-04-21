@@ -64,17 +64,17 @@
 </div>
 
 <div class="row">
+    <div class="col-md-1">
+        <input class="form-check-input" type="checkbox" value="" id="checkbox1">
+    </div>
     <div class="col-lg-12">
         <div class="card">
-            {{-- <div class="card-header">
-                Shopping Cart
-            </div> --}}
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <img src="product_image.jpg" alt="Product Image" class="product-image">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <h5>Roti Bakar</h5>
                         <p>Rp. 10.000</p>
                     </div>
@@ -94,14 +94,17 @@
 </div>
 
 <div class="row">
+    <div class="col-md-1">
+        <input class="form-check-input" type="checkbox" value="" id="checkbox1">
+    </div>
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <img src="product_image.jpg" alt="Product Image" class="product-image">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <h5>Mix Platter</h5>
                         <p>Rp. 15.000</p>
                     </div>
@@ -121,14 +124,17 @@
 </div>
 
 <div class="row">
+    <div class="col-md-1">
+        <input class="form-check-input" type="checkbox" value="" id="checkbox1">
+    </div>
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <img src="product_image.jpg" alt="Product Image" class="product-image">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <h5>Ice Cream Cookies</h5>
                         <p>Rp. 13.000</p>
                     </div>
@@ -146,6 +152,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="action-buttons">
     <button class="checkout-button">Checkout</button>
