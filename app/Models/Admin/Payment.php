@@ -15,6 +15,7 @@ class Payment extends Model
         'jumlah',
         'uang',
         'kembali',
+        'total_bayar'
     ];
 
     public function paymetMethod()

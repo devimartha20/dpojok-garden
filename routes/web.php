@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Models\Admin\Payment;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,17 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('/ordertrans', [OrderTransController::class, 'index'])->name('ordertrans.index');
         Route::get('/ordertrans/create/{onlineOrOffline}', [OrderTransController::class, 'create'])->name('ordertrans.create');
         Route::get('/payment/{id}', [PaymentTransController::class, 'show'])->name('payment.show');
+
+
+        //print
+        Route::get('/print/invoice/{id}', function($id){
+            $payment = Payment::findOrFail($id);
+            return view('print.invoice', compact('payment'));
+        })->name('print.invoice');
+        Route::get('/print/receipt/{id}', function($id){
+            $payment = Payment::findOrFail($id);
+            return view('print.receipt', compact('payment'));
+        })->name('print.receipt');
     });
 
     // Route Khusus Koki

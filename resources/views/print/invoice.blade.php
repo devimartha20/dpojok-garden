@@ -239,9 +239,14 @@
 		</div>
 	</div>
 	<!--Invoice wrap End here -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jspdf.min.js"></script>
-	<script src="assets/js/html2canvas.min.js"></script>
-	<script src="assets/js/custom.js"></script>
+	<script>
+        // Wait for the page to load
+        window.onload = function() {
+            // Trigger the print dialog after a short delay (1 second)
+            setTimeout(function() {
+                window.print();
+            }, 1000);
+        };
+    </script>
 </body>
 </html>

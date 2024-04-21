@@ -187,6 +187,15 @@
 
                 </div><!--End InvoiceBot-->
   </div><!--End Invoice-->
+  <script>
+    // Wait for the page to load
+    window.onload = function() {
+        // Trigger the print dialog after a short delay (1 second)
+        setTimeout(function() {
+            window.print();
+        }, 1000);
+    };
+</script>
 
 </body>
 

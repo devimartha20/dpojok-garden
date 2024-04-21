@@ -29,27 +29,15 @@ class Pay extends Component
             'kembali' => $this->kembali,
         ]);
 
+        $payment = Payment::findOrFail($this->payment->id);
+
+        $this->payment = $payment;
+
         session()->flash('success', 'Pembayaran berhasil, Pesanan sudah masuk ke daftar antrian!');
 
     }
 
-    public function printReceipt()
-    {
-        // Generate receipt content from the view template
-        $receiptContent = view('receipt', ['payment' => $this->payment])->render();
 
-        // Open print dialog for receipt
-        echo "<script>window.open('', '_blank').document.write('$receiptContent'); window.print();</script>";
-    }
-
-    public function printInvoice()
-    {
-        // Generate invoice content from the view template
-        $invoiceContent = view('invoice', ['payment' => $this->payment])->render();
-
-        // Open print dialog for invoice
-        echo "<script>window.open('', '_blank').document.write('$invoiceContent'); window.print();</script>";
-    }
     public function render()
     {
         return view('livewire.pay', [
