@@ -107,24 +107,31 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-12 col-xl-10">
+    <div class="col-lg-12 col-xl-12">
         <div class="sub-title">Katalog Produk</div>
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-10">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="search-container">
-                        <input type="text" class="search-input" placeholder="Search by name...">
+                    <div class="search-container w-100"> <!-- Add w-100 class to make it full-width -->
+                        <input type="text" class="search-input form-control" placeholder="Search by name...">
                         <button class="btn btn-primary search-button"><i class="ti-search"></i> Search</button>
                     </div>
-                    <div class="position-relative">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge badge-danger rounded-circle">3</span> <!-- Angka keranjang -->
+                </div>
+            </div>
+            <div class="col-lg-2 text-right">
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="position-relative d-inline-block">
+                        <span class="badge badge-danger rounded-circle" style="position: absolute; top: -5px; right: -5px;">3</span>
+                        <i class="ti ti-shopping-cart" style="vertical-align: middle;"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
     <div class="row">
     <div class="col-lg-12 col-xl-10">
         <div class="d-flex justify-content-center">
@@ -177,6 +184,7 @@
         </div>
     </div>
     <div class="col-lg-12 col-xl-2">
+
         <div class="">
         <div class="d-flex justify-content-center">
             <ul class="nav nav-tabs md-tabs tabs-right b-none" role="tablist">
