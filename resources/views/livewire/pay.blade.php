@@ -30,7 +30,7 @@
             @elseif($payment->status === 'lunas')
             <div class="text-right mt-4">
                 <a class="btn btn-success mr-2" href ="{{ route('print.receipt', $payment->id) }}" target="_BLANK">Print Receipt</a>
-                <a class="btn btn-info" href="{{ route('invoice.route', $payment->id) }}" target="_BLANK">Print Invoice</a>
+                <a class="btn btn-info" href="{{ route('print.invoice', $payment->id) }}" target="_BLANK">Print Invoice</a>
             </div>
                 <div>
                     <p>Status Pembayaran: {{ $payment->status }}</p>
