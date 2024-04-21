@@ -20,7 +20,7 @@ class PaymentController extends Controller
      */
     public function create($order_id)
     {
-        return view('user.kasir.payment.create', compact('order_id'));
+        // return view('user.kasir.payment.create', compact('order_id'));
     }
 
     /**

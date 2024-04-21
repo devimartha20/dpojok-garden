@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('no_payment')->unique();
-            $table->unsignedBigInteger('payment_method_id')->nullable();
+            $table->enum('status', ['lunas', 'belum_lunas'])->default('belum_lunas');
+            $table->bigInteger('uang')->nullable();
+            $table->bigInteger('kembali')->nullable();
             $table->bigInteger('total_bayar');
             $table->timestamps();
 
-            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
+
         });
     }
 

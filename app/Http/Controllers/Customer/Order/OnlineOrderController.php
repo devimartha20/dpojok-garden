@@ -32,6 +32,19 @@ class OnlineOrderController extends Controller
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
         // return dd($snapToken);
-        return view('user.pelanggan.checkout', compact('snapToken'));
+        return view('user.pelanggan.checkouttry', compact('snapToken'));
+    }
+
+    public function callback(Request $request){
+        $serverKey = config('midtrans.server_key');
+        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
+        if($hashed == $request->signature_key){
+            // return dd($request);
+            //update status order dan pembayaran
+        }
+    }
+
+    public function finish(Request $request){
+        return dd($request);
     }
 }

@@ -12,6 +12,8 @@ class DetailOrder extends Model
     protected $fillable = [
         'order_id',
         'product_id',
+        'harga',
+        'total_harga',
         'jumlah',
         'catatan',
     ];

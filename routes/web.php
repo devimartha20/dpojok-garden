@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Customer\Order\OnlineOrderController;
 use App\Http\Controllers\Kasir\OrderTransController;
+use App\Http\Controllers\Kasir\PaymentTransController;
 use App\Http\Controllers\Koki\OrderProsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -30,7 +31,8 @@ Route::get('/', function () {
     return view('landing-page.landing-page');
 });
 
-Route::get('/checkout', [OnlineOrderController::class, 'checkout'])->name('checkout');
+Route::get('/checkouttry', [OnlineOrderController::class, 'checkout'])->name('checkouttry');
+Route::get('/finish-payment', [OnlineOrderController::class, 'finish'])->name('finish-payment');
 
 Route::middleware(['auth', 'verified'])->group(function(){
 
@@ -51,7 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::middleware(['role:kasir'])->group(function () {
         Route::get('/ordertrans', [OrderTransController::class, 'index'])->name('ordertrans.index');
         Route::get('/ordertrans/create/{onlineOrOffline}', [OrderTransController::class, 'create'])->name('ordertrans.create');
-        Route::get('/payment/{order_id}', [PaymentController::class, 'create'])->name('payment.create');
+        Route::get('/payment/{id}', [PaymentTransController::class, 'show'])->name('payment.show');
     });
 
     // Route Khusus Koki

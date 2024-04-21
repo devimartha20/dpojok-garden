@@ -12,6 +12,7 @@
     {{ Session::get('success') }}
 </div>
 @endif
+@livewire('pay', ['payment' => $payment])
 @endsection
 @section('scripts')
 

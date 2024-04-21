@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('no_pesanan')->unique();
             $table->enum('tipe', ['in_store', 'online'])->default('in_store');
-            $table->enum('progress', ['menunggu', 'diproses', 'selesai'])->default('menunggu');
+            $table->enum('progress', ['menunggu_pembayaran', 'menunggu', 'diproses', 'selesai'])->default('menunggu_pembayaran');
             $table->enum('status', ['lunas', 'belum_lunas'])->default('belum_lunas');
             $table->unsignedBigInteger('employee_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();

@@ -11,8 +11,10 @@ class Payment extends Model
 
     protected $fillable = [
         'no_payment',
-        'payment_method_id',
+        'status',
         'jumlah',
+        'uang',
+        'kembali',
     ];
 
     public function paymetMethod()
