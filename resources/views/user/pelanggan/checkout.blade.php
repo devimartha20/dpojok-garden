@@ -1,132 +1,178 @@
 @extends('layouts.main.layout')
+
 @section('title')
     Check-Out
 @endsection
+
 @section('styles')
 <style>
-    .checkout-container {
-        padding: 20px;
-        background-color: #f7f7f7;
-    }
-
-    .checkout-header {
-        background-color: #ff5722;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
-
-    .checkout-step {
-        margin-bottom: 20px;
-    }
-
-    .step-number {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: #ff5722;
-        color: white;
+    .product-details {
         display: flex;
         align-items: center;
-        justify-content: center;
-        font-weight: bold;
+    }
+
+    .product-details .quantity {
         margin-right: 10px;
     }
 
-    .step-title {
-        font-weight: bold;
-        margin-bottom: 10px;
+    .product-image {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        margin-right: 20px;
     }
 
-    .checkout-form {
-        background-color: white;
+    .total-price {
+        font-weight: bold;
+    }
+
+    .accordion-msg {
+        display: flex;
+        align-items: center;
+    }
+
+    .card-footer {
         padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .form-group {
-        margin-bottom: 20px;
+    .total-items {
+        font-size: 16px;
     }
 
-    .form-group label {
+    .total-amount {
+        font-size: 18px;
         font-weight: bold;
+        color: green;
     }
 
-    .form-control {
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-
-    .btn-checkout {
-        background-color: #ff5722;
-        color: white;
+    .btn-pay-now {
         padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-    }
-
-    .btn-checkout:hover {
-        background-color: #f4511e;
+        transition: background-color 0.3s ease;
     }
 </style>
 @endsection
+
 @section('content')
-<div class="checkout-container">
-    <div class="checkout-header">Check-Out</div>
-
-    <div class="checkout-step">
-        <div class="step-number">1</div>
-        <div class="step-title">Shipping Information</div>
-        <div class="checkout-form">
-            <div class="form-group">
-                <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" class="form-control" placeholder="Enter your full name">
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" id="address" class="form-control" placeholder="Enter your address">
-            </div>
-            <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" id="city" class="form-control" placeholder="Enter your city">
-            </div>
-            <div class="form-group">
-                <label for="postal_code">Postal Code</label>
-                <input type="text" id="postal_code" class="form-control" placeholder="Enter your postal code">
+<h5>Check Out</h5>
+<div class="card">
+    <div class="accordion-msg ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons scale_active" role="tab" id="ui-id-9" aria-controls="ui-id-10" aria-selected="false" aria-expanded="false" tabindex="-1">
+        <div class="quantity">1 x</div>
+        <span class="ui-accordion-header-icon ui-icon zmdi zmdi-chevron-down"></span>
+    </div>
+    <div class="card-block accordion-block">
+        <div class="accordion-box ui-accordion ui-widget ui-helper-reset" id="single-open" role="tablist">
+            <div class="product-details">
+                <div class="col-md-3 col-4">
+                    <img src="product_image.jpg" alt="Product Image" class="product-image">
+                </div>
+                <div class="col-md-6 col-8">
+                    <h3>Roti Bakarr</h3>
+                </div>
+                <p class="total-price">Rp. 10.000</p>
             </div>
         </div>
     </div>
-
-    <div class="checkout-step">
-        <div class="step-number">2</div>
-        <div class="step-title">Payment Information</div>
-        <div class="checkout-form">
-            <div class="form-group">
-                <label for="card_number">Card Number</label>
-                <input type="text" id="card_number" class="form-control" placeholder="Enter your card number">
-            </div>
-            <div class="form-group">
-                <label for="expiry_date">Expiry Date</label>
-                <input type="text" id="expiry_date" class="form-control" placeholder="Enter expiry date (MM/YY)">
-            </div>
-            <div class="form-group">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" class="form-control" placeholder="Enter CVV">
+    <div class="accordion-msg ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons scale_active" role="tab" id="ui-id-9" aria-controls="ui-id-10" aria-selected="false" aria-expanded="false" tabindex="-1">
+        <div class="quantity">2 x</div>
+        <span class="ui-accordion-header-icon ui-icon zmdi zmdi-chevron-down"></span>
+    </div>
+    <div class="card-block accordion-block">
+        <div class="accordion-box ui-accordion ui-widget ui-helper-reset" id="single-open" role="tablist">
+            <div class="product-details">
+                <div class="col-md-3 col-4">
+                    <img src="product_image.jpg" alt="Product Image" class="product-image">
+                </div>
+                <div class="col-md-6 col-8">
+                    <h5>Mix Platter</h5>
+                </div>
+                <p class="total-price">Rp. 10.000</p>
             </div>
         </div>
     </div>
-
-    <div class="checkout-step">
-        <div class="step-number">3</div>
-        <div class="step-title">Order Summary</div>
-        <!-- Tampilkan ringkasan pesanan di sini -->
+    <div class="accordion-msg ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons scale_active" role="tab" id="ui-id-11" aria-controls="ui-id-12" aria-selected="false" aria-expanded="false" tabindex="-1">
+        <div class="quantity">2 x</div>
+        <span class="ui-accordion-header-icon ui-icon zmdi zmdi-chevron-down"></span>
     </div>
+    <div class="card-block accordion-block">
+        <div class="accordion-box ui-accordion ui-widget ui-helper-reset" id="single-open" role="tablist">
+            <div class="product-details">
+                <div class="col-md-3 col-4">
+                    <img src="product_image.jpg" alt="Product Image" class="product-image">
+                </div>
+                <div class="col-md-6 col-8">
+                    <h5>Roti Bakarr</h5>
+                </div>
+                <p class="total-price">Rp. 10.000</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="total-items">Total Items: 5</div>
+        <div class="total-amount">Total Amount: Rp. 40.000</div>
+        <button type="button" class="btn btn-info" data-container="body" data-toggle="popover" title="" data-placement="bottom" data-content="<div class='color-code'>
+            <div class='row'>
+              <div class='col-sm-6 col-xs-12'>
+                <span class='block'>Normal</span>
+                <span class='block'>
+                  <small>#62d1f3</small>
+              </span>
+          </div>
+          <div class='col-sm-6 col-xs-12'>
+            <div class='display-color' style='background-color:#62d1f3;'></div>
+        </div>
+        </div>
+        </div>
 
-    <button class="btn-checkout">Place Order</button>
+        <div class='color-code'>
+          <div class='row'>
+            <div class='col-sm-6 col-xs-12'>
+              <span class='block'>Hover</span>
+              <span class='block'>
+                <small>#91dff7</small>
+            </span>
+        </div>
+        <div class='col-sm-6 col-xs-12'>
+          <div class='display-color' style='background-color:#91dff7;'></div>
+        </div>
+        </div>
+        </div>
+
+        <div class='color-code'>
+          <div class='row'>
+            <div class='col-sm-6 col-xs-12'>
+              <span class='block'>Active</span>
+              <span class='block'>
+                <small>#29c0ef</small>
+            </span>
+        </div>
+        <div class='col-sm-6 col-xs-12'>
+          <div class='display-color' style='background-color:#29c0ef;'></div>
+        </div>
+        </div>
+        </div>
+
+        <div class='color-code'>
+          <div class='row'>
+            <div class='col-sm-6 col-xs-12'>
+              <span class='block'>Disabled</span>
+              <span class='block'>
+                <small>#ccf0fb</small>
+            </span>
+        </div>
+        <div class='col-sm-6 col-xs-12'>
+          <div class='display-color' style='background-color:#ccf0fb;'></div>
+        </div>
+        </div>
+        </div>" data-original-title="Info color states" aria-describedby="popover530040">Pay Now</button>
+    </div>
 </div>
 @endsection
