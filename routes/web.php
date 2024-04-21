@@ -85,11 +85,19 @@ Route::middleware(['role:pelanggan'])->group(function () {
         Route::get('/check-out', function () {
             return view('user/pelanggan/checkout');
         })->name('checksout.route');
+        Route::get('/struk', function () {
+            return view('user/pelanggan/struk');
+        })->name('struk.route');
+        Route::get('/invoice', function () {
+            return view('user/pelanggan/invoice');
+        })->name('invoice.route');
     });
 
 
 
 });
+
+
 
 
 Route::middleware('auth')->group(function () {
