@@ -340,8 +340,8 @@
         @hasrole('pelayan')
         <div class="pcoded-navigatio-lavel">Kelola Pemesanan</div>
         <ul class="pcoded-item pcoded-left-item">
-            <li>
-                <a href="{{ route('oderpros.index') }}">
+            <li class="{{ request()->routeIs('orderpros.waiter.*') ? 'active' : '' }}">
+                <a href="{{ route('orderpros.waiter.index') }}">
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Pemesanan</span>
                     <span class="pcoded-mcaret"></span>

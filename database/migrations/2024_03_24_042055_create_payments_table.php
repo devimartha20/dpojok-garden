@@ -17,6 +17,13 @@ return new class extends Migration
             $table->enum('status', ['lunas', 'belum_lunas'])->default('belum_lunas');
             $table->bigInteger('uang')->nullable();
             $table->bigInteger('kembali')->nullable();
+            $table->dateTime('transaction_time')->nullable();
+            $table->string('transaction_status')->nullable();
+            $table->string('transaction_id')->nullable();
+            $table->integer('status_code')->nullable();
+            $table->string('payment_type')->nullable();
+            $table->string('signature_key')->nullable();
+            $table->string('fraud_status')->nullable();
             $table->bigInteger('total_bayar');
             $table->timestamps();
 

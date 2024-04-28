@@ -76,7 +76,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     //Route Khusus Pelayan
     Route::middleware(['role:pelayan'])->group(function () {
-
+        Route::get('/orderpros/waiter', [OrderProsController::class, 'index'])->name('orderpros.waiter.index');
 
     });
 

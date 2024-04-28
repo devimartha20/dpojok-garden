@@ -3,6 +3,15 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -14,9 +23,20 @@
                             <div class="form-group">
                                 <label class="col-form-label">Pemesan</label>
                                 <div class="col-sm-12">
-                                    <input type="text" wire:model="pemesan" placeholder="Nama Pemesan" value="{{ old('pemesan') }}" class="form-control">
+                                    <input type="text" wire:model.live="pemesan" placeholder="Nama Pemesan" value="{{ old('pemesan') }}" class="form-control">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="form-check ">
+                                    <input class="col-form-check" type="radio" name="packing" id="dine_in" value="dine_in" wire:model.live="tipe" checked>
+                                    <label class="col-form-label" for="dine_in">Makan ditempat</label>
+                                </div>
+                                <div class="form-check ">
+                                    <input class="col-form-check" type="radio" name="packing" id="take_away" value="take_away" wire:model.live="tipe">
+                                    <label class="col-form-label" for="take_away">Dibungkus</label>
+                                </div>
+                        </div>
+
                         </div>
                         <div class="col-lg-6">
                             <div class="card bg-c-green order-card">
@@ -25,6 +45,7 @@
                                     <h2 class="text-right"><i class="ti-wallet f-left"></i><span>Rp. {{ number_format($total_all) }}</span></h2>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -12,13 +12,14 @@ use Auth;
 
 class AddOrder extends Component
 {
-    public $orderNo, $pemesan, $search;
+    public $orderNo, $pemesan, $search, $packing;
 
     public $products, $productOrders = [], $total_all = 0;
 
     public function mount($orderNo)
     {
         $this->orderNo = $orderNo;
+        $this->packing = 'dine_in';
         $this->loadProducts();
     }
 
@@ -79,16 +80,26 @@ class AddOrder extends Component
         $this->validate([
             'orderNo' => 'required',
             'pemesan' => 'required',
+            'productOrders' => 'required|array|min:1',
+            'packing' => 'required',
             // Validate each product in productOrders array
             'productOrders.*.product' => 'required', // Ensure each 'product' field is not null
             'productOrders.*.jumlah' => 'required|numeric|min:1', // Ensure each 'jumlah' field is not null and is numeric with minimum value 1
             // Add other validation rules for productOrders if needed
+        ], [
+            'orderNo.required' => 'Nomor pesanan harus diisi.',
+            'pemesan.required' => 'Nama pemesan harus diisi.',
+            'productOrders.required' => 'Harus ada minimal satu produk yang dipesan.',
+            'productOrders.*.product.required' => 'Produk harus dipilih untuk setiap pesanan.',
+            'productOrders.*.jumlah.required' => 'Jumlah harus diisi untuk setiap pesanan.',
+            'productOrders.*.jumlah.numeric' => 'Jumlah harus berupa angka untuk setiap pesanan.',
+            'productOrders.*.jumlah.min' => 'Jumlah minimal adalah 1 untuk setiap pesanan.',
         ]);
 
         $employee = Employee::where('user_id', Auth::user()->id)->first();
 
         $payment = Payment::create([
-            'no_payment' => now().'-'.$this->orderNo,
+            'no_payment' => time().'-'.$this->orderNo,
             'status' => 'belum_lunas',
             'total_bayar' => collect($this->productOrders)->sum('total_harga'),
         ]);
@@ -104,6 +115,7 @@ class AddOrder extends Component
             'status' => 'belum_lunas',
             'tipe' => 'in_store',
             'payment_id' => $payment->id,
+            'packing' => $this->packing,
             // Add other fields as needed
         ]);
 
@@ -177,6 +189,7 @@ class AddOrder extends Component
     {
         return view('livewire.add-order', [
             'orderNo' => $this->orderNo,
+            'packing' => $this->packing,
         ]);
     }
 

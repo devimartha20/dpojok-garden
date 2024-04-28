@@ -15,7 +15,14 @@ class Payment extends Model
         'jumlah',
         'uang',
         'kembali',
-        'total_bayar'
+        'total_bayar',
+        'transaction_time',
+        'transaction_status',
+        'transaction_id',
+        'status_code',
+        'signature_key',
+        'fraud_status',
+        'payment_type',
     ];
 
     public function paymetMethod()
