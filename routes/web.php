@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Customer\ConfirmController;
+use App\Http\Controllers\Customer\ExploreProductController;
 use App\Http\Controllers\Customer\Order\OnlineOrderController;
 use App\Http\Controllers\Kasir\OrderTransController;
 use App\Http\Controllers\Kasir\PaymentTransController;
@@ -88,9 +90,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     // Route Khusus Pelanggan
 Route::middleware(['role:pelanggan'])->group(function () {
-        Route::get('/search-products', function () {
-            return view('user/pelanggan/searchproduct');
-        })->name('searchproduct.route');
+       
+        Route::get('/search-products', [ExploreProductController::class, 'index'])->name('search-products.index');
+        Route::get('/confirm', [ConfirmController::class, 'index'])->name('confirm.index');
+
         Route::get('/cart', function () {
             return view('user/pelanggan/cart');
         })->name('cart.route');

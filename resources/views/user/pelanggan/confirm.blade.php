@@ -1,4 +1,4 @@
-@extends('layouts.main.layout')
+@extends('layouts.customer.layout')
 
 @section('title')
     Konfirmasi Pemesanan

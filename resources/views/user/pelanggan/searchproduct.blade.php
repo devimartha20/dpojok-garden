@@ -106,132 +106,13 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 col-xl-12">
-        <div class="sub-title">Katalog Produk</div>
-        <div class="row">
-            <div class="col-lg-10">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="search-container w-100"> <!-- Add w-100 class to make it full-width -->
-                        <input type="text" class="search-input form-control" placeholder="Search by name...">
-                        <button class="btn btn-primary search-button"><i class="ti-search"></i> Search</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 text-right">
-                <div class="d-flex justify-content-end align-items-center">
-                    <div class="position-relative d-inline-block">
-                        <span class="badge badge-danger rounded-circle" style="position: absolute; top: -5px; right: -5px;">3</span>
-                        <i class="ti ti-shopping-cart" style="vertical-align: middle;"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container">
+@livewire('search-products')
 </div>
 
 
 
-    <div class="row">
-    <div class="col-lg-12 col-xl-10">
-        <div class="d-flex justify-content-center">
-            <div class="card">
-                <img src="gambar1.jpg" class="card-img-top" alt="Gambar 1">
-                <div class="card-body">
-                    <div class="product-info">
-                        <h5 class="product-name">Roti Bakar</h5>
-                        <p class="product-description">Dibuat dari roti segar yang dipanggang hingga renyah di luar namun lembut di dalamnya</p>
-                        <p class="product-price">Rp. 10.000</p>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-success btn-round">Add to Cart</button>
-                        <button class="btn btn-warning btn-round">Order Now</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Tambahkan margin untuk jarak antara kartu -->
-            <div style="margin-bottom: 20px;"></div>
-            <div class="card">
-                <img src="gambar1.jpg" class="card-img-top" alt="Gambar 1">
-                <div class="card-body">
-                    <div class="product-info">
-                        <h5 class="product-name">Mix Platter</h5>
-                        <p class="product-description">Hidangan yang terdiri dari berbagai macam hidangan kecil dalam satu nampan</p>
-                        <p class="product-price">Rp. 15.000</p>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-success btn-round">Add to Cart</button>
-                        <button class="btn btn-warning btn-round">Order Now</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Tambahkan margin untuk jarak antara kartu -->
-            <div style="margin-bottom: 20px;"></div>
-            <div class="card">
-                <img src="gambar1.jpg" class="card-img-top" alt="Gambar 1">
-                <div class="card-body">
-                    <div class="product-info">
-                        <h5 class="product-name">Ice Cream Cookies</h5>
-                        <p class="product-description">Paduan ice cream dengan sepotong kue kering sebagai topping nya dan butiran-butiran oreo diatasnya</p>
-                        <p class="product-price">Rp. 13.000</p>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-success btn-round">Add to Cart</button>
-                        <button class="btn btn-warning btn-round">Order Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-12 col-xl-2">
-
-        <div class="">
-        <div class="d-flex justify-content-center">
-            <ul class="nav nav-tabs md-tabs tabs-right b-none" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#home6" role="tab">All</a>
-                    <div class="slide"></div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#profile6" role="tab">Main Course</a>
-                    <div class="slide"></div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#settings6" role="tab">Snack Corner</a>
-                    <div class="slide"></div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#settings6" role="tab">Dessert</a>
-                    <div class="slide"></div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#messages6" role="tab">Coffee</a>
-                    <div class="slide"></div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#settings6" role="tab">Non-Coffee</a>
-                    <div class="slide"></div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#settings6" role="tab">Milk Base</a>
-                    <div class="slide"></div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#settings6" role="tab">Tea</a>
-                    <div class="slide"></div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#settings6" role="tab">Fizzy Float</a>
-                    <div class="slide"></div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#settings6" role="tab">Toppings Bar</a>
-                    <div class="slide"></div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    </div>
-</div>
-
+@endsection
+@section('scripts')
+    
 @endsection
