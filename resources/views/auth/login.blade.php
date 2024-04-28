@@ -60,18 +60,24 @@
                                 <hr/>
                                 <div class="input-group">
                                     <input type="email" name="email" value="{{ old('email') }}" required class="form-control" placeholder="Your Email Address">
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                    <span class="md-line"></span>
+
+
+                                    {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
+                                    {{-- <span class="md-line"></span> --}}
                                 </div>
+                                @if ($errors->first('email'))
+                                <span class="alert-danger">{{ $errors->first('email') }}</span>
+                                @endif
                                 <div class="input-group">
                                     <input type="password" class="form-control" placeholder="Password"
                                     name="password"
                                     required
                                     autocomplete="current-password"
                                     >
-                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                    <span class="md-line"></span>
+
                                 </div>
+                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    <span class="md-line"></span>
                                 <div class="row m-t-25 text-left">
                                     <div class="col-sm-7 col-xs-12">
                                         <div class="checkbox-fade fade-in-primary">
