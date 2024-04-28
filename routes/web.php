@@ -29,7 +29,7 @@ use App\Models\Admin\Payment;
 */
 
 Route::get('/', function () {
-    return view('landing-page.landing-page');
+    return view('landing-page');
 });
 
 Route::get('/checkouttry', [OnlineOrderController::class, 'checkout'])->name('checkouttry');

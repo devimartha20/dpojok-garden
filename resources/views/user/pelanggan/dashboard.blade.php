@@ -1,4 +1,4 @@
-@extends('layouts.main.layout')
+@extends('layouts.customer.layout')
 @section('title')
     Dashboard
 @endsection
@@ -6,9 +6,7 @@
 
 @endsection
 @section('content')
-<div class="row">
-Pelanggan
-</div>
+
 @endsection
 @section('scripts')
 
