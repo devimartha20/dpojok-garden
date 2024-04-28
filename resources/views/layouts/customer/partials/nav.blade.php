@@ -1,4 +1,4 @@
-@auth
+@if(request()->path() !== '/')
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar" id="ftco-navbar" style="background-color: rgb(83, 22, 22);">
     <div class="container">
         <a class="navbar-brand" href="/">Dpodjok Garden</a>
@@ -14,7 +14,11 @@
                 <li class="nav-item"><a href="#" class="nav-link">Reservasi</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Riwayat</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-shopping-cart"></i> Keranjang</a></li>
-                <li class="nav-item cta"><a href="{{ route('logout') }}" class="nav-link">Logout</a></li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                <li class="nav-item cta"><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    this.closest('form').submit();" class="nav-link">Logout</a></li>
+                </form>
             </ul>
         </div>
     </div>
@@ -61,5 +65,5 @@
       </div>
     </div>
   </nav>
-@endauth
+@endif
   
