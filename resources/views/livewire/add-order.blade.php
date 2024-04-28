@@ -28,11 +28,11 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-check ">
-                                    <input class="col-form-check" type="radio" name="packing" id="dine_in" value="dine_in" wire:model.live="tipe" checked>
+                                    <input class="col-form-check" type="radio" name="packing" id="dine_in" value="dine_in" wire:model.live="packing" checked>
                                     <label class="col-form-label" for="dine_in">Makan ditempat</label>
                                 </div>
                                 <div class="form-check ">
-                                    <input class="col-form-check" type="radio" name="packing" id="take_away" value="take_away" wire:model.live="tipe">
+                                    <input class="col-form-check" type="radio" name="packing" id="take_away" value="take_away" wire:model.live="packing">
                                     <label class="col-form-label" for="take_away">Dibungkus</label>
                                 </div>
                         </div>

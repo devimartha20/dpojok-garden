@@ -1,4 +1,4 @@
-@extends('layouts.main.layout')
+@extends('layouts.customer.layout')
 
 @section('title')
     Check-Out
@@ -59,120 +59,69 @@
         transition: background-color 0.3s ease;
     }
 </style>
+<script type="text/javascript"
+src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="{{ config('app.client_key') }}"></script>
 @endsection
 
 @section('content')
-<h5>Check Out</h5>
-<div class="card">
-    <div class="accordion-msg ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons scale_active" role="tab" id="ui-id-9" aria-controls="ui-id-10" aria-selected="false" aria-expanded="false" tabindex="-1">
-        <div class="quantity">1 x</div>
-        <span class="ui-accordion-header-icon ui-icon zmdi zmdi-chevron-down"></span>
-    </div>
-    <div class="card-block accordion-block">
-        <div class="accordion-box ui-accordion ui-widget ui-helper-reset" id="single-open" role="tablist">
-            <div class="product-details">
-                <div class="col-md-3 col-4">
-                    <img src="product_image.jpg" alt="Product Image" class="product-image">
+<div class="container">
+    <h5>Check Out</h5>
+    <div class="card">
+        @foreach ($order->detailOrders as $do)
+        <div class="accordion-msg ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons scale_active" role="tab" id="ui-id-9" aria-controls="ui-id-10" aria-selected="false" aria-expanded="false" tabindex="-1">
+            <div class="quantity">{{ $do->jumlah }} x</div>
+            <span class="ui-accordion-header-icon ui-icon zmdi zmdi-chevron-down"></span>
+        </div>
+        <div class="card-block accordion-block">
+            <div class="accordion-box ui-accordion ui-widget ui-helper-reset" id="single-open" role="tablist">
+                <div class="product-details row">
+                    <div class="col-md-3 col-4">
+                        <img src="{{ asset('images/'.$do->product->image) }}" alt="Product Image" class="product-image">
+                    </div>
+                    <div class="col-md-6 col-8">
+                        <h3>{{ $do->product->nama }}</h3>
+                        <p class="total-price">Harga Satuan : Rp. {{ number_format($do->harga) }}</p>
+                        <p class="total-price">Total : Rp. {{ number_format($do->total_harga) }}</p>
+                        <p class="total-price">Catatan : {{ $do->catatan }}</p>
+                    </div>
                 </div>
-                <div class="col-md-6 col-8">
-                    <h3>Roti Bakarr</h3>
-                </div>
-                <p class="total-price">Rp. 10.000</p>
             </div>
         </div>
-    </div>
-    <div class="accordion-msg ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons scale_active" role="tab" id="ui-id-9" aria-controls="ui-id-10" aria-selected="false" aria-expanded="false" tabindex="-1">
-        <div class="quantity">2 x</div>
-        <span class="ui-accordion-header-icon ui-icon zmdi zmdi-chevron-down"></span>
-    </div>
-    <div class="card-block accordion-block">
-        <div class="accordion-box ui-accordion ui-widget ui-helper-reset" id="single-open" role="tablist">
-            <div class="product-details">
-                <div class="col-md-3 col-4">
-                    <img src="product_image.jpg" alt="Product Image" class="product-image">
-                </div>
-                <div class="col-md-6 col-8">
-                    <h5>Mix Platter</h5>
-                </div>
-                <p class="total-price">Rp. 10.000</p>
-            </div>
+        @endforeach
+        <div class="card-footer">
+            <p class="total-price">Total Keseluruhan Rp. {{ number_format($order->total_harga)}}</p>
+            <button class="btn btn-primary" id="pay-button">Bayar</button>
         </div>
-    </div>
-    <div class="accordion-msg ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons scale_active" role="tab" id="ui-id-11" aria-controls="ui-id-12" aria-selected="false" aria-expanded="false" tabindex="-1">
-        <div class="quantity">2 x</div>
-        <span class="ui-accordion-header-icon ui-icon zmdi zmdi-chevron-down"></span>
-    </div>
-    <div class="card-block accordion-block">
-        <div class="accordion-box ui-accordion ui-widget ui-helper-reset" id="single-open" role="tablist">
-            <div class="product-details">
-                <div class="col-md-3 col-4">
-                    <img src="product_image.jpg" alt="Product Image" class="product-image">
-                </div>
-                <div class="col-md-6 col-8">
-                    <h5>Roti Bakarr</h5>
-                </div>
-                <p class="total-price">Rp. 10.000</p>
-            </div>
-        </div>
-    </div>
-    <div class="card-footer">
-        <div class="total-items">Total Items: 5</div>
-        <div class="total-amount">Total Amount: Rp. 40.000</div>
-        <button type="button" class="btn btn-info" data-container="body" data-toggle="popover" title="" data-placement="bottom" data-content="<div class='color-code'>
-            <div class='row'>
-              <div class='col-sm-6 col-xs-12'>
-                <span class='block'>Normal</span>
-                <span class='block'>
-                  <small>#62d1f3</small>
-              </span>
-          </div>
-          <div class='col-sm-6 col-xs-12'>
-            <div class='display-color' style='background-color:#62d1f3;'></div>
-        </div>
-        </div>
-        </div>
-
-        <div class='color-code'>
-          <div class='row'>
-            <div class='col-sm-6 col-xs-12'>
-              <span class='block'>Hover</span>
-              <span class='block'>
-                <small>#91dff7</small>
-            </span>
-        </div>
-        <div class='col-sm-6 col-xs-12'>
-          <div class='display-color' style='background-color:#91dff7;'></div>
-        </div>
-        </div>
-        </div>
-
-        <div class='color-code'>
-          <div class='row'>
-            <div class='col-sm-6 col-xs-12'>
-              <span class='block'>Active</span>
-              <span class='block'>
-                <small>#29c0ef</small>
-            </span>
-        </div>
-        <div class='col-sm-6 col-xs-12'>
-          <div class='display-color' style='background-color:#29c0ef;'></div>
-        </div>
-        </div>
-        </div>
-
-        <div class='color-code'>
-          <div class='row'>
-            <div class='col-sm-6 col-xs-12'>
-              <span class='block'>Disabled</span>
-              <span class='block'>
-                <small>#ccf0fb</small>
-            </span>
-        </div>
-        <div class='col-sm-6 col-xs-12'>
-          <div class='display-color' style='background-color:#ccf0fb;'></div>
-        </div>
-        </div>
-        </div>" data-original-title="Info color states" aria-describedby="popover530040">Pay Now</button>
     </div>
 </div>
+
+
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    // For example trigger on button clicked, or any time you need
+    var payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', function () {
+      // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+      window.snap.pay('{{$snapToken}}', {
+        onSuccess: function(result){
+          /* You may add your own implementation here */
+          alert("Pembayaran Berhasil"); console.log(result);
+        },
+        onPending: function(result){
+          /* You may add your own implementation here */
+          alert("Menunggu Pembayaran"); console.log(result);
+        },
+        onError: function(result){
+          /* You may add your own implementation here */
+          alert("Pembayaran gagal!"); console.log(result);
+        },
+        onClose: function(){
+          /* You may add your own implementation here */
+          alert('Anda menutup pop-up sebelum melakukan pembayaran');
+        }
+      })
+    });
+  </script>
 @endsection

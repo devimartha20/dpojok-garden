@@ -56,6 +56,19 @@ class SearchProducts extends Component
         // Show a success message
         session()->flash('message', 'Produk berhasil ditambahkan ke keranjang.');
     }
+
+    public function confirm($product){
+        $product = Product::findOrFail($product['id']);
+        $detailOrders = [];
+        $detailOrders[] = [
+            'product' => $product,
+            'harga' => $product->harga_jual,
+            'total_harga' => $product->harga_jual,
+            'jumlah' =>1,
+        ];
+        session()->put('detailOrders', $detailOrders);
+        return redirect(route('confirm.index'));
+    }
     public function render()
     {
         $query = Product::query();

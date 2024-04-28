@@ -42,7 +42,7 @@
                             </div>
                             <div class="d-flex justify-content-center">
                                 <button wire:click="addToCart({{ $p->id }})" class="btn btn-success btn-round">Tambah ke Keranjang</button>
-                                <button class="btn btn-warning btn-round">Pesan Sekarang</button>
+                                <button wire:click="confirm({{ $p }})" class="btn btn-warning btn-round">Pesan Sekarang</button>
                             </div>
                         </div>
                     </div>

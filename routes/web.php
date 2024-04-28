@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Customer\CartController;
 use App\Http\Controllers\Customer\ConfirmController;
 use App\Http\Controllers\Customer\ExploreProductController;
 use App\Http\Controllers\Customer\Order\OnlineOrderController;
@@ -92,11 +93,14 @@ Route::middleware(['auth', 'verified'])->group(function(){
 Route::middleware(['role:pelanggan'])->group(function () {
        
         Route::get('/search-products', [ExploreProductController::class, 'index'])->name('search-products.index');
-        Route::get('/confirm', [ConfirmController::class, 'index'])->name('confirm.index');
+        Route::get('/confirm/index', [ConfirmController::class, 'index'])->name('confirm.index');
+        Route::post('/confirm', [ConfirmController::class, 'confirm'])->name('confirm.confirm');
+        Route::get('/checkout/{id}', [OnlineOrderController::class, 'checkout'])->name('checkout');
+        Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
-        Route::get('/cart', function () {
-            return view('user/pelanggan/cart');
-        })->name('cart.route');
+        // Route::get('/cart', function () {
+        //     return view('user/pelanggan/cart');
+        // })->name('cart.route');
         Route::get('/check-out', function () {
             return view('user/pelanggan/checkout');
         })->name('checksout.route');

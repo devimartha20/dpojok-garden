@@ -21,6 +21,7 @@ class Order extends Model
         'tipe',
         'total_harga',
         'jumlah_pesanan',
+        'packing'
     ];
 
     public function payment()

@@ -34,7 +34,8 @@ class AddOrder extends Component
 
     public function addToOrder(Product $product)
     {
-        // Check if the product with the same ID already exists in the productOrders array
+        if($product->stok > 0){
+            // Check if the product with the same ID already exists in the productOrders array
         $existingProductIndex = null;
         foreach ($this->productOrders as $index => $productOrder) {
             if ($productOrder['product'] === $product->id) {
@@ -71,6 +72,8 @@ class AddOrder extends Component
         }
 
         $this->calculateTotalHarga();
+        }
+        
     }
 
 

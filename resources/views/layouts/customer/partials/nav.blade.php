@@ -13,7 +13,7 @@
                 <li class="nav-item"><a href="#" class="nav-link">Take Away</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Reservasi</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Riwayat</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-shopping-cart"></i> Keranjang</a></li>
+                <li class="nav-item"><a href="{{ route('cart.index') }}" class="nav-link"><i class="fa fa-shopping-cart"></i> Keranjang</a></li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                 <li class="nav-item cta"><a href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -44,7 +44,7 @@
                                     @if ($o->tipe == 'in_store')
                                         {{ $o->pemesan }}
                                     @elseif($o->tipe == 'online')
-                                        {{ $o->user->name }}
+                                        {{ $o->customer->nama }}
                                     @endif</span>
                                     <p>@if ($o->packing == 'dine_in')
                                         Makan di Tempat
@@ -145,7 +145,7 @@
                                     @if ($o->tipe == 'in_store')
                                         {{ $o->pemesan }}
                                     @elseif($o->tipe == 'online')
-                                        {{ $o->user->name }}
+                                        {{ $o->customer->name }}
                                     @endif</span>
                                     <p>@if ($o->packing == 'dine_in')
                                         Makan di Tempat
@@ -250,7 +250,7 @@
                                     @if ($o->tipe == 'in_store')
                                         {{ $o->pemesan }}
                                     @elseif($o->tipe == 'online')
-                                        {{ $o->user->name }}
+                                        {{ $o->customer->name }}
                                     @endif</span>
                                     <p>@if ($o->packing == 'dine_in')
                                         Makan di Tempat
@@ -357,7 +357,7 @@
                                     @if ($o->tipe == 'in_store')
                                         {{ $o->pemesan }}
                                     @elseif($o->tipe == 'online')
-                                        {{ $o->user->name }}
+                                        {{ $o->customer->name }}
                                     @endif</span>
                                     <p>@if ($o->packing == 'dine_in')
                                         Makan di Tempat

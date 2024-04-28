@@ -16,11 +16,11 @@ class Orders extends Component
         }else{
             $this->state = 'menunggu';
         }
-        $this->orders_wp = Order::where('progress', 'menunggu_pembayaran')->orderBy('updated_at', 'desc')->get();
-        $this->orders_w = Order::where('progress', 'menunggu')->orderBy('updated_at', 'desc')->get();
-        $this->orders_p = Order::where('progress', 'diproses')->orderBy('updated_at', 'desc')->get();
-        $this->orders_f = Order::where('progress', 'selesai')->orderBy('updated_at', 'desc')->get();
-        $this->orders_s = Order::where('progress', 'diterima')->orderBy('updated_at', 'desc')->get();
+        $this->orders_wp = Order::where('progress', 'menunggu_pembayaran')->orderBy('updated_at', 'asc')->get();
+        $this->orders_w = Order::where('progress', 'menunggu')->orderBy('updated_at', 'asc')->get();
+        $this->orders_p = Order::where('progress', 'diproses')->orderBy('updated_at', 'asc')->get();
+        $this->orders_f = Order::where('progress', 'selesai')->orderBy('updated_at', 'asc')->get();
+        $this->orders_s = Order::where('progress', 'diterima')->orderBy('updated_at', 'asc')->get();
     }
 
     public function updateStatus($id, $progress){
@@ -28,11 +28,11 @@ class Orders extends Component
             'progress' => $progress,
         ]);
         $this->state = $progress;
-        $this->orders_wp = Order::where('progress', 'menunggu_pembayaran')->orderBy('updated_at', 'desc')->get();
-        $this->orders_w = Order::where('progress', 'menunggu')->orderBy('updated_at', 'desc')->get();
-        $this->orders_p = Order::where('progress', 'diproses')->orderBy('updated_at', 'desc')->get();
-        $this->orders_f = Order::where('progress', 'selesai')->orderBy('updated_at', 'desc')->get();
-        $this->orders_s = Order::where('progress', 'diterima')->orderBy('updated_at', 'desc')->get();
+        $this->orders_wp = Order::where('progress', 'menunggu_pembayaran')->orderBy('updated_at', 'asc')->get();
+        $this->orders_w = Order::where('progress', 'menunggu')->orderBy('updated_at', 'asc')->get();
+        $this->orders_p = Order::where('progress', 'diproses')->orderBy('updated_at', 'asc')->get();
+        $this->orders_f = Order::where('progress', 'selesai')->orderBy('updated_at', 'asc')->get();
+        $this->orders_s = Order::where('progress', 'diterima')->orderBy('updated_at', 'asc')->get();
     }
     public function render()
     {

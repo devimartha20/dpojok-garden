@@ -3,20 +3,91 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\DetailOrder;
+use App\Models\Admin\Order;
+use App\Models\Admin\Payment;
 use App\Models\Admin\Product;
 use Illuminate\Http\Request;
 
 class ConfirmController extends Controller
 {
     public function index(){
-        $ids = session()->get('product_ids');
+        $detailOrders = session()->get('detailOrders');
 
-        $products = Product::whereIn('id', $ids)->get();
+        $total_items = count($detailOrders);
+        $total_amount = 0;
+        foreach($detailOrders as $do){
+            $total_amount += $do['total_harga'];
+        }
+        // Fetch products based on the extracted product IDs
+      
 
-        return view('user.pelanggan.confirm', compact('products'));
+        return view('user.pelanggan.confirm', compact('detailOrders', 'total_items', 'total_amount'));
     }
 
-    public function confirm($order_id){
-        
+    public function confirm(Request $request){
+        // return dd($request);
+        $currentDateTime = new \DateTime();
+        // Format date and time components
+        $year = $currentDateTime->format('Y');
+        $month = $currentDateTime->format('m');
+        $day = $currentDateTime->format('d');
+        $time = $currentDateTime->format('His'); // Hours, minutes, seconds
+        $hour = $currentDateTime->format('H');
+        $minute = $currentDateTime->format('i');
+        $second = $currentDateTime->format('s');
+        // Get authenticated employee ID (assuming you have a function to retrieve this)
+        $userId = auth()->user()->id;
+        // Get the last order ID
+        $lastOrder = Order::latest()->first();
+        $lastOrderId = $lastOrder ? $lastOrder->id : 1;
+
+        // Generate order number by concatenating components
+        $orderNo = 'ORDER-1'.$year . $month . $day . $hour. $minute. $second . $userId . ($lastOrderId + 1);
+
+        $total_amount = 0;
+        foreach($request->product as $idx => $do){
+           
+                $total_amount += $request->jumlah[$idx] * $request->harga[$idx];
+                
+        }
+
+        //create payment
+        $payment = Payment::create([
+            'no_payment' => time().'-'.$orderNo,
+            'status' => 'belum_lunas',
+            'total_bayar' => $total_amount,
+        ]);
+
+        //create order
+        // Save order data to Order model
+        $order = Order::create([
+            'no_pesanan' => $orderNo,
+            'pemesan' => auth()->user()->name,
+            'employee_id' => null,
+            'total_harga' => $total_amount,
+            'jumlah_pesanan' => $request->total_items,
+            'progress' => 'menunggu_pembayaran',
+            'status' => 'belum_lunas',
+            'tipe' => 'online',
+            'payment_id' => $payment->id,
+            'packing' => 'take_away',
+            'customer_id' => auth()->user()->customer->id,
+        ]);
+        // return dd($request);
+        //insert product to detail orders
+        foreach($request->product as $idx => $do){
+            DetailOrder::create([
+                'order_id' => $order->id,
+                'product_id' => $idx,
+                'jumlah' => $request->jumlah[$idx],
+                'harga' => $request->harga[$idx],
+                'total_harga' => $request->jumlah[$idx] * $request->harga[$idx],
+                'catatan' => $request->catatan[$idx]
+            ]);
+        }
+
+        //redirect to payment method
+        return redirect()->route('checkout', $order->id);
     }
 }
