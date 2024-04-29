@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Login</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->

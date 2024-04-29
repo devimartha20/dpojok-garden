@@ -63,22 +63,29 @@
                                 </div>
                                 <div class="input-group">
                                     <input type="text" name="email" value="{{ old('email') }}" required autocomplete="username" class="form-control" placeholder="Your Email Address">
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                    <span class="md-line"></span>
+                                   
+                                  
                                 </div>
+                                @if ($errors->first('email'))
+                                <span class="alert-danger">{{ $errors->first('email') }}</span>
+                                @endif
                                 <div class="input-group">
                                     <input type="password" class="form-control" placeholder="Choose Password"
                                     name="password"
                                     required autocomplete="new-password">
-                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                    <span class="md-line"></span>
+                                    
                                 </div>
+                                @if ($errors->first('password'))
+                                <span class="alert-danger">{{ $errors->first('password') }}</span>
+                                @endif
                                 <div class="input-group">
                                     <input type="password" class="form-control" placeholder="Confirm Password"
                                     name="password_confirmation" required autocomplete="new-password">
-                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                                    <span class="md-line"></span>
+                                    
                                 </div>
+                                @if ($errors->first('password_confirmation'))
+                                <span class="alert-danger">{{ $errors->first('password_confirmation') }}</span>
+                                @endif
                                 {{-- <div class="row m-t-25 text-left">
                                     <div class="col-md-12">
                                         <div class="checkbox-fade fade-in-primary">
