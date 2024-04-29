@@ -58,13 +58,14 @@
                                 <hr/>
                                 <div class="input-group">
                                     <input type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" class="form-control" placeholder="Choose Username">
-                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                                    <span class="md-line"></span>
+                                    
                                 </div>
+                                @if ($errors->first('name'))
+                                <span class="alert-danger">{{ $errors->first('name') }}</span>
+                                @endif
                                 <div class="input-group">
                                     <input type="text" name="email" value="{{ old('email') }}" required autocomplete="username" class="form-control" placeholder="Your Email Address">
-                                   
-                                  
+                
                                 </div>
                                 @if ($errors->first('email'))
                                 <span class="alert-danger">{{ $errors->first('email') }}</span>
