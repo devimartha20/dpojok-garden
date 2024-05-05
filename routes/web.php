@@ -9,7 +9,7 @@ use App\Http\Controllers\Customer\CartController;
 use App\Http\Controllers\Customer\ConfirmController;
 use App\Http\Controllers\Customer\ExploreProductController;
 use App\Http\Controllers\Customer\Order\OnlineOrderController;
-use App\Http\Controllers\Customer\OrderHistoryController;
+use App\Http\Controllers\Customer\Order\OrderHistoryController;
 use App\Http\Controllers\Kasir\OrderTransController;
 use App\Http\Controllers\Kasir\PaymentTransController;
 use App\Http\Controllers\Koki\OrderProsController;
