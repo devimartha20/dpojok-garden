@@ -35,6 +35,8 @@ Route::get('/', function () {
     return view('landing-page');
 });
 
+Route::post('/payments/midtrans-notification', [OnlineOrderController::class, 'receive']);
+
 Route::get('/checkouttry', [OnlineOrderController::class, 'checkout'])->name('checkouttry');
 Route::get('/finish-payment', [OnlineOrderController::class, 'finish'])->name('finish-payment');
 
@@ -91,7 +93,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     // Route Khusus Pelanggan
 Route::middleware(['role:pelanggan'])->group(function () {
-       
+
         Route::get('/search-products', [ExploreProductController::class, 'index'])->name('search-products.index');
         Route::get('/confirm/index', [ConfirmController::class, 'index'])->name('confirm.index');
         Route::post('/confirm', [ConfirmController::class, 'confirm'])->name('confirm.confirm');

@@ -33,7 +33,7 @@
     border: 1px solid rgb(204, 204, 204);
 
     &:focus {
-        border: 1px solid $primary-color;
+        border: 1px solid #524C42;
     }
 
     &.form-control-normal {
@@ -83,7 +83,7 @@
 }
 /*===== Border Inputs start =====*/
 $form-border-state: primary, warning, default, danger, success, inverse, info;
-$form-border-color: $primary-color, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
+$form-border-color: #524C42, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
 @each $var in $form-border-state {
     $i: index($form-border-state, $var);
 
@@ -108,7 +108,7 @@ $form-border-color: $primary-color, $warning-color, $default-color, $danger-colo
 }
 /*===== Form Input-Text start =====*/
 $form-txt-state: primary, warning, default, danger, success, inverse, info;
-$form-txt-color: $primary-color, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
+$form-txt-color: #524C42, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
 @each $var in $form-txt-state {
     $i: index($form-txt-state, $var);
 
@@ -135,7 +135,7 @@ $form-txt-color: $primary-color, $warning-color, $default-color, $danger-color, 
 }
 /*===== Form Background-inputs start =====*/
 $form-bg-state: primary, warning, default, danger, success, inverse, info;
-$form-bg-color: $primary-color, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
+$form-bg-color: #524C42, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
 @each $var in $form-bg-state {
     $i: index($form-bg-state, $var);
 
@@ -219,7 +219,7 @@ $form-valid-color: $success-color, $warning-color, $danger-color;
 }
 
 .input-group-addon {
-    background-color: $primary-color;
+    background-color: #524C42;
     color: $white-txt;
 }
 // .input-group-button [class*=btn-] {
@@ -294,8 +294,8 @@ $form-valid-color: $success-color, $warning-color, $danger-color;
 
         &::after {
             transform: scale(0);
-            background-color: $primary-color;
-            border-color: $primary-color;
+            background-color: #524C42;
+            border-color: #524C42;
         }
 
         &::after,
@@ -311,12 +311,12 @@ $form-valid-color: $success-color, $warning-color, $danger-color;
             transition: -webkit-transform 0.28s ease;
             transition: transform 0.28s ease, -webkit-transform 0.28s ease;
             border-radius: 50%;
-            border: 0.125rem solid $primary-color;
+            border: 0.125rem solid #524C42;
         }
     }
 
     label:hover .helper {
-        color: $primary-color;
+        color: #524C42;
     }
 
     input {
@@ -325,7 +325,7 @@ $form-valid-color: $success-color, $warning-color, $danger-color;
         }
 
         &:checked ~ .helper::before {
-            color: $primary-color;
+            color: #524C42;
         }
     }
 
@@ -335,7 +335,7 @@ $form-valid-color: $success-color, $warning-color, $danger-color;
         }
 
         .helper::after {
-            background-color: $primary-color;
+            background-color: #524C42;
         }
     }
 
@@ -346,7 +346,7 @@ $form-valid-color: $success-color, $warning-color, $danger-color;
 
         .helper::after {
             background-color: #fff;
-            border: 0.225rem solid $primary-color;
+            border: 0.225rem solid #524C42;
         }
     }
 
@@ -361,7 +361,7 @@ $form-valid-color: $success-color, $warning-color, $danger-color;
         }
 
         input:checked ~ .helper::before {
-            background-color: $primary-color;
+            background-color: #524C42;
         }
     }
 
@@ -378,7 +378,7 @@ $form-valid-color: $success-color, $warning-color, $danger-color;
     margin-right: 20px;
 }
 $radio-bg-state: primary, warning, default, danger, success, inverse, info;
-$radio-bg-color: $primary-color, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
+$radio-bg-color: #524C42, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
 @each $var in $radio-bg-state {
     $i: index($radio-bg-state, $var);
 
@@ -434,7 +434,7 @@ $radio-bg-color: $primary-color, $warning-color, $default-color, $danger-color, 
             -webkit-animation: check linear 0.5s;
             animation: check linear 0.5s;
             opacity: 1;
-            border-color: $primary-color;
+            border-color: #524C42;
 
             .border-checkbox-label {
                 &:before {
@@ -472,7 +472,7 @@ $radio-bg-color: $primary-color, $warning-color, $default-color, $danger-color, 
             &:before {
                 content: "";
                 display: block;
-                border: 2px solid $primary-color;
+                border: 2px solid #524C42;
                 width: 20px;
                 height: 20px;
                 position: absolute;
@@ -509,7 +509,7 @@ $radio-bg-color: $primary-color, $warning-color, $default-color, $danger-color, 
     }
 }
 $border-checkbox-bg-state: primary, warning, default, danger, success, inverse, info;
-$border-checkbox-bg-color: $primary-color, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
+$border-checkbox-bg-color: #524C42, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
 @each $var in $border-checkbox-bg-state {
     $i: index($border-checkbox-bg-state, $var);
 
@@ -564,7 +564,7 @@ $border-checkbox-bg-color: $primary-color, $warning-color, $default-color, $dang
 
     .cr {
         border-radius: 0;
-        border: 2px solid $primary-color;
+        border: 2px solid #524C42;
         cursor: pointer;
         display: inline-block;
         float: left;
@@ -574,7 +574,7 @@ $border-checkbox-bg-color: $primary-color, $warning-color, $default-color, $dang
         width: 20px;
 
         .cr-icon {
-            color: $primary-color;
+            color: #524C42;
             font-size: 0.8em;
             left: 0;
             line-height: 0;
@@ -639,7 +639,7 @@ $border-checkbox-bg-color: $primary-color, $warning-color, $default-color, $dang
 //     }
 // }
 $fade-in-checkbox-bg-state: primary, warning, default, danger, success, inverse, info;
-$fade-in-checkbox-bg-color: $primary-color, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
+$fade-in-checkbox-bg-color: #524C42, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
 @each $var in $fade-in-checkbox-bg-state {
     $i: index($fade-in-checkbox-bg-state, $var);
 
@@ -746,7 +746,7 @@ $fade-in-checkbox-bg-color: $primary-color, $warning-color, $default-color, $dan
     border-color: #2196f3;
 }
 $background-checkbox-bg-state: primary, warning, default, danger, success, inverse, info;
-$background-checkbox-bg-color: $primary-color, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
+$background-checkbox-bg-color: #524C42, $warning-color, $default-color, $danger-color, $success-color, $inverse-color, $info-color;
 @each $var in $background-checkbox-bg-state {
     $i: index($background-checkbox-bg-state, $var);
 
@@ -756,7 +756,7 @@ $background-checkbox-bg-color: $primary-color, $warning-color, $default-color, $
 }
 /*===== Tag input css start =====*/
 .bootstrap-tagsinput {
-    border: 1px solid $primary-color;
+    border: 1px solid #524C42;
     line-height: 30px;
     border-radius: 2px;
 
@@ -770,7 +770,7 @@ $background-checkbox-bg-color: $primary-color, $warning-color, $default-color, $
 ==========================  **/
 .select2-container--default {
     &:focus {
-        border-color: $primary-color;
+        border-color: #524C42;
     }
 
     &.select2-container--open {
@@ -781,20 +781,20 @@ $background-checkbox-bg-color: $primary-color, $warning-color, $default-color, $
 
     .select2-search__field {
         &:focus {
-            border: 1px solid $primary-color;
+            border: 1px solid #524C42;
         }
     }
 
     .select2-results__option--highlighted[aria-selected] {
-        background-color: $primary-color;
+        background-color: #524C42;
     }
 
     .select2-selection--multiple {
         padding: 3px;
 
         .select2-selection__choice {
-            background-color: $primary-color;
-            border: 1px solid $primary-color;
+            background-color: #524C42;
+            border: 1px solid #524C42;
             padding: 5px 15px;
             color: $white-txt;
 
@@ -809,7 +809,7 @@ $background-checkbox-bg-color: $primary-color, $warning-color, $default-color, $
     }
 
     &.select2-container--focus .select2-selection--multiple {
-        border: 1px solid $primary-color;
+        border: 1px solid #524C42;
     }
 
     .select2-selection--single {
@@ -817,7 +817,7 @@ $background-checkbox-bg-color: $primary-color, $warning-color, $default-color, $
         height: auto;
 
         .select2-selection__rendered {
-            background-color: $primary-color;
+            background-color: #524C42;
             color: $white-txt;
             padding: 8px 30px 8px 20px;
         }
@@ -837,18 +837,18 @@ $background-checkbox-bg-color: $primary-color, $warning-color, $default-color, $
       Multi-select css start
 ==========================  **/
 .ms-container .ms-list.ms-focus {
-    border-color: $primary-color;
+    border-color: #524C42;
     box-shadow: inset 0 1px 1px rgba(26, 188, 156, 0.49), 0 0 8px rgba(26, 188, 156, 0.5);
 }
 
 .ms-container .ms-selectable li.ms-hover,
 .ms-container .ms-selection li.ms-hover {
-    background-color: $primary-color;
+    background-color: #524C42;
 }
 
 .ms-selectable .custom-header,
 .ms-selection .custom-header {
-    background-color: $primary-color;
+    background-color: #524C42;
     color: #fff;
     text-align: center;
 }
@@ -883,14 +883,14 @@ $background-checkbox-bg-color: $primary-color, $warning-color, $default-color, $
       Form-wizards css start
 ==========================  **/
 .wizard > .steps .current a {
-    background: $primary-color;
+    background: #524C42;
     transition: all ease-in 0.3s;
     cursor: pointer;
     border-radius: 2px;
     outline: 1px solid #fff;
     outline-offset: -7px;
     &:hover {
-        background: lighten($primary-color, 5%);
+        background: lighten(#524C42, 5%);
         outline-offset: 0;
     }
 }
@@ -904,7 +904,7 @@ $background-checkbox-bg-color: $primary-color, $warning-color, $default-color, $
         content: "";
         position: absolute;
         height: 2px;
-        background: $primary-color;
+        background: #524C42;
         width: 100%;
         top: 30px;
         z-index: -1;

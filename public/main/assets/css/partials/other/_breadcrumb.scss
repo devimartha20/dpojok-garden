@@ -20,8 +20,8 @@
 		display: inline-block;
 		i{
 			font-size: 50px;
-			margin-right: 10px;	
-			color: $primary-color;
+			margin-right: 10px;
+			color: #524C42;
 		}
 	}
 	.d-inline-block{
@@ -35,7 +35,7 @@
 
 .primary-breadcrumb{
 	@extend .caption-breadcrumb;
-	background-color: $primary-color;
+	background-color: #524C42;
 	color: #fff;
 	h5,a,.breadcrumb-title li:last-child a,.breadcrumb-item+.breadcrumb-item::before{
 		color: #fff;
