@@ -37,7 +37,7 @@
                     <div class="col-sm-10">
                         <select name="role" required class="form-control">
                                 <option>Pilih Role</option>
-                                <option value='Admin'>Admin</option>
+                                <option value='Admin'{{ $employee->user->role == 'admin' ? 'selected' : '' }}>Admin</option>
                                 <option value='Kasir'>Kasir</option>
                                 <option value='Koki'>Koki</option>
                                 <option value='Pelayan'>Pelayan</option>
