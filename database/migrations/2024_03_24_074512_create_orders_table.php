@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('pemesan')->nullable();
             $table->bigInteger('total_harga')->default(0);
             $table->integer('jumlah_pesanan')->default(0);
+            $table->string('snap_token')->nullable();
             $table->timestamps();
 
             $table->foreign('employee_id')->references('id')->on('employees');

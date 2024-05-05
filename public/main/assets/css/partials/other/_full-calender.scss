@@ -42,7 +42,7 @@ tr:first-child > td > .fc-day-grid-event {
     background-color: #fff;
 }
 .fc-state-active {
-    background-color: $primary-color;
+    background-color: #524C42;
     color: #fff;
 }
 .fc-toolbar {
@@ -98,9 +98,9 @@ tr:first-child > td > .fc-day-grid-event {
     box-shadow: none !important;
 }
 .fc th {
-    background: $primary-color;
+    background: #524C42;
     color: #fff;
-    border-color: $primary-color;
+    border-color: #524C42;
 }
 .fc-event-container{
     a{
@@ -192,7 +192,7 @@ tr:first-child > td > .fc-day-grid-event {
     background-image: none
 }
 .clndr.event-listing {
-    background-color: $primary-color;
+    background-color: #524C42;
     float: left;
     width: 35%
 }
@@ -212,6 +212,6 @@ tr:first-child > td > .fc-day-grid-event {
     font-weight: 400
 }
 .fc-event{
-    border-color:$primary-color;
+    border-color:#524C42;
 }
 /**====== Full-calender css end ======**/

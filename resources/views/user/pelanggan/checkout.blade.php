@@ -91,7 +91,11 @@ data-client-key="{{ config('app.client_key') }}"></script>
         @endforeach
         <div class="card-footer">
             <p class="total-price">Total Keseluruhan Rp. {{ number_format($order->total_harga)}}</p>
-            <button class="btn btn-primary" id="pay-button">Bayar</button>
+            @if ($order->status == 'belum_lunas')
+                <button class="btn btn-primary" id="pay-button">Bayar Sekarang</button>
+            @else
+                Payment successful
+            @endif
         </div>
     </div>
 </div>
@@ -104,7 +108,7 @@ data-client-key="{{ config('app.client_key') }}"></script>
     var payButton = document.getElementById('pay-button');
     payButton.addEventListener('click', function () {
       // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-      window.snap.pay('{{$snapToken}}', {
+      window.snap.pay('{{$order->snap_token}}', {
         onSuccess: function(result){
           /* You may add your own implementation here */
           alert("Pembayaran Berhasil"); console.log(result);
