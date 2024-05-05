@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Kelola Produk
+    Kelola Data Pegawai
 @endsection
 @section('styles')
  <!-- Notification.css -->
@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h5>Produk</h5>
+        <h5>Data Pegawai</h5>
         {{-- <span>use class <code>table-hover</code> inside table element</span> --}}
         <div class="card-header-right">
             <ul class="list-unstyled card-option">
@@ -27,8 +27,8 @@
             {!! implode('', $errors->all('<div style="color: red;">:message</div>')) !!}
         @endif
         <br>
-        <a href="{{ route('product.create') }}" class="btn btn-sm btn-info btn-round">
-            Tambah Produk
+        <a href="{{ route('employee.create') }}" class="btn btn-sm btn-info btn-round">
+            Tambah Data Pegawai
         </a>
         <br>
         <div class="table-responsive">
@@ -36,41 +36,37 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Produk</th>
-                        <th>Deskripsi</th>
-                        <th>Harga Jual</th>
-                        <th>Harga Produksi</th>
-                        <th>Stok</th>
-                        <th>Kategori Produk</th>
-                        <th>Gambar Produk</th>
+                        <th>Role</th>
+                        <th>NIK</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Alamat</th>
+                        <th>Telepon</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($product as $p)
+                    @forelse ($employee as $e)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $p->id }}</td>
-                            <td>{{ $p->deskripsi }}</td>
-                            <td>{{ $p->harga_jual }}</td>
-                            <td>{{ $p->harga_produksi }}</td>
-                            <td>{{ $p->stok }}</td>
-                            <td>{{ $p->productCategory->nama ?? '-' }}</td>
+                            <td>{{ $e->role }}</td>
+                            <td>{{ $e->nik }}</td>
+                            <td>{{ $e->nama }}</td>
+                            <td>{{ $e->user->email }}</td>
+                            <td>{{ $e->alamat }}</td>
+                            <td>{{ $e->telepon }}</td>
                             <td>
-                                <img src="{{ asset('images/'.$p->image )}}" style="width: 25%; height:auto"/>
-                            </td>
-                            <td>
-                                <a href="/product/{{ $p->id }}/edit" type="button" class="btn btn-primary btn-round btn-sm">
+                                <a href="/employee/{{ $e->id }}/edit" type="button" class="btn btn-primary btn-round btn-sm">
                                     Edit
                                 </a>
-                                <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $p->id }}">
+                                <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $e->id }}">
                                     Hapus
                                 </button>
                             </td>
                         </tr>
                         <!-- Modal Edit -->
                         <!-- Modal Hapus -->
-                        <div class="modal fade" id="hapusModal{{ $p->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="hapusModal{{ $e->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -80,11 +76,11 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    Apakah Anda yakin untuk menghapus bahan baku {{ $p->material }} ?
+                                    Apakah Anda yakin untuk menghapus data pegawai {{ $e->employee }} ?
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <form action="{{ route('material.destroy', $p->id) }}" method="POST">
+                                <form action="{{ route('employee.destroy', $e->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Hapus</button>

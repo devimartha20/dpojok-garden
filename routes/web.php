@@ -16,6 +16,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Models\Admin\Payment;
@@ -53,6 +54,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('table', TableController::class);
         Route::resource('metode', PaymentMethodController::class);
         Route::resource('customer', CustomerController::class);
+        Route::resource('employee', EmployeeController::class);
     });
 
     // Route Khusus Kasir

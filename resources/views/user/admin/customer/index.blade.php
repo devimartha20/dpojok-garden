@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Kelola Pelanggan
+    Kelola Data Pelanggan
 @endsection
 @section('styles')
  <!-- Notification.css -->

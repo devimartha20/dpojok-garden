@@ -160,18 +160,6 @@
             </li>
         </ul>
 
-        {{-- Metode Pembayaran --}}
-        <div class="pcoded-navigatio-lavel">Metode Pembayaran</div>
-        <ul class="pcoded-item pcoded-left-item">
-            <li>
-                <a href="{{ route('metode.index') }}">
-                    <span class="pcoded-micon"><i class="ti-credit-card"></i><b>FC</b></span>
-                    <span class="pcoded-mtext" >Daftar Metode Pembayaran</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-        </ul>
-
         {{-- Penjualan --}}
         <div class="pcoded-navigatio-lavel">Penjualan</div>
         <ul class="pcoded-item pcoded-left-item">
@@ -194,6 +182,13 @@
         {{-- Human Resource --}}
         <div class="pcoded-navigatio-lavel">Human Resource</div>
         <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a href="{{ route('employee.index') }}">
+                    <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" >Daftar Pegawai</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
             <li>
                 <a href="">
                     <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>

@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Edit Produk
+    Edit Data Pegawai
 @endsection
 @section('styles')
  <!-- Notification.css -->
@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4>Form Edit Produk</h4>
+        <h4>Form Edit Data Pegawai</h4>
         {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
         <div class="card-header-right"><i class="icofont icofont-spinner-alt-5"></i></div>
 
@@ -18,65 +18,65 @@
             </div>
 
         </div>
+        @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <div class="card-block">
             {{-- <h4 class="sub-title">Form Tambah Produk</h4> --}}
-            <form action="{{ route('product.update',$product->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('employee.update',$employee->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Kategori Produk</label>
+                    <label class="col-sm-2 col-form-label">Role</label>
                     <div class="col-sm-10">
-                        <select name="product_category_id" required class="form-control">
-                            @foreach ($productCategory as $c)
-                                <option value="{{ $c->id }}" {{ $c->id == $product->product_category_id ? 'selected' : '' }}>{{ $c->nama }}</option>
-                            @endforeach
+                        <select name="role" required class="form-control">
+                                <option>Pilih Role</option>
+                                <option value='Admin'>Admin</option>
+                                <option value='Kasir'>Kasir</option>
+                                <option value='Koki'>Koki</option>
+                                <option value='Pelayan'>Pelayan</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nama Produk</label>
+                    <label class="col-sm-2 col-form-label">NIK</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan Nama Produk" required value="{{ $product->nama }}" name="nama">
+                        <input type="text" class="form-control" placeholder="NIK" required value="{{ $employee->nik }}" name="nik">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Deskripsi Produk</label>
+                    <label class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Deskripsi Produk" required value="{{ $product->deskripsi }}"name="deskripsi">
+                        <input type="text" class="form-control" placeholder="Nama" required value="{{ $employee->nama }}"name="nama">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Harga Jual</label>
+                    <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="number" min=1 class="form-control" placeholder="Harga Jual" required value="{{ $product->harga_jual }}" name="harga_jual">
+                        <input type="text" class="form-control" placeholder="Email" required value="{{ $employee->user->email }}" name="email">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Harga Produksi</label>
+                    <label class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <input type="number" min=1 class="form-control" placeholder="Harga Produksi" required value="{{ $product->harga_produksi }}" name="harga_produksi">
+                        <input type="text" min=1 class="form-control" placeholder="Alamat" required value="{{ $employee->alamat }}" name="alamat">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Stok Awal</label>
+                    <label class="col-sm-2 col-form-label">Telepon</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" placeholder="Stok" name="stok" required value="{{ $product->stok }}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Upload Gambar Meja</label>
-                    <div class="col-sm-10">
-                        <input type="file" accept="image/*" class="form-control" id="imageInput" name="image" onchange="previewImage(event)">
-                        <hr>
-                        <img id="imagePreview" src="{{ asset('images/'.$product->image) }}" alt="Preview Image" class="img-fluid">
-                        @error('image')
-                            {{ $message }}
-                        @enderror
+                        <input type="text" min=1 class="form-control" placeholder="Telepon" required value="{{ $employee->telepon }}" name="telepon">
                     </div>
                 </div>
             </div>
             <div class="card-footer text-right">
-                <a href="{{ route('product.index') }}" class="btn btn-round btn-secondary">Kembali</a>
+                <a href="{{ route('employee.index') }}" class="btn btn-round btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-round btn-primary">Simpan</button>
             </div>
         </div>
