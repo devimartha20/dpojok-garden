@@ -6,7 +6,7 @@
 
 @section('styles')
     <style>
-        /* Tambahkan gaya CSS tambahan di sini jika diperlukan */
+        /* Additional CSS styles */
         .product-image {
             float: left;
             margin-right: 20px;
@@ -20,70 +20,81 @@
             margin-top: 10px;
         }
         .separator {
-            margin-top: 20px;
+            margin: 20px 0;
             border-top: 1px solid #ccc;
         }
-        .bottom-right {
+        .bottom-buttons {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
         }
+        .order-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .waiting-payment { background-color: #ff0707; }
+        .waiting { background-color: #ffc107; }
+        .in-process { background-color: #17a2b8; }
+        .finished { background-color: #288ea7; }
+        .delivered { background-color: #28a745; }
     </style>
 @endsection
 
 @section('content')
     <div class="container">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-header-text">Detail Order</h5>
-                </div>
-                <div class="card-block accordion-block color-accordion-block">
-                    <div class="color-accordion ui-accordion ui-widget ui-helper-reset" id="color-accordion" role="tablist">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="order-date">
-                                    Tanggal Pemesanan : 29 Januari 2024
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-header-text">Detail Order</h5>
+                    </div>
+                    <div class="card-body">
+
+                        @if($order->progress == 'menunggu_pembayaran')
+                            <div class="order-status waiting-payment">Menunggu Pembayaran</div>
+                        @elseif($order->progress == 'menunggu')
+                            <div class="order-status waiting">Menunggu</div>
+                        @elseif($order->progress == 'diproses')
+                            <div class="order-status in-process">Diproses</div>
+                        @elseif($order->progress == 'selesai')
+                            <div class="order-status finished">Selesai</div>
+                        @elseif($order->progress == 'diterima')
+                            <div class="order-status delivered">Diterima</div>
+                        @endif
+                        <div class="order-date">
+                            Tanggal Pemesanan : {{ $order->created_at }}
+                        </div>
+                        <hr class="separator">
+                        <div>
+                            @foreach ($order->detailOrders as $do)
+                            <div>
+                                <div class="product-image">
+                                    <img src="{{ asset('images/'.$do->product->image) }}" alt="Gambar Produk" width="150">
                                 </div>
-                                <div class="separator"></div>
-                                <div class="accordion-msg b-none ui-accordion-header ui-corner-top ui-state-default ui-accordion-header-active ui-state-active ui-accordion-icons scale_active" role="tab" id="" aria-controls="" aria-selected="true" aria-expanded="true" tabindex="0">
-                                    <span class="ui-accordion-header-icon ui-icon zmdi zmdi-chevron-up"></span>No Pesanan : 11234</div>
-                                    <div class="separator"></div>
-                                <div class="accordion-desc ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content ui-accordion-content-active" style="" id="" aria-labelledby="" role="tabpanel" aria-hidden="false">
-                                    <p>
-                                        Produk<br>
-                                        <div class="product-image">
-                                            <img src="{{ asset('images/1711265258.png') }}" alt="Nama Produk" width="200">
-                                        </div>
-                                        Nasi Goreng<br>
-                                        <br>Jumlah : 3<br>
-                                        Harga : Rp. 15000<br>
-                                        Catatan : Jangan pedas<br>
-                                        <div class="separator"></div>
-                                        <div class="product-image">
-                                            <img src="{{ asset('images/1711265234.png') }}" alt="Nama Produk" width="200">
-                                        </div>
-                                        Nasi Liwet<br>
-                                        <br>Jumlah : 3<br>
-                                        Harga : Rp. 15000<br>
-                                        Catatan : Jangan pedas<br>
-                                        <div class="separator"></div>
-                                        Total Harga : Rp. 30.000<br>
-                                        <div class="separator"></div>
-                                        Tanggal Pembayaran : 29 Januari 2024, 13:31<br>
-                                        Metode Pembayaran : BNI<br>
-                                        Status Pembayaran : Lunas<br>
-                                        <div class="separator"></div>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="text-left">Faktur</div>
-                                            <div class="text-right"><i>Lihat</i></div>
-                                        </div>
-                                        <div class="separator"></div>
-                                        <div class="bottom-right">
-                                            <button onclick="window.history.back()" class="btn btn-primary">Kembali</button>
-                                        </div>
-                                    </p>
+                                <div>
+                                    <p><strong>Produk:</strong> {{ $do->product->nama }}</p>
+                                    <p><strong>Jumlah:</strong> {{ $do->jumlah }}</p>
+                                    <p><strong>Harga:</strong> Rp. {{ number_format($do->harga) }}</p>
+                                    <p><strong>Catatan:</strong> {{ $do->catatan ?? '-' }}</p> <br>
+                                    <p><strong>Total Harga:</strong> Rp. {{ number_format($do->total_harga) }}</p>
                                 </div>
                             </div>
+
+                            <hr class="separator">
+                            @endforeach
+                        </div>
+
+                        <p><strong>Total Harga:</strong> Rp. {{ number_format($order->total_harga) }}</p>
+                        @if($order->progress == 'menunggu_pembayaran')
+                                <a href="{{ route('checkout', $order->id) }}" class="btn btn-primary ml-3">Bayar Sekarang</a>
+                            @endif
+                        <hr>
+                        <div class="bottom-buttons">
+
+                            <button onclick="window.history.back()" class="btn btn-primary">Kembali</button>
                         </div>
                     </div>
                 </div>

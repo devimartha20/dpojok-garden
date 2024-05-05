@@ -1,0 +1,178 @@
+<div>
+    <div class="col-lg-6 col-xl-12">
+        <!-- <h6 class="sub-title">Tab With Icon</h6> -->
+        <div class="title">Pemesanan</div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs md-tabs justify-content-center" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link {{ $state == 'menunggu_pembayaran' ? 'active' : '' }}" data-toggle="tab" href="#menunggu_pembayaran" role="tab" aria-expanded="true">
+                    <i class="ti-timer"></i>
+                    Menunggu Pembayaran</a>
+                <div class="slide"></div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $state == 'menunggu' ? 'active' : '' }}" data-toggle="tab" href="#menunggu" role="tab" aria-expanded="false">
+                    <i class="ti-timer"></i>
+                    Menunggu</a>
+                <div class="slide"></div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $state == 'diproses' ? 'active' : '' }}" data-toggle="tab" href="#diproses" role="tab" aria-expanded="false">
+                    <i class="ti-reload"></i>
+                    Diproses</a>
+                <div class="slide"></div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $state == 'selesai' ? 'active' : '' }}" data-toggle="tab" href="#selesai" role="tab" aria-expanded="false">
+                    <i class="ti-check-box"></i>
+                    Selesai</a>
+                <div class="slide"></div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $state == 'diterima' ? 'active' : '' }}" data-toggle="tab" href="#diterima" role="tab" aria-expanded="false">
+                    <i class="ti-check-box"></i>
+                    Diterima</a>
+                <div class="slide"></div>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content card-block">
+            <div class="tab-pane {{ $state == 'menunggu_pembayaran' ? 'active' : '' }}" id="menunggu_pembayaran" role="tabpanel" aria-expanded="true">
+                <hr>
+                @forelse ($orders_wp as $o)
+                <div class="card">
+                    <div class="card-block caption-breadcrumb card-body">
+                        <div class="breadcrumb-header">
+                            <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                            <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                    
+                            <div class="product-details">
+                                <p>
+                                    @foreach ($o->detailOrders as $do)
+                                        {{ $do->product->nama }} {{ $do->jumlah }}x, <br>
+                                    @endforeach
+                                </p>
+                            </div>
+                            <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                        </div>
+                        <div class="col float-start text-right">
+                            <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a> </i></span>
+                        </div>
+                    </div>
+                </div>
+
+                @empty
+                <div class="text-center">Tidak Ada Pesanan Menunggu Pembayaran</div>
+                @endforelse
+            </div>
+            <div class="tab-pane {{ $state == 'menunggu' ? 'active' : '' }}" id="menunggu" role="tabpanel" aria-expanded="true">
+                <hr>
+                @forelse ($orders_w as $o)
+                <div class="card">
+                    <div class="card-block caption-breadcrumb card-body">
+                        <div class="breadcrumb-header">
+                            <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                            <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                            <div class="product-details">
+                                <p>
+                                    @foreach ($o->detailOrders as $do)
+                                        {{ $do->product->nama }} {{ $do->jumlah }}x, <br>
+                                    @endforeach
+                                </p>
+                            </div>
+                            <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                        </div>
+                        <div class="col float-start text-right">
+                            <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a> </i></span>
+                        </div>
+                    </div>
+                </div>
+
+                @empty
+                <div class="text-center">Tidak Ada Pesanan Menunggu</div>
+                @endforelse
+            </div>
+            <div class="tab-pane {{ $state == 'diproses' ? 'active' : '' }}" id="diproses" role="tabpanel" aria-expanded="false">
+                <hr>
+                @forelse ($orders_p as $o)
+                <div class="card">
+                    <div class="card-block caption-breadcrumb card-body">
+                        <div class="breadcrumb-header">
+                            <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                            <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                            <div class="product-details">
+                                <p>
+                                    @foreach ($o->detailOrders as $do)
+                                        {{ $do->product->nama }} {{ $do->jumlah }}x, <br>
+                                    @endforeach
+                                </p>
+                            </div>
+                            <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                        </div>
+                        <div class="col float-start text-right">
+                            <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a> </i></span>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <div class="text-center">Tidak Ada Pesanan Diproses</div>
+                @endforelse
+            </div>
+            <div class="tab-pane {{ $state == 'selesai' ? 'active' : '' }}" id="selesai" role="tabpanel" aria-expanded="false">
+                <hr>
+                @forelse ($orders_f as $o)
+                <div class="card">
+                    <div class="card-block caption-breadcrumb card-body">
+                        <div class="breadcrumb-header">
+                            <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                            <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                            <div class="product-details">
+                                <p>
+                                    @foreach ($o->detailOrders as $do)
+                                        {{ $do->product->nama }} {{ $do->jumlah }}x, <br>
+                                    @endforeach
+                                </p>
+                            </div>
+                            <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                        </div>
+                        <div class="col float-start text-right">
+                            <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a> </i></span>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <div class="text-center">Tidak Ada Pesanan yang Selesai</div>
+                @endforelse
+
+            </div>
+            <div class="tab-pane {{ $state == 'diterima' ? 'active' : '' }}" id="diterima" role="tabpanel" aria-expanded="false">
+                <hr>
+                @forelse ($orders_s as $o)
+                <div class="card">
+                    <div class="card-block caption-breadcrumb card-body">
+                        <div class="breadcrumb-header">
+                            <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                            <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                            <div class="product-details">
+                                <p>
+                                    @foreach ($o->detailOrders as $do)
+                                        {{ $do->product->nama }} {{ $do->jumlah }}x, <br>
+                                    @endforeach
+                                </p>
+                            </div>
+                            <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                        </div>
+                        <div class="col float-start text-right">
+                            <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a> </i></span>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <div class="text-center">Tidak Ada Pesanan yang Diterima</d>
+                @endforelse
+
+            </div>
+        </div>
+    </div>
+
+</div>
