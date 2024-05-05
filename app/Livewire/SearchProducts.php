@@ -61,6 +61,7 @@ class SearchProducts extends Component
         $product = Product::findOrFail($product['id']);
         $detailOrders = [];
         $detailOrders[] = [
+            'detail_cart_id' => null,
             'product' => $product,
             'harga' => $product->harga_jual,
             'total_harga' => $product->harga_jual,

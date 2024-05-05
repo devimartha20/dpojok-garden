@@ -49,6 +49,13 @@ class OnlineOrderController extends Controller
                     'kembali' => 0,
                     'uang'=> request()->gross_amount,
                 ]);
+
+                foreach($order->detailOrders as $do){
+                    $product = Product::findOrFail($do->product_id);
+                    if($do->jumlah <= $product->stok){
+                        $update_product = Product::findOrFail($do->product_id)->update(['stok'=> $product->stok - $do->jumlah]);
+                    }
+                }
             }
 
             if ($order){
@@ -62,13 +69,7 @@ class OnlineOrderController extends Controller
                 'fraud_status' => request()->fraud_status,
             ]);
 
-            foreach($order->detailOrders as $do){
-                $product = Product::findOrFail($do->product_id);
-                if($do->jumlah <= $product->stok){
-                    $update_product = Product::findOrFail($do->product_id)->update(['stok'=> $product->stok - $do->jumlah]);
-                }
 
-            }
         }
             // return dd($request);
 

@@ -97,6 +97,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" value="{{ $do['detail_cart_id'] }}" name="dc[{{ $do['detail_cart_id'] }}]" required>
             <input type="hidden" value="{{ $do['harga'] }}" name="harga[{{ $do['product']->id }}]" required>
             <input type="hidden" value="{{ $do['total_harga'] }}" name="total_harga[{{ $do['product']->id }}]" required>
             <input type="hidden" value="{{ $do['product'] }}" name="product[{{ $do['product']->id }}]" required>

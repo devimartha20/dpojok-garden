@@ -59,5 +59,7 @@
 </style>
 @endsection
 @section('content')
-@livewire('cart')
+@livewire('cart', [
+    'cart'=> $cart,
+])
 @endsection

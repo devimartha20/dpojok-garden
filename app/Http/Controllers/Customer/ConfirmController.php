@@ -7,6 +7,7 @@ use App\Models\Admin\DetailOrder;
 use App\Models\Admin\Order;
 use App\Models\Admin\Payment;
 use App\Models\Admin\Product;
+use App\Models\DetailCart;
 use Illuminate\Http\Request;
 
 class ConfirmController extends Controller
@@ -15,12 +16,13 @@ class ConfirmController extends Controller
         $detailOrders = session()->get('detailOrders');
 
         $total_items = count($detailOrders);
+
         $total_amount = 0;
         foreach($detailOrders as $do){
             $total_amount += $do['total_harga'];
         }
         // Fetch products based on the extracted product IDs
-      
+
 
         return view('user.pelanggan.confirm', compact('detailOrders', 'total_items', 'total_amount'));
     }
@@ -47,10 +49,15 @@ class ConfirmController extends Controller
 
         $total_amount = 0;
         foreach($request->product as $idx => $do){
-           
+
                 $total_amount += $request->jumlah[$idx] * $request->harga[$idx];
-                
+
         }
+
+        // Delete the detailOrders session
+        session()->forget('detailOrders');
+        // Delete the selectedItems session
+        session()->forget('selectedItems');
 
         //create payment
         $payment = Payment::create([
@@ -85,6 +92,10 @@ class ConfirmController extends Controller
                 'total_harga' => $request->jumlah[$idx] * $request->harga[$idx],
                 'catatan' => $request->catatan[$idx]
             ]);
+        }
+
+        foreach($request->dc as $idx => $dc){
+            DetailCart::destroy($dc);
         }
 
         //redirect to payment method
