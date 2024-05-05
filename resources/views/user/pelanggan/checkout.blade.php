@@ -111,7 +111,8 @@ data-client-key="{{ config('app.client_key') }}"></script>
       window.snap.pay('{{$order->snap_token}}', {
         onSuccess: function(result){
           /* You may add your own implementation here */
-          alert("Pembayaran Berhasil"); console.log(result);
+        //   alert("Pembayaran Berhasil"); console.log(result);
+        window.location.href = "{{ route('order-history.show', $order->id) }}";
         },
         onPending: function(result){
           /* You may add your own implementation here */

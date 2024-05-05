@@ -102,7 +102,8 @@ Route::middleware(['role:pelanggan'])->group(function () {
         Route::post('/confirm', [ConfirmController::class, 'confirm'])->name('confirm.confirm');
         Route::get('/checkout/{id}', [OnlineOrderController::class, 'checkout'])->name('checkout');
         Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-        Route::get('/order/history', [OrderHistoryController::class, 'index'])->name('order-history.index')
+        Route::get('/order/history', [OrderHistoryController::class, 'index'])->name('order-history.index');
+        Route::get('/order/show/{id}', [OrderHistoryController::class, 'show'])->name('order-history.show');
 ;
         // Route::get('/cart', function () {
         //     return view('user/pelanggan/cart');
