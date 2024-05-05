@@ -122,7 +122,7 @@ class EmployeeController extends Controller
             [
             'nik' => $request->nik,
             'nama' => $request->nama,
-            'email' => $request->email,
+            'email' => $request->user->email,
             'alamat' => $request->alamat,
             'telepon' => $request->telepon,
             ]);
