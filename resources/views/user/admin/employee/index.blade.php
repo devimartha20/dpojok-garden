@@ -49,7 +49,7 @@
                     @forelse ($employee as $e)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $e->role }}</td>
+                            <td>{{ $e->user->getRoleNames()->first()}}</td>
                             <td>{{ $e->nik }}</td>
                             <td>{{ $e->nama }}</td>
                             <td>{{ $e->user->email }}</td>

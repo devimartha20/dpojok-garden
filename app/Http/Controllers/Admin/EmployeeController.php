@@ -37,6 +37,7 @@ class EmployeeController extends Controller
             [
                 'nik' => 'required|unique:employees,nik',
                 'nama' => 'required',
+                'role' => 'required',
                 'email' => 'required|unique:users,email',
                 'alamat' => 'required',
                 'telepon' => 'required|unique:employees,telepon',
@@ -56,19 +57,19 @@ class EmployeeController extends Controller
 
             if($request->role == 'admin')
             {
-                $user::assignRole('admin');
+                $user->assignRole('admin');
 
             }elseif($request->role == 'kasir')
             {
-                $user::assignRole('kasir');
+                $user->assignRole('kasir');
 
             }elseif($request->role == 'koki')
             {
-                $user::assignRole('koki');
+                $user->assignRole('koki');
 
             }elseif($request->role == 'pelayan')
             {
-                $user::assignRole('pelayan');
+                $user->assignRole('pelayan');
 
             }
 
@@ -106,30 +107,52 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $employee = Employee::findOrFail($id);
+        $user = User::findOrFail($employee->user_id);
         $request->validate(
             [
                 'nik' => 'required|unique:employees,nik,'.$id,
                 'nama' => 'required',
-                'email' => 'required|unique:users,email,'.$id,
+                'email' => 'required|unique:users,email,'.$user->id,
                 'alamat' => 'required',
                 'telepon' => 'required|unique:employees,telepon,'.$id,
             ], [
                 'nama.required' => 'Nama wajib diiis!',
             ]);
 
-            $employee = Employee::findOrFail($id);
+            $user->removeRole($user->roles->first());
+
+            if($request->role == 'admin')
+            {
+                $user->assignRole('admin');
+
+            }elseif($request->role == 'kasir')
+            {
+                $user->assignRole('kasir');
+
+            }elseif($request->role == 'koki')
+            {
+                $user->assignRole('koki');
+
+            }elseif($request->role == 'pelayan')
+            {
+                $user->assignRole('pelayan');
+
+            }
+
+
             $employee_update = Employee::findOrFail($id)->update(
             [
             'nik' => $request->nik,
             'nama' => $request->nama,
-            'email' => $request->user->email,
+            'email' => $request->email,
             'alamat' => $request->alamat,
             'telepon' => $request->telepon,
             ]);
 
             $user_update = User::findOrFail($employee->user_id)->update([
-            'name' => $request->nama,
-            'email' => $request->email,
+                'name' => $request->nama,
+                'email' => $request->email,
             ]);
 
             return redirect()->route('employee.index')->with('success', 'Data Pegawai Berhasil Diupdate!');
@@ -140,7 +163,9 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        Employee::findOrFail($id)->delete();
+        $employee = Employee::findOrFail($id);
+        $user_delete = User::destroy($employee->user_id);
+        $customer_delete = Employee::destroy($id);
         return redirect()->back()->with('success', 'Data Pegawai Berhasil Dihapus!');
     }
 }

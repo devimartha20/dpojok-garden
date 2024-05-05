@@ -37,29 +37,29 @@
                     <div class="col-sm-10">
                         <select name="role" required class="form-control">
                                 <option>Pilih Role</option>
-                                <option value='Admin'>Admin</option>
-                                <option value='Kasir'>Kasir</option>
-                                <option value='Koki'>Koki</option>
-                                <option value='Pelayan'>Pelayan</option>
+                                <option value='admin'{{ $employee->user->getRoleNames()->first() == 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value='kasir' {{ $employee->user->getRoleNames()->first() == 'kasir' ? 'selected' : '' }}>Kasir</option>
+                                <option value='koki' {{ $employee->user->getRoleNames()->first() == 'koki' ? 'selected' : '' }}>Koki</option>
+                                <option value='pelayan' {{ $employee->user->getRoleNames()->first() == 'pelayan' ? 'selected' : '' }}>Pelayan</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">NIK</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="NIK" required value="{{ $employee->nik }}" name="nik">
+                        <input type="text" class="form-control" placeholder="NIK"  value="{{ $employee->nik }}" name="nik" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Nama" required value="{{ $employee->nama }}"name="nama">
+                        <input type="text" class="form-control" placeholder="Nama"  value="{{ $employee->nama }}"name="nama" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Email" required value="{{ $employee->user->email }}" name="email">
+                        <input type="email" class="form-control" placeholder="Email" required value="{{ $employee->user->email }}" name="email">
                     </div>
                 </div>
                 <div class="form-group row">

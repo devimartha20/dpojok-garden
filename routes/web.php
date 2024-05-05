@@ -123,6 +123,9 @@ Route::middleware(['role:pelanggan'])->group(function () {
         Route::get('/detail-product', function () {
             return view('user/pelanggan/detailproduct');
         })->name('detailproduct.route');
+        Route::get('/history', function () {
+            return view('user/pelanggan/riwayat');
+        })->name('riwayat.route');
     });
 
 
