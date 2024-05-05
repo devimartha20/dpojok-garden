@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Admin\Customer;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -43,6 +44,14 @@ class RegisteredUserController extends Controller
         ]);
 
         $user->assignRole('pelanggan');
+
+        Customer::create([
+            'nama' => $user->name,
+            'email' => $user->email,
+            'alamat' => 'Indonesia',
+            'telepon' => '088',
+            'user_id' => $user->id,
+        ]);
 
         event(new Registered($user));
 
