@@ -14,8 +14,22 @@ class Cart extends Component
 
     public function mount($cart = null){
         $this->cart = $cart;
+
         // Retrieve selected items from session, if any
-        $this->selectedItems = session('selectedItems', []);
+        $selectedItems = session('selectedItems', []);
+
+        // Initialize the selectedItems array with all detail cart IDs set to false
+        $this->selectedItems = array_fill_keys($cart->detailCarts->pluck('id')->toArray(), false);
+
+        // Mark the items that exist in the session as true
+        foreach ($this->selectedItems as $itemId => $isChecked) {
+            if (isset($selectedItems[$itemId])) {
+                $this->selectedItems[$itemId] = true;
+            }
+        }
+
+        // Filter out items that do not exist in the session
+        $this->selectedItems = array_intersect_key($this->selectedItems, $selectedItems);
     }
 
     public function totalPrice()
@@ -49,6 +63,22 @@ class Cart extends Component
             session()->flash('success', 'Item berhasil dihapus.');
             $this->cart = $this->cart->fresh(); // Refresh cart data
         }
+        // Retrieve selected items from session, if any
+        $selectedItems = session('selectedItems', []);
+
+        // Initialize the selectedItems array with all detail cart IDs set to false
+        $this->selectedItems = array_fill_keys($this->cart->detailCarts->pluck('id')->toArray(), false);
+
+        // Mark the items that exist in the session as true
+        foreach ($this->selectedItems as $itemId => $isChecked) {
+            if (isset($selectedItems[$itemId])) {
+                $this->selectedItems[$itemId] = true;
+            }
+        }
+
+        // Filter out items that do not exist in the session
+        $this->selectedItems = array_intersect_key($this->selectedItems, $selectedItems);
+
     }
 
     public function decrementQuantity($itemId)

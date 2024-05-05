@@ -9,6 +9,7 @@ use App\Http\Controllers\Customer\CartController;
 use App\Http\Controllers\Customer\ConfirmController;
 use App\Http\Controllers\Customer\ExploreProductController;
 use App\Http\Controllers\Customer\Order\OnlineOrderController;
+use App\Http\Controllers\Customer\OrderHistoryController;
 use App\Http\Controllers\Kasir\OrderTransController;
 use App\Http\Controllers\Kasir\PaymentTransController;
 use App\Http\Controllers\Koki\OrderProsController;
@@ -101,7 +102,8 @@ Route::middleware(['role:pelanggan'])->group(function () {
         Route::post('/confirm', [ConfirmController::class, 'confirm'])->name('confirm.confirm');
         Route::get('/checkout/{id}', [OnlineOrderController::class, 'checkout'])->name('checkout');
         Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-
+        Route::get('/order/history', [OrderHistoryController::class, 'index'])->name('order-history.index')
+;
         // Route::get('/cart', function () {
         //     return view('user/pelanggan/cart');
         // })->name('cart.route');
