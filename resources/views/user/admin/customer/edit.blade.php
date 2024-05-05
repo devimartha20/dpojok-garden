@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Edit Metode Pembayaran
+    Edit Produk
 @endsection
 @section('styles')
  <!-- Notification.css -->
@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4>Form Edit Metode Pembayaran</h4>
+        <h4>Form Edit Pelanggan</h4>
         {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
         <div class="card-header-right"><i class="icofont icofont-spinner-alt-5"></i></div>
 
@@ -18,46 +18,48 @@
             </div>
 
         </div>
-        @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
         <div class="card-block">
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
             {{-- <h4 class="sub-title">Form Tambah Produk</h4> --}}
-            <form action="{{ route('metode.update',$metode->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('customer.update',$customer->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Jenis Metode Pembayaran</label>
+                    <label class="col-sm-2 col-form-label">Nama Pelanggan</label>
                     <div class="col-sm-10">
-                        <select name="jenis" required class="form-control">
-                            <option>Pilih Jenis Metode Pembayaran</option>
-                            <option value="e-wallet" {{ $metode->jenis == 'e-wallet' ? 'selected' : '' }}>E-Wallet</option>
-                            <option value="transfer_bank" {{ $metode->jenis == 'transfer_bank' ? 'selected' : '' }}>Transfer Bank</option>
-                            <option value="cash" {{ $metode->jenis == 'cash' ? 'selected' : '' }}>Cash</option>
-                        </select>
+                        <input type="text" class="form-control" placeholder="Nama" required value="{{ $customer->nama }}" name="nama">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nama Metode Pembayaran</label>
+                    <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan Nama Metode Pembayaran" required value="{{$metode->nama}}" name="nama">
+                        <input type="text" class="form-control" placeholder="Email" required value="{{ $customer->email }}"name="email">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Deskripsi Metode Pembayaran</label>
+                    <label class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Deskripsi Metode Pembayaran" required value="{{$metode->deskripsi}}" name="deskripsi">
+                        <input type="text" min=1 class="form-control" placeholder="Alamat" required value="{{ $customer->alamat }}" name="alamat">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Telepon</label>
+                    <div class="col-sm-10">
+                        <input type="text" min=1 class="form-control" placeholder="Telepon" required value="{{ $customer->telepon }}" name="telepon">
                     </div>
                 </div>
             </div>
             <div class="card-footer text-right">
-                <a href="{{ route('metode.index') }}" class="btn btn-round btn-secondary">Kembali</a>
+                <a href="{{ route('customer.index') }}" class="btn btn-round btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-round btn-primary">Simpan</button>
             </div>
         </div>
@@ -65,6 +67,20 @@
     </form>
 @endsection
 @section('scripts')
+<script>
+    function previewImage(event) {
+         var input = event.target;
+         var reader = new FileReader();
+
+         reader.onload = function() {
+             var img = document.getElementById('imagePreview');
+             img.src = reader.result;
+             img.style.display = 'block';
+         };
+
+         reader.readAsDataURL(input.files[0]);
+     }
+ </script>
 <!-- notification js -->
 <script type="text/javascript" src="{{ asset('main/assets/js/bootstrap-growl.min.js') }}"></script>
 <script>

@@ -7,8 +7,8 @@
         <div class="row slider-text js-fullheight justify-content-center align-items-center" data-scrollax-parent="true">
 
           <div class="col-md-12 col-sm-12 text-center ftco-animate">
-              <span class="subheading">Feliciano</span>
-            <h1 class="mb-4">Best Restaurant</h1>
+              <span class="subheading">D'Podjok Garden</span>
+            <h1 class="mb-4">Best Coffe Shop</h1>
           </div>
 
         </div>
@@ -21,7 +21,7 @@
         <div class="row slider-text js-fullheight justify-content-center align-items-center" data-scrollax-parent="true">
 
           <div class="col-md-12 col-sm-12 text-center ftco-animate">
-              <span class="subheading">Feliciano</span>
+              <span class="subheading">D'Podjok Garden</span>
             <h1 class="mb-4">Nutritious &amp; Tasty</h1>
           </div>
 
@@ -35,7 +35,7 @@
         <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
           <div class="col-md-12 col-sm-12 text-center ftco-animate">
-              <span class="subheading">Feliciano</span>
+              <span class="subheading">D'Podjok Garden</span>
             <h1 class="mb-4">Delicious Specialties</h1>
           </div>
 
@@ -104,7 +104,7 @@
                   <div class="col-md-5 wrap-about pt-5 pt-md-5 pb-md-3 ftco-animate">
             <div class="heading-section mb-4 my-5 my-md-0">
                 <span class="subheading">About</span>
-              <h2 class="mb-4">Feliciano Restaurant</h2>
+              <h2 class="mb-4">D'Podjok Garden Coffe Shop</h2>
             </div>
             <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
                       <pc class="time">
@@ -352,7 +352,7 @@
                           <div class="img" style="background-image: url({{asset('customer-template')}}/images/chef-4.jpg);"></div>
                           <div class="text pt-4">
                               <h3>John Smooth</h3>
-                              <span class="position mb-2">Restaurant Owner</span>
+                              <span class="position mb-2">Coffe Shop Owner</span>
                               <div class="faded">
                                   <ul class="ftco-social d-flex">
                       <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>

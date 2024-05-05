@@ -15,6 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::all();
+
         $productCategory = ProductCategory::all();
         return view('user.admin.product.index', compact('product','productCategory'));
     }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Customer;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -33,19 +35,31 @@ class CustomerController extends Controller
     {
         $request->validate(
             [
-                'nama' => 'required|unique:customer,nama',
-                'email' => 'required',
-                'telepon' => 'required',
+                'nama' => 'required',
+                'email' => 'required|unique:customers,email',
                 'alamat' => 'required',
-            ], [
+                'telepon' => 'required|unique:customers,telepon',
+            ],
+            [
                 'nama.required' => 'Nama wajib diiis!',
             ]);
+
+            $user = User::create([
+                'name' => $request->nama,
+                'email' => $request->email,
+                'alamat' => $request->telepon,
+                'telepon' => $request->alamat,
+                'password' => Hash::make($request->password),
+            ]);
+
+            $user->assignRole('pelanggan');
 
             $customer = Customer::create([
                 'nama' => $request->nama,
                 'email' => $request->email,
-                'telepon' => $request->telepon,
-                'alamat' => $request->alamat,
+                'alamat' => $request->telepon,
+                'telepon' => $request->alamat,
+                'user_id' => $user->id,
             ]);
 
             if ($customer)
@@ -79,29 +93,39 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $customer = Customer::findOrFail($id);
+        $user = User::findOrFail($customer->user_id);
         $request->validate(
             [
-                'nama' => 'required|unique:customer,nama,'.$id,
-                'email' => 'required',
-                'telepon' => 'required',
+                'nama' => 'required',
+                'email' => 'required|unique:customers,email,'.$id.'|unique:users,email,'.$user->id,
                 'alamat' => 'required',
+                'telepon' => 'required|unique:customers,telepon,'.$id,
             ], [
                 'nama.required' => 'Nama wajib diiis!',
             ]);
 
-            $customer = Customer::create([
-                'nama' => $request->nama,
-                'email' => $request->email,
-                'telepon' => $request->telepon,
-                'alamat' => $request->alamat,
+
+            $customer_update = Customer::findOrFail($id)->update(
+            [
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
             ]);
 
-            if ($customer)
+            $user_update = User::findOrFail($customer->user_id)->update([
+            'name' => $request->nama,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            ]);
+
+            if ($customer_update)
             {
-                return redirect()->route('customer.index')->with('success', 'Data Pelanggan Berhasil Ditambahkan!');
+                return redirect()->route('customer.index')->with('success', 'Data Pelanggan Berhasil Diupdate!');
             }
 
-            return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+            return redirect()->route('customer.index')->with('fail', 'Terjadi Kesalahan!');
     }
 
     /**
@@ -109,7 +133,9 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        Customer::findOrFail($id)->delete();
+        $customer = Customer::findOrFail($id);
+        $user_delete = User::destroy($customer->user_id);
+        $customer_delete = Customer::destroy($id);
         return redirect()->back()->with('success', 'Data Pelanggan Berhasil Dihapus!');
     }
 }
