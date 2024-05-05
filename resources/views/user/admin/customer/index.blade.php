@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Kelola Metode Pembayaran
+    Kelola Pelanggan
 @endsection
 @section('styles')
  <!-- Notification.css -->
@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h5>Metode Pembayaran</h5>
+        <h5>Pelanggan</h5>
         {{-- <span>use class <code>table-hover</code> inside table element</span> --}}
         <div class="card-header-right">
             <ul class="list-unstyled card-option">
@@ -27,8 +27,8 @@
             {!! implode('', $errors->all('<div style="color: red;">:message</div>')) !!}
         @endif
         <br>
-        <a href="{{ route('metode.create') }}" class="btn btn-sm btn-info btn-round">
-            Tambah Metode Pembayaran
+        <a href="{{ route('customer.create') }}" class="btn btn-sm btn-info btn-round">
+            Tambah Pelanggan
         </a>
         <br>
         <div class="table-responsive">
@@ -36,38 +36,33 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Jenis Metode Pembayaran</th>
-                        <th>Nama Metode Pembayaran</th>
-                        <th>Deskripsi</th>
+                        <th>Nama Pelanggan</th>
+                        <th>Email</th>
+                        <th>Alamat</th>
+                        <th>Telepon</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($metode as $m)
+                    @forelse ($customer as $c)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>{{ $c->nama }}</td>
+                            <td>{{ $c->email }}</td>
+                            <td>{{ $c->alamat }}</td>
+                            <td>{{ $c->telepon }}</td>
                             <td>
-                            @if ($m->jenis == 'cash')
-                                Cash
-                            @elseif ($m->jenis == 'e-wallet')
-                                E-Wallet
-                            @elseif ($m->jenis == 'transfer_bank')
-                                Transfer Bank
-                            @endif</td>
-                            <td>{{ $m->nama }}</td>
-                            <td>{{ $m->deskripsi }}</td>
-                            <td>
-                                <a href="{{ route('metode.edit',$m->id) }}" type="button" class="btn btn-primary btn-round btn-sm">
+                                <a href="/customer/{{ $c->id }}/edit" type="button" class="btn btn-primary btn-round btn-sm">
                                     Edit
                                 </a>
-                                <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $m->id }}">
+                                <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $c->id }}">
                                     Hapus
                                 </button>
                             </td>
                         </tr>
                         <!-- Modal Edit -->
                         <!-- Modal Hapus -->
-                        <div class="modal fade" id="hapusModal{{ $m->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="hapusModal{{ $c->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -77,11 +72,11 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    Apakah Anda yakin untuk menghapus metode pembayaran {{ $m->metode }} ?
+                                    Apakah Anda yakin untuk menghapus data pelanggan {{ $c->customer }} ?
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <form action="{{ route('metode.destroy', $m->id) }}" method="POST">
+                                <form action="{{ route('customer.destroy', $c->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Hapus</button>

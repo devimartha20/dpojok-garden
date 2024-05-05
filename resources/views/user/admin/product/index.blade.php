@@ -50,17 +50,17 @@
                     @forelse ($product as $p)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $p->nama }}</td>
+                            <td>{{ $p->id }}</td>
                             <td>{{ $p->deskripsi }}</td>
                             <td>{{ $p->harga_jual }}</td>
                             <td>{{ $p->harga_produksi }}</td>
                             <td>{{ $p->stok }}</td>
-                            <td>{{ $p->productCategory->nama }}</td>
+                            <td>{{ $p->productCategory->nama ?? '-' }}</td>
                             <td>
                                 <img src="{{ asset('images/'.$p->image )}}" style="width: 25%; height:auto"/>
                             </td>
                             <td>
-                                <a href="{{ route('product.edit',$p->id) }}" type="button" class="btn btn-primary btn-round btn-sm">
+                                <a href="/product/{{ $p->id }}/edit" type="button" class="btn btn-primary btn-round btn-sm">
                                     Edit
                                 </a>
                                 <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $p->id }}">
@@ -80,11 +80,11 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    Apakah Anda yakin untuk menghapus bahan baku {{ $p->material }} ?
+                                    Apakah Anda yakin untuk menghapus data produk {{ $p->product }} ?
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <form action="{{ route('material.destroy', $p->id) }}" method="POST">
+                                <form action="{{ route('product.destroy', $p->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Hapus</button>

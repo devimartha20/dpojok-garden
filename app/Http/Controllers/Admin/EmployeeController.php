@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -12,7 +15,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employee = Employee::all();
+        return view('user.admin.employee.index', compact('employee'));
     }
 
     /**
@@ -20,7 +24,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $employee = Employee::all();
+        return view('user.admin.employee.create', compact('employee'));
     }
 
     /**
@@ -28,7 +33,52 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'nik' => 'required|unique:employees,nik',
+                'nama' => 'required',
+                'alamat' => 'required',
+                'telepon' => 'required|unique:employees,telepon',
+            ],
+            [
+                'nama.required' => 'Nama wajib diiis!',
+            ]);
+
+            $user = User::create([
+                'nik' => $request->nik,
+                'name' => $request->nama,
+                'alamat' => $request->alamat,
+                'telepon' => $request->telepon,
+                'password' => Hash::make($request->password),
+            ]);
+
+            if($request->role == 'admin')
+            {
+                $user::assignRole('admin');
+
+            }elseif($request->role == 'kasir')
+            {
+                $user::assignRole('kasir');
+
+            }elseif($request->role == 'koki')
+            {
+                $user::assignRole('koki');
+
+            }elseif($request->role == 'pelayan')
+            {
+                $user::assignRole('pelayan');
+
+            }
+
+            $employee = Employee::create([
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'alamat' => $request->alamat,
+                'telepon' => $request->telepon,
+                'user_id' => $user->id,
+            ]);
+
+            return redirect()->back()->with('success', 'Data Pegawai Berhasil Ditambahkan!');
     }
 
     /**
@@ -36,7 +86,8 @@ class EmployeeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        return view('user.admin.employe.edit', compact('employee'));
     }
 
     /**
@@ -44,7 +95,8 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        return view('user.admin.employee.edit', compact('employee'));
     }
 
     /**
@@ -52,7 +104,32 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(
+            [
+                'nik' => 'required|unique:employees,nik'.$id,
+                'nama' => 'required',
+                'alamat' => 'required',
+                'telepon' => 'required|unique:employees,telepon'.$id,
+            ], [
+                'nama.required' => 'Nama wajib diiis!',
+            ]);
+
+            $employee = Employee::findOrFail($id);
+            $employee_update = Employee::findOrFail($id)->update(
+            [
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
+            ]);
+
+            $user_update = User::findOrFail($employee->user_id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            ]);
+
+            return redirect()->back()->with('success', 'Data Pegawai Berhasil Diupdate!');
     }
 
     /**
@@ -60,6 +137,7 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Employee::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Data Pegawai Berhasil Dihapus!');
     }
 }

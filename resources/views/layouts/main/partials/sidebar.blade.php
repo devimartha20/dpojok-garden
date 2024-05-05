@@ -246,7 +246,7 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
-                        <a href="">
+                        <a href="{{ route('customer.index') }}">
                             <span class="pcoded-micon"><i class="ti-id-badge"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Daftar Pelanggan</span>
                             <span class="pcoded-mcaret"></span>
