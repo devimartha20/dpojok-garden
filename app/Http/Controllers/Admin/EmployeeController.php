@@ -37,6 +37,7 @@ class EmployeeController extends Controller
             [
                 'nik' => 'required|unique:employees,nik',
                 'nama' => 'required',
+                'email' => 'required|unique:users,email',
                 'alamat' => 'required',
                 'telepon' => 'required|unique:employees,telepon',
             ],
@@ -47,6 +48,7 @@ class EmployeeController extends Controller
             $user = User::create([
                 'nik' => $request->nik,
                 'name' => $request->nama,
+                'email' => $request->email,
                 'alamat' => $request->alamat,
                 'telepon' => $request->telepon,
                 'password' => Hash::make($request->password),
@@ -78,7 +80,7 @@ class EmployeeController extends Controller
                 'user_id' => $user->id,
             ]);
 
-            return redirect()->back()->with('success', 'Data Pegawai Berhasil Ditambahkan!');
+            return redirect()->route('employee.index')->with('success', 'Data Pegawai Berhasil Ditambahkan!');
     }
 
     /**
@@ -87,7 +89,7 @@ class EmployeeController extends Controller
     public function show(string $id)
     {
         $employee = Employee::findOrFail($id);
-        return view('user.admin.employe.edit', compact('employee'));
+        return view('user.admin.employee.edit', compact('employee'));
     }
 
     /**
@@ -106,10 +108,11 @@ class EmployeeController extends Controller
     {
         $request->validate(
             [
-                'nik' => 'required|unique:employees,nik'.$id,
+                'nik' => 'required|unique:employees,nik,'.$id,
                 'nama' => 'required',
+                'email' => 'required|unique:users,email,'.$id,
                 'alamat' => 'required',
-                'telepon' => 'required|unique:employees,telepon'.$id,
+                'telepon' => 'required|unique:employees,telepon,'.$id,
             ], [
                 'nama.required' => 'Nama wajib diiis!',
             ]);
@@ -119,17 +122,17 @@ class EmployeeController extends Controller
             [
             'nik' => $request->nik,
             'nama' => $request->nama,
+            'email' => $request->email,
             'alamat' => $request->alamat,
             'telepon' => $request->telepon,
             ]);
 
             $user_update = User::findOrFail($employee->user_id)->update([
-            'name' => $request->name,
+            'name' => $request->nama,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
             ]);
 
-            return redirect()->back()->with('success', 'Data Pegawai Berhasil Diupdate!');
+            return redirect()->route('employee.index')->with('success', 'Data Pegawai Berhasil Diupdate!');
     }
 
     /**

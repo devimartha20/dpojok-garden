@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Tambah Pelanggan
+    Tambah Data Pelanggan
 @endsection
 @section('styles')
  <!-- Notification.css -->

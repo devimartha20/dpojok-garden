@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Edit Produk
+    Edit Data Pelanggan
 @endsection
 @section('styles')
  <!-- Notification.css -->
