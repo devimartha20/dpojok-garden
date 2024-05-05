@@ -34,43 +34,43 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Role</label>
                     <div class="col-sm-10">
-                        <<select name="role" required class="form-control">
+                        <select name="role" required class="form-control" required>
                             <option value="">Pilih Role</option>
-                            <option value='Admin'>Admin</option>
-                            <option value='Kasir'>Kasir</option>
-                            <option value='Koki'>Koki</option>
-                            <option value='Pelayan'>Pelayan</option>
+                            <option value='admin'>Admin</option>
+                            <option value='kasir'>Kasir</option>
+                            <option value='koki'>Koki</option>
+                            <option value='pelayan'>Pelayan</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">NIK</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="NIK" required value="{{ old('nik') }}" name="nik">
+                        <input type="text" class="form-control" placeholder="NIK" required value="{{ old('nik') }}" name="nik" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Nama" required name="nama">
+                        <input type="text" class="form-control" placeholder="Nama" value="{{ old('nama') }}" required name="nama" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Email" required name="email">
+                        <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" required name="email" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <input type="text" min=1 class="form-control" placeholder="Alamat" required name="alamat">
+                        <input type="text" min=1 class="form-control" placeholder="Alamat" value="{{ old('alamat') }}" required name="alamat">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Telepon</label>
                     <div class="col-sm-10">
-                        <input type="text" min=1 class="form-control" placeholder="Telepon" name="telepon">
+                        <input type="text" min=1 class="form-control" placeholder="Telepon" value="{{ old('telepon') }}" name="telepon" required>
                     </div>
                 </div>
                 <div class="form-group row">

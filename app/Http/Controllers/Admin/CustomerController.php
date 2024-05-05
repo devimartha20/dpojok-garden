@@ -36,7 +36,7 @@ class CustomerController extends Controller
         $request->validate(
             [
                 'nama' => 'required',
-                'email' => 'required|unique:customers,email',
+                'email' => 'required|unique:customers,email|unique:users,email',
                 'alamat' => 'required',
                 'telepon' => 'required|unique:customers,telepon',
             ],
@@ -47,8 +47,6 @@ class CustomerController extends Controller
             $user = User::create([
                 'name' => $request->nama,
                 'email' => $request->email,
-                'alamat' => $request->telepon,
-                'telepon' => $request->alamat,
                 'password' => Hash::make($request->password),
             ]);
 
@@ -57,8 +55,8 @@ class CustomerController extends Controller
             $customer = Customer::create([
                 'nama' => $request->nama,
                 'email' => $request->email,
-                'alamat' => $request->telepon,
-                'telepon' => $request->alamat,
+                'alamat' => $request->alamat,
+                'telepon' => $request->telepon,
                 'user_id' => $user->id,
             ]);
 

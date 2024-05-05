@@ -40,19 +40,19 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Email" required name="email">
+                        <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" required name="email">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <input type="text" min=1 class="form-control" placeholder="Alamat" required name="alamat">
+                        <input type="text" min=1 class="form-control" placeholder="Alamat" value="{{ old('alamat') }}" required name="alamat">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Telepon</label>
                     <div class="col-sm-10">
-                        <input type="text" min=1 class="form-control" placeholder="Telepon" name="telepon">
+                        <input type="text" min=1 class="form-control" placeholder="Telepon" value="{{ old('telepon') }}" name="telepon">
                     </div>
                 </div>
                 <div class="form-group row">
