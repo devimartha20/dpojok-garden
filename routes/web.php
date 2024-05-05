@@ -115,6 +115,9 @@ Route::middleware(['role:pelanggan'])->group(function () {
         Route::get('/detail-order', function () {
             return view('user/pelanggan/detailorder');
         })->name('detailorder.route');
+        Route::get('/detail-product', function () {
+            return view('user/pelanggan/detailproduct');
+        })->name('detailproduct.route');
     });
 
 
