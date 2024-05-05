@@ -11,7 +11,7 @@
                 <li class="nav-item active"><a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a></li>
                 <li class="nav-item"><a href="{{ route('search-products.index') }}" class="nav-link">Menu</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Reservasi</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Riwayat</a></li>
+                <li class="nav-item"><a href="{{ route('order-history.index') }}" class="nav-link">Riwayat</a></li>
                 <li class="nav-item"><a href="{{ route('cart.index') }}" class="nav-link"><i class="fa fa-shopping-cart"></i> Keranjang</a></li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
