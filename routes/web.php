@@ -112,6 +112,9 @@ Route::middleware(['role:pelanggan'])->group(function () {
         Route::get('/invoice', function () {
             return view('user/pelanggan/invoice');
         })->name('invoice.route');
+        Route::get('/detail-order', function () {
+            return view('user/pelanggan/detailorder');
+        })->name('detailorder.route');
     });
 
 
