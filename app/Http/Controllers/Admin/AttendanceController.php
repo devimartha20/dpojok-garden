@@ -25,7 +25,7 @@ class AttendanceController extends Controller
         // Generate the QR code
         $qr = QrCode::size(200)->generate($code);
 
-        return view('user.admin.attendance', compact('qr'));
+        return view('user.admin.attendance.index', compact('qr'));
     }
 
     public function showQR(){
