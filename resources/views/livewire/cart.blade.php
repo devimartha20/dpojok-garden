@@ -72,10 +72,10 @@
 
     <div class="action-buttons d-flex justify-content-between">
         <div>
-            <a class="btn btn-secondary" href="{{ URL::previous() }}">Kembali</a>
+            <a class="btn btn-secondary btn-round" href="{{ URL::previous() }}">Kembali</a>
         </div>
         <div>
-            <button class="checkout-button" wire:click="confirm()">Buat Pesanan</button>
+            <button class="btn btn-primary" wire:click="confirm()">Buat Pesanan</button>
         </div>
     </div>
 

@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('materials', function (Blueprint $table) {
+        Schema::create('active_q_r_s', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->unique();
-            $table->integer('stok')->default(0);
-            $table->unsignedBigInteger('unit_id')->nullable();
-            $table->foreign('unit_id')->references('id')->on('units')->onDelete('set null');
+            $table->string('code');
+            $table->boolean('isActive')->default(false);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('materials');
+        Schema::dropIfExists('active_q_r_s');
     }
 };

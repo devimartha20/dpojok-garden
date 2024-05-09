@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('catatan')->nullable();
             $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('CASCADE');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('SET NULL');
         });
     }
 

@@ -1,15 +1,18 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Auth\EmployeeLoginController;
 use App\Http\Controllers\Customer\CartController;
 use App\Http\Controllers\Customer\ConfirmController;
 use App\Http\Controllers\Customer\ExploreProductController;
 use App\Http\Controllers\Customer\Order\OnlineOrderController;
 use App\Http\Controllers\Customer\Order\OrderHistoryController;
+use App\Http\Controllers\EmployeeHrController;
 use App\Http\Controllers\Kasir\OrderTransController;
 use App\Http\Controllers\Kasir\PaymentTransController;
 use App\Http\Controllers\Koki\OrderProsController;
@@ -42,6 +45,17 @@ Route::post('/payments/midtrans-notification', [OnlineOrderController::class, 'r
 Route::get('/checkouttry', [OnlineOrderController::class, 'checkout'])->name('checkouttry');
 Route::get('/finish-payment', [OnlineOrderController::class, 'finish'])->name('finish-payment');
 
+Route::middleware('auth.employee')->group(function () {
+    Route::post('employee/logout', [EmployeeLoginController::class, 'logout'])->name('employee.logout');
+    Route::get('employee/dashboard', [EmployeeHrController::class, 'dashboard'])->name('employee.dashboard');
+
+    Route::get('employee/attendande', [EmployeeHrController::class, 'attendance'])->name('employee.attendance');
+    Route::get('employee/schedule', [EmployeeHrController::class, 'schedule'])->name('employee.schedule');
+});
+
+Route::get('employee/login', [EmployeeLoginController::class, 'showLoginForm'])->name('employee.login');
+Route::post('employee/login', [EmployeeLoginController::class, 'login'])->name('employee.login.submit');
+
 Route::middleware(['auth', 'verified'])->group(function(){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -56,6 +70,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('metode', PaymentMethodController::class);
         Route::resource('customer', CustomerController::class);
         Route::resource('employee', EmployeeController::class);
+
+        Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+        Route::get('record-attendance', [AttendanceController::class, 'showQR'])->name('attendance.show');
     });
 
     // Route Khusus Kasir
@@ -63,6 +80,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('/ordertrans', [OrderTransController::class, 'index'])->name('ordertrans.index');
         Route::get('/ordertrans/create/{onlineOrOffline}', [OrderTransController::class, 'create'])->name('ordertrans.create');
         Route::get('/payment/{id}', [PaymentTransController::class, 'show'])->name('payment.show');
+        Route::get('/riwayatpesanan', function () {
+            return view('user/kasir/order/riwayat');
+        })->name('riwayatpesan.route');
 
 
         //print
@@ -140,5 +160,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
 
 require __DIR__.'/auth.php';

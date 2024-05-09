@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('jumlah_material')->default(1);
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('material_id')->references('id')->on('materials');
+            $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
+            $table->foreign('material_id')->references('id')->on('materials')->cascadeOnDelete();
         });
     }
 
