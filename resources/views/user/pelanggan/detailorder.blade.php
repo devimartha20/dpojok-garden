@@ -94,7 +94,7 @@
                         <hr>
                         <div class="bottom-buttons">
 
-                            <button onclick="window.history.back()" class="btn btn-primary">Kembali</button>
+                            <a href="{{ route('order-history.index') }}" class="btn btn-primary">Kembali</a>
                         </div>
                     </div>
                 </div>

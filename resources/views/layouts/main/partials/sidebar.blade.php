@@ -218,13 +218,6 @@
                     <li class=" ">
                         <a>
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Lembur</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a>
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cuti</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
@@ -369,6 +362,13 @@
                 <a>
                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Reservasi</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
+                <a href="{{ route('riwayatpesan.route') }}">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" >Riwayat</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>

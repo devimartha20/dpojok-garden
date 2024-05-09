@@ -79,6 +79,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('/ordertrans', [OrderTransController::class, 'index'])->name('ordertrans.index');
         Route::get('/ordertrans/create/{onlineOrOffline}', [OrderTransController::class, 'create'])->name('ordertrans.create');
         Route::get('/payment/{id}', [PaymentTransController::class, 'show'])->name('payment.show');
+        Route::get('/riwayatpesanan', function () {
+            return view('user/kasir/order/riwayat');
+        })->name('riwayatpesan.route');
 
 
         //print
