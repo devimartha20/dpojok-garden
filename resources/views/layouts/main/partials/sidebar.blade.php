@@ -193,7 +193,7 @@
                 </a>
             </li>
             <li>
-                <a>
+                <a href="{{ route('attendance.index') }}">
                     <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Absensi Karyawan</span>
                     <span class="pcoded-mcaret"></span>

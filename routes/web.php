@@ -71,7 +71,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('customer', CustomerController::class);
         Route::resource('employee', EmployeeController::class);
 
-        Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.show');
+        Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+        Route::get('record-attendance', [AttendanceController::class, 'showQR'])->name('attendance.show');
     });
 
     // Route Khusus Kasir
