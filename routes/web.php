@@ -56,7 +56,7 @@ Route::middleware('auth.employee')->group(function () {
     Route::get('employee/attendance', [EmployeeHrController::class, 'attendance'])->name('employee.attendance');
     Route::get('employee/schedule', [EmployeeHrController::class, 'schedule'])->name('employee.schedule');
     Route::get('employee/scan', [EmployeeHrController::class, 'showScan'])->name('employee.scan');
-    Route::post('employee/post', [EmployeeHrController::class, 'scan'])->name('employee.scan');
+    Route::post('employee/scan', [EmployeeHrController::class, 'scan'])->name('employee.scan.submit');
 
 });
 
