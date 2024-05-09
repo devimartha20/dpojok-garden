@@ -17,4 +17,8 @@ class EmployeeHrController extends Controller
     public function attendance(){
         return view('employee.attendance.index');
     }
+
+    public function showScan(){
+        return view('employee.attendance.scan');
+    }
 }

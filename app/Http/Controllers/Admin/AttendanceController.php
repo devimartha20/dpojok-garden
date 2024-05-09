@@ -14,22 +14,66 @@ class AttendanceController extends Controller
     public function index(){
         // Generate a unique code for the QR code
         $currentTime = Carbon::now();
-        $random = Str::random(40);
+        $random = Str::random(20);
         $code = $currentTime->timestamp . '-' . $currentTime->addSeconds(5)->timestamp.'-'.$random;
 
+        $qr = null;
         // Create or update the ActiveQR model
-        $qrActive = ActiveQR::firstOrNew(['code' => $code]);
-        $qrActive->isActive = true; // Set isActive to true
-        $qrActive->save();
-
-        // Generate the QR code
-        $qr = QrCode::size(200)->generate($code);
+        $qrActive = ActiveQR::first();
+        if ($qrActive != null){
+            ActiveQR::first()->update([
+                'code' => $code,
+            ]);
+            $qrActive = ActiveQR::first();
+            if($qrActive->isActive){
+                $qr = QrCode::size(200)->generate($code);
+            }
+        }else{
+            $qrActive = ActiveQR::create([
+                'code' => $code,
+                'isActive' => false,
+            ]);
+            $qr = QrCode::size(200)->generate($code);
+        }
 
         return view('user.admin.attendance.index', compact('qr'));
     }
 
     public function showQR(){
 
-        return view('employee.showQR');
+        $qr = null;
+        // Create or update the ActiveQR model
+        $qrActive = ActiveQR::first();
+        if ($qrActive != null){
+
+            if($qrActive->isActive){
+                $qr = QrCode::size(200)->generate( $qrActive->code);
+            }
+        }
+
+
+        return view('employee.showQR', compact('qr'));
+    }
+
+    public function changeStatus(){
+
+    }
+
+    public function updateQR(){
+        // Generate a unique code for the QR code
+        $currentTime = Carbon::now();
+        $random = Str::random(20);
+        $code = $currentTime->timestamp . '-' . $currentTime->addSeconds(5)->timestamp.'-'.$random;
+
+        $qr = null;
+        // Create or update the ActiveQR model
+        $qrActive = ActiveQR::first();
+        if ($qrActive != null){
+            if($qrActive->isActive){
+            ActiveQR::first()->update([
+                'code' => $code,
+            ]);
+            }
+        }
     }
 }
