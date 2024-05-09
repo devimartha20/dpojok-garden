@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Upload Gambar Meja</label>
+                    <label class="col-sm-2 col-form-label">Upload Gambar Produk</label>
                     <div class="col-sm-10">
                         <input type="file" accept="image/*" class="form-control" id="imageInput" name="image" onchange="previewImage(event)">
                         <hr>

@@ -15,8 +15,8 @@
                     <div class="d-flex justify-content-end align-items-center">
                         <div class="position-relative d-inline-block">
                             <span class="badge badge-danger rounded-circle" style="position: absolute; top: -5px; right: -5px;">{{ $cart->detailCarts->count() }}</span>
-                            <i class="fa fa-shopping-cart" style="vertical-align: middle;"></i>
-                    
+                            <a href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart" style="vertical-align: middle;"></i></a>
+
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="alert alert-success">{{ session('message') }}</div>
                 @endif
             <div class="row">
-                
+
                 @forelse ($products as $p)
                 <div class="col-md-6 col-lg-4">
                     <div class="card mb-4">
@@ -50,13 +50,13 @@
                 @empty
                     <p class="class-center">Tidak Ada Produk.</p>
                 @endforelse
-            
+
             </div>
         </div>
-        
-        
+
+
         <div class="col-lg-12 col-xl-2">
-    
+
             <div class="">
                 <div class="d-flex justify-content-center">
                     <ul class="nav nav-tabs md-tabs tabs-right b-none" role="tablist">
@@ -67,7 +67,7 @@
                         @foreach ($categories as $c)
                         <li class="nav-item">
                             <a class="nav-link{{ $categoryFilter == $c->id ? ' active' : '' }}" wire:click="setCategoryFilter({{ $c->id }})" role="tab">{{ $c->nama }}</a>
-                           
+
                         </li>
                         @endforeach
                     </ul>
@@ -76,5 +76,5 @@
         </div>
     </div>
 
- 
+
 </div>
