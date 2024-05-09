@@ -21,4 +21,8 @@ class EmployeeHrController extends Controller
     public function showScan(){
         return view('employee.attendance.scan');
     }
+
+    public function scan(Request $request){
+        return dd($request);
+    }
 }

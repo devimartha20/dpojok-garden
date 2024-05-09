@@ -1,17 +1,17 @@
 @extends('layouts.main.layout')
 @section('content')
 <div class="container">
-    <div id="reader" width="600px"></div>
-    <form id="attendanceForm" action="{{ route('employee.scan') }}" method="POST">
+    <form id="attendanceForm" style="display: block;" action="{{ route('employee.scan.submit') }}" method="POST">
         @csrf
-        <label for="attendanceType">Choose Attendance Type:</label>
-        <select name="attendanceType" id="attendanceType">
-            <option value="in">Time In</option>
-            <option value="out">Time Out</option>
-        </select>
+        <input type="radio" id="attendanceIn" name="attendanceType" value="in" selected required>
+        <label for="attendanceIn">Masuk</label><br>
+        <input type="radio" id="attendanceOut" name="attendanceType" value="out" required>
+        <label for="attendanceOut">Pulang</label><br>
         <input type="hidden" name="decodedText" id="decodedText">
         <button type="submit" id="submitBtn" style="display: none;">Submit</button>
     </form>
+    <div id="reader" width="600px"></div>
+
 </div>
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 <script>
@@ -38,7 +38,7 @@
     // Add event listener for form submission
     document.getElementById('attendanceForm').addEventListener('submit', function(event) {
         // Get the selected attendance type
-        let attendanceType = document.getElementById('attendanceType').value;
+        let attendanceType = document.querySelector('input[name="attendanceType"]:checked').value;
         // Add the attendance type as a hidden input field
         let attendanceTypeInput = document.createElement('input');
         attendanceTypeInput.type = 'hidden';
