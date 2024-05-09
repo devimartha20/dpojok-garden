@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin\Customer;
+use App\Models\Admin\Employee;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -157,6 +159,14 @@ class RolePermissionSeeder extends Seeder
         ]);
         $admin->assignRole('admin');
 
+        Employee::create([
+            'id_pegawai' => $admin->id,
+            'nama'=> $admin->name,
+            'user_id'=> $admin->id,
+            'email' => $admin->email,
+            'password' => Hash::make('password'),
+        ]);
+
         // Kasir
         $kasir = User::create([
             'name' => 'kasir',
@@ -164,6 +174,13 @@ class RolePermissionSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
         $kasir->assignRole('kasir');
+        Employee::create([
+            'id_pegawai' => $kasir->id,
+            'nama'=> $kasir->name,
+            'user_id'=> $admin->id,
+            'email' => $kasir->email,
+            'password' => Hash::make('password'),
+        ]);
 
         // Koki
         $koki = User::create([
@@ -172,6 +189,13 @@ class RolePermissionSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
         $koki->assignRole('koki');
+        Employee::create([
+            'id_pegawai' => $koki->id,
+            'nama'=> $koki->name,
+            'user_id'=> $koki->id,
+            'email' => $koki->email,
+            'password' => Hash::make('password'),
+        ]);
 
         // Pelayan
         $pelayan = User::create([
@@ -180,6 +204,13 @@ class RolePermissionSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
         $pelayan->assignRole('pelayan');
+        Employee::create([
+            'id_pegawai' => $pelayan->id,
+            'nama'=> $pelayan->name,
+            'user_id'=> $pelayan->id,
+            'email' => $pelayan->email,
+            'password' => Hash::make('password'),
+        ]);
 
         // Owner
         $owner = User::create([
@@ -197,5 +228,11 @@ class RolePermissionSeeder extends Seeder
         ]);
         $pelanggan->assignRole('pelanggan');
 
+
+        Customer::create([
+            'nama' => $pelanggan->name,
+            'alamat' => 'Indonesia',
+            'user_id' => $pelanggan->id,
+        ]);
     }
 }

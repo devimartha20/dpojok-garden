@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('scheduls', function (Blueprint $table) {
+        Schema::create('active_q_r_s', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
+            $table->boolean('isActive')->default(false);
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('scheduls');
+        Schema::dropIfExists('active_q_r_s');
     }
 };

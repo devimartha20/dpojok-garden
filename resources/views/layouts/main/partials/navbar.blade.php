@@ -90,7 +90,13 @@
                 <li class="user-profile header-notification">
                     <a href="#!">
                         <img src="{{ asset('main/assets/images/avatar-4.jpg') }}" class="img-radius" alt="User-Profile-Image">
-                        <span>{{ Auth::user()->name }}</span>
+                        <span>
+                            @auth('employee')
+                            {{ Auth::guard('employee')->user()->name }}
+                            @else
+                            {{ Auth::user()->name }}
+                            @endauth
+                            </span>
                         <i class="ti-angle-down"></i>
                     </a>
                     <ul class="show-notification profile-notification">
@@ -111,15 +117,28 @@
                             </a>
                         </li>
                         <li>
-                         <form method="POST" action="{{ route('logout') }}">
-                             @csrf
-                             <i class="ti-layout-sidebar-left"></i>
-                             <a href="route('logout')"
-                                     onclick="event.preventDefault();
-                                     this.closest('form').submit();">
-                                 {{ __('Log Out') }}
-                             </a>
-                         </form>
+                            @auth('employee')
+                            <form method="POST" action="{{ route('employee.logout') }}">
+                                @csrf
+                                <i class="ti-layout-sidebar-left"></i>
+                                <a href="route('employee.logout')"
+                                        onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </a>
+                            </form>
+                            @else
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <i class="ti-layout-sidebar-left"></i>
+                                <a href="route('logout')"
+                                        onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </a>
+                            </form>
+                            @endauth
+
                         </li>
                     </ul>
                 </li>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('no_payment')->unique();
-            $table->enum('status', ['lunas', 'belum_lunas'])->default('belum_lunas');
+            $table->enum('status', ['lunas', 'belum_lunas', 'expired'])->default('belum_lunas');
             $table->bigInteger('uang')->nullable();
             $table->bigInteger('kembali')->nullable();
             $table->dateTime('transaction_time')->nullable();

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama')->unique();
             $table->integer('stok')->default(0);
-            $table->unsignedBigInteger('unit_id');
-            $table->foreign('unit_id')->references('id')->on('units');
+            $table->unsignedBigInteger('unit_id')->nullable();
+            $table->foreign('unit_id')->references('id')->on('units')->onDelete('set null');
             $table->timestamps();
         });
     }
