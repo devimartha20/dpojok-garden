@@ -27,4 +27,9 @@ class AttendanceController extends Controller
 
         return view('user.admin.attendance', compact('qr'));
     }
+
+    public function showQR(){
+
+        return view('employee.showQR');
+    }
 }
