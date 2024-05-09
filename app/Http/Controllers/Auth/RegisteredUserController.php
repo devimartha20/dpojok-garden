@@ -47,7 +47,6 @@ class RegisteredUserController extends Controller
 
         Customer::create([
             'nama' => $user->name,
-            'email' => $user->email,
             'alamat' => 'Indonesia',
             'telepon' => '088',
             'user_id' => $user->id,

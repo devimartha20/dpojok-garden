@@ -44,13 +44,20 @@ Route::post('/payments/midtrans-notification', [OnlineOrderController::class, 'r
 
 Route::get('/checkouttry', [OnlineOrderController::class, 'checkout'])->name('checkouttry');
 Route::get('/finish-payment', [OnlineOrderController::class, 'finish'])->name('finish-payment');
+Route::get('record-attendance', [AttendanceController::class, 'showQR'])->name('attendance.show');
+
+Route::get('/updateQR', [AttendanceController::class, 'updateQR']);
+
 
 Route::middleware('auth.employee')->group(function () {
     Route::post('employee/logout', [EmployeeLoginController::class, 'logout'])->name('employee.logout');
     Route::get('employee/dashboard', [EmployeeHrController::class, 'dashboard'])->name('employee.dashboard');
 
-    Route::get('employee/attendande', [EmployeeHrController::class, 'attendance'])->name('employee.attendance');
+    Route::get('employee/attendance', [EmployeeHrController::class, 'attendance'])->name('employee.attendance');
     Route::get('employee/schedule', [EmployeeHrController::class, 'schedule'])->name('employee.schedule');
+    Route::get('employee/scan', [EmployeeHrController::class, 'showScan'])->name('employee.scan');
+    Route::post('employee/post', [EmployeeHrController::class, 'scan'])->name('employee.scan');
+
 });
 
 Route::get('employee/login', [EmployeeLoginController::class, 'showLoginForm'])->name('employee.login');
@@ -72,7 +79,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('employee', EmployeeController::class);
 
         Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-        Route::get('record-attendance', [AttendanceController::class, 'showQR'])->name('attendance.show');
+
     });
 
     // Route Khusus Kasir
