@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
 
-    <title>Frontend Mentor | QR code component</title>
+    <title>Absensi QR</title>
 
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
@@ -128,8 +128,8 @@
           xhr.send();
         }
 
-        // Call updateQRCode every 10 seconds
-        setInterval(updateQRCode, 10000); // 10000 milliseconds = 10 seconds
+        // Call updateQRCode every 15 seconds
+        setInterval(updateQRCode, 15000); // 15000 milliseconds = 15 seconds
       </script>
   </body>
 </html>
