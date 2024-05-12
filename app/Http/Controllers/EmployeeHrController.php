@@ -66,8 +66,8 @@ class EmployeeHrController extends Controller
             'employee_id' => Auth::guard('employee')->id(),
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
-            'reason' => now()->toTimeString(), // Format time as time string
-            'type' => 'in',
+            'reason' => $request->reason,
+            'catatan' => $request->catatan,
             'status' => 'pending',
         ]);
 
