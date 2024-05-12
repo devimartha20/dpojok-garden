@@ -19,7 +19,8 @@ class EmployeeHrController extends Controller
     }
 
     public function attendance(){
-        return view('employee.attendance.index');
+        $attendances = Attendance::where('employee_id', Auth::guard('employee')->id())->orderBy('created_at', 'desc')->get();
+        return view('employee.attendance.index', compact('attendances'));
     }
 
     public function showScan(){
