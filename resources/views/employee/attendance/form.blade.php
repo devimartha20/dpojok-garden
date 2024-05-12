@@ -3,7 +3,8 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h5>Form Absen</h5>
+        <h4>Form Absen</h4>
+        <span>Senin, 24 Desember 2024</span>
         <div class="card-header-right">
             <i class="icofont icofont-spinner-alt-5"></i>
         </div>
@@ -31,7 +32,11 @@
                     <input type="text" class="form-control" placeholder="Catatan" title="" data-toggle="tooltip" data-original-title="">
                 </div>
             </div>
-            <button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-right" data-toggle="tooltip" data-placement="right" title="" data-original-title="submit">Submit
+            <br>
+            <br>
+            <button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-right" data-toggle="tooltip" data-placement="right" title="" data-original-title="submit">Kirim
+            </button>
+            <button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-left" data-toggle="tooltip" data-placement="Left" title="" data-original-title="submit">Kembali
             </button>
         </form>
     </div>

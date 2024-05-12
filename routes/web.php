@@ -68,6 +68,9 @@ Route::middleware('auth.employee')->group(function () {
     Route::get('/employee/cuti', function () {
         return view('employee/leave/index');
     })->name('cuti.route');
+    Route::get('/employee/form-cuti', function () {
+        return view('employee/leave/formcuti');
+    })->name('formcuti.route');
 });
 
 Route::get('employee/login', [EmployeeLoginController::class, 'showLoginForm'])->name('employee.login');
@@ -89,7 +92,6 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('employee', EmployeeController::class);
 
         Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-        Route::post('/attendance/qr/status', [AttendanceController::class, 'updateQRStatus'])->name('attendance.qr.status');
 
     });
 

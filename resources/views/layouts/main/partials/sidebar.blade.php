@@ -140,49 +140,49 @@
                 </li>
             </ul>
 
-            {{-- Human Resource --}}
-            <div class="pcoded-navigatio-lavel">Human Resource</div>
-            <ul class="pcoded-item pcoded-left-item">
-                <li>
-                    <a href="{{ route('employee.index') }}">
-                        <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
-                        <span class="pcoded-mtext" >Daftar Pegawai</span>
-                        <span class="pcoded-mcaret"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('attendance.index') }}">
-                        <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
-                        <span class="pcoded-mtext" >Absensi Karyawan</span>
-                        <span class="pcoded-mcaret"></span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="pcoded-item pcoded-left-item">
-                <li class="pcoded-hasmenu">
-                    <a>
-                        <span class="pcoded-micon"><i class="ti-agenda"></i></span>
-                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Jadwal Kerja</span>
-                        <span class="pcoded-mcaret"></span>
-                    </a>
-                    <ul class="pcoded-submenu">
-                        <li class=" ">
-                            <a>
-                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jam Kerja</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a>
-                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cuti</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+        {{-- Human Resource --}}
+        <div class="pcoded-navigatio-lavel">Human Resource</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a href="{{ route('employee.index') }}">
+                    <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" >Daftar Pegawai</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('attendance.index') }}">
+                    <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" >Absensi Karyawan</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="pcoded-hasmenu">
+                <a>
+                    <span class="pcoded-micon"><i class="ti-agenda"></i></span>
+                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Jadwal Kerja</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class=" ">
+                        <a>
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jam Kerja</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a>
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cuti</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
 
             {{-- Pelanggan --}}
             <div class="pcoded-navigatio-lavel">Kelola Pelanggan</div>
