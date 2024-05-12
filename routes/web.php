@@ -59,9 +59,8 @@ Route::middleware('auth.employee')->group(function () {
     Route::get('employee/scan', [EmployeeHrController::class, 'showScan'])->name('employee.scan');
     Route::post('employee/scan', [EmployeeHrController::class, 'scan'])->name('employee.scan.submit');
 
-    Route::get('/employee/form-absen', function () {
-        return view('employee/attendance/form');
-    })->name('formabsen.route');
+    Route::get('/employee/form-absen', [EmployeeHrController::class, 'addConfirm'])->name('attendance.submit');
+    Route::get('/employee/form-absen', [EmployeeHrController::class, 'storeConfirm'])->name('attendance.submit.store');
     Route::get('/employee/form-tidak-hadir', function () {
         return view('employee/attendance/formtidakhadir');
     })->name('formtidakhadir.route');

@@ -27,8 +27,54 @@ class EmployeeHrController extends Controller
         return view('employee.attendance.scan');
     }
 
-    public function addConfirm(Request $request){
-        
+    public function addConfirm(){
+        return view('employee.attendance.form');
+    }
+    public function storeConfirm(Request $request){
+        $request->validate([
+            'type' => 'required',
+            'catatan' => 'required',
+        ]);
+
+        $store = Attendance::create([
+            'employee_id' => Auth::guard('employee')->id(),
+            'method' => 'confirmation',
+            'date' => now()->toDateTimeString(), // Format date as datetime string
+            'time' => now()->toTimeString(), // Format time as time string
+            'type' => $request->type,
+            'status' => 'pending',
+        ]);
+
+        if($store){
+            return redirect()->back()->with('success', 'Pengajuan Konfirmasi Kehadiran telah Dikirim!');
+        }
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+    }
+
+    public function addAbsence(){
+        return view('employee.attendance.formtidakhadir');
+    }
+    public function storeAbsence(Request $request){
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'reason' => 'required',
+            'catatan' => 'required',
+        ]);
+
+        $store = Attendance::create([
+            'employee_id' => Auth::guard('employee')->id(),
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'reason' => now()->toTimeString(), // Format time as time string
+            'type' => 'in',
+            'status' => 'pending',
+        ]);
+
+        if($store){
+            return redirect()->back()->with('success', 'Pengajuan Konfirmasi Kehadiran telah Dikirim!');
+        }
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     public function scan(Request $request){
