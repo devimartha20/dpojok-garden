@@ -72,7 +72,7 @@
                                 <td>Cuti Melahirkan</td>
                                 <td>Cuti selama 1 bulan</td>
                                 <td><span class="label label-success">Dikonfirmasi</span></td>
-                                <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
+                                <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-target="#data1" data-toggle="modal" >Lihat Detail
                         </button></td>
                             </tr>
                             <tr>
@@ -229,51 +229,51 @@
     </div>
 </div>
 {{-- Modal  --}}
-<div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="data1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail Cuti</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         </div>
         <div class="modal-body">
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Waktu</th>
-                            <th>Alasan</th>
-                            <th>Keterangan</th>
-                            <th>Status</th>
-                            <th>Detail</th>
-                        </tr>
-                    </thead>
+                <table class="table table-borderless">
                     <tbody>
-                            <td>1</td>
-                            <td>01-09-2024</td>
-                            <td>21:00</td>
+                        <tr>
+                            <td>Tanggal</td>
+                            <td>:</td>
+                            <td>08-01-2024</td>
+                        </tr>
+                        <tr>
+                            <td>Waktu</td>
+                            <td>:</td>
+                            <td>12:30</td>
+                        </tr>
+                        <tr>
+                            <td>Alasan</td>
+                            <td>:</td>
                             <td>Cuti Melahirkan</td>
-                            <td>Cuti selama 1 bulan</td>
-                            <td><span class="label label-danger">Ditolak</span></td>
-                            <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
-                        </button></td>
-                        @endforeach
+                        </tr>
+                        <tr>
+                            <td>Keterangan</td>
+                            <td>:</td>
+                            <td>Cuti selama 3 bulan</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>:</td>
+                            <td>Dikonfirmasi</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
 
-
-            @endif
-
-
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-
         </div>
     </div>
     </div>

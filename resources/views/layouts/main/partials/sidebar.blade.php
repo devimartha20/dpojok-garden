@@ -215,6 +215,13 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('absences.index') }}">
+                            <span class="pcoded-micon"><i class="ti-home"></i><b>J</b></span>
+                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Ketidakhadiran</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
                     <li class=" ">
                         <a>
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>

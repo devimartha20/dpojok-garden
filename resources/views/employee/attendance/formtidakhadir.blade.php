@@ -12,28 +12,28 @@
         <form>
             <div class="form-group">
                 <div class="input-group">
-                    <span class="input-group-addon" id="name"><i class="icofont icofont-calendar"></i></span>
+                    <span class="input-group-addon" id="start_date"><i class="icofont icofont-calendar"></i></span>
                     <input type="text" class="form-control" placeholder="Tanggal Awal" title="" data-toggle="tooltip" data-original-title="">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <span class="input-group-addon" id="name"><i class="icofont icofont-calendar"></i></span>
+                    <span class="input-group-addon" id="end_date"><i class="icofont icofont-calendar"></i></span>
                     <input type="text" class="form-control" placeholder="Tanggal Akhir" title="" data-toggle="tooltip" data-original-title="">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <span class="input-group-addon" id="email"><i class="icofont icofont-check-alt"></i></span>
+                    <span class="input-group-addon" id="attendance_type"><i class="icofont icofont-check-alt"></i></span>
                     <select class="form-control" id="tipe_absen" name="tipe_absen">
-                        <option value="masuk">Sakit</option>
-                        <option value="keluar">Izin</option>
+                        <option value="sakit">Sakit</option>
+                        <option value="izin">Izin</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <span class="input-group-addon" id="email"><i class="icofont icofont-ui-note"></i></span>
+                    <span class="input-group-addon" id="notes"><i class="icofont icofont-ui-note"></i></span>
                     <input type="text" class="form-control" placeholder="Catatan" title="" data-toggle="tooltip" data-original-title="">
                 </div>
             </div>
@@ -78,7 +78,7 @@
                         <td>Sakit</td>
                         <td>Selama 2 hari</td>
                         <td><span class="label label-success">Dikonfirmasi</span></td>
-                        <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
+                        <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-target="#data1" data-toggle="modal">Lihat Detail
                         </button></td>
                     </tr>
                     <tr>
@@ -88,7 +88,7 @@
                         <td>Izin</td>
                         <td>Anggota keluarga meninggal</td>
                         <td><span class="label label-warning">Menunggu</span></td>
-                        <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
+                        <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="modal" data-target="#data2">Lihat Detail
                         </button></td>
                     </tr>
                     <tr>
@@ -98,12 +98,61 @@
                         <td>Izin</td>
                         <td>Membuat kartu keluarga</td>
                         <td><span class="label label-danger">Ditolak</span></td>
-                        <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
+                        <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="modal" data-target="#data3">Lihat Detail
                         </button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
+{{-- Modal  --}}
+<div class="modal fade" id="data1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detail Ketidakhadiran</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>Tanggal</td>
+                            <td>:</td>
+                            <td>08-01-2024</td>
+                        </tr>
+                        <tr>
+                            <td>Waktu</td>
+                            <td>:</td>
+                            <td>12:30</td>
+                        </tr>
+                        <tr>
+                            <td>Keterangan</td>
+                            <td>:</td>
+                            <td>Sakit</td>
+                        </tr>
+                        <tr>
+                            <td>Catatan</td>
+                            <td>:</td>
+                            <td>Sakit Lambung</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>:</td>
+                            <td>Dikonfirmasi</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        </div>
+    </div>
     </div>
 </div>
 @endsection
