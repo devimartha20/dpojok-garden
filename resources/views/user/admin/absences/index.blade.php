@@ -43,7 +43,7 @@
                         <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ubah Satatus Ketidakhadiran</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Ubah Status Ketidakhadiran</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -62,7 +62,7 @@
 
                                     <div class="mb-3">
                                         <label for="catatan" class="form-label">Catatan</label>
-                                        <textarea  name="catatan" class="form-control" id="catatan" rows="3">{{ $pa->catatan }}<</textarea>
+                                        <textarea  name="catatan" class="form-control" id="catatan" rows="3">{{ $pa->catatan }}</textarea>
                                     </div>
 
                             </div>
@@ -98,7 +98,7 @@
                         <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ubah Satatus Ketidakhadiran</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Ubah Status Ketidakhadiran</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -134,7 +134,7 @@
 
                 @endforelse
         </div>
-        <div class="tab-pane" id="settings3" role="tabpanel">
+        <div class="tab-pane" id="rejected" role="tabpanel">
             @forelse ($rejected_absences as $ra)
             <div class="page-header card">
                 <div class="card-block">
@@ -144,14 +144,14 @@
                     <p>Alasan : {{ $ra->reason }}</p>
                     <p>Keterangan : {{ $ra->keterangan ?? '-' }}</p>
                     <div class="float-right">
-                        <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data{{ $ca->id }}">Ubah Status</button>
+                        <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data{{ $ra->id }}">Ubah Status</button>
                     </div>
                 </div>
                 <div class="modal fade" id="data{{ $ra->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ubah Satatus Ketidakhadiran</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Ubah Status Ketidakhadiran</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
