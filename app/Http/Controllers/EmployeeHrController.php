@@ -27,6 +27,10 @@ class EmployeeHrController extends Controller
         return view('employee.attendance.scan');
     }
 
+    public function addConfirm(Request $request){
+        
+    }
+
     public function scan(Request $request){
         $qr = ActiveQR::first();
         if($qr != null){
