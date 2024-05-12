@@ -289,8 +289,8 @@
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-secondary mr-auto" data-dismiss="modal">Ubah</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         </div>
                     </form>
                     </div>
