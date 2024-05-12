@@ -92,6 +92,12 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
         Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
         Route::post('/update/qr/', [AttendanceController::class, 'updateQRStatus'])->name('attendance.qr.status');
+        Route::get('/kelola-ketidakhadiran', function () {
+            return view('user/admin/absences/index');
+        })->name('kelolatidakhadir.route');
+        Route::get('/kelola-cuti', function () {
+            return view('user/admin/leave/index');
+        })->name('kelolacuti.route');
 
     });
 

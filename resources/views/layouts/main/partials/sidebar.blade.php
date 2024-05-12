@@ -167,14 +167,21 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
-                        <a>
+                        <a href="{{ route('kelolatidakhadir.route')}}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jam Kerja</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
                     <li class=" ">
-                        <a>
+                        <a href="{{ route('kelolatidakhadir.route')}}">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Ketidakhadiran</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="{{ route('kelolacuti.route')}}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cuti</span>
                             <span class="pcoded-mcaret"></span>
