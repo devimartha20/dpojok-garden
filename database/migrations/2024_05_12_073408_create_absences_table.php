@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->ecum('reason', 'izin', 'sakit');
+            $table->enum('reason', ['izin', 'sakit']);
             $table->enum('status', ['pending','confirmed', 'rejected'])->default('pending');
             $table->timestamps();
             $table->string('keterangan')->nullable();
