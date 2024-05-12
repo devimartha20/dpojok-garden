@@ -64,6 +64,9 @@ Route::middleware('auth.employee')->group(function () {
     Route::get('/employee/form-tidak-hadir', function () {
         return view('employee/attendance/formtidakhadir');
     })->name('formtidakhadir.route');
+    Route::get('/employee/cuti', function () {
+        return view('employee/leave/index');
+    })->name('cuti.route');
 });
 
 Route::get('employee/login', [EmployeeLoginController::class, 'showLoginForm'])->name('employee.login');

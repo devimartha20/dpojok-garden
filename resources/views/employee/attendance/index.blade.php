@@ -1,4 +1,5 @@
 @extends('layouts.main.layout')
+
 @section('content')
 <div class="card">
 <div class="card-block front-icon-breadcrumb row align-items-end">
