@@ -59,17 +59,16 @@ class EmployeeHrController extends Controller
     public function storeAbsence(Request $request){
         $request->validate([
             'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            'reason' => 'required',
-            'catatan' => 'required',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'keterangan' => 'required',
+           
         ]);
 
         $store = Absence::create([
             'employee_id' => Auth::guard('employee')->id(),
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
-            'reason' => $request->reason,
-            'catatan' => $request->catatan,
+            'keterangan' => $request->keterangan,
             'status' => 'pending',
         ]);
 
@@ -93,9 +92,9 @@ class EmployeeHrController extends Controller
     public function storeLeave(Request $request){
         $request->validate([
             'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
             'reason' => 'required',
-            'catatan' => 'required',
+           
         ]);
 
         $store = Leave::create([
@@ -103,7 +102,6 @@ class EmployeeHrController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'reason' => $request->reason,
-            'catatan' => $request->catatan,
             'status' => 'pending',
         ]);
 
