@@ -173,11 +173,13 @@
                                         <option value="pending" {{ $pa->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
                                     </select>
                                 </div>
-                            </form>
+                            
                         </div>
                         <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         </div>
+                    </form>
                     </div>
                     </div>
                 </div>
@@ -232,11 +234,13 @@
                                         <option value="pending" {{ $ca->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
                                     </select>
                                 </div>
-                            </form>
+                           
                         </div>
                         <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         </div>
+                    </form>
                     </div>
                     </div>
                 </div>
