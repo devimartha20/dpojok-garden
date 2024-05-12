@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('cuti.route') }}">
+                        <a href="{{ route('employee.leave.index') }}">
                             <span class="pcoded-micon"><i class="ti-home"></i><b>J</b></span>
                             <span class="pcoded-mtext" data-i18n="nav.dash.main">Cuti</span>
                             <span class="pcoded-mcaret"></span>

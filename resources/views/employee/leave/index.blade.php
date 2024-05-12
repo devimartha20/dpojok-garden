@@ -8,7 +8,7 @@
                 <i class="fa fa-envelope-open text-c-blue d-block f-40"></i>
                 <h4 class="m-t-20"><span class="text-c-blue"></span>Kirim Pengajuan Cuti!</h4>
                 {{-- <p class="m-b-20">Your main list is growing</p> --}}
-                <a class="btn btn-primary btn-xl btn-round" href="{{ route('formcuti.route') }}">Buat Pengajuan</a>
+                <a class="btn btn-primary btn-xl btn-round" href="{{ route('employee.leave.submit') }}">Buat Pengajuan</a>
             </div>
         </div>
     </div>
@@ -31,205 +31,204 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs md-tabs" role="tablist">
             <li class="nav-item complete">
-                <a class="nav-link" data-toggle="tab" href="#home3" role="tab" aria-expanded="false">Semua</a>
+                <a class="nav-link active" data-toggle="tab" href="#all" role="tab" aria-expanded="true">Semua</a>
                 <div class="slide"></div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#profile3" role="tab" aria-expanded="false">Dikonfirmasi</a>
+                <a class="nav-link" data-toggle="tab" href="#confirmed" role="tab" aria-expanded="false">Dikonfirmasi</a>
                 <div class="slide"></div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#messages3" role="tab" aria-expanded="false">Menunggu</a>
+                <a class="nav-link" data-toggle="tab" href="#pending" role="tab" aria-expanded="false">Menunggu</a>
                 <div class="slide"></div>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#settings3" role="tab" aria-expanded="true">Ditolak</a>
+                <a class="nav-link " data-toggle="tab" href="#rejected" role="tab" aria-expanded="false">Ditolak</a>
                 <div class="slide"></div>
             </li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content card-block">
-            <div class="tab-pane" id="home3" role="tabpanel" aria-expanded="false">
+            <div class="tab-pane active" id="all" role="tabpanel" aria-expanded="false">
                 <!-- Content for Semua tab -->
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Alasan</th>
+                                <th>Tanggal Awal</th>
+                                <th>Tanggal Akhir</th>
                                 <th>Keterangan</th>
                                 <th>Status</th>
-                                <th>Detail</th>
+                                <th>Catatan</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($leaves as $l)
                             <tr>
-                                <td>1</td>
-                                <td>01-09-2024</td>
-                                <td>21:00</td>
-                                <td>Cuti Melahirkan</td>
-                                <td>Cuti selama 1 bulan</td>
-                                <td><span class="label label-success">Dikonfirmasi</span></td>
-                                <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-target="#data1" data-toggle="modal" >Lihat Detail
-                        </button></td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $l->start_date }}</td>
+                                <td>{{ $l->end_date }}</td>
+                                <td>{{ $l->reason }}</td>
+                                <td>
+                                    @if($l->status == 'confirmed')
+                                        <span class="label label-success"></span>
+                                    @elseif($l->status == 'pending')
+                                        <span class="label label-warning"></span>
+                                    @elseif($l->status == 'rejected')
+                                        <span class="label label-danger"></span>
+                                    @endif
+                                </td>
+                                <td>{{ $l->catatan }}</td>
+                               <td></td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>01-09-2024</td>
-                                <td>21:00</td>
-                                <td>Cuti Melahirkan</td>
-                                <td>Cuti selama 1 bulan</td>
-                                <td><span class="label label-danger">Ditolak</span></td>
-                                <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
-                        </button></td>
-                            </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No Data</td>
+                                </tr>
+                            @endforelse
                             <!-- Isi tabel Semua -->
                         </tbody>
                     </table>
                 </div>
-                <div class="text-center">
-                    <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
-                </div>
             </div>
-            <div class="tab-pane" id="profile3" role="tabpanel" aria-expanded="false">
+            <div class="tab-pane" id="confirmed" role="tabpanel" aria-expanded="false">
                 <!-- Content for Dikonfirmasi tab -->
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Alasan</th>
+                                <th>Tanggal Awal</th>
+                                <th>Tanggal Akhir</th>
                                 <th>Keterangan</th>
                                 <th>Status</th>
-                                <th>Detail</th>
+                                <th>Catatan</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($confirmed_leaves as $cl)
                             <tr>
-                                <td>1</td>
-                                <td>01-09-2024</td>
-                                <td>21:00</td>
-                                <td>Cuti Melahirkan</td>
-                                <td>Cuti selama 1 bulan</td>
-                                <td><span class="label label-success">Dikonfirmasi</span></td>
-                                <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
-                        </button></td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $cl->start_date }}</td>
+                                <td>{{ $cl->end_date }}</td>
+                                <td>{{ $cl->reason }}</td>
+                                <td>
+                                    @if($cl->status == 'confirmed')
+                                        <span class="label label-success"></span>
+                                    @elseif($cl->status == 'pending')
+                                        <span class="label label-warning"></span>
+                                    @elseif($cl->status == 'rejected')
+                                        <span class="label label-danger"></span>
+                                    @endif
+                                </td>
+                                <td>{{ $cl->catatan }}</td>
+                               <td></td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>01-09-2024</td>
-                                <td>21:00</td>
-                                <td>Cuti Melahirkan</td>
-                                <td>Cuti selama 1 bulan</td>
-                                <td><span class="label label-success">Dikonfirmasi</span></td>
-                                <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
-                        </button></td>
-                            </tr>
-                            <!-- Isi tabel Dikonfirmasi -->
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No Data</td>
+                                </tr>
+                            @endforelse
+                            <!-- Isi tabel Semua -->
                         </tbody>
                     </table>
                 </div>
-                <div class="text-center">
-                    <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
-                </div>
+               
             </div>
-            <div class="tab-pane" id="messages3" role="tabpanel" aria-expanded="false">
+            <div class="tab-pane" id="pending" role="tabpanel" aria-expanded="false">
                 <!-- Content for Menunggu tab -->
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Alasan</th>
+                                <th>Tanggal Awal</th>
+                                <th>Tanggal Akhir</th>
                                 <th>Keterangan</th>
                                 <th>Status</th>
-                                <th>Detail</th>
+                                <th>Catatan</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($pending_leaves as $pl)
                             <tr>
-                                <td>1</td>
-                                <td>01-09-2024</td>
-                                <td>21:00</td>
-                                <td>Cuti Melahirkan</td>
-                                <td>Cuti selama 1 bulan</td>
-                                <td><span class="label label-warning">Menunggu</span></td>
-                                <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
-                        </button></td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $pl->start_date }}</td>
+                                <td>{{ $pl->end_date }}</td>
+                                <td>{{ $pl->reason }}</td>
+                                <td>
+                                    @if($pl->status == 'confirmed')
+                                        <span class="label label-success"></span>
+                                    @elseif($pl->status == 'pending')
+                                        <span class="label label-warning"></span>
+                                    @elseif($pl->status == 'rejected')
+                                        <span class="label label-danger"></span>
+                                    @endif
+                                </td>
+                                <td>{{ $pl->catatan }}</td>
+                               <td></td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>01-09-2024</td>
-                                <td>21:00</td>
-                                <td>Cuti Melahirkan</td>
-                                <td>Cuti selama 1 bulan</td>
-                                <td><span class="label label-warning">Menunggu</span></td>
-                                <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
-                        </button></td>
-                            </tr>
-                            <!-- Isi tabel Menunggu -->
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No Data</td>
+                                </tr>
+                            @endforelse
+                            <!-- Isi tabel Semua -->
                         </tbody>
                     </table>
                 </div>
-                <div class="text-center">
-                    <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
-                </div>
+               
             </div>
-            <div class="tab-pane active" id="settings3" role="tabpanel" aria-expanded="true">
+            <div class="tab-pane" id="rejected" role="tabpanel" aria-expanded="true">
                 <!-- Content for Ditolak tab -->
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Alasan</th>
+                                <th>Tanggal Awal</th>
+                                <th>Tanggal Akhir</th>
                                 <th>Keterangan</th>
                                 <th>Status</th>
-                                <th>Detail</th>
+                                <th>Catatan</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($leaves as $rl)
                             <tr>
-                                <td>1</td>
-                                <td>01-09-2024</td>
-                                <td>21:00</td>
-                                <td>Cuti Melahirkan</td>
-                                <td>Cuti selama 1 bulan</td>
-                                <td><span class="label label-danger">Ditolak</span></td>
-                                <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
-                        </button></td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $rl->start_date }}</td>
+                                <td>{{ $rl->end_date }}</td>
+                                <td>{{ $rl->reason }}</td>
+                                <td>
+                                    @if($rl->status == 'confirmed')
+                                        <span class="label label-success"></span>
+                                    @elseif($rl->status == 'pending')
+                                        <span class="label label-warning"></span>
+                                    @elseif($rl->status == 'rejected')
+                                        <span class="label label-danger"></span>
+                                    @endif
+                                </td>
+                                <td>{{ $rl->catatan }}</td>
+                               <td></td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>01-09-2024</td>
-                                <td>21:00</td>
-                                <td>Cuti Melahirkan</td>
-                                <td>Cuti selama 1 bulan</td>
-                                <td><span class="label label-danger">Ditolak</span></td>
-                                <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="tooltip" data-placement="center" title="" data-original-title="submit">Lihat Detail
-                        </button></td>
-                            </tr>
-                            <!-- Isi tabel Ditolak -->
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No Data</td>
+                                </tr>
+                            @endforelse
+                            <!-- Isi tabel Semua -->
                         </tbody>
                     </table>
                 </div>
-                <div class="text-center">
-                    <button class="btn btn-outline-primary btn-round btn-sm">Load More</button>
-                </div>
+                
             </div>
         </div>
     </div>
 </div>
 {{-- Modal  --}}
-<div class="modal fade" id="data1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="data1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -277,5 +276,5 @@
         </div>
     </div>
     </div>
-</div>
+</div> --}}
 @endsection

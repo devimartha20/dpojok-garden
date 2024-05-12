@@ -10,34 +10,31 @@
         </div>
     </div>
     <div class="card-block tooltip-icon button-list">
-        <form>
-            {{-- <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon" id="name"><i class="icofont icofont-calendar"></i></span>
-                    <input type="text" class="form-control" placeholder="Tanggal" title="" data-toggle="tooltip" data-original-title="">
-                </div>
-            </div> --}}
+        <form method="POST" action="{{ route('employee.attendance.submit.store') }}">
+            @csrf
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon" id="email"><i class="icofont icofont-check-alt"></i></span>
-                    <select class="form-control" id="tipe_absen" name="tipe_absen">
-                        <option value="masuk">Masuk</option>
-                        <option value="keluar">Keluar</option>
+                    <select class="form-control" id="tipe_absen" name="type" required>
+                        <option value="in">Masuk</option>
+                        <option value="out">Keluar</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon" id="email"><i class="icofont icofont-ui-note"></i></span>
-                    <input type="text" class="form-control" placeholder="Catatan" title="" data-toggle="tooltip" data-original-title="">
+                    <input type="datetime-local" readonly class="form-control" value="{{ now()->format('Y-m-d\TH:i') }}">
                 </div>
             </div>
+            
+            
             <br>
             <br>
-            <button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-right" data-toggle="tooltip" data-placement="right" title="" data-original-title="submit">Kirim
+            <button type="submit" class="btn btn-primary waves-effect waves-light m-r-20 float-right" value="submit">Kirim
             </button>
-            <button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-left" data-toggle="tooltip" data-placement="Left" title="" data-original-title="submit">Kembali
-            </button>
+            <a href="{{ route('employee.attendance') }}" class="btn btn-secondary waves-effect waves-light m-r-20 float-left" >Kembali
+            </a>
         </form>
     </div>
 </div>

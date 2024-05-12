@@ -9,23 +9,27 @@
         </div>
     </div>
     <div class="card-block tooltip-icon button-list">
-        <form>
+        <form method="POST" action="{{ route('employee.absence.submit.store') }}">
+            @csrf
             <div class="form-group">
                 <div class="input-group">
+                    <label class="col-sm-2 col-form-label">Tanggal Awal</label>
                     <span class="input-group-addon" id="start_date"><i class="icofont icofont-calendar"></i></span>
-                    <input type="text" class="form-control" placeholder="Tanggal Awal" title="" data-toggle="tooltip" data-original-title="">
+                    <input type="datetime-local" class="form-control" name="start_date" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
+                    <label class="col-sm-2 col-form-label">Tanggal Akhir</label>
                     <span class="input-group-addon" id="end_date"><i class="icofont icofont-calendar"></i></span>
-                    <input type="text" class="form-control" placeholder="Tanggal Akhir" title="" data-toggle="tooltip" data-original-title="">
+                    <input type="datetime-local" class="form-control" name="end_date" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
+                    <label class="col-sm-2 col-form-label">Tipe Ketidakhadiran</label>
                     <span class="input-group-addon" id="attendance_type"><i class="icofont icofont-check-alt"></i></span>
-                    <select class="form-control" id="tipe_absen" name="tipe_absen">
+                    <select class="form-control" id="tipe_absen" name="type" required>
                         <option value="sakit">Sakit</option>
                         <option value="izin">Izin</option>
                     </select>
@@ -33,11 +37,12 @@
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <span class="input-group-addon" id="notes"><i class="icofont icofont-ui-note"></i></span>
-                    <input type="text" class="form-control" placeholder="Catatan" title="" data-toggle="tooltip" data-original-title="">
+                    <label class="col-sm-2 col-form-label">Keterangan</label>
+                    <span class="input-group-addon" id="attendance_type"><i class="icofont icofont-check-alt"></i></span>
+                    <input class="form-control" type="text" name="keterangan" required>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-right" data-toggle="tooltip" data-placement="right" title="" data-original-title="submit">Submit
+            <button type="submit" class="btn btn-primary waves-effect waves-light m-r-20 float-right" >Simpan
             </button>
         </form>
     </div>
@@ -62,8 +67,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tanggal</th>
-                        <th>Waktu</th>
+                        <th>Tanggal Awal</th>
+                        <th>Tanggal Akhir</th>
                         <th>Keterangan</th>
                         <th>Catatan</th>
                         <th>Status</th>
@@ -71,88 +76,92 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>01-05-2024</td>
-                        <td>13.00</td>
-                        <td>Sakit</td>
-                        <td>Selama 2 hari</td>
-                        <td><span class="label label-success">Dikonfirmasi</span></td>
-                        <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-target="#data1" data-toggle="modal">Lihat Detail
-                        </button></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">2</td>
-                        <td>01-05-2024</td>
-                        <td>13.00</td>
-                        <td>Izin</td>
-                        <td>Anggota keluarga meninggal</td>
-                        <td><span class="label label-warning">Menunggu</span></td>
-                        <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="modal" data-target="#data2">Lihat Detail
-                        </button></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">3</td>
-                        <td>01-05-2024</td>
-                        <td>13.00</td>
-                        <td>Izin</td>
-                        <td>Membuat kartu keluarga</td>
-                        <td><span class="label label-danger">Ditolak</span></td>
-                        <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-toggle="modal" data-target="#data3">Lihat Detail
-                        </button></td>
-                    </tr>
+                    @forelse ($absences as $ab)
+                        <tr>
+                            <td scope="row">{{ $loop->iteration }}</td>
+                            <td>{{ $ab->start_date }}</td>
+                            <td>{{ $ab->start_date }}</td>
+                            <td>{{ $ab->reason }}</td>
+                            <td>{{ $ab->catatan }}</td>
+                            <td>
+                                @if($ab->status == 'confirmed')
+                                    <span class="label label-success"></span>
+                                @elseif($ab->status == 'pending')
+                                    <span class="label label-warning"></span>
+                                @elseif($ab->status == 'rejected')
+                                    <span class="label label-danger"></span>
+                                @endif
+                            </td>
+                            <td><button type="button" class="btn btn-primary waves-effect waves-light m-r-20 float-center" data-target="#data{{ $ab->id }}" data-toggle="modal">Lihat Detail
+                            </button></td>
+                        </tr>
+
+                        {{-- Modal  --}}
+                        <div class="modal fade" id="data{{ $ab->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Detail Ketidakhadiran</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Tanggal Awal</td>
+                                                    <td>:</td>
+                                                    <td>{{ $ab->start_date }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Tanggal Akhir</td>
+                                                    <td>:</td>
+                                                    <td>{{ $ab->end_date }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Keterangan</td>
+                                                    <td>:</td>
+                                                    <td>{{ $ab->reason }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Catatan</td>
+                                                    <td>:</td>
+                                                    <td>{{ $ab->catatan }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Status</td>
+                                                    <td>:</td>
+                                                    <td>
+                                                        @if($ab->status == 'confirmed')
+                                                            <span class="label label-success"></span>
+                                                        @elseif($ab->status == 'pending')
+                                                            <span class="label label-warning"></span>
+                                                        @elseif($ab->status == 'rejected')
+                                                            <span class="label label-danger"></span>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    @empty
+                        <tr>
+                            <td colspan=7 class="text-center">No Data</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-{{-- Modal  --}}
-<div class="modal fade" id="data1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Ketidakhadiran</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body">
-            <div class="table-responsive">
-                <table class="table table-borderless">
-                    <tbody>
-                        <tr>
-                            <td>Tanggal</td>
-                            <td>:</td>
-                            <td>08-01-2024</td>
-                        </tr>
-                        <tr>
-                            <td>Waktu</td>
-                            <td>:</td>
-                            <td>12:30</td>
-                        </tr>
-                        <tr>
-                            <td>Keterangan</td>
-                            <td>:</td>
-                            <td>Sakit</td>
-                        </tr>
-                        <tr>
-                            <td>Catatan</td>
-                            <td>:</td>
-                            <td>Sakit Lambung</td>
-                        </tr>
-                        <tr>
-                            <td>Status</td>
-                            <td>:</td>
-                            <td>Dikonfirmasi</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        </div>
-    </div>
-    </div>
-</div>
+
 @endsection
