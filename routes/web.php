@@ -92,7 +92,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('employee', EmployeeController::class);
 
         Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-        Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index');
+        Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index'); 
+        Route::get('leave', [ScheduleController::class, 'leaveIndex'])->name('leave.index');
         Route::post('/update/qr/', [AttendanceController::class, 'updateQRStatus'])->name('attendance.qr.status');
         
         Route::post('/update/attendacence/status/{id}', [AttendanceController::class, 'updateAttendanceStatus'])->name('attendance.update.status');
