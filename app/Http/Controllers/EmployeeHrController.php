@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absence;
 use App\Models\ActiveQR;
 use App\Models\Attendance;
+use App\Models\Leave;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
@@ -33,7 +35,6 @@ class EmployeeHrController extends Controller
     public function storeConfirm(Request $request){
         $request->validate([
             'type' => 'required',
-            'catatan' => 'required',
         ]);
 
         $store = Attendance::create([
@@ -52,7 +53,8 @@ class EmployeeHrController extends Controller
     }
 
     public function addAbsence(){
-        return view('employee.attendance.formtidakhadir');
+        $absences = Absence::where('employee_id', Auth::guard('employee')->id())->get();
+        return view('employee.attendance.formtidakhadir', compact('absences'));
     }
     public function storeAbsence(Request $request){
         $request->validate([
@@ -62,7 +64,7 @@ class EmployeeHrController extends Controller
             'catatan' => 'required',
         ]);
 
-        $store = Attendance::create([
+        $store = Absence::create([
             'employee_id' => Auth::guard('employee')->id(),
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
@@ -72,7 +74,41 @@ class EmployeeHrController extends Controller
         ]);
 
         if($store){
-            return redirect()->back()->with('success', 'Pengajuan Konfirmasi Kehadiran telah Dikirim!');
+            return redirect()->back()->with('success', 'Pengajuan Konfirmasi Ketidakhadiran telah Dikirim!');
+        }
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+    }
+
+    public function indexLeave(){
+        $leaves = Leave::where('employee_id', Auth::guard('employee')->id())->get(); 
+        $confirmed_leaves = Leave::where('employee_id', Auth::guard('employee')->id())->where('status', 'confirmed')->get();
+        $pending_leaves = Leave::where('employee_id', Auth::guard('employee')->id())->where('status', 'pending')->get();
+        $rejected_leaves = Leave::where('employee_id', Auth::guard('employee')->id())->where('status', 'rejected')->get();
+        return view('employee.leave.index', compact('leaves', 'confirmed_leaves', 'pending_leaves', 'rejected_leaves'));
+    }
+
+    public function addLeave(){
+        return view('employee.leave.formcuti');
+    }
+    public function storeLeave(Request $request){
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'reason' => 'required',
+            'catatan' => 'required',
+        ]);
+
+        $store = Leave::create([
+            'employee_id' => Auth::guard('employee')->id(),
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'reason' => $request->reason,
+            'catatan' => $request->catatan,
+            'status' => 'pending',
+        ]);
+
+        if($store){
+            return redirect()->back()->with('success', 'Pengajuan Cuti telah Dikirim!');
         }
         return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }

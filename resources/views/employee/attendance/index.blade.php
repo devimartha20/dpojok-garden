@@ -17,9 +17,9 @@
             <ul class="breadcrumb-title m-t-15">
                 <li class="breadcrumb-item"><a href="{{ route('employee.scan') }}">Scan QR</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('formabsen.route') }}">Form Absen</a>
+                <li class="breadcrumb-item"><a href="{{ route('employee.attendance.submit') }}">Form Absen</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('formtidakhadir.route') }}">Form Ketidakhadiran</a>
+                <li class="breadcrumb-item"><a href="{{ route('employee.absence.submit') }}">Form Ketidakhadiran</a>
                 </li>
             </ul>
         </div>

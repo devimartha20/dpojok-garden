@@ -136,4 +136,6 @@ class AttendanceController extends Controller
 
         // return response()->json(['qrHtml' => $qrHtml]);
     }
+
+    
 }

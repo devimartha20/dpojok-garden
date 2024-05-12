@@ -1,6 +1,9 @@
 @extends('layouts.main.layout')
- <!-- Notification.css -->
+@section('styles')
+    <!-- Notification.css -->
  <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/assets/pages/notification/notification.css">
+@endsection
+ 
 @section('content')
 <div class="container">
     @if (Session::has('fail'))
