@@ -137,8 +137,38 @@ class AttendanceController extends Controller
         // return response()->json(['qrHtml' => $qrHtml]);
     }
 
-    public function updateAttendanceStatus(){
-        
+    public function updateAttendanceStatus(Request $request, $id){
+        $request->validate([
+            'status' => 'required'
+        ]);
+
+       
+        $update = Attendance::findOrFail($id)->update([
+            'status' => $request->status,
+        ]);
+
+        if ($update){
+            return redirect()->back()->with('success', 'Status berhasil diubah!');
+        }
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+
+    }
+
+    public function updateAbsenceStatus(Request $request, $id){
+        $request->validate([
+            'status' => 'required',
+            'catatan' => 'nullable'
+        ]);
+       
+        $update = Absence::findOrFail($id)->update([
+            'status' => $request->status,
+            'catatan' => $request->catatan
+        ]);
+
+        if ($update){
+            return redirect()->back()->with('success', 'Status berhasil diubah!');
+        }
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     
