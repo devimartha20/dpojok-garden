@@ -28,7 +28,6 @@
 <div class="card">
     <div class="card-header">
         <h5>Riwayat Absensi</h5>
-        {{-- <span>use class <code>table</code> inside table element</span> --}}
         <div class="card-header-right">
             <ul class="list-unstyled card-option">
                 <li><i class="fa fa-chevron-left"></i></li>
@@ -45,6 +44,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>ID Pegawai</th>
                         <th>Metode</th>
                         <th>Tanggal</th>
@@ -55,28 +55,58 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">1234</th>
+                        <th scope="row">1</th>
+                        <td>3321</td>
                         <td>QR</td>
                         <td>10-05-2024</td>
                         <td>11:45:32</td>
                         <td>Masuk</td>
-                        <td>Confirmed</td>
+                        <td><span class="label label-success">Confirmed</span></td>
                     </tr>
                     <tr>
-                        <th scope="row">2345</th>
-                        <td>Confirmed</td>
-                        <td>10-05-2024</td>
-                        <td>11:45:32</td>
-                        <td>Masuk</td>
-                        <td>Pending</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3321</th>
+                        <th scope="row">2</th>
+                        <td>3321</td>
                         <td>QR</td>
                         <td>10-05-2024</td>
                         <td>11:45:32</td>
-                        <td>Keluar</td>
-                        <td>Confirmed</td>
+                        <td>Pulang</td>
+                        <td><span class="label label-success">Confirmed</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>3321</td>
+                        <td>QR</td>
+                        <td>10-05-2024</td>
+                        <td>11:45:32</td>
+                        <td>Masuk</td>
+                        <td><span class="label label-warning">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>3321</td>
+                        <td>QR</td>
+                        <td>10-05-2024</td>
+                        <td>11:45:32</td>
+                        <td>Masuk</td>
+                        <td><span class="label label-warning">Pending</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>3321</td>
+                        <td>QR</td>
+                        <td>10-05-2024</td>
+                        <td>11:45:32</td>
+                        <td>Masuk</td>
+                        <td><span class="label label-danger">Failed</span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>3321</td>
+                        <td>QR</td>
+                        <td>10-05-2024</td>
+                        <td>11:45:32</td>
+                        <td>Masuk</td>
+                        <td><span class="label label-danger">Failed</span></td>
                     </tr>
                 </tbody>
             </table>
