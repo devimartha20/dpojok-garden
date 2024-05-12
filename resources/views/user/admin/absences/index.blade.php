@@ -62,7 +62,7 @@
 
                                     <div class="mb-3">
                                         <label for="catatan" class="form-label">Catatan</label>
-                                        <textarea  name="catatan" class="form-control" id="catatan" rows="3"></textarea>
+                                        <textarea  name="catatan" class="form-control" id="catatan" rows="3">{{ $pa->catatan }}<</textarea>
                                     </div>
 
                             </div>
@@ -119,7 +119,7 @@
 
                                     <div class="mb-3">
                                         <label for="catatan" class="form-label">Catatan</label>
-                                        <textarea class="form-control" id="catatan" name="catatan" rows="3"></textarea>
+                                        <textarea class="form-control" id="catatan" name="catatan" rows="3">{{ $ca->catatan }}<</textarea>
                                     </div>
 
                             </div>
@@ -172,7 +172,7 @@
 
                                 <div class="mb-3">
                                     <label for="catatan" class="form-label">Catatan</label>
-                                    <textarea class="form-control" id="catatan" name="catatan" rows="3"></textarea>
+                                    <textarea class="form-control" id="catatan" name="catatan" rows="3">{{ $ra->catatan }}</textarea>
                                 </div>
 
                         </div>
