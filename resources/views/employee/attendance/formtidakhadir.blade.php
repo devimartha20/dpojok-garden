@@ -23,6 +23,9 @@
                     <label class="col-sm-2 col-form-label" for="end_date">Tanggal Akhir</label>
                     <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
                     <input type="datetime-local" class="form-control" name="end_date" id="end_date" required>
+                    @error('end_date')
+                        <span class="badge badge-danger">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
             <div class="form-group">
@@ -68,8 +71,8 @@
                         <th>No</th>
                         <th>Tanggal Awal</th>
                         <th>Tanggal Akhir</th>
+                        <th>Tipe</th>
                         <th>Keterangan</th>
-                        <th>Catatan</th>
                         <th>Status</th>
                         <th>Detail</th>
                     </tr>
@@ -81,7 +84,7 @@
                             <td>{{ $ab->start_date }}</td>
                             <td>{{ $ab->end_date }}</td>
                             <td>{{ $ab->reason }}</td>
-                            <td>{{ $ab->catatan }}</td>
+                            <td>{{ $ab->keterangan }}</td>
                             <td>
                                 @if($ab->status == 'confirmed')
                                     <span class="label label-success">Dikonfirmasi</span>
@@ -130,14 +133,14 @@
                                     <td>{{ $ab->end_date }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Keterangan</td>
+                                    <td>Tipe</td>
                                     <td>:</td>
                                     <td>{{ $ab->reason }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Catatan</td>
+                                    <td>Keterangam</td>
                                     <td>:</td>
-                                    <td>{{ $ab->catatan }}</td>
+                                    <td>{{ $ab->keterangan }}</td>
                                 </tr>
                                 <tr>
                                     <td>Status</td>
@@ -151,6 +154,11 @@
                                             <span class="label label-danger">Ditolak</span>
                                         @endif
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td>Catatan</td>
+                                    <td>:</td>
+                                    <td>{{ $ab->catatan ?? '-' }}</td>
                                 </tr>
                             </tbody>
                         </table>

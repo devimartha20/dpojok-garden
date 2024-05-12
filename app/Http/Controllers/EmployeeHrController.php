@@ -107,9 +107,9 @@ class EmployeeHrController extends Controller
         ]);
 
         if($store){
-            return redirect()->back()->with('success', 'Pengajuan Cuti telah Dikirim!');
+            return redirect()->route('employee.leave.index')->with('success', 'Pengajuan Cuti telah Dikirim!');
         }
-        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+        return redirect()->route('employee.leave.index')->with('fail', 'Terjadi Kesalahan!');
     }
 
     public function scan(Request $request){
