@@ -64,7 +64,33 @@ class AttendanceController extends Controller
             }
         }
 
-        return view('user.admin.attendance.index', compact('qr', 'qrActive', 'groupedData'));
+        $attendances = Attendance::all(); 
+        $confirmed_attendances = Attendance::where('status', 'confirmed')->get();
+        $pending_attendances = Attendance::where('status', 'pending')->get();
+        $rejected_attendances = Attendance::where('status', 'rejected')->get();
+
+        return view('user.admin.attendance.index', compact('qr', 'qrActive', 'groupedData',
+        'attendances',
+        'confirmed_attendances',
+        'pending_attendances',
+        'rejected_attendances'
+    ));
+    }
+
+    public function absenceIndex(){
+
+        $absences = Absence::all(); 
+        $confirmed_absences = Absence::where('status', 'confirmed')->get();
+        $pending_absences = Absence::where('status', 'pending')->get();
+        $rejected_absences = Absence::where('status', 'rejected')->get();
+
+        
+        return view('user/admin/absences/index', compact(
+        'absences',
+        'confirmed_absences',
+        'pending_absences',
+        'rejected_absences'
+    ));
     }
 
     public function showQR(){
@@ -137,8 +163,38 @@ class AttendanceController extends Controller
         // return response()->json(['qrHtml' => $qrHtml]);
     }
 
-    public function updateAttendanceStatus(){
-        
+    public function updateAttendanceStatus(Request $request, $id){
+        $request->validate([
+            'status' => 'required'
+        ]);
+
+       
+        $update = Attendance::findOrFail($id)->update([
+            'status' => $request->status,
+        ]);
+
+        if ($update){
+            return redirect()->back()->with('success', 'Status berhasil diubah!');
+        }
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+
+    }
+
+    public function updateAbsenceStatus(Request $request, $id){
+        $request->validate([
+            'status' => 'required',
+            'catatan' => 'nullable'
+        ]);
+       
+        $update = Absence::findOrFail($id)->update([
+            'status' => $request->status,
+            'catatan' => $request->catatan
+        ]);
+
+        if ($update){
+            return redirect()->back()->with('success', 'Status berhasil diubah!');
+        }
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
     

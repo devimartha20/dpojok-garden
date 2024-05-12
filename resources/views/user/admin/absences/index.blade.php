@@ -11,7 +11,7 @@
     <div><h6>Daftar Pengajuan Form Absensi</h6></div>
     <ul class="nav nav-tabs md-tabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#home3" role="tab">Menunggu</a>
+            <a class="nav-link active" data-toggle="tab" href="#pending" role="tab">Menunggu</a>
             <div class="slide"></div>
         </li>
         <li class="nav-item">
