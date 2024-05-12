@@ -15,6 +15,7 @@ class Absence extends Model
         'start_date',
         'end_date',
         'reason',
+        'keterangan',
         'catatan',
         'status',
     ];

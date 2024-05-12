@@ -61,13 +61,14 @@ class EmployeeHrController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'keterangan' => 'required',
-           
+           'reason' => 'required'
         ]);
 
         $store = Absence::create([
             'employee_id' => Auth::guard('employee')->id(),
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
+            'reason' => $request->reason,
             'keterangan' => $request->keterangan,
             'status' => 'pending',
         ]);

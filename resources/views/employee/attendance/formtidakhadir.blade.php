@@ -29,7 +29,7 @@
                 <div class="input-group">
                     <label class="col-sm-2 col-form-label">Tipe Ketidakhadiran</label>
                     <span class="input-group-addon" id="attendance_type"><i class="icofont icofont-check-alt"></i></span>
-                    <select class="form-control" id="tipe_absen" name="type" required>
+                    <select class="form-control" id="tipe_absen" name="reason" required>
                         <option value="sakit">Sakit</option>
                         <option value="izin">Izin</option>
                     </select>
