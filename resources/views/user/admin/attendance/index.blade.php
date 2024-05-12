@@ -82,7 +82,7 @@
                                         </tr>
                                     @elseif($ab->reason == 'sakit')
                                         <tr class="table-info">
-                                            <th scope="row">{{ $idx1 }}</th>
+                                            <th scope="row">{{ \Carbon\Carbon::parse($idx1)->format('l, F j, Y') }}</th>
                                             <td>{{ $ab->employee->id_pegawai }}</td>
                                             <td>{{ $ab->employee->nama }}</td>
                                             <td>{{ $ab->time ?? '-' }}</td>
@@ -133,6 +133,7 @@
                     <div class="card-block">
                         <h6 class="m-b-10">{{ $pa->employee->id_pegawai }} - {{ $pa->employee->nama }}</h6><hr>
                         <p>Tipe : {{ $pa->type == 'in' ? 'Absen Masuk' : 'Absen Keluar' }}</p>
+                        <p>Tanggal : {{ $pa->date }}</p>
                         <div class="float-right">
                             <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data{{ $pa->id }}">Ubah Status</button>
                         </div>
@@ -167,9 +168,9 @@
                                 <div class="mb-3">
                                     <label for="status" class="form-label">Status</label>
                                     <select class="form-select" id="status" name="status" required>
-                                        <option value="confirmed">Diterima</option>
-                                        <option value="rejected">Ditolak</option>
-                                        <option value="pending">Menunggu</option>
+                                        <option value="confirmed" {{ $pa->status == 'confirmed' ? 'selected' : '' }}>Diterima</option>
+                                        <option value="rejected" {{ $pa->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
+                                        <option value="pending" {{ $pa->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
                                     </select>
                                 </div>
                             </form>
@@ -191,6 +192,7 @@
                     <div class="card-block">
                         <h6 class="m-b-10">{{ $ca->employee->id_pegawai }} - {{ $ca->employee->nama }}</h6><hr>
                         <p>Tipe : {{ $ca->type == 'in' ? 'Absen Masuk' : 'Absen Keluar' }}</p>
+                        <p>Tanggal : {{ $ca->date }}</p>
                         <div class="float-right">
                             <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data{{ $ca->id }}">Ubah Status</button>
                         </div>
@@ -225,9 +227,9 @@
                                 <div class="mb-3">
                                     <label for="status" class="form-label">Status</label>
                                     <select class="form-select" id="status" name="status" required>
-                                        <option value="confirmed">Diterima</option>
-                                        <option value="rejected">Ditolak</option>
-                                        <option value="pending">Menunggu</option>
+                                        <option value="confirmed" {{ $ca->status == 'confirmed' ? 'selected' : '' }}>Diterima</option>
+                                        <option value="rejected" {{ $ca->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
+                                        <option value="pending" {{ $ca->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
                                     </select>
                                 </div>
                             </form>
@@ -248,6 +250,7 @@
                     <div class="card-block">
                         <h6 class="m-b-10">{{ $ra->employee->id_pegawai }} - {{ $ra->employee->nama }}</h6><hr>
                         <p>Tipe : {{ $ra->type == 'in' ? 'Absen Masuk' : 'Absen Keluar' }}</p>
+                        <p>Tanggal : {{ $ra->date }}</p>
                         <div class="float-right">
                             <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data{{ $ra->id }}">Ubah Status</button>
                         </div>
@@ -282,9 +285,9 @@
                                 <div class="mb-3">
                                     <label for="status" class="form-label">Status</label>
                                     <select class="form-select" id="status" name="status" required>
-                                        <option value="confirmed">Diterima</option>
-                                        <option value="rejected">Ditolak</option>
-                                        <option value="pending">Menunggu</option>
+                                        <option value="confirmed" {{ $ra->status == 'confirmed' ? 'selected' : '' }}>Diterima</option>
+                                        <option value="rejected" {{ $ra->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
+                                        <option value="pending" {{ $ra->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
                                     </select>
                                 </div>
                         </div>
