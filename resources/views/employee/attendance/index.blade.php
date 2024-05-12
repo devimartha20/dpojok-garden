@@ -46,7 +46,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>ID Pegawai</th>
+                        {{-- <th>ID Pegawai</th> --}}
                         <th>Metode</th>
                         <th>Tanggal</th>
                         <th>Waktu</th>
@@ -55,60 +55,44 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse ($attendances as $atts)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>3321</td>
-                        <td>QR</td>
-                        <td>10-05-2024</td>
-                        <td>11:45:32</td>
-                        <td>Masuk</td>
-                        <td><span class="label label-success">Confirmed</span></td>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        {{-- <td>3321</td> --}}
+                        <td>
+                            @if ($atts->method == 'qr')
+                                Scan QR Code
+                            @elseif($atts->method == 'confirmation')
+                                Pengajuan Konfirmasi Kehadiran
+                            @endif
+                        </td>
+                        <td>{{ $atts->date }}</td>
+                        <td>{{ $atts->time }}</td>
+                        <td>
+                        @if ($atts->type == 'in')
+                            Masuk
+                        @elseif($atts->type == 'out')
+                            Keluar
+                        @endif
+                        </td>
+                        <td>
+                            @if ($atts->status == 'confirmed')
+                                <span class="label label-success">Dikonfirmasi</span>
+                            @elseif ($atts->status == 'pending')
+                                <span class="label label-warning">Menunggu</span>
+                            @elseif($atts->status == 'rejected')
+                            <span class="label label-danger">Ditolak</span>
+                            @endif
+
+                        </td>
                     </tr>
+                    @empty
                     <tr>
-                        <th scope="row">2</th>
-                        <td>3321</td>
-                        <td>QR</td>
-                        <td>10-05-2024</td>
-                        <td>11:45:32</td>
-                        <td>Pulang</td>
-                        <td><span class="label label-success">Confirmed</span></td>
+                        <td colspan="6" class="text-center">No Data</td>
                     </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>3321</td>
-                        <td>QR</td>
-                        <td>10-05-2024</td>
-                        <td>11:45:32</td>
-                        <td>Masuk</td>
-                        <td><span class="label label-warning">Pending</span></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>3321</td>
-                        <td>QR</td>
-                        <td>10-05-2024</td>
-                        <td>11:45:32</td>
-                        <td>Masuk</td>
-                        <td><span class="label label-warning">Pending</span></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>3321</td>
-                        <td>QR</td>
-                        <td>10-05-2024</td>
-                        <td>11:45:32</td>
-                        <td>Masuk</td>
-                        <td><span class="label label-danger">Failed</span></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>3321</td>
-                        <td>QR</td>
-                        <td>10-05-2024</td>
-                        <td>11:45:32</td>
-                        <td>Masuk</td>
-                        <td><span class="label label-danger">Failed</span></td>
-                    </tr>
+                    @endforelse
+
+
                 </tbody>
             </table>
         </div>
