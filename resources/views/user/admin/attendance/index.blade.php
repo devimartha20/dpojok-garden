@@ -5,19 +5,20 @@
 @section('styles')
  <!-- Notification.css -->
  <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/assets/pages/notification/notification.css">
-@endsection
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+ @endsection
 @section('content')
 <div class="card">
     <div class="card-header">
         <h5>Absensi Pegawai</h5>
         <div class="card-header-right">
-            <ul class="list-unstyled card-option">
-                <li><i class="fa fa-chevron-left"></i></li>
-                <li><i class="fa fa-window-maximize full-card"></i></li>
-                <li><i class="fa fa-minus minimize-card"></i></li>
-                <li><i class="fa fa-refresh reload-card"></i></li>
-                <li><i class="fa fa-times close-card"></i></li>
-            </ul>
+            <form id="toggleForm" action="{{ route('attendance.qr.status') }}" method="POST">
+                @csrf
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" name="status" role="switch" {{ $qrActive->isActive == 1 ? 'checked' : '' }} id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Aktifkan Sesi Absensi QR</label>
+              </div>
+            </form>
         </div>
 
     </div>
@@ -26,66 +27,106 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>ID Pegawai</th>
                         <th>Tanggal</th>
+                        <th>ID Pegawai</th>
+                        <th>Nama</th>
+                        <th>Waktu</th>
                         <th>Kehadiran</th>
-                        <th>Keterangan</th>
+                        <th>Catatan</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="table-success">
-                        <th scope="row">1</th>
-                        <td>3245</td>
-                        <td>10-05-2024</td>
-                        <td>Masuk</td>
-                        <td>Masuk</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>3245</td>
-                        <td>10-05-2024</td>
-                        <td>Masuk</td>
-                        <td>Masuk</td>
-                    </tr>
-                    <tr class="table-warning">
-                        <th scope="row">3</th>
-                        <td>3245</td>
-                        <td>10-05-2024</td>
-                        <td>Sakit</td>
-                        <td>Sakit</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>3245</td>
-                        <td>10-05-2024</td>
-                        <td>Masuk</td>
-                        <td>Masuk</td>
-                    </tr>
-                    <tr class="table-danger">
-                        <th scope="row">5</th>
-                        <td>3245</td>
-                        <td>10-05-2024</td>
-                        <td>Tidak Masuk</td>
-                        <td>Tanpa Keterangan</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>3245</td>
-                        <td>10-05-2024</td>
-                        <td>Masuk</td>
-                        <td>Masuk</td>
-                    </tr>
-                    <tr class="table-info">
-                        <th scope="row">7</th>
-                        <td>3245</td>
-                        <td>10-05-2024</td>
-                        <td>Izin</td>
-                        <td>Izin</td>
-                    </tr>
+                     @forelse ($groupedData as $idx1 => $date)
+                        @foreach ($date as $idx2 => $d)
+                            @if ($idx2 == 'attendances')
+                                @foreach ($d as $at)
+                                    @if ($at->type == 'in')
+                                        <tr class="table-success">
+                                            <th scope="row">{{ \Carbon\Carbon::parse($idx1)->format('l, F j, Y') }}</th>
+                                            <td>{{ $at->employee->id_pegawai }}</td>
+                                            <td>{{ $at->employee->nama }}</td>
+                                            <td>{{ $at->time }}</td>
+                                            <td>Masuk</td>
+                                            <td>-</td>
+                                            <td>
+                                                @if ($at->status == 'confirmed')
+                                                    <span class="label label-success">Dikonfirmasi</span>
+                                                @elseif ($at->status == 'pending')
+                                                    <span class="label label-warning">Menunggu</span>
+                                                @elseif($at->status == 'rejected')
+                                                    <span class="label label-danger">Ditolak</span>
+                                                @endif
+                                            </td>
+
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @elseif($idx2 == 'absences')
+                                @foreach ($d as $ab)
+                                    @if($ab->reason == 'izin')
+                                        <tr class="table-warning">
+                                            <th scope="row">{{ $idx1 }}</th>
+                                            <td>{{ $ab->employee->id_pegawai }}</td>
+                                            <td>{{ $ab->employee->nama }}</td>
+                                            <td>{{ $ab->time }}</td>
+                                            <td>Izin</td>
+                                            <td>{{ $ab->catatan }}</td>
+                                            <td>
+                                                @if ($ab->status == 'confirmed')
+                                                    <span class="label label-success">Dikonfirmasi</span>
+                                                @elseif ($ab->status == 'pending')
+                                                    <span class="label label-warning">Menunggu</span>
+                                                @elseif($ab->status == 'rejected')
+                                                    <span class="label label-danger">Ditolak</span>
+                                                @endif
+                                            </td>
+
+                                        </tr>
+                                    @elseif($ab->reason == 'sakit')
+                                        <tr class="table-info">
+                                            <th scope="row">{{ $idx1 }}</th>
+                                            <td>{{ $ab->employee->id_pegawai }}</td>
+                                            <td>{{ $ab->employee->nama }}</td>
+                                            <td>{{ $ab->time }}</td>
+                                            <td>Sakit</td>
+                                            <td>{{ $ab->catatan }}</td>
+                                            <td>
+                                                @if ($ab->status == 'confirmed')
+                                                    <span class="label label-success">Dikonfirmasi</span>
+                                                @elseif ($ab->status == 'pending')
+                                                    <span class="label label-warning">Menunggu</span>
+                                                @elseif($ab->status == 'rejected')
+                                                    <span class="label label-danger">Ditolak</span>
+                                                @endif
+                                            </td>
+
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
+
+                    @empty
+
+                    @endforelse
+
+
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleForm = document.getElementById('toggleForm');
+        const toggleSwitch = document.getElementById('flexSwitchCheckDefault');
+
+        toggleSwitch.addEventListener('change', function () {
+            toggleForm.submit();
+        });
+    });
+</script>
 @endsection
