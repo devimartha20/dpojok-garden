@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('leaves', function (Blueprint $table) {
+        Schema::create('absences', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->string('reason');
+            $table->ecum('reason', 'izin', 'sakit');
             $table->enum('status', ['pending','confirmed', 'rejected'])->default('pending');
             $table->timestamps();
+            $table->string('keterangan')->nullable();
             $table->string('catatan')->nullable();
 
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('CASCADE');
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('leaves');
+        Schema::dropIfExists('absences');
     }
 };

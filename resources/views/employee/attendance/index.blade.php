@@ -52,6 +52,7 @@
                         <th>Waktu</th>
                         <th>Tipe Absen</th>
                         <th>Status</th>
+                        <th>Catatan</th>
                     </tr>
                 </thead>
                 <tbody>

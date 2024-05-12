@@ -46,7 +46,8 @@ Route::get('/checkouttry', [OnlineOrderController::class, 'checkout'])->name('ch
 Route::get('/finish-payment', [OnlineOrderController::class, 'finish'])->name('finish-payment');
 Route::get('record-attendance', [AttendanceController::class, 'showQR'])->name('attendance.show');
 
-Route::get('/updateQR', [AttendanceController::class, 'updateQR']);
+Route::get('/updateQR', [AttendanceController::class, 'updateQR'])->name('updateQR');
+Route::get('/checkQRStatus', [AttendanceController::class, 'checkStatus'])->name('checkQRStatus');
 
 
 Route::middleware('auth.employee')->group(function () {
@@ -91,9 +92,6 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('employee', EmployeeController::class);
 
         Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-        Route::get('/absences', function () {
-            return view('user/admin/absences/index');
-        })->name('absences.index');
 
     });
 

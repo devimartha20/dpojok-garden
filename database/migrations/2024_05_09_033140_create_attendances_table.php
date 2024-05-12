@@ -19,9 +19,7 @@ return new class extends Migration
             $table->time('time');
             $table->enum('type', ['in', 'out']);
             $table->enum('status', ['confirmed', 'pending', 'rejected'])->default('pending');
-            $table->
             $table->timestamps();
-
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('CASCADE');
         });
     }

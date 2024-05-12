@@ -93,7 +93,8 @@
 
       <div class="qr-container">
         @if($qr != null)
-        {!! $qr !!}
+        <div id="#qrContainer">{!! $qr !!}</div>
+
             <h2 class="head">
             Absensi
             </h2>
@@ -110,26 +111,56 @@
         @endif
       </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function updateQRCode() {
-          // Make an AJAX request to update the QR code
-          var xhr = new XMLHttpRequest();
-          xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-              if (xhr.status === 200) {
-                // Reload the page after updating the QR code
-                location.reload();
-              } else {
-                console.error('Failed to update QR code: ' + xhr.status);
-              }
-            }
-          };
-          xhr.open('GET', '/updateQR', true);
-          xhr.send();
+// Function to periodically check QR code status and update QR code
+async function checkQRCodeStatus() {
+    try {
+        const response = await fetch('{{ route("checkQRStatus") }}');
+        if (!response.ok) {
+            throw new Error('Failed to check QR code status');
+        }
+        const data = await response.json();
+        if (data.isActive != qrIsActive) {
+
+            location.reload();
+
         }
 
-        // Call updateQRCode every 15 seconds
-        setInterval(updateQRCode, 15000); // 15000 milliseconds = 15 seconds
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Call checkQRCodeStatus every second
+setInterval(checkQRCodeStatus, 1000); // 1000 milliseconds = 1 second
+
+// Variable to store the interval ID
+let updateInterval;
+
+// Function to update QR code
+async function updateQRCode() {
+    try {
+        const response = await fetch('{{ route("updateQR") }}');
+        if (!response.ok) {
+            throw new Error('Failed to update QR code');
+        }
+        // const data = await response.json();
+        // Reload the page
+        location.reload();
+
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Variable to store the current isActive status
+let qrIsActive = {{ $qrActive->isActive }};
+
+// Call updateQRCode every 15 seconds
+updateInterval = setInterval(updateQRCode, 10000); // 10000 milliseconds = 10 seconds
+
       </script>
   </body>
 </html>

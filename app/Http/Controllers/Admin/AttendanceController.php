@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Absence;
 use App\Models\ActiveQR;
+use App\Models\Attendance;
+use Auth;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Str;
@@ -36,7 +40,31 @@ class AttendanceController extends Controller
             $qr = QrCode::size(200)->generate($code);
         }
 
-        return view('user.admin.attendance.index', compact('qr'));
+        // Get distinct dates where either attendance or absence records exist
+        $distinctDates = DB::table('attendances')
+        ->select('date')
+        ->union(DB::table('absences')->select('start_date as date'))
+        ->distinct()
+        ->orderBy('date')
+        ->get()
+        ->pluck('date');
+
+        // Fetch attendance and absence records for each distinct date
+        $groupedData = [];
+        foreach ($distinctDates as $date) {
+            $attendances = Attendance::whereDate('date', $date)->get();
+            $absences = Absence::whereDate('start_date', $date)->get();
+
+            // If either attendances or absences exist for the date, add them to groupedData
+            if ($attendances->isNotEmpty() || $absences->isNotEmpty()) {
+                $groupedData[$date] = [
+                    'attendances' => $attendances,
+                    'absences' => $absences,
+                ];
+            }
+        }
+
+        return view('user.admin.attendance.index', compact('qr', 'qrActive', 'groupedData'));
     }
 
     public function showQR(){
@@ -52,11 +80,38 @@ class AttendanceController extends Controller
         }
 
 
-        return view('employee.showQR', compact('qr'));
+        return view('employee.showQR', compact('qr', 'qrActive'));
     }
 
-    public function changeStatus(){
+    public function checkStatus()
+    {
+        $qrActive = ActiveQR::first();
 
+        return response()->json([
+            'isActive' => $qrActive ? $qrActive->isActive : 0,
+        ]);
+    }
+
+    public function updateQRStatus(Request $request)
+    {
+        // Retrieve the value of the 'status' checkbox from the request
+        $status = $request->status;
+
+        // Generate a unique code for the QR code
+        $code = Carbon::now()->timestamp . '-' . Carbon::now()->addSeconds(5)->timestamp . '-' . Str::random(20);
+
+        if ($status) {
+            // Create or update the ActiveQR model
+            $qrActive = ActiveQR::firstOrCreate([], ['code' => $code]);
+            $qrActive->update(['isActive' => true]);
+        }else{
+             // Create or update the ActiveQR model
+             $qrActive = ActiveQR::firstOrCreate([], ['code' => $code]);
+             $qrActive->update(['isActive' => false]);
+        }
+        // return dd($qrActive);
+        // Redirect or return a response as needed
+        return redirect()->back()->with('success', 'QR session status updated successfully');
     }
 
     public function updateQR(){
@@ -75,5 +130,10 @@ class AttendanceController extends Controller
             ]);
             }
         }
+
+         // Generate QR code HTML
+        //  $qrHtml = QrCode::size(200)->generate($code);
+
+        // return response()->json(['qrHtml' => $qrHtml]);
     }
 }
