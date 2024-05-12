@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\PaymentMethodController;
+use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Auth\EmployeeLoginController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Kasir\PaymentTransController;
 use App\Http\Controllers\Koki\OrderProsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\EmployeeController;
@@ -90,7 +92,13 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('employee', EmployeeController::class);
 
         Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+        Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index');
         Route::post('/update/qr/', [AttendanceController::class, 'updateQRStatus'])->name('attendance.qr.status');
+        
+        Route::post('/update/attendacence/status/{id}', [AttendanceController::class, 'updateAttendanceStatus'])->name('attendance.update.status');
+        Route::post('/update/absence/status/{id}', [AttendanceController::class, 'updateAbsenceStatus'])->name('absence.update.status');
+        Route::post('/update/leave/status/{id}', [ScheduleController::class, 'updateLeaveStatus'])->name('leave.update.status');
+        
         Route::get('/kelola-ketidakhadiran', function () {
             return view('user/admin/absences/index');
         })->name('kelolatidakhadir.route');
