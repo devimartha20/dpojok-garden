@@ -137,7 +137,7 @@
                 @endforelse
         </div>
         <div class="tab-pane" id="settings3" role="tabpanel">
-            @forelse ($rejeted_absences as $ra)
+            @forelse ($rejected_absences as $ra)
             <div class="page-header card">
                 <div class="card-block">
                     <h6 class="m-b-10">{{ $ra->employee->id_pegawai }} - {{ $ra->employee->nama }}</h6><hr>
