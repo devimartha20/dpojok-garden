@@ -7,7 +7,7 @@
  <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/assets/pages/notification/notification.css">
 @endsection
 @section('content')
-<div class="col-lg-12 col-xl-6">
+<div class="col-lg-12 col-xl-12">
     <div><h6>Daftar Pengajuan Form Absensi</h6></div>
     <ul class="nav nav-tabs md-tabs" role="tablist">
         <li class="nav-item">

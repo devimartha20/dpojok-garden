@@ -8,6 +8,21 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
+    public function leaveIndex(){
+
+        $leaves = Leave::all(); 
+        $confirmed_leaves = Leave::where('status', 'confirmed')->get();
+        $pending_leaves = Leave::where('status', 'pending')->get();
+        $rejected_leaves = Leave::where('status', 'rejected')->get();
+
+        
+        return view('user/admin/leave/index', compact(
+        'leaves',
+        'confirmed_leaves',
+        'pending_leaves',
+        'rejected_leaves'
+    ));
+    }
     public function updateLeaveStatus(Request $request, $id){
         $request->validate([
             'status' => 'required',
