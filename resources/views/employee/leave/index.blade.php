@@ -1,5 +1,9 @@
 @extends('layouts.main.layout')
 
+@section('styles')
+    <!-- Notification.css -->
+ <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/assets/pages/notification/notification.css">
+@endsection
 @section('content')
 <div class="row">
     <div class="col-md-12 col-lg-12">
@@ -72,11 +76,11 @@
                                 <td>{{ $l->reason }}</td>
                                 <td>
                                     @if($l->status == 'confirmed')
-                                        <span class="label label-success"></span>
+                                        <span class="label label-success">Dikonfirmasi</span>
                                     @elseif($l->status == 'pending')
-                                        <span class="label label-warning"></span>
+                                        <span class="label label-warning">Menunggu</span>
                                     @elseif($l->status == 'rejected')
-                                        <span class="label label-danger"></span>
+                                        <span class="label label-danger">Ditolak</span>
                                     @endif
                                 </td>
                                 <td>{{ $l->catatan }}</td>
@@ -115,11 +119,11 @@
                                 <td>{{ $cl->reason }}</td>
                                 <td>
                                     @if($cl->status == 'confirmed')
-                                        <span class="label label-success"></span>
+                                        <span class="label label-success">Dikonfirmasi</span>
                                     @elseif($cl->status == 'pending')
-                                        <span class="label label-warning"></span>
+                                        <span class="label label-warning">Menunggu</span>
                                     @elseif($cl->status == 'rejected')
-                                        <span class="label label-danger"></span>
+                                        <span class="label label-danger">Ditolak</span>
                                     @endif
                                 </td>
                                 <td>{{ $cl->catatan }}</td>
@@ -134,7 +138,7 @@
                         </tbody>
                     </table>
                 </div>
-               
+
             </div>
             <div class="tab-pane" id="pending" role="tabpanel" aria-expanded="false">
                 <!-- Content for Menunggu tab -->
@@ -159,11 +163,11 @@
                                 <td>{{ $pl->reason }}</td>
                                 <td>
                                     @if($pl->status == 'confirmed')
-                                        <span class="label label-success"></span>
+                                        <span class="label label-success">Dikonfirmasi</span>
                                     @elseif($pl->status == 'pending')
-                                        <span class="label label-warning"></span>
+                                        <span class="label label-warning">Menunggu</span>
                                     @elseif($pl->status == 'rejected')
-                                        <span class="label label-danger"></span>
+                                        <span class="label label-danger">Ditolak</span>
                                     @endif
                                 </td>
                                 <td>{{ $pl->catatan }}</td>
@@ -178,7 +182,7 @@
                         </tbody>
                     </table>
                 </div>
-               
+
             </div>
             <div class="tab-pane" id="rejected" role="tabpanel" aria-expanded="true">
                 <!-- Content for Ditolak tab -->
@@ -195,7 +199,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($leaves as $rl)
+                            @forelse ($rejected_leaves as $rl)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $rl->start_date }}</td>
@@ -203,11 +207,11 @@
                                 <td>{{ $rl->reason }}</td>
                                 <td>
                                     @if($rl->status == 'confirmed')
-                                        <span class="label label-success"></span>
+                                        <span class="label label-success">Dikonfirmasi</span>
                                     @elseif($rl->status == 'pending')
-                                        <span class="label label-warning"></span>
+                                        <span class="label label-warning">Menunggu</span>
                                     @elseif($rl->status == 'rejected')
-                                        <span class="label label-danger"></span>
+                                        <span class="label label-danger">Ditolak</span>
                                     @endif
                                 </td>
                                 <td>{{ $rl->catatan }}</td>
@@ -222,7 +226,6 @@
                         </tbody>
                     </table>
                 </div>
-                
             </div>
         </div>
     </div>
