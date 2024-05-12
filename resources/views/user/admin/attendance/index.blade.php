@@ -82,7 +82,7 @@
                                         </tr>
                                     @elseif($ab->reason == 'sakit')
                                         <tr class="table-info">
-                                            <th scope="row">{{ $idx1 }}</th>
+                                            <th scope="row">{{ \Carbon\Carbon::parse($idx1)->format('l, F j, Y') }}</th>
                                             <td>{{ $ab->employee->id_pegawai }}</td>
                                             <td>{{ $ab->employee->nama }}</td>
                                             <td>{{ $ab->time ?? '-' }}</td>
