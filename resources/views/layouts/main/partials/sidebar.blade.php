@@ -174,7 +174,7 @@
                         </a>
                     </li>
                     <li class=" ">
-                        <a href="{{ route('kelolatidakhadir.route')}}">
+                        <a href="{{ route('absence.index')}}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Ketidakhadiran</span>
                             <span class="pcoded-mcaret"></span>

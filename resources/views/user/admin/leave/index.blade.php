@@ -7,25 +7,25 @@
  <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/assets/pages/notification/notification.css">
 @endsection
 @section('content')
-<div class="col-lg-12 col-xl-6">
+<div class="col-lg-12 col-xl-12">
     <div><h6>Daftar Pengajuan Form Cuti</h6></div>
     <ul class="nav nav-tabs md-tabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#home3" role="tab">Menunggu</a>
+            <a class="nav-link active" data-toggle="tab" href="#pending" role="tab">Menunggu</a>
             <div class="slide"></div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#profile3" role="tab">Disetujui</a>
+            <a class="nav-link" data-toggle="tab" href="#confirmed" role="tab">Disetujui</a>
             <div class="slide"></div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#settings3" role="tab">Ditolak</a>
+            <a class="nav-link" data-toggle="tab" href="#rejected" role="tab">Ditolak</a>
             <div class="slide"></div>
         </li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content card-block">
-        <div class="tab-pane active" id="home3" role="tabpanel">
+        <div class="tab-pane active" id="pending" role="tabpanel">
             <div class="page-header card">
                 <div class="card-block">
                     <h6 class="m-b-10">0021 - Debi</h6><hr>
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="profile3" role="tabpanel">
+        <div class="tab-pane" id="confirmed" role="tabpanel">
             <div class="page-header card">
                 <div class="card-block">
                     <h6 class="m-b-10">0021 - Debi</h6><hr>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="settings3" role="tabpanel">
+        <div class="tab-pane" id="rejected" role="tabpanel">
             <div class="page-header card">
                 <div class="card-block">
                     <h6 class="m-b-10">0021 - Debi</h6><hr>
