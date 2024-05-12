@@ -9,16 +9,22 @@
 @section('content')
 <div class="page-header card">
     <div class="card-block">
-        <h5 class="m-b-10">Daftar Pengajuan Ketidakhadiran Pegawai</h5>
-        <p class="text-muted m-b-10">Daftar pengajuan ketidakhadiran pegawai</p>
+        <h5 class="m-b-10">0021 - Debi</h5>
+        <p class="text-muted m-b-10">Tipe : Absen Masuk</p>
+        <p class="text-muted m-b-10">Catatan : absen masuk pagi ini</p>
         <ul class="breadcrumb-title b-t-default p-t-10">
-            <li class="breadcrumb-item">
-                <a href="index.html"> <i class="fa fa-home"></i> </a>
+            <li class="breadcrumb-item"><a href="#!">Lihat Detail</a>
             </li>
-                    <li class="breadcrumb-item"><a href="#!">Basic Components</a>
-                    </li>
-                    <li class="breadcrumb-item"><a href="#!">Breadcrumb</a>
-                    </li>
+            <li class="breadcrumb-item float-right">
+                <a href="#!">
+                    <button class="btn btn-success"><i class="ti-check"></i></button>
+                </a>
+            </li>
+            <li class="breadcrumb-item float-right">
+                <a href="#!">
+                    <button class="btn btn-danger"><i class="ti-close"></i></button>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
