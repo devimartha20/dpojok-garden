@@ -67,7 +67,7 @@
                                             <th scope="row">{{ \Carbon\Carbon::parse($idx1)->format('l, F j, Y') }}</th>
                                             <td>{{ $ab->employee->id_pegawai }}</td>
                                             <td>{{ $ab->employee->nama }}</td>
-                                            <td>{{ $ab->time ? '-' }}</td>
+                                            <td>{{ $ab->time ?? '-' }}</td>
                                             <td>Izin</td>
                                             <td>{{ $ab->catatan }}</td>
                                             <td>
@@ -181,9 +181,9 @@
                     </div>
                 </div>
             @empty
-                
+
             @endforelse
-            
+
         </div>
         <div class="tab-pane" id="confirmed" role="tabpanel">
             @forelse ($confirmed_attendances as $ca)
@@ -239,7 +239,7 @@
                     </div>
                 </div>
             @empty
-                
+
             @endforelse
         </div>
         <div class="tab-pane" id="rejected" role="tabpanel">
@@ -287,16 +287,17 @@
                                         <option value="pending">Menunggu</option>
                                     </select>
                                 </div>
-                            </form>
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-secondary mr-auto" data-dismiss="modal">Ubah</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         </div>
+                    </form>
                     </div>
                     </div>
                 </div>
             @empty
-                
+
             @endforelse
         </div>
         <div class="tab-pane" id="settings3" role="tabpanel">

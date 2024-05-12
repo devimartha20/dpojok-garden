@@ -26,7 +26,7 @@
     <!-- Tab panes -->
     <div class="tab-content card-block">
         <div class="tab-pane active" id="pending" role="tabpanel">
-           
+
                 @forelse ($pending_absences as $pa)
                 <div class="page-header card">
                     <div class="card-block">
@@ -64,7 +64,7 @@
                                         <label for="catatan" class="form-label">Catatan</label>
                                         <textarea  name="catatan" class="form-control" id="catatan" rows="3"></textarea>
                                     </div>
-                                
+
                             </div>
                             <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Simpan</button>
@@ -76,10 +76,10 @@
                     </div>
                  </div>
                 @empty
-                    
+
                 @endforelse
-                
-            
+
+
         </div>
         <div class="tab-pane" id="confirmed" role="tabpanel">
             @forelse ($confirmed_absences as $ca)
@@ -121,7 +121,7 @@
                                         <label for="catatan" class="form-label">Catatan</label>
                                         <textarea class="form-control" id="catatan" name="catatan" rows="3"></textarea>
                                     </div>
-                                
+
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -133,7 +133,7 @@
                     </div>
                  </div>
                 @empty
-                    
+
                 @endforelse
         </div>
         <div class="tab-pane" id="settings3" role="tabpanel">
@@ -174,7 +174,7 @@
                                     <label for="catatan" class="form-label">Catatan</label>
                                     <textarea class="form-control" id="catatan" name="catatan" rows="3"></textarea>
                                 </div>
-                           
+
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Simpan</button>
@@ -186,9 +186,10 @@
                 </div>
              </div>
             @empty
-                
+
             @endforelse
         </div>
+    </form>
     </div>
 </div>
 {{-- Modal  --}}
