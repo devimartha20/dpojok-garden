@@ -104,11 +104,9 @@
                                     <div class="mb-3">
                                         <label for="status" class="form-label"  >Status</label>
                                         <select class="form-select" id="status" name="status">
-                                            <select class="form-select" id="status" name="status">
-                                                <option value="confirmed" {{ $ca->status == 'confirmed' ? 'selected' : '' }}>Diterima</option>
-                                                <option value="rejected" {{ $ca->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
-                                                <option value="pending" {{ $ca->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
-                                            </select>
+                                            <option value="confirmed" {{ $ca->status == 'confirmed' ? 'selected' : '' }}>Diterima</option>
+                                            <option value="rejected" {{ $ca->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
+                                            <option value="pending" {{ $ca->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
                                         </select>
                                     </div>
 
@@ -132,16 +130,16 @@
                 @endforelse
         </div>
         <div class="tab-pane" id="rejected" role="tabpanel">
-            @forelse ($rejeted_leaves as $ra)
+            @forelse ($rejected_leaves as $ra)
             <div class="page-header card">
                 <div class="card-block">
                     <h6 class="m-b-10">{{ $ra->employee->id_pegawai }} - {{ $ra->employee->nama }}</h6><hr>
                     <p>Tanggal Awal: {{ $ra->start_date }}</p>
                     <p>Tanggal Akhir : {{ $ra->end_date }}</p>
                     <p>Alasan : {{ $ra->reason }}</p>
-                
+
                     <div class="float-right">
-                        <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data{{ $ca->id }}">Ubah Status</button>
+                        <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data{{ $ra->id }}">Ubah Status</button>
                     </div>
                 </div>
                 <div class="modal fade" id="data{{ $ra->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -109,11 +109,9 @@
                                     <div class="mb-3">
                                         <label for="status" class="form-label"  >Status</label>
                                         <select class="form-select" id="status" name="status">
-                                            <select class="form-select" id="status" name="status">
-                                                <option value="confirmed" {{ $ca->status == 'confirmed' ? 'selected' : '' }}>Diterima</option>
-                                                <option value="rejected" {{ $ca->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
-                                                <option value="pending" {{ $ca->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
-                                            </select>
+                                            <option value="confirmed" {{ $ca->status == 'confirmed' ? 'selected' : '' }}>Diterima</option>
+                                            <option value="rejected" {{ $ca->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>
+                                            <option value="pending" {{ $ca->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
                                         </select>
                                     </div>
 
