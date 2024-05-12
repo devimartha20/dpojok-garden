@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Daftar Ketidakhadiran Pegawai
+    Daftar Cuti Pegawai
 @endsection
 @section('styles')
  <!-- Notification.css -->
@@ -8,7 +8,7 @@
 @endsection
 @section('content')
 <div class="col-lg-12 col-xl-6">
-    <div><h6>Daftar Pengajuan Form Absensi</h6></div>
+    <div><h6>Daftar Pengajuan Form Cuti</h6></div>
     <ul class="nav nav-tabs md-tabs" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#home3" role="tab">Menunggu</a>
@@ -31,7 +31,7 @@
                     <h6 class="m-b-10">0021 - Debi</h6><hr>
                     <p>Tanggal Awal: 09-08-2024</p>
                     <p>Tanggal Akhir : 10-08-2024</p>
-                    <p>Keterangan : Sakit</p>
+                    <p>Keterangan : Cuti Menikah</p>
                     <div class="float-right">
                         <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data1">Ubah Status</button>
                     </div>
@@ -44,7 +44,7 @@
                     <h6 class="m-b-10">0021 - Debi</h6><hr>
                     <p>Tanggal Awal: 09-08-2024</p>
                     <p>Tanggal Akhir : 10-08-2024</p>
-                    <p>Keterangan : Sakit</p>
+                    <p>Keterangan : Cuti Melahirkan</p>
                     <div class="float-right">
                         <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data1">Ubah Status</button>
                     </div>
@@ -57,7 +57,7 @@
                     <h6 class="m-b-10">0021 - Debi</h6><hr>
                     <p>Tanggal Awal: 09-08-2024</p>
                     <p>Tanggal Akhir : 10-08-2024</p>
-                    <p>Keterangan : Sakit</p>
+                    <p>Keterangan : Cuti Liburan</p>
                     <div class="float-right">
                         <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data1">Ubah Status</button>
                     </div>
@@ -71,7 +71,7 @@
     <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ubah Satatus Ketidakhadiran</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ubah Status Pengajuan Cuti</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
