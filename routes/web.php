@@ -81,7 +81,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
-    Route::group(['middleware' => ['role:admin,owner']], function () { 
+    Route::group(['middleware' => ['role:admin|owner']], function () { 
         Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
         Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index'); 
         Route::get('leave', [ScheduleController::class, 'leaveIndex'])->name('leave.index');
