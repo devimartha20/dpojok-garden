@@ -80,6 +80,18 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::middleware(['role:admin,owner'])->group(function () {
+        Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+        Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index'); 
+        Route::get('leave', [ScheduleController::class, 'leaveIndex'])->name('leave.index');
+        
+        Route::post('update/qr', [AttendanceController::class, 'updateQRStatus'])->name('attendance.qr.status');
+        Route::post('update/attendance/status/{id}', [AttendanceController::class, 'updateAttendanceStatus'])->name('attendance.update.status');
+        Route::post('update/absence/status/{id}', [AttendanceController::class, 'updateAbsenceStatus'])->name('absence.update.status');
+        Route::post('update/leave/status/{id}', [ScheduleController::class, 'updateLeaveStatus'])->name('leave.update.status');
+    });
+    
+
     //Route Khusus Admin
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('product-category', ProductCategoryController::class);
@@ -91,14 +103,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('customer', CustomerController::class);
         Route::resource('employee', EmployeeController::class);
 
-        Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-        Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index'); 
-        Route::get('leave', [ScheduleController::class, 'leaveIndex'])->name('leave.index');
-        Route::post('/update/qr/', [AttendanceController::class, 'updateQRStatus'])->name('attendance.qr.status');
-        
-        Route::post('/update/attendacence/status/{id}', [AttendanceController::class, 'updateAttendanceStatus'])->name('attendance.update.status');
-        Route::post('/update/absence/status/{id}', [AttendanceController::class, 'updateAbsenceStatus'])->name('absence.update.status');
-        Route::post('/update/leave/status/{id}', [ScheduleController::class, 'updateLeaveStatus'])->name('leave.update.status');
+       
         
         Route::get('/kelola-ketidakhadiran', function () {
             return view('user/admin/absences/index');
