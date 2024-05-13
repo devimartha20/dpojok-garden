@@ -21,7 +21,7 @@
             </form>
         </div>
     </div>
-    <div class="card-block table-border-style">
+    <!-- <div class="card-block table-border-style">
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -107,7 +107,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> -->
 </div>
 <div class="col-lg-12 col-xl-12">
     <div><h6>Daftar Pengajuan Form Absensi</h6></div>
