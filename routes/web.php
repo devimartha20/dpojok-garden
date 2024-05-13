@@ -80,7 +80,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::middleware(['role:admin,owner'])->group(function () {
+
+    Route::group(['middleware' => ['role:admin,owner']], function () { 
         Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
         Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index'); 
         Route::get('leave', [ScheduleController::class, 'leaveIndex'])->name('leave.index');
@@ -89,7 +90,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::post('update/attendance/status/{id}', [AttendanceController::class, 'updateAttendanceStatus'])->name('attendance.update.status');
         Route::post('update/absence/status/{id}', [AttendanceController::class, 'updateAbsenceStatus'])->name('absence.update.status');
         Route::post('update/leave/status/{id}', [ScheduleController::class, 'updateLeaveStatus'])->name('leave.update.status');
-    });
+     });
     
 
     //Route Khusus Admin
