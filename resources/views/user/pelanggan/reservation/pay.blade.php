@@ -23,10 +23,7 @@
                         <label for="customer_name">Pemesan:</label>
                         <p class="form-control-static">Diah</p>
                     </div>
-                    <div class="form-group">
-                        <label for="table_number">Nomor Meja:</label>
-                        <p class="form-control-static">4</p>
-                    </div>
+                  
                     <div class="form-group">
                         <label for="ordered_menu">Menu yang Dipesan:</label>
                         <p class="form-control-static">Roti Bakar, Nasi Goreng, Es Teh</p>
