@@ -8,7 +8,7 @@
 
           <div class="col-md-12 col-sm-12 text-center ftco-animate">
               <span class="subheading">D'Podjok Garden</span>
-            <h1 class="mb-4">Best Coffe Shop</h1>
+            <h1 class="mb-4">Welcome</h1>
           </div>
 
         </div>
