@@ -11,12 +11,13 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
+        'no_reservasi',
         'date',
         'start_time',
         'end_time',
         'guests',
         'status',
-        'total_price'
+        'price'
     ];
 
     public $dates = [
@@ -25,5 +26,8 @@ class Reservation extends Model
 
     public function order(){
         return $this->hasOne(Order::class);
+    }
+    public function reservationTables(){
+        return $this->hasMany(ReservationTable::class);
     }
 }

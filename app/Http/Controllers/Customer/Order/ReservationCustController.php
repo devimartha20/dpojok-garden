@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Customer\Order;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Customer;
+use App\Models\Admin\Order;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Services\Midtrans\CreateSnapTokenService;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationCustController extends Controller
 {
@@ -51,22 +54,22 @@ class ReservationCustController extends Controller
         usort($seats, function($a, $b) {
             return strcmp($a['table_id'], $b['table_id']);
         });
-    
+
         // Initialize an array to store combinations
         $combinations = [];
-    
+
         // Helper function to recursively find combinations
         $findCombination = function($index, $currentSeats, $currentSum, $notAllowedTables) use (&$findCombination, &$combinations, $seats, $target, $deviation) {
             // If the current sum is within the target +/- deviation and the combination total amount is more than the target, add the combination
             if ($currentSum >= $target && $currentSum >= $target - $deviation && $currentSum <= $target + $deviation) {
                 $combinations[] = $currentSeats;
             }
-    
+
             // Return if index exceeds array bounds or if the sum exceeds the target + deviation
             if ($index >= count($seats) || $currentSum > $target + $deviation) {
                 return;
             }
-    
+
             // If the current seat's table is in the notAllowedTables, try including it alone
             if (in_array($seats[$index]['table_id'], $notAllowedTables)) {
                 $newSeats = [$seats[$index]]; // Start a new combination with this seat
@@ -79,18 +82,18 @@ class ReservationCustController extends Controller
                     $findCombination($index + 1, $newSeats, $currentSum + $seats[$index]['number'], $notAllowedTables);
                 }
             }
-    
+
             // Try excluding the current seat
             $findCombination($index + 1, $currentSeats, $currentSum, $notAllowedTables);
         };
-    
+
         // Start the recursion
         $findCombination(0, [], 0, $notAllowedTables);
-    
+
         // Return unique combinations
         return array_map('unserialize', array_unique(array_map('serialize', $combinations)));
     }
-    
+
     function findBestCombination($combinations) {
         // Sort combinations by the number of seats and deviation in ascending order
         usort($combinations, function($a, $b) {
@@ -99,14 +102,14 @@ class ReservationCustController extends Controller
             if ($seatsComparison !== 0) {
                 return $seatsComparison;
             }
-            
+
             // If the number of seats is the same, compare deviations
             $deviationA = array_sum(array_column($a, 'number'));
             $deviationB = array_sum(array_column($b, 'number'));
-            
+
             return $deviationA <=> $deviationB;
         });
-    
+
         // Return the combination with the least number of seats and least deviation
         return !empty($combinations) ? $combinations[0] : [];
     }
