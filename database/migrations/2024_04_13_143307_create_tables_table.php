@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('jumlah_kursi')->nullable()->default(1);
             $table->enum('status', ['disewa', 'tersedia'])->default('tersedia');
             $table->string('image')->nullable();
+            $table->bool('join_allowed')->default(true);
             $table->timestamps();
         });
     }

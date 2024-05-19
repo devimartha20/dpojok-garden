@@ -60,20 +60,20 @@ class AddOrder extends Component
             $this->productOrders[$existingProductIndex]['total_harga'] = $this->productOrders[$existingProductIndex]['jumlah'] * $this->productOrders[$existingProductIndex]['harga_jual'] ;
         } else {
             // If the product doesn't exist, add it as a new entry
-            $this->productOrders[] = [
-                'product' => $product->id,
-                'jumlah' => 1,
-                'stok' => $product->stok,
-                'nama' => $product->nama,
-                'harga_jual' => $product->harga_jual,
-                'total_harga' => $product->harga_jual,
-                'catatan' => '',
-            ];
+                $this->productOrders[] = [
+                    'product' => $product->id,
+                    'jumlah' => 1,
+                    'stok' => $product->stok,
+                    'nama' => $product->nama,
+                    'harga_jual' => $product->harga_jual,
+                    'total_harga' => $product->harga_jual,
+                    'catatan' => '',
+                ];
+            }
+
+            $this->calculateTotalHarga();
         }
 
-        $this->calculateTotalHarga();
-        }
-        
     }
 
 
@@ -163,28 +163,28 @@ class AddOrder extends Component
     }
 
     public function updated($field, $value)
-{
-    // Check if the updated field is within the productOrders array and is related to the 'jumlah' field
-    if (strpos($field, 'productOrders.') === 0 && strpos($field, '.jumlah') !== false) {
-        // Extract the index of the product order from the field name
-        $index = explode('.', $field)[1];
+    {
+        // Check if the updated field is within the productOrders array and is related to the 'jumlah' field
+        if (strpos($field, 'productOrders.') === 0 && strpos($field, '.jumlah') !== false) {
+            // Extract the index of the product order from the field name
+            $index = explode('.', $field)[1];
 
-        // Validate the updated jumlah value to ensure it's a positive integer
-        if (!is_numeric($value) || $value <= 0) {
-            session()->flash('error', 'Jumlah harus berupa angka positif.');
-            return;
+            // Validate the updated jumlah value to ensure it's a positive integer
+            if (!is_numeric($value) || $value <= 0) {
+                session()->flash('error', 'Jumlah harus berupa angka positif.');
+                return;
+            }
+
+            // Update the jumlah field for the corresponding product order
+            $this->productOrders[$index]['jumlah'] = $value;
+
+            // Update the total harga for the corresponding product order
+            $this->productOrders[$index]['total_harga'] = $this->productOrders[$index]['harga_jual'] * $value;
+
+            // Recalculate the total harga for all product orders
+            $this->calculateTotalHarga();
         }
-
-        // Update the jumlah field for the corresponding product order
-        $this->productOrders[$index]['jumlah'] = $value;
-
-        // Update the total harga for the corresponding product order
-        $this->productOrders[$index]['total_harga'] = $this->productOrders[$index]['harga_jual'] * $value;
-
-        // Recalculate the total harga for all product orders
-        $this->calculateTotalHarga();
     }
-}
 
 
 

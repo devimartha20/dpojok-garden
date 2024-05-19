@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
-use App\Http\Controllers\Admin\ReservationController;
+use App\Http\Controllers\Kasir\ReservationController;
 use App\Http\Controllers\Auth\EmployeeLoginController;
 use App\Http\Controllers\Customer\CartController;
 use App\Http\Controllers\Customer\ConfirmController;
@@ -83,17 +83,17 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
-    Route::group(['middleware' => ['role:admin|owner']], function () { 
+    Route::group(['middleware' => ['role:admin|owner']], function () {
         Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-        Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index'); 
+        Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index');
         Route::get('leave', [ScheduleController::class, 'leaveIndex'])->name('leave.index');
-        
+
         Route::post('update/qr', [AttendanceController::class, 'updateQRStatus'])->name('attendance.qr.status');
         Route::post('update/attendance/status/{id}', [AttendanceController::class, 'updateAttendanceStatus'])->name('attendance.update.status');
         Route::post('update/absence/status/{id}', [AttendanceController::class, 'updateAbsenceStatus'])->name('absence.update.status');
         Route::post('update/leave/status/{id}', [ScheduleController::class, 'updateLeaveStatus'])->name('leave.update.status');
      });
-    
+
 
     //Route Khusus Admin
     Route::middleware(['role:admin'])->group(function () {
@@ -105,9 +105,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('metode', PaymentMethodController::class);
         Route::resource('customer', CustomerController::class);
         Route::resource('employee', EmployeeController::class);
-        Route::resource('reservation', ReservationController::class);
-       
-        
+
+
+
         Route::get('/kelola-ketidakhadiran', function () {
             return view('user/admin/absences/index');
         })->name('kelolatidakhadir.route');
@@ -125,7 +125,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('/riwayatpesanan', function () {
             return view('user/kasir/order/riwayat');
         })->name('riwayatpesan.route');
-
+        Route::resource('reservation', ReservationController::class);
+        Route::get('reservation/pay/{id}', [ReservationController::class, 'payment'])->name('reservation.pay');
 
         //print
         Route::get('/print/invoice/{id}', function($id){

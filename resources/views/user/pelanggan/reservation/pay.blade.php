@@ -1,6 +1,12 @@
-@extends('layouts.main.layout')
+@extends('layouts.customer.layout')
 
 @section('title', 'Pembayaran Reservasi')
+
+@section('styles')
+<script type="text/javascript"
+src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="{{ config('app.client_key') }}"></script>
+@endsection
 
 @section('content')
 <div class="card">
@@ -23,7 +29,7 @@
                         <label for="customer_name">Pemesan:</label>
                         <p class="form-control-static">Diah</p>
                     </div>
-                  
+
                     <div class="form-group">
                         <label for="ordered_menu">Menu yang Dipesan:</label>
                         <p class="form-control-static">Roti Bakar, Nasi Goreng, Es Teh</p>
@@ -56,4 +62,32 @@
         </form>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    // For example trigger on button clicked, or any time you need
+    var payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', function () {
+      // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+      window.snap.pay('{{$order->snap_token}}', {
+        onSuccess: function(result){
+          /* You may add your own implementation here */
+        //   alert("Pembayaran Berhasil"); console.log(result);
+        window.location.href = "{{ route('order-history.show', $order->id) }}";
+        },
+        onPending: function(result){
+          /* You may add your own implementation here */
+          alert("Menunggu Pembayaran"); console.log(result);
+        },
+        onError: function(result){
+          /* You may add your own implementation here */
+          alert("Pembayaran gagal!"); console.log(result);
+        },
+        onClose: function(){
+          /* You may add your own implementation here */
+          alert('Anda menutup pop-up sebelum melakukan pembayaran');
+        }
+      })
+    });
+  </script>
 @endsection

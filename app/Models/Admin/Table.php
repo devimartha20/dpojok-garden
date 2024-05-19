@@ -15,6 +15,7 @@ class Table extends Model
         'status',
         'image',
         'deskripsi',
+        'join_allowed',
     ];
 
     public function reservationTables(){
