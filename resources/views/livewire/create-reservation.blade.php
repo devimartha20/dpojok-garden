@@ -129,7 +129,7 @@
                             @foreach ($products as $product)
                                 <div class="col-md-4 mb-3">
                                     <div class="card">
-                                        <img src="{{ asset('images/')$product->image }}" class="card-img-top" alt="{{ $product->nama }}">
+                                        <img src="{{ asset('images/').$product->image }}" class="card-img-top" alt="{{ $product->nama }}">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->nama }}</h5>
                                             <p class="card-text">Rp {{ number_format($product->harga_jual, 0, ',', '.') }}</p>
