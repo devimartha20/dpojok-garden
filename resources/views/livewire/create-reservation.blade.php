@@ -123,13 +123,13 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" wire:model="search" placeholder="Cari Produk">
+                            <input type="text" class="form-control" wire:model.live="search" placeholder="Cari Produk">
                         </div>
                         <div class="row">
                             @foreach ($products as $product)
                                 <div class="col-md-4 mb-3">
                                     <div class="card">
-                                        <img src="{{ asset('images/').$product->image }}" class="card-img-top" alt="{{ $product->nama }}">
+                                        <img src="{{ asset('images/').'/'.$product->image }}" class="card-img-top" alt="{{ $product->nama }}">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $product->nama }}</h5>
                                             <p class="card-text">Rp {{ number_format($product->harga_jual, 0, ',', '.') }}</p>
@@ -186,7 +186,7 @@
                                 <h5>Total Harga Reservasi: Rp {{ number_format($reservation_price, 0, ',', '.') }}</h5>
                             </div>
                             <div class="col-md-6">
-                                <h5>Total Harga Keseluruhan: Rp {{ number_format($total_price, 0, ',', '.') }}</h5>
+                                <h5>Total Harga Keseluruhan: Rp {{ number_format(($order_price + $reservation_price), 0, ',', '.') }}</h5>
                             </div>
                             <div class="col-md-12 mt-3">
                                 <button wire:click="save" class="btn btn-primary py-3 px-5 btn-round">Buat Reservasi</button>
