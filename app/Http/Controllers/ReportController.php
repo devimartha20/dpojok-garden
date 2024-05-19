@@ -89,7 +89,12 @@ class ReportController extends Controller
                 ->count();
 
             // Calculate the number of present days
-            $presentDays = $totalWorkingDays - ($sickDays + $permissionDays + $unexplainedAbsences);
+            $presentDays = Attendance::where('employee_id', $employee->id)
+            ->where('status', 'confirmed')
+            ->where('type', 'in')
+            ->whereBetween('date', [$startDate, $endDate])
+            ->distinct('date')
+            ->count();
 
             // Add the data to the array
             $attendanceData[] = [
