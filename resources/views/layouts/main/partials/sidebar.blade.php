@@ -230,14 +230,14 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li class=" ">
-                            <a>
+                            <a href="{{ route('report.sales') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Penjualan</span>
                                 <span class="pcoded-mcaret"></span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a>
+                            <a href="{{ route('report.attendances') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Kinerja Karyawan</span>
                                 <span class="pcoded-mcaret"></span>
