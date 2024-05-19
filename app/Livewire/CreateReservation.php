@@ -99,7 +99,7 @@ class CreateReservation extends Component
         return $availableTableIds;
     }
 
-    public function checkAvailability($date, $startTime, $endTime, $guests = 0, $deviation = 2)
+    public function checkAvailability($date = $this->date, $startTime = $this->start_time, $endTime = $this->end_time, $guests = $this->guests, $deviation = 2)
     {
         $guests = $guests ?? $this->guests;
         $deviation = $deviation ?? ReservationSetting::first('seat_deviation')->seat_deviation;
