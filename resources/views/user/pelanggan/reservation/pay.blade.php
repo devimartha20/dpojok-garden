@@ -1,59 +1,80 @@
-@extends('layouts.main.layout')
+@extends('layouts.customer.layout')
 
-@section('title', 'Pembayaran Reservasi')
+@section('title')
+    Detail Reservasi
+@endsection
+
+@section('styles')
+    <style>
+        /* Additional CSS styles can be added here if needed */
+        .product-image {
+            float: left;
+            margin-right: 100px;
+        }
+        .bottom-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .separator {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+        }
+        .icon-link {
+            margin-right: 10px;
+        }
+    </style>
+@endsection
 
 @section('content')
-<div class="card">
-    <div class="card-header">
-        <h4 class="mb-0">Pembayaran Reservasi</h4>
-        <hr class="mt-0 mb-3">
-    </div>
-    <div class="card-body">
-        <form action="/pembayaran-reservasi" method="POST">
-            @csrf
-            <h5>Detail Reservasi</h5>
-            <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="reservation_datetime">Waktu Reservasi:</label>
-                        <p class="form-control-static">2024-04-20 14:30 PM</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="customer_name">Pemesan:</label>
-                        <p class="form-control-static">Diah</p>
-                    </div>
-                  
-                    <div class="form-group">
-                        <label for="ordered_menu">Menu yang Dipesan:</label>
-                        <p class="form-control-static">Roti Bakar, Nasi Goreng, Es Teh</p>
-                    </div>
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-header-text">Detail Reservasi</h5>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="start_date">Tanggal Mulai Sewa:</label>
-                        <p class="form-control-static">2024-04-20</p>
+                <div class="card-body">
+                    <p>Tanggal Sewa : </p>
+                    <p>Jam Awal Sewa : </p>
+                    <p>Jam Akhir Sewa : </p>
+                    <p>Jumlah Tamu : </p>
+                    <p>Catatan : </p>
+                    <div class="separator"></div>
+                    <p>Menu pesanan : </p>
+                    <div class="product-image">
+                        <img src="{{ asset('images/1711265258.png') }}" alt="Nama Produk" width="100">
                     </div>
-                    <div class="form-group">
-                        <label for="end_date">Tanggal Akhir Sewa:</label>
-                        <p class="form-control-static">2024-04-20</p>
+                    <div class="accordion-desc">
+                        <h5>Nasi Goreng Kecap Manis</h5>
+                        <h5>Rp. 45.000</h5>
+                        <p>Jumlah: 3</p>
                     </div>
-                    <div class="form-group">
-                        <label for="start_time">Waktu Mulai Sewa:</label>
-                        <p class="form-control-static">17:00 PM</p>
+                    <div class="product-image">
+                        <img src="{{ asset('images/1711265258.png') }}" alt="Nama Produk" width="100">
                     </div>
-                    <div class="form-group">
-                        <label for="end_time">Waktu Akhir Sewa:</label>
-                        <p class="form-control-static">20:00 PM</p>
+                    <div class="accordion-desc">
+                        <h5>Nasi Goreng Kecap Manis</h5>
+                        <h5>Rp. 45.000</h5>
+                        <p>Jumlah: 3</p>
                     </div>
-                    <div class="form-group">
-                        <label for="total_price">Total Harga:</label>
-                        <p class="form-control-static">2024-04-20</p>
+                    <div class="separator"></div>
+                    <p>Meja pesanan : </p>
+                    <div class="product-image">
+                        <img src="{{ asset('images/1711265258.png') }}" alt="Nama Produk" width="100">
+                    </div>
+                    <div class="accordion-desc">
+                        <h5>Meja no 5</h5>
+                        <h5>4 kursi</h5>
+                    </div>
+                    <div class="separator"></div>
+                    <br>
+                    <p>Total Harga : Rp. 90.000</p>
+                    <div class="separator"></div>
+                    <div class="bottom-right">
+                        <button onclick="" class="btn btn-primary">Bayar Reservasi</button>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary float-right">Bayar</button>
-        </form>
+        </div>
     </div>
-</div>
 @endsection
