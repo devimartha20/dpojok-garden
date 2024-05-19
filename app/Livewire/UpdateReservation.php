@@ -6,6 +6,7 @@ use App\Models\Admin\DetailOrder;
 use App\Models\Admin\Order;
 use App\Models\Admin\Payment;
 use App\Models\Admin\Product;
+use App\Models\Reservation;
 use Livewire\Component;
 
 class UpdateReservation extends Component
@@ -85,7 +86,7 @@ class UpdateReservation extends Component
         $detailOrder = DetailOrder::find($detailOrderData['id']);
         $detailOrder->update([
             'jumlah' => $detailOrderData['jumlah'],
-            'total_harga' => $detailOrderData['harga'] * $detailOrderData['jumlah'],
+            'total_harga' => $detailOrderData['harga_jual'] * $detailOrderData['jumlah'],
             'catatan' => $detailOrderData['catatan'],
         ]);
 
@@ -111,26 +112,45 @@ class UpdateReservation extends Component
     {
         $this->order_price = $this->calculateOrderPrice();
         $this->total_price = $this->order_price + $this->reservation->price;
-        Order::find($this->order->id)->update([
-            'total_price' => $this->order_price + $this->reservation->price,
+
+        $this->order->update([
+            'total_price' => $this->total_price,
+        ]);
+
+        $this->updatePayment();
+    }
+
+    public function updateStatus()
+    {
+        $status = $this->uang <= 0 ? 'menunggu' : $this->reservation->status;
+        Reservation::findOrFail($this->reservation->id)->update([
+            'status' => $status,
+        ]);
+
+        $payment = Payment::findOrFail($this->payment->id);
+
+        $order = Order::where('payment_id', $payment->id)->first();
+        $order->update([
+            'progress' => $status,
+            'status' => $payment->uang >= $payment->total_bayar ? 'lunas' : 'belum_lunas',
         ]);
     }
 
-    public function updateStatus(){
-        
-    }
-
-    public function updatePayment(){
+    public function updatePayment()
+    {
         $this->validate([
-            'uang' => 'min:0',
+            'uang' => 'required|numeric|min:0',
         ]);
+
         $payment = Payment::find($this->payment->id);
-        $total_bayar = $payment->uang += $this->uang;
+        $total_bayar = $payment->uang + $this->uang;
         $kembali = 0;
-        if ($total_bayar >= $this->order->total_harga){
-            $kembali = $total_bayar - $this->order->total_harga;
+
+        if ($total_bayar >= $this->order->total_price) {
+            $kembali = $total_bayar - $this->order->total_price;
         }
-        Payment::find($this->payment->id)->update([
+
+        $payment->update([
             'uang' => $total_bayar,
             'kembali' => $kembali,
             'status' => $total_bayar >= $payment->total_bayar ? 'lunas' : 'belum_lunas',

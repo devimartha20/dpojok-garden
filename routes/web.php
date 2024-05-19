@@ -21,6 +21,7 @@ use App\Http\Controllers\Kasir\PaymentTransController;
 use App\Http\Controllers\Koki\OrderProsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductCategoryController;
@@ -92,6 +93,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::post('update/attendance/status/{id}', [AttendanceController::class, 'updateAttendanceStatus'])->name('attendance.update.status');
         Route::post('update/absence/status/{id}', [AttendanceController::class, 'updateAbsenceStatus'])->name('absence.update.status');
         Route::post('update/leave/status/{id}', [ScheduleController::class, 'updateLeaveStatus'])->name('leave.update.status');
+
+        Route::get('report/sales/', [ReportController::class, 'salesReport'])->name('report.sales');
+        Route::get('report/attendances/', [ReportController::class, 'attendancesReport'])->name('report.attendances');
      });
 
 
