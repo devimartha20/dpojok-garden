@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
-use App\Http\Controllers\Admin\ReservationController;
+use App\Http\Controllers\Kasir\ReservationController;
 use App\Http\Controllers\Auth\EmployeeLoginController;
 use App\Http\Controllers\Customer\CartController;
 use App\Http\Controllers\Customer\ConfirmController;
@@ -125,7 +125,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('/riwayatpesanan', function () {
             return view('user/kasir/order/riwayat');
         })->name('riwayatpesan.route');
-
+        Route::resource('reservation', ReservationController::class);
+        Route::get('reservation/pay/{id}', [ReservationController::class, 'payment'])->name('reservation.pay');
 
         //print
         Route::get('/print/invoice/{id}', function($id){

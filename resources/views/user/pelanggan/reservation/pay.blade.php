@@ -26,6 +26,12 @@
     </style>
 @endsection
 
+@section('styles')
+<script type="text/javascript"
+src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="{{ config('app.client_key') }}"></script>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="col-lg-12">
@@ -49,8 +55,10 @@
                         <h5>Rp. 45.000</h5>
                         <p>Jumlah: 3</p>
                     </div>
-                    <div class="product-image">
-                        <img src="{{ asset('images/1711265258.png') }}" alt="Nama Produk" width="100">
+
+                    <div class="form-group">
+                        <label for="ordered_menu">Menu yang Dipesan:</label>
+                        <p class="form-control-static">Roti Bakar, Nasi Goreng, Es Teh</p>
                     </div>
                     <div class="accordion-desc">
                         <h5>Nasi Goreng Kecap Manis</h5>
@@ -77,4 +85,32 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    // For example trigger on button clicked, or any time you need
+    var payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', function () {
+      // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+      window.snap.pay('{{$order->snap_token}}', {
+        onSuccess: function(result){
+          /* You may add your own implementation here */
+        //   alert("Pembayaran Berhasil"); console.log(result);
+        window.location.href = "{{ route('order-history.show', $order->id) }}";
+        },
+        onPending: function(result){
+          /* You may add your own implementation here */
+          alert("Menunggu Pembayaran"); console.log(result);
+        },
+        onError: function(result){
+          /* You may add your own implementation here */
+          alert("Pembayaran gagal!"); console.log(result);
+        },
+        onClose: function(){
+          /* You may add your own implementation here */
+          alert('Anda menutup pop-up sebelum melakukan pembayaran');
+        }
+      })
+    });
+  </script>
 @endsection

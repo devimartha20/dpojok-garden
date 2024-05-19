@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->string('no_reservasi')->unique();
+            $table->string('telepon')->nullable();
             $table->date('date');
             $table->integer('guests')->default(0);
             $table->time('start_time');
             $table->time('end_time');
             $table->bigInteger('price');
-            $table->enum('status', ['menunggu_pembayaran', 'menunggu', 'aktif', 'selesai'])->default('menunggu_pembayaran');
+            $table->enum('status', ['menunggu_pembayaran', 'menunggu', 'aktif', 'selesai', 'dibatalkan'])->default('menunggu_pembayaran');
             $table->timestamps();
         });
     }

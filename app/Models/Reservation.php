@@ -17,7 +17,8 @@ class Reservation extends Model
         'end_time',
         'guests',
         'status',
-        'price'
+        'price',
+        'telepon',
     ];
 
     public $dates = [

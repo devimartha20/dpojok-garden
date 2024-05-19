@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Admin\Customer;
+use App\Models\Admin\Employee;
 use App\Models\Admin\DetailOrder;
 use App\Models\Admin\Order;
 use App\Models\Admin\Payment;
@@ -15,12 +16,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class CreateReservation extends Component
+class CreateReservationAdmin extends Component
 {
-    public $date, $start_time, $end_time, $guests, $reservation_price, $order_price, $total_price, $deviation = 0;
+
+    public $pemesan, $telp, $date, $start_time, $end_time, $guests, $reservation_price, $order_price, $total_price, $deviation = 0;
     public $search, $available = false;
 
-    public $orderNo, $pemesan, $packing, $reservationNo;
+    public $orderNo, $packing, $reservationNo;
     public $products, $productOrders = [], $total_all = 0;
 
     public function mount()
@@ -49,11 +51,11 @@ class CreateReservation extends Component
             ->where('date', $date)
             ->where(function ($query) use ($startTime, $endTime) {
                 $query->whereBetween('start_time', [$startTime, $endTime])
-                      ->orWhereBetween('end_time', [$startTime, $endTime])
-                      ->orWhere(function ($query) use ($startTime, $endTime) {
-                          $query->where('start_time', '<=', $startTime)
+                        ->orWhereBetween('end_time', [$startTime, $endTime])
+                        ->orWhere(function ($query) use ($startTime, $endTime) {
+                            $query->where('start_time', '<=', $startTime)
                                 ->where('end_time', '>=', $endTime);
-                      });
+                        });
             })
             ->get();
 
@@ -275,7 +277,7 @@ class CreateReservation extends Component
         $lastOrder = Order::latest()->first();
         $lastOrderId = $lastOrder ? $lastOrder->id : 0;
 
-        return 'ORDER-1' . $year . $month . $day . $hour . $minute . $second . $userId . ($lastOrderId + 1);
+        return 'ORDER-0' . $year . $month . $day . $hour . $minute . $second . $userId . ($lastOrderId + 1);
     }
 
     public function generateReservationNo()
@@ -291,7 +293,7 @@ class CreateReservation extends Component
         $lastReservation = Reservation::latest()->first();
         $lastReservationId = $lastReservation ? $lastReservation->id : 0;
 
-        return 'RESERVATION-1' . $year . $month . $day . $hour . $minute . $second . $userId . ($lastReservationId + 1);
+        return 'RESERVATION-0' . $year . $month . $day . $hour . $minute . $second . $userId . ($lastReservationId + 1);
     }
 
     public function loadProducts()
@@ -345,6 +347,8 @@ class CreateReservation extends Component
             'orderNo' => 'required',
             'productOrders' => 'required|array|min:1',
             'date' => 'required|date|after_or_equal:today',
+            'pemesan' => 'required',
+            'telepon' => 'required',
             'start_time' => 'required|date_format:H:i|after_or_equal:now',
             'end_time' => 'required|date_format:H:i|after:start_time',
             'productOrders.*.product' => 'required',
@@ -368,10 +372,11 @@ class CreateReservation extends Component
             'end_time' => $this->end_time,
             'guests'=> $this->guests,
             'status' => 'menunggu_pembayaran',
+            'telepon' => $this->telepon,
             'price' => $this->calculateReservationPrice(),
         ]);
 
-        $customer = Customer::where('user_id', Auth::user()->id)->first();
+        $employee = Employee::where('user_id', Auth::user()->id)->first();
 
         $total_price = $this->calculateTotalPrice();
 
@@ -383,8 +388,8 @@ class CreateReservation extends Component
 
         $order = Order::create([
             'no_pesanan' => $this->orderNo,
-            'pemesan' => $customer->nama,
-            'customer_id' => $customer->id,
+            'pemesan' => $this->pemesan,
+            'employee_id' => $employee->id,
             'total_harga' => $total_price,
             'jumlah_pesanan' => collect($this->productOrders)->sum('jumlah'),
             'progress' => 'menunggu_pembayaran',
@@ -406,8 +411,8 @@ class CreateReservation extends Component
             ]);
         }
 
-        session()->flash('success', 'Reservasi berhasil disimpan, silahkan lakukan pembayaran!');
-        return redirect(route('customer.reservation.pay', $reservation->id));
+        session()->flash('success', 'Reservasi berhasil disimpan, silahkan input pembayaran!');
+        return redirect(route('reservation.pay', $reservation->id));
     }
 
     public function removeProduct($index)
@@ -450,8 +455,9 @@ class CreateReservation extends Component
         }
     }
 
+
     public function render()
     {
-        return view('livewire.create-reservation');
+        return view('livewire.create-reservation-admin');
     }
 }
