@@ -1,3 +1,5 @@
+<!-- resources/views/livewire/create-reservation.blade.php -->
+
 <div>
     <section class="ftco-section ftco-no-pt ftco-no-pb">
         <div class="container-fluid px-0">
@@ -50,15 +52,15 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="table-selection">
+                            <div class="table-selection mt-4">
                                 @if($available)
                                     <div class="form-group">
                                         <label for="nomor_meja">Pilih Meja</label>
                                         <p>Rekomendasi Terbaik</p>
                                         @foreach ($bestCombination as $table)
-                                            <div class="form-group">
-                                                <input type="radio" id="table{{ $table['table_id'] }}" name="selected_table" value="{{ $table['table_id'] }}">
-                                                <p>Jumlah Kursi : {{ $table['number'] }}</p>
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" id="table{{ $table['table_id'] }}" name="selected_table" value="{{ $table['table_id'] }}">
+                                                <label class="form-check-label" for="table{{ $table['table_id'] }}">Jumlah Kursi: {{ $table['number'] }}</label>
                                             </div>
                                         @endforeach
                                     </div>
@@ -73,7 +75,7 @@
             </div>
         </div>
         @if($available)
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header">
