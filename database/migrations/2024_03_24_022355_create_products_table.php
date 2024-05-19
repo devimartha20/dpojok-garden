@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('deskripsi');
             $table->string('image')->nullable();
             $table->decimal('harga_jual');
-            $table->decimal('harga_produksi')->nullable();
             $table->integer('stok')->default(1);
             $table->unsignedBigInteger('product_category_id')->nullable();
             $table->timestamps();

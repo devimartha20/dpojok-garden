@@ -10,7 +10,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard') }}" class="nav-link"><strong>Dashboard</strong></a></li>
                 <li class="nav-item {{ request()->routeIs('search-products.index') ? 'active' : '' }}"><a href="{{ route('search-products.index') }}" class="nav-link"><strong>Menu</strong></a></li>
-                {{-- <li class="nav-item "><a href="#" class="nav-link"><strong>Reservasi</strong></a></li> --}}
+                <li class="nav-item "><a href="{{ route('customer.reservation.index') }}" class="nav-link"><strong>Reservasi</strong></a></li>
                 <li class="nav-item {{ request()->routeIs('order-history.index') ? 'active' : '' }}"><a href="{{ route('order-history.index') }}" class="nav-link"><strong>Riwayat</strong></a></li>
                 <li class="nav-item {{ request()->routeIs('cart.index') ? 'active' : '' }}"><a href="{{ route('cart.index') }}" class="nav-link"><i class="fa fa-shopping-cart"></i><strong>Keranjang</strong></a></li>
                 <form method="POST" action="{{ route('logout') }}">

@@ -38,8 +38,7 @@
                         <th>No</th>
                         <th>Nama Produk</th>
                         <th>Deskripsi</th>
-                        <th>Harga Jual</th>
-                        <th>Harga Produksi</th>
+                        <th>Harga</th>
                         <th>Stok</th>
                         <th>Kategori Produk</th>
                         <th>Gambar Produk</th>
@@ -50,10 +49,9 @@
                     @forelse ($product as $p)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $p->id }}</td>
+                            <td>{{ $p->nama }}</td>
                             <td>{{ $p->deskripsi }}</td>
                             <td>{{ $p->harga_jual }}</td>
-                            <td>{{ $p->harga_produksi }}</td>
                             <td>{{ $p->stok }}</td>
                             <td>{{ $p->productCategory->nama ?? '-' }}</td>
                             <td>

@@ -41,7 +41,6 @@ class ProductController extends Controller
             'deskripsi' => 'required',
             'product_category_id' => 'required',
             'harga_jual' => 'required',
-            'harga_produksi' => 'required',
             'stok' => 'required',
 
         ]);
@@ -55,7 +54,6 @@ class ProductController extends Controller
             'nama' => $request->nama,
             'image' => $imageName,
             'harga_jual' => $request->harga_jual,
-            'harga_produksi' => $request->harga_produksi,
             'deskripsi' => $request->deskripsi,
             'stok' => $request->stok,
         ]);
@@ -116,7 +114,6 @@ class ProductController extends Controller
             'nama' => $request->nama,
             'image' => $path,
             'harga_jual' => $request->harga_jual,
-            'harga_produksi' => $request->harga_produksi,
             'deskripsi' => $request->deskripsi,
             'stok' => $request->stok,
         ]);
