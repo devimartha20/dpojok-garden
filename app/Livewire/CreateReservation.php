@@ -10,6 +10,7 @@ use App\Models\Admin\Product;
 use App\Models\Admin\Table;
 use App\Models\Reservation;
 use App\Models\ReservationSetting;
+use App\Models\ReservationTable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -339,6 +340,7 @@ class CreateReservation extends Component
             'end_time' => 'required|date_format:H:i|after:start_time',
             'productOrders.*.product' => 'required',
             'productOrders.*.jumlah' => 'required|numeric|min:1',
+            'selected_table' => 'required',
         ], [
             'orderNo.required' => 'Nomor pesanan harus diisi.',
             'date.after_or_equal' => 'Tanggal harus di masa depan atau hari ini.',
@@ -361,7 +363,17 @@ class CreateReservation extends Component
             'price' => $this->calculateReservationPrice(),
         ]);
 
-
+        foreach($this->combinations[$this->selected_table] as $table){
+            ReservationTable::create([
+                'reservation_id' => $this->reservation->id,
+                'table_id' => $table['table_id'],
+                'seats' => $this->guests,
+                'guests' => $this->guests,
+                'date' => $this->date,
+                'start_time' => $this->start_time,
+                'end_time' => $this->end_time,
+            ]);
+        }
 
         $customer = Customer::where('user_id', Auth::user()->id)->first();
 
