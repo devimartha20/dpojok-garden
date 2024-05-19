@@ -50,7 +50,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="table-selection" wire:loading.remove wire:target="checkAvailability">
+                            <div class="table-selection">
                                 @if($available)
                                     <div class="form-group">
                                         <label for="nomor_meja">Pilih Meja</label>
@@ -72,6 +72,7 @@
                 </div>
             </div>
         </div>
+        @if($available)
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
@@ -153,5 +154,6 @@
                 </div>
             </div>
         </div>
+        @endif
     </section>
 </div>
