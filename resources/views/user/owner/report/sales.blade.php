@@ -13,7 +13,6 @@
             <div class="col-md-8">
                 <h3 class="h5 mb-4 text-center">Laporan Penjualan</h3>
                 <form method="GET" action="{{ route('report.sales') }}">
-                    @csrf
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label for="start_date">Start Date:</label>

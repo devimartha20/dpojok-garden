@@ -39,7 +39,7 @@ class ReportController extends Controller
          return view('user.owner.report.sales', compact('salesData', 'startDate', 'endDate'));
     }
 
-    public function attendanceReport(Request $request){
+    public function attendancesReport(Request $request){
        // Retrieve the start and end date from the request
        $startDate = $request->input('start_date');
        $endDate = $request->input('end_date');
