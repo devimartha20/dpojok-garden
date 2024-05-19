@@ -1,9 +1,9 @@
 @extends('layouts.main.layout')
 
 @section('styles')
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('report') }}/css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('report') }}/css/style.css">
 @endsection
 
 @section('content')
@@ -11,17 +11,16 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h3 class="h5 mb-4 text-center">Laporan Penjualan</h3>
+                <h3 class="h5 mb-4 text-center">Laporan Kehadiran</h3>
                 <form method="GET" action="{{ route('report.attendances') }}">
-                    {{-- @csrf --}}
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label for="start_date">Start Date:</label>
-                            <input type="date" name="start_date" class="form-control mb-2" id="start_date" required>
+                            <input type="date" name="start_date" class="form-control mb-2" id="start_date" required value="{{ $startDate }}">
                         </div>
                         <div class="col-auto">
                             <label for="end_date">End Date:</label>
-                            <input type="date" name="end_date" class="form-control mb-2" id="end_date" required>
+                            <input type="date" name="end_date" class="form-control mb-2" id="end_date" required value="{{ $endDate }}">
                         </div>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary mb-2">Filter</button>
@@ -40,7 +39,7 @@
                                 <th>No</th>
                                 <th>Id Pegawai</th>
                                 <th>Nama Pegawai</th>
-                                <th>Masuk</th>
+                                <th>Masuk (Hari)</th>
                                 <th>Sakit (Hari)</th>
                                 <th>Izin (Hari)</th>
                                 <th>Tanpa Keterangan (Hari)</th>
@@ -53,7 +52,7 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $data['employee_id'] }}</td>
                                 <td>{{ $data['employee_name'] }}</td>
-                                <td></td>
+                                <td>{{ $data['present_days'] }}</td>
                                 <td>{{ $data['sick_days'] }}</td>
                                 <td>{{ $data['permission_days'] }}</td>
                                 <td>{{ $data['unexplained_absences'] }}</td>
