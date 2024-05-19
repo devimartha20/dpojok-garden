@@ -62,7 +62,7 @@
                     <img class="img-fluid rounded" src="{{ asset('landing-page-template/img/about.jpg') }}">
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">About Us</p>
+                    <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Tentang Kami</p>
                     <h1 class="display-5 mb-4">Suasana rumahan dan harga murah menjadi ciri khas cafe kami</h1>
                     <p class="mb-4">Selamat datang di Cafe D'Podjok Garden!
 

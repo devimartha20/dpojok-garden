@@ -224,7 +224,7 @@
             </form>
         </div>
     </div>
-    <div class="card-block table-border-style">
+    <!-- <div class="card-block table-border-style">
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -310,7 +310,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> -->
 </div>
 @endsection
 @section('scripts')

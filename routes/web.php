@@ -7,12 +7,14 @@ use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Auth\EmployeeLoginController;
 use App\Http\Controllers\Customer\CartController;
 use App\Http\Controllers\Customer\ConfirmController;
 use App\Http\Controllers\Customer\ExploreProductController;
 use App\Http\Controllers\Customer\Order\OnlineOrderController;
 use App\Http\Controllers\Customer\Order\OrderHistoryController;
+use App\Http\Controllers\Customer\Order\ReservationCustController;
 use App\Http\Controllers\EmployeeHrController;
 use App\Http\Controllers\Kasir\OrderTransController;
 use App\Http\Controllers\Kasir\PaymentTransController;
@@ -103,7 +105,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('metode', PaymentMethodController::class);
         Route::resource('customer', CustomerController::class);
         Route::resource('employee', EmployeeController::class);
-
+        Route::resource('reservation', ReservationController::class);
 
 
         Route::get('/kelola-ketidakhadiran', function () {
@@ -157,14 +159,19 @@ Route::middleware(['auth', 'verified'])->group(function(){
     // Route Khusus Pelanggan
 Route::middleware(['role:pelanggan'])->group(function () {
 
-        Route::get('/search-products', [ExploreProductController::class, 'index'])->name('search-products.index');
-        Route::get('/confirm/index', [ConfirmController::class, 'index'])->name('confirm.index');
-        Route::post('/confirm', [ConfirmController::class, 'confirm'])->name('confirm.confirm');
-        Route::get('/checkout/{id}', [OnlineOrderController::class, 'checkout'])->name('checkout');
-        Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-        Route::get('/order/history', [OrderHistoryController::class, 'index'])->name('order-history.index');
-        Route::get('/order/show/{id}', [OrderHistoryController::class, 'show'])->name('order-history.show');
-;
+        Route::get('search-products', [ExploreProductController::class, 'index'])->name('search-products.index');
+        Route::get('confirm/index', [ConfirmController::class, 'index'])->name('confirm.index');
+        Route::post('confirm', [ConfirmController::class, 'confirm'])->name('confirm.confirm');
+        Route::get('checkout/{id}', [OnlineOrderController::class, 'checkout'])->name('checkout');
+        Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+        Route::get('order/history', [OrderHistoryController::class, 'index'])->name('order-history.index');
+        Route::get('order/show/{id}', [OrderHistoryController::class, 'show'])->name('order-history.show');
+
+        //RESERVASI
+        Route::get('cust/reservation', [ReservationCustController::class, 'index'])->name('customer.reservation.index');
+        Route::get('cust/reservation/create', [ReservationCustController::class, 'create'])->name('customer.reservation.create');
+        Route::get('cust/reservation/payment/{id}', [ReservationCustController::class, 'payment'])->name('customer.reservation.pay');
+        Route::get('cust/reservation/detail/{id}', [ReservationCustController::class, 'show'])->name('customer.detail.pay');
         // Route::get('/cart', function () {
         //     return view('user/pelanggan/cart');
         // })->name('cart.route');

@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,7 @@ class Order extends Model
         'tipe',
         'total_harga',
         'jumlah_pesanan',
+        'reservation_id',
         'packing'
     ];
 
@@ -39,5 +41,8 @@ class Order extends Model
     public function detailOrders()
     {
         return $this->hasMany(DetailOrder::class);
+    }
+    public function reservation(){
+        return $this->belongsTo(Reservation::class);
     }
 }

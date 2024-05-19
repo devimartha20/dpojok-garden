@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('employee_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('payment_id')->nullable();
+            $table->unsignedBigInteger('reservation_id')->nullable();
             $table->string('pemesan')->nullable();
             $table->bigInteger('total_harga')->default(0);
             $table->integer('jumlah_pesanan')->default(0);
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('set null');
+            $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('set null');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('set null');
         });
