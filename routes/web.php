@@ -193,9 +193,6 @@ Route::middleware(['role:pelanggan'])->group(function () {
         Route::get('/history', function () {
             return view('user/pelanggan/riwayat');
         })->name('riwayat.route');
-        Route::get('/form-reservasi', function () {
-            return view('user/pelanggan/reservation/create');
-        })->name('formreservasi.route');
     });
 
 

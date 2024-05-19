@@ -9,6 +9,8 @@
 @endsection
 
 @section('content')
+
+<a href="{{ route('customer.reservation.create') }}">Form</a>
 <div class="row">
     <div class="col-lg-6 col-xl-12">
         <div class="sub-title">Riwayat Reservasi</div>
