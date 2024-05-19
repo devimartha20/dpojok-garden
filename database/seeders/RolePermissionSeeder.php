@@ -177,7 +177,7 @@ class RolePermissionSeeder extends Seeder
         Employee::create([
             'id_pegawai' => $kasir->id,
             'nama'=> $kasir->name,
-            'user_id'=> $admin->id,
+            'user_id'=> $kasir->id,
             'email' => $kasir->email,
             'password' => Hash::make('password'),
         ]);

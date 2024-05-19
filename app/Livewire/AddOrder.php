@@ -101,6 +101,8 @@ class AddOrder extends Component
 
         $employee = Employee::where('user_id', Auth::user()->id)->first();
 
+        // dd($employee);
+
         $payment = Payment::create([
             'no_payment' => time().'-'.$this->orderNo,
             'status' => 'belum_lunas',
