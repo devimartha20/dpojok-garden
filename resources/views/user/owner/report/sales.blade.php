@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h3 class="h5 mb-4 text-center">Laporan Penjualan</h3>
-                <form method="GET" action="#">
+                <form method="GET" action="{{ route('report.sales') }}">
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label for="start_date">Start Date:</label>
@@ -31,6 +31,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
+             @if(isset($salesData) && !empty($salesData))
                 <div class="table-wrap">
                     <table class="table">
                         <thead class="thead-primary">
@@ -44,42 +45,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Row 1 -->
-                            <tr class="alert" role="alert">
-                                <td>1</td>
-                                <td>
-                                    <div class="img" style="background-image: url('images/product-1.png');"></div>
-                                </td>
-                                <td>Spagettie Bolognesse</td>
-                                <td>$44.99</td>
-                                <td>3</td>
-                                <td>$134.97</td>
+                            @foreach($salesData as $index => $data)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td><img src="{{ asset('images/' . $data->image) }}" alt="{{ $data->nama }}" width="50"></td>
+                                <td>{{ $data->nama }}</td>
+                                <td>{{ number_format($data->harga_jual, 2) }}</td>
+                                <td>{{ $data->total_quantity }}</td>
+                                <td>{{ number_format($data->total_sales, 2) }}</td>
                             </tr>
-                            <!-- Row 2 -->
-                            <tr class="alert" role="alert">
-                                <td>2</td>
-                                <td>
-                                    <div class="img" style="background-image: url('images/product-1.png');"></div>
-                                </td>
-                                <td>Cireng</td>
-                                <td>$29.99</td>
-                                <td>2</td>
-                                <td>$59.98</td>
-                            </tr>
-                            <!-- Row 3 -->
-                            <tr class="alert" role="alert">
-                                <td>3</td>
-                                <td>
-                                    <div class="img" style="background-image: url('images/product-1.png');"></div>
-                                </td>
-                                <td>Spagettie Bolognesse</td>
-                                <td>$44.99</td>
-                                <td>1</td>
-                                <td>$44.99</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
+            @else
+            <div class="alert alert-warning mt-4">
+                No sales data found for the selected date range.
+            </div>
+            @endif
             </div>
         </div>
     </div>
