@@ -67,14 +67,14 @@
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" id="bestTable{{ $index }}" wire:model.live="selected_table" value="{{ $index }}" {{ $loop->first ? 'checked' : '' }}>
                                             <label class="form-check-label" for="bestTable{{ $index }}">Kombinasi {{ $index + 1 }} - 
-                                                @forelse ($combination as $table)
+                                                {{-- @forelse ($combination as $table) --}}
                                                     ID Tabel: {{ $table['table_id'] }}, Jumlah Kursi: {{ $table['number'] }}
-                                                    @if (!$loop->last)
+                                                    {{-- @if (!$loop->last)
                                                         <br>
-                                                    @endif
-                                                @empty
+                                                    @endif --}}
+                                                {{-- @empty
                                                     No tables available
-                                                @endforelse
+                                                @endforelse --}}
                                             </label>
                                         </div>
                                     @empty
