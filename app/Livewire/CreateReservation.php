@@ -365,7 +365,7 @@ class CreateReservation extends Component
 
         foreach($this->combinations[$this->selected_table] as $table){
             ReservationTable::create([
-                'reservation_id' => $this->reservation->id,
+                'reservation_id' => $reservation->id,
                 'table_id' => $table['table_id'],
                 'seats' => $this->guests,
                 'guests' => $this->guests,
