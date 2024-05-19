@@ -13,6 +13,7 @@
                 {{-- <li class="nav-item "><a href="#" class="nav-link"><strong>Reservasi</strong></a></li> --}}
                 <li class="nav-item {{ request()->routeIs('order-history.index') ? 'active' : '' }}"><a href="{{ route('order-history.index') }}" class="nav-link"><strong>Riwayat</strong></a></li>
                 <li class="nav-item {{ request()->routeIs('cart.index') ? 'active' : '' }}"><a href="{{ route('cart.index') }}" class="nav-link"><i class="fa fa-shopping-cart"></i><strong>Keranjang</strong></a></li>
+                <li class="nav-item {{ request()->routeIs('formreservasi.route') ? 'active' : '' }}"><a href="{{ route('formreservasi.route') }}" class="nav-link"><strong>Reservasi</strong></a></li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                 <li class="nav-item cta"><a href="{{ route('logout') }}" onclick="event.preventDefault();

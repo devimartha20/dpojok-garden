@@ -89,7 +89,7 @@
 
                         <p><strong>Total Harga:</strong> Rp. {{ number_format($order->total_harga) }}</p>
                         @if($order->progress == 'menunggu_pembayaran')
-                                <a href="{{ route('checkout', $order->id) }}" class="btn btn-primary ml-3">Bayar Sekarang</a>
+                                <a href="{{ route('checkout', $order->id) }}" class="btn btn-primary">Bayar Sekarang</a>
                             @endif
                         <hr>
                         <div class="bottom-buttons">

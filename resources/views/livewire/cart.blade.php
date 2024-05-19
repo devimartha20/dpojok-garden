@@ -1,11 +1,16 @@
 <div>
     <style>
-        .quantity-box {
+    .quantity-box {
     display: inline-block;
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-}
+    }
+
+    .btn-round {
+        border-radius: 50px; /* Adjust the value as needed */
+        padding: 10px 20px;  /* Adjust the padding as needed */
+    }
     </style>
    <div class="container">
     <div class="card">

@@ -109,7 +109,7 @@
 
             <input type="hidden" value="{{ $total_amount }}" name="total_amount" required>
             <input type="hidden" value="{{ $total_items }}" name="total_items" required>
-            <button type="submit" class="btn btn-primary btn-pay-now">Konfirmasi Pesanan</button>
+            <button type="submit" class="btn btn-primary">Konfirmasi Pesanan</button>
         </div>
     </form>
 </div>

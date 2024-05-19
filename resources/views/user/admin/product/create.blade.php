@@ -55,15 +55,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Harga Jual</label>
+                    <label class="col-sm-2 col-form-label">Harga</label>
                     <div class="col-sm-10">
                         <input type="number" min=1 class="form-control" placeholder="Harga Jual" required name="harga_jual">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Harga Produksi</label>
-                    <div class="col-sm-10">
-                        <input type="number" min=1 class="form-control" placeholder="Harga Produksi" name="harga_produksi">
                     </div>
                 </div>
                 <div class="form-group row">

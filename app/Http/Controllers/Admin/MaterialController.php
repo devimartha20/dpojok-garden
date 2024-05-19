@@ -40,10 +40,10 @@ class MaterialController extends Controller
         ],
 
         [
-            'nama.required' => 'Kategori Wajib Diisi',
-            'nama.unique' => 'Kategori Sudah Ada',
+            'nama.required' => 'Nama Wajib Diisi',
+            'nama.unique' => 'Nama Sudah Ada',
             'stok.required' => 'Stok Wajib Diisi',
-            'unit.required' => 'Unit Wajib Diisi'
+            'unit.required' => 'Satuan Wajib Diisi'
 
         ]);
 
@@ -92,10 +92,10 @@ class MaterialController extends Controller
             ],
 
             [
-                'nama.required' => 'Kategori Wajib Diisi',
-                'nama.unique' => 'Kategori Sudah Ada',
+                'nama.required' => 'Nama Wajib Diisi',
+                'nama.unique' => 'Nama Sudah Ada',
                 'stok.required' => 'Stok Wajib Diisi',
-                'unit.required' => 'Unit Wajib Diisi'
+                'unit.required' => 'Satuan Wajib Diisi'
 
             ]);
 
@@ -109,7 +109,7 @@ class MaterialController extends Controller
 
             if($bahan_baku)
             {
-                return redirect()->back()->with('success', 'Pemesanan berhasil diubah');
+                return redirect()->back()->with('success', 'Bahan Baku berhasil diubah');
             }
 
             return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
