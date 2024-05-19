@@ -63,19 +63,23 @@
                                     <div class="form-group">
                                         <label for="nomor_meja">Pilih Meja</label>
                                         <p>Rekomendasi Terbaik</p>
-                                        @foreach ($bestCombination as $table)
+                                        @foreach ($bestCombination as $tables)
+                                            @foreach ($tables as $table)
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" id="table{{ $table['table_id'] }}" wire:model.live="selected_table" value="{{ $table['table_id'] }}" {{ $loop->iteration == 1 ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="table{{ $table['table_id'] }}">Jumlah Kursi: {{ $table['number'] }}</label>
+                                            </div>
+                                            @endforeach
+                                        @endforeach
+                                        <hr>
+                                        <p>Rekomendasi Lainnya</p>
+                                        @foreach ($combinations as $tables)
+                                        @foreach ($tables as $table)
                                             <div class="form-check">
                                                 <input type="radio" class="form-check-input" id="table{{ $table['table_id'] }}" wire:model.live="selected_table" value="{{ $table['table_id'] }}" {{ $loop->iteration == 1 ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="table{{ $table['table_id'] }}">Jumlah Kursi: {{ $table['number'] }}</label>
                                             </div>
                                         @endforeach
-                                        <hr>
-                                        <p>Rekomendasi Lainnya</p>
-                                        @foreach ($combinations as $table)
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="table{{ $table['table_id'] }}" wire:model.live="selected_table" value="{{ $table['table_id'] }}">
-                                            <label class="form-check-label" for="table{{ $table['table_id'] }}">Jumlah Kursi: {{ $table['number'] }}</label>
-                                        </div>
                                     @endforeach
                                     </div>
                                 @else

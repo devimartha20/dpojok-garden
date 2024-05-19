@@ -120,7 +120,7 @@ class CreateReservation extends Component
         $this->combinations = $combinations;
         $this->bestCombination = $bestCombination;
 
-        dd($availableTables ,$this->combinations, $this->bestCombination);
+        // dd($availableTables ,$this->combinations, $this->bestCombination);
     }
     
 
