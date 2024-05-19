@@ -39,7 +39,7 @@
                                 <th>No</th>
                                 <th>Id Pegawai</th>
                                 <th>Nama Pegawai</th>
-                                <th>Masuk (Hari)</th>
+                                <th>Masuk</th>
                                 <th>Sakit (Hari)</th>
                                 <th>Izin (Hari)</th>
                                 <th>Tanpa Keterangan (Hari)</th>
