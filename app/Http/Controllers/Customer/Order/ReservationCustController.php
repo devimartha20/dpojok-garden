@@ -23,7 +23,7 @@ class ReservationCustController extends Controller
     }
 
     public function show($id){
-        $reservation = Reservation::findOrFail($id);
+        $reservation = Reservation::find($id);
         $order = Order::where('reservation_id', $reservation->id)->first();
         return view('user.pelanggan.reservation.detail', compact('reservation', 'order'));
     }
