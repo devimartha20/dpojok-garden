@@ -65,8 +65,8 @@
                                     <p>Rekomendasi Terbaik</p>
                                     @foreach ($bestCombinations as $index => $combination)
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="bestTable{{ $combination[0]['table_id'] }}" wire:model.live="selected_table" value="{{ $index }}" {{ $index == 0 ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="bestTable{{ $combination[0]['table_id'] }}">Kombinasi {{ $index + 1 }} - 
+                                            <input type="radio" class="form-check-input" id="bestTable{{ $combination[$index]['table_id'] }}" wire:model.live="selected_table" value="{{ $index }}" {{ $loop->iteration == 1 ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="bestTable{{ $combination[$index]['table_id'] }}">Kombinasi {{ $index + 1 }} - 
                                                 @foreach ($combination as $tableIndex => $table)
                                                     ID Tabel: {{ $table['table_id'] }}, Jumlah Kursi: {{ $table['number'] }}
                                                     @if (!$loop->last)
@@ -81,7 +81,7 @@
                                     @foreach ($combinations as $combIndex => $tables)
                                         <div class="combination-group">
                                             <div class="form-check">
-                                                <input type="radio" class="form-check-input" id="combination{{ $combIndex }}" wire:model.live="selected_table" value="{{ $combIndex }}" {{ $combIndex == 0 ? 'checked' : '' }}>
+                                                <input type="radio" class="form-check-input" id="combination{{ $combIndex }}" wire:model.live="selected_table" value="{{ $combIndex }}">
                                                 <label class="form-check-label" for="combination{{ $combIndex }}">Kombinasi {{ $combIndex + 1 }} - 
                                                     @foreach ($tables as $tableIndex => $table)
                                                         ID Tabel: {{ $table['table_id'] }}, Jumlah Kursi: {{ $table['number'] }}
