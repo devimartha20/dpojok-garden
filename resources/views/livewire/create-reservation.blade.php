@@ -63,37 +63,46 @@
                                 <div class="form-group">
                                     <label for="nomor_meja">Pilih Meja</label>
                                     <p>Rekomendasi Terbaik</p>
-                                    @foreach ($bestCombinations as $index => $combination)
+                                    @forelse ($bestCombinations as $index => $combination)
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="bestTable{{ $combination[$index]['table_id'] }}" wire:model.live="selected_table" value="{{ $index }}" {{ $loop->iteration == 1 ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="bestTable{{ $combination[$index]['table_id'] }}">Kombinasi {{ $index + 1 }} - 
-                                                @foreach ($combination as $tableIndex => $table)
+                                            <input type="radio" class="form-check-input" id="bestTable{{ $index }}" wire:model.live="selected_table" value="{{ $index }}" {{ $loop->first ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="bestTable{{ $index }}">Kombinasi {{ $index + 1 }} - 
+                                                @forelse ($combination as $table)
                                                     ID Tabel: {{ $table['table_id'] }}, Jumlah Kursi: {{ $table['number'] }}
                                                     @if (!$loop->last)
                                                         <br>
                                                     @endif
-                                                @endforeach
+                                                @empty
+                                                    No tables available
+                                                @endforelse
                                             </label>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        No best combinations available
+                                    @endforelse
                                     <hr>
                                     <p>Rekomendasi Lainnya</p>
-                                    @foreach ($combinations as $combIndex => $tables)
+                                    @forelse ($combinations as $combIndex => $tables)
                                         <div class="combination-group">
                                             <div class="form-check">
-                                                <input type="radio" class="form-check-input" id="combination{{ $combIndex }}" wire:model.live="selected_table" value="{{ $combIndex }}">
+                                                <input type="radio" class="form-check-input" id="combination{{ $combIndex }}" wire:model.live="selected_table" value="{{ $combIndex }}" {{ $loop->first ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="combination{{ $combIndex }}">Kombinasi {{ $combIndex + 1 }} - 
-                                                    @foreach ($tables as $tableIndex => $table)
+                                                    @forelse ($tables as $table)
                                                         ID Tabel: {{ $table['table_id'] }}, Jumlah Kursi: {{ $table['number'] }}
                                                         @if (!$loop->last)
                                                             <br>
                                                         @endif
-                                                    @endforeach
+                                                    @empty
+                                                        No tables available
+                                                    @endforelse
                                                 </label>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        No combinations available
+                                    @endforelse
                                 </div>
+                                
                                 
                                 @else
                                     <p>Tidak ada meja yang tersedia.</p>
