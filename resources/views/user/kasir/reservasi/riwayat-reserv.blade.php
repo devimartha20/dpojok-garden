@@ -51,6 +51,21 @@ Riwayat Reservasi
     </ul>
     <!-- Tab panes -->
     <div class="tab-content card-block">
+        <div class="card-block caption-breadcrumb">
+            <div class="breadcrumb-header">
+                <h6>No Reservasi: #12345</h6>
+                <p>Tanggal Reservasi: 12 April 2024</p>
+                <p>Waktu Reservasi: 12:12 PM</p>
+                <div class="product-details">
+                    <p>Nomor Meja : 18</p>
+                    <p>Menu Pesanan : Roti Bakar 1, Mix Platter 1, Ice Cream Cookies 1</p>
+                </div>
+                <h6>Total Harga: Rp. 100.000</h6>
+            </div>
+            <div class="col float-start text-right">
+                <span><a href="{{ route('detail.index') }}">Detail Pesanan</a></span>
+            </div>
+        </div>
         <div class="tab-pane active" id="menunggu" role="tabpanel" aria-expanded="true">
             <hr>
             <!--[if BLOCK]><![endif]-->                <div class="text-center">Tidak Ada Reservasi Menunggu Pembayaran</div>
