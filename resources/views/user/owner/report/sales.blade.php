@@ -49,7 +49,7 @@
                             @foreach($salesData as $index => $data)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td><img src="{{ asset('images')/$data->image }}" alt="{{ $data->nama }}" width="50"></td>
+                                <td><img src="{{ asset('images/' . $data->image) }}" alt="{{ $data->nama }}" width="50"></td>
                                 <td>{{ $data->nama }}</td>
                                 <td>{{ number_format($data->harga_jual, 2) }}</td>
                                 <td>{{ $data->total_quantity }}</td>
