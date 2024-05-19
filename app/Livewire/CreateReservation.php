@@ -20,7 +20,7 @@ class CreateReservation extends Component
     public $date, $start_time, $end_time, $guests, $reservation_price = 0, $order_price = 0, $total_price = 0, $deviation = 0;
     public $search, $available = false;
 
-    public $orderNo, $pemesan, $packing, $reservationNo;
+    public $orderNo, $pemesan, $packing, $reservationNo, $combinations, $bestCombinations, $selected_table;
     public $products = [], $productOrders = [], $total_all = 0;
 
     public function mount()
@@ -132,7 +132,8 @@ class CreateReservation extends Component
 
         $this->available = !empty($combinations) && !empty($bestCombination);
 
-        return $bestCombination;
+        $this->combinations = $combinations;
+        $this->bestCombination = $bestCombination;
     }
 
     function findCombinations($seats, $target, $deviation, $notAllowedTables) {
@@ -371,6 +372,8 @@ class CreateReservation extends Component
             'status' => 'menunggu_pembayaran',
             'price' => $this->calculateReservationPrice(),
         ]);
+
+
 
         $customer = Customer::where('user_id', Auth::user()->id)->first();
 
