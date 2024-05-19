@@ -40,6 +40,7 @@
                                 <th>No</th>
                                 <th>Id Pegawai</th>
                                 <th>Nama Pegawai</th>
+                                <th>Masuk</th>
                                 <th>Sakit (Hari)</th>
                                 <th>Izin (Hari)</th>
                                 <th>Tanpa Keterangan (Hari)</th>
@@ -52,6 +53,7 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $data['employee_id'] }}</td>
                                 <td>{{ $data['employee_name'] }}</td>
+                                <td></td>
                                 <td>{{ $data['sick_days'] }}</td>
                                 <td>{{ $data['permission_days'] }}</td>
                                 <td>{{ $data['unexplained_absences'] }}</td>
