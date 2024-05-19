@@ -10,78 +10,68 @@
                         </div>
                         <div class="reservation-container">
                             <div class="reservation-form">
-                                <form action="#">
+                                <form wire:submit.prevent="checkAvailability">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="tanggal_mulai">Tanggal Sewa</label>
-                                                <input type="datetime-local" class="form-control" name="start_date" id="start_date" required="">
+                                                <input type="date" class="form-control" wire:model="date" id="date" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="jam">Jam Mulai</label>
-                                                <input type="time" class="form-control" name="jam_mulai" id="jam_mulai" required="">
+                                                <input type="time" class="form-control" wire:model="start_time" id="start_time" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="jam">Jam Akhir</label>
-                                                <input type="time" class="form-control" name="jam_akhir" id="jam_akhir" required="">
+                                                <input type="time" class="form-control" wire:model="end_time" id="end_time" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="orang">Jumlah Tamu</label>
-                                                <div class="select-wrap one-third">
-                                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                    <input type="number" class="form-control" id="jumlah_tamu" placeholder="Jumlah Tamu">
-                                                </div>
+                                                <input type="number" class="form-control" wire:model="guests" id="jumlah_tamu" placeholder="Jumlah Tamu" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="tanggal_akhir">Catatan</label>
-                                                <input type="text" class="form-control" id="catatan" placeholder="Tambahkan Catatan">
+                                                <input type="text" class="form-control" wire:model="catatan" id="catatan" placeholder="Tambahkan Catatan">
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-3">
                                             <div class="form-group">
-                                                <input type="submit" value="Cek Ketersediaan" class="btn btn-primary py-3 px-5 btn-round">
+                                                <button type="submit" class="btn btn-primary py-3 px-5 btn-round">Cek Ketersediaan</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                             </div>
+                            @if($available)
                             <div class="table-selection">
                                 <div class="form-group">
                                     <label for="nomor_meja">Pilih Meja</label>
                                     <p>Rekomendasi Terbaik</p>
+                                    @foreach($bestCombination as $combination)
                                         <div class="form-group">
-                                            <input type="radio" id="bahan1" name="bahan_baku" value="Bahan Baku 1">
-                                            <img src="" alt="Product Image" class="product-image">
-                                            <p>Jumlah Kursi : 4</p>
-                                            <div class="form-group">
-                                            <img src="" alt="Product Image" class="product-image">
-                                            <p>Jumlah Kursi : 4</p>
-                                            </div>
+                                            <input type="radio" wire:model="selectedTable" value="{{ $combination['table_id'] }}">
+                                            <img src="{{ asset('images/' . $combination['image']) }}" alt="Product Image" class="product-image">
+                                            <p>Jumlah Kursi : {{ $combination['number'] }}</p>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="radio" id="bahan2" name="bahan_baku" value="Bahan Baku 2">
-                                            <img src="" alt="Product Image" class="product-image">
-                                            <p>Jumlah Kursi : 4</p>
-                                            <img src="" alt="Product Image" class="product-image">
-                                            <p>Jumlah Kursi : 4</p>
-                                        </div>
-                                    </select>
+                                    @endforeach
                                 </div>
                             </div>
+                            @endif
                         </div>
                         <hr>
                     </div>
                 </div>
             </div>
         </div>
+        @if($available)
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
@@ -93,7 +83,18 @@
                             <input type="text" class="form-control" wire:model.live="search" placeholder="Cari Produk">
                         </div>
                         <div class="row">
-                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                            @foreach($products as $product)
+                                <div class="col-md-4">
+                                    <div class="card mb-4">
+                                        <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->nama }}" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $product->nama }}</h5>
+                                            <p class="card-text">Harga: {{ $product->harga_jual }}</p>
+                                            <button wire:click="addToOrder({{ $product->id }})" class="btn btn-primary">Tambah ke Pesanan</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -116,19 +117,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
-                                <!-- Display total harga keseluruhan -->
-                                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                @foreach($productOrders as $index => $order)
+                                    <tr>
+                                        <td>{{ $order['nama'] }}</td>
+                                        <td>{{ $order['harga_jual'] }}</td>
+                                        <td><input type="number" wire:model="productOrders.{{ $index }}.jumlah" min="1" max="{{ $order['stok'] }}"></td>
+                                        <td><input type="text" wire:model="productOrders.{{ $index }}.catatan"></td>
+                                        <td>{{ $order['total_harga'] }}</td>
+                                        <td><button wire:click="removeProduct({{ $index }})" class="btn btn-danger">Hapus</button></td>
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <td colspan="4" class="text-right"><strong>Total Harga Pesanan:</strong></td>
+                                    <td colspan="2">{{ $order_price }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right"><strong>Total Harga Reservasi:</strong></td>
+                                    <td colspan="2">{{ $reservation_price }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right"><strong>Total Harga Keseluruhan:</strong></td>
+                                    <td colspan="2">{{ $total_price }}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
-                            <input type="submit" wire:click="save" value="Buat Reservasi" class="btn btn-primary py-3 px-5 btn-round">
+                            <button wire:click="save" class="btn btn-primary py-3 px-5 btn-round">Buat Reservasi</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @endif
     </section>
 </div>
