@@ -65,7 +65,7 @@
                                     <p>Rekomendasi Terbaik</p>
                                     @foreach ($bestCombinations as $index => $combination)
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="bestTable{{ $combination[$ndex] }}" wire:model.live="selected_table" value="{{ $combination[$index] }}" {{ $index == 0 ? 'checked' : '' }}>
+                                            <input type="radio" class="form-check-input" id="bestTable{{ $combination[$index] }}" wire:model.live="selected_table" value="{{ $combination[$index] }}" {{ $index == 0 ? 'checked' : '' }}>
                                             @foreach ($combination as $table)
                                             <label class="form-check-label" for="bestTable{{ $table['table_id'] }}">ID Tabel : {{ $table['table_id'] }}, Jumlah Kursi: {{ $combination['number'] }}</label>
                                             @endforeach
