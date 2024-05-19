@@ -85,7 +85,7 @@ class ReportController extends Controller
            // Add the data to the array
            $attendanceData[] = [
                'employee_id' => $employee->id,
-               'employee_name' => $employee->name,
+               'employee_name' => $employee->nama,
                'sick_days' => $sickDays,
                'permission_days' => $permissionDays,
                'unexplained_absences' => $unexplainedAbsences,
