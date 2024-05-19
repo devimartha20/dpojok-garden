@@ -1,12 +1,9 @@
-<!-- resources/views/livewire/create-reservation.blade.php -->
-
-<div>
-    <section class="ftco-section ftco-no-pt ftco-no-pb">
+<div>    
         <div class="container-fluid px-0">
             <div class="row d-flex no-gutters">
-                <div class="col-md-12 ftco-animate makereservation p-4 p-md-5 pt-5">
+                <div class="col-md-12  makereservation p-4 p-md-5 pt-5">
                     <div class="py-md-5">
-                        <div class="heading-section ftco-animate mb-5">
+                        <div class="heading-section  mb-5">
                             <span class="subheading">Book a table</span>
                             <h2 class="mb-4">Make Reservation</h2>
                         </div>
@@ -164,6 +161,5 @@
                 </div>
             </div>
         </div>
-        @endif
-    </section>
+        @endif   
 </div>

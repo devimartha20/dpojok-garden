@@ -23,6 +23,8 @@
             }
         }
     </style>
+
+    @livewireStyles
 @endsection
 @section('content')
 
@@ -43,7 +45,7 @@
 
 
     <!-- Include your scripts here -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -59,5 +61,8 @@
     <script src="{{ asset('js/scrollax.min.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ asset('js/google-map.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script> --}}
+@endsection
+@section('scripts')
+@livewireScripts
 @endsection
