@@ -65,18 +65,20 @@
                                     <p>Rekomendasi Terbaik</p>
                                     @foreach ($bestCombinations as $index => $combination)
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="bestTable{{ $combination['table_id'] }}" wire:model.live="selected_table" value="{{ $combination['table_id'] }}" {{ $index == 0 ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="bestTable{{ $combination['table_id'] }}">Jumlah Kursi: {{ $combination['number'] }}</label>
+                                            <input type="radio" class="form-check-input" id="bestTable{{ $combination[$ndex] }}" wire:model.live="selected_table" value="{{ $combination[$index] }}" {{ $index == 0 ? 'checked' : '' }}>
+                                            @foreach ($combination as $table)
+                                            <label class="form-check-label" for="bestTable{{ $table['table_id'] }}">ID Tabel : {{ $table['table_id'] }}, Jumlah Kursi: {{ $combination['number'] }}</label>
+                                            @endforeach
                                         </div>
                                     @endforeach
                                     <hr>
                                     <p>Rekomendasi Lainnya</p>
                                     @foreach ($combinations as $combIndex => $tables)
                                         <div class="combination-group">
-                                            <p>Combination {{ $combIndex + 1 }}</p>
-                                            @foreach ($tables as $tableIndex => $table)
-                                                <div class="form-check">
-                                                    <input type="radio" class="form-check-input" id="table{{ $table['table_id'] }}" wire:model.live="selected_table" value="{{ $table['table_id'] }}" {{ $tableIndex == 0 && $combIndex == 0 ? 'checked' : '' }}>
+                                            <p>Kombinasi {{ $combIndex + 1 }}</p>
+                                            <input type="radio" class="form-check-input" id="table{{ $table[$combIndex] }}" wire:model.live="selected_table" value="{{ $tables[$combIndex] }}">
+                                            @foreach ($tables as $tableIndex => $table) 
+                                                <div class="form-check">    
                                                     <label class="form-check-label" for="table{{ $table['table_id'] }}">Jumlah Kursi: {{ $table['number'] }}</label>
                                                 </div>
                                             @endforeach
