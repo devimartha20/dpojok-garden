@@ -17,11 +17,11 @@ use Livewire\Component;
 
 class CreateReservation extends Component
 {
-    public $date, $start_time, $end_time, $guests, $reservation_price, $order_price, $total_price, $deviation = 0;
+    public $date, $start_time, $end_time, $guests, $reservation_price = 0, $order_price = 0, $total_price = 0, $deviation = 0;
     public $search, $available = false;
 
     public $orderNo, $pemesan, $packing, $reservationNo;
-    public $products, $productOrders = [], $total_all = 0;
+    public $products = [], $productOrders = [], $total_all = 0;
 
     public function mount()
     {
@@ -436,22 +436,24 @@ class CreateReservation extends Component
         $this->loadProducts();
     }
 
-    public function updated($field, $value)
+    public function updated($field)
     {
         if (strpos($field, 'productOrders.') === 0 && strpos($field, '.jumlah') !== false) {
             $index = explode('.', $field)[1];
-            if (!is_numeric($value) || $value <= 0) {
+            if (!is_numeric($this->productOrders[$index]['jumlah']) || $this->productOrders[$index]['jumlah'] <= 0) {
                 session()->flash('error', 'Jumlah harus berupa angka positif.');
                 return;
             }
-            $this->productOrders[$index]['jumlah'] = $value;
-            $this->productOrders[$index]['total_harga'] = $this->productOrders[$index]['harga_jual'] * $value;
+            $this->productOrders[$index]['total_harga'] = $this->productOrders[$index]['harga_jual'] * $this->productOrders[$index]['jumlah'];
             $this->calculateOrderPrice();
         }
     }
 
     public function render()
     {
-        return view('livewire.create-reservation');
+        return view('livewire.create-reservation', [
+            'products' => $this->products,
+            'total_price' => $this->total_price,
+        ]);
     }
 }

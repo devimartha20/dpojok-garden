@@ -14,31 +14,31 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="tanggal_mulai">Tanggal Sewa</label>
-                                                <input type="date" class="form-control" wire:model="date" id="date" required>
+                                                <label for="start_date">Tanggal Sewa</label>
+                                                <input type="datetime-local" class="form-control" wire:model="date" id="start_date" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="jam">Jam Mulai</label>
-                                                <input type="time" class="form-control" wire:model="start_time" id="start_time" required>
+                                                <label for="jam_mulai">Jam Mulai</label>
+                                                <input type="time" class="form-control" wire:model="start_time" id="jam_mulai" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="jam">Jam Akhir</label>
-                                                <input type="time" class="form-control" wire:model="end_time" id="end_time" required>
+                                                <label for="jam_akhir">Jam Akhir</label>
+                                                <input type="time" class="form-control" wire:model="end_time" id="jam_akhir" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="orang">Jumlah Tamu</label>
+                                                <label for="jumlah_tamu">Jumlah Tamu</label>
                                                 <input type="number" class="form-control" wire:model="guests" id="jumlah_tamu" placeholder="Jumlah Tamu" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="tanggal_akhir">Catatan</label>
+                                                <label for="catatan">Catatan</label>
                                                 <input type="text" class="form-control" wire:model="catatan" id="catatan" placeholder="Tambahkan Catatan">
                                             </div>
                                         </div>
@@ -50,28 +50,28 @@
                                     </div>
                                 </form>
                             </div>
-                            @if($available)
-                            <div class="table-selection">
-                                <div class="form-group">
-                                    <label for="nomor_meja">Pilih Meja</label>
-                                    <p>Rekomendasi Terbaik</p>
-                                    @foreach($bestCombination as $combination)
-                                        <div class="form-group">
-                                            <input type="radio" wire:model="selectedTable" value="{{ $combination['table_id'] }}">
-                                            <img src="{{ asset('images/' . $combination['image']) }}" alt="Product Image" class="product-image">
-                                            <p>Jumlah Kursi : {{ $combination['number'] }}</p>
-                                        </div>
-                                    @endforeach
-                                </div>
+                            <div class="table-selection" wire:loading.remove wire:target="checkAvailability">
+                                @if($available)
+                                    <div class="form-group">
+                                        <label for="nomor_meja">Pilih Meja</label>
+                                        <p>Rekomendasi Terbaik</p>
+                                        @foreach ($bestCombination as $table)
+                                            <div class="form-group">
+                                                <input type="radio" id="table{{ $table['table_id'] }}" name="selected_table" value="{{ $table['table_id'] }}">
+                                                <p>Jumlah Kursi : {{ $table['number'] }}</p>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <p>Tidak ada meja yang tersedia.</p>
+                                @endif
                             </div>
-                            @endif
                         </div>
                         <hr>
                     </div>
                 </div>
             </div>
         </div>
-        @if($available)
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
@@ -80,17 +80,17 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" wire:model.live="search" placeholder="Cari Produk">
+                            <input type="text" class="form-control" wire:model="search" placeholder="Cari Produk">
                         </div>
                         <div class="row">
-                            @foreach($products as $product)
-                                <div class="col-md-4">
-                                    <div class="card mb-4">
-                                        <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->nama }}" class="card-img-top">
+                            @foreach ($products as $product)
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img src="{{ $product->image_url }}" class="card-img-top" alt="{{ $product->name }}">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $product->nama }}</h5>
-                                            <p class="card-text">Harga: {{ $product->harga_jual }}</p>
-                                            <button wire:click="addToOrder({{ $product->id }})" class="btn btn-primary">Tambah ke Pesanan</button>
+                                            <h5 class="card-title">{{ $product->name }}</h5>
+                                            <p class="card-text">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+                                            <button wire:click="addToOrder({{ $product->id }})" class="btn btn-primary">Tambah</button>
                                         </div>
                                     </div>
                                 </div>
@@ -117,39 +117,41 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($productOrders as $index => $order)
+                                @foreach ($productOrders as $index => $order)
                                     <tr>
                                         <td>{{ $order['nama'] }}</td>
-                                        <td>{{ $order['harga_jual'] }}</td>
-                                        <td><input type="number" wire:model="productOrders.{{ $index }}.jumlah" min="1" max="{{ $order['stok'] }}"></td>
-                                        <td><input type="text" wire:model="productOrders.{{ $index }}.catatan"></td>
-                                        <td>{{ $order['total_harga'] }}</td>
-                                        <td><button wire:click="removeProduct({{ $index }})" class="btn btn-danger">Hapus</button></td>
+                                        <td>Rp {{ number_format($order['harga_jual'], 0, ',', '.') }}</td>
+                                        <td>
+                                            <input type="number" class="form-control" wire:model="productOrders.{{ $index }}.jumlah" min="1">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" wire:model="productOrders.{{ $index }}.catatan">
+                                        </td>
+                                        <td>Rp {{ number_format($order['total_harga'], 0, ',', '.') }}</td>
+                                        <td>
+                                            <button wire:click="removeProduct({{ $index }})" class="btn btn-danger">Hapus</button>
+                                        </td>
                                     </tr>
                                 @endforeach
-                                <tr>
-                                    <td colspan="4" class="text-right"><strong>Total Harga Pesanan:</strong></td>
-                                    <td colspan="2">{{ $order_price }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="text-right"><strong>Total Harga Reservasi:</strong></td>
-                                    <td colspan="2">{{ $reservation_price }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="text-right"><strong>Total Harga Keseluruhan:</strong></td>
-                                    <td colspan="2">{{ $total_price }}</td>
-                                </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <div class="form-group">
-                            <button wire:click="save" class="btn btn-primary py-3 px-5 btn-round">Buat Reservasi</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Total Harga Pesanan: Rp {{ number_format($order_price, 0, ',', '.') }}</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Total Harga Reservasi: Rp {{ number_format($reservation_price, 0, ',', '.') }}</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Total Harga Keseluruhan: Rp {{ number_format($total_price, 0, ',', '.') }}</h5>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <button wire:click="save" class="btn btn-primary py-3 px-5 btn-round">Buat Reservasi</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @endif
     </section>
 </div>
