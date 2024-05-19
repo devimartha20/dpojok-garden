@@ -119,6 +119,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
             return view('user/admin/leave/index');
         })->name('kelolacuti.route');
 
+
     });
 
     // Route Khusus Kasir
@@ -141,6 +142,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
             $payment = Payment::findOrFail($id);
             return view('print.receipt', compact('payment'));
         })->name('print.receipt');
+        Route::get('/edit-form', function () {
+            return view('user/kasir/reservasi/edit');
+        })->name('editform.route');
+
     });
 
     // Route Khusus Koki
