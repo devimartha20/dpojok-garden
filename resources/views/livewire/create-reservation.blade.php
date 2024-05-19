@@ -9,30 +9,39 @@
                         </div>
                         <div class="reservation-container">
                             <div class="reservation-form">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                                 <form wire:submit.prevent="checkAvailability">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="start_date">Tanggal Sewa</label>
-                                                <input type="datetime-local" class="form-control" wire:model="date" id="start_date" required>
+                                                <input type="date" class="form-control" wire:model.live="date" id="start_date" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="jam_mulai">Jam Mulai</label>
-                                                <input type="time" class="form-control" wire:model="start_time" id="jam_mulai" required>
+                                                <input type="time" class="form-control" wire:model.live="start_time" id="jam_mulai" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="jam_akhir">Jam Akhir</label>
-                                                <input type="time" class="form-control" wire:model="end_time" id="jam_akhir" required>
+                                                <input type="time" class="form-control" wire:model.live="end_time" id="jam_akhir" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="jumlah_tamu">Jumlah Tamu</label>
-                                                <input type="number" class="form-control" wire:model="guests" id="jumlah_tamu" placeholder="Jumlah Tamu" required>
+                                                <input type="number" class="form-control" wire:model.live="guests" id="jumlah_tamu" placeholder="Jumlah Tamu" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

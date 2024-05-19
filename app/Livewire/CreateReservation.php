@@ -74,6 +74,8 @@ class CreateReservation extends Component
         $endTime = $endTime ?? $this->end_time;
     
         $overlappingTableIds = $this->getOverlappingTableIds($date, $startTime, $endTime);
+
+        // dd($overlappingTableIds);
     
         $availableTableIds = DB::table('tables')
             ->whereNotIn('id', $overlappingTableIds)
@@ -85,13 +87,15 @@ class CreateReservation extends Component
     public function checkAvailability()
     {
         $this->validate([
-            'date' => 'required|date|after_or_equal:today',
-            'start_time' => 'required|date_format:H:i|after_or_equal:now',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'date' => 'required|date|after_or_equal:tomorrow',
+            'start_time' => 'required',
+            'end_time' => 'required|after:start_time',
             'guests' => 'required|integer|min:1',
         ]);
     
         $availableTables = $this->getAvailableTableIds();
+
+        // dd($availableTables);
     
         if ($availableTables->isEmpty()) {
             $this->available = false;
@@ -115,6 +119,8 @@ class CreateReservation extends Component
         $this->available = !empty($combinations) && !empty($bestCombination);
         $this->combinations = $combinations;
         $this->bestCombination = $bestCombination;
+
+        dd($availableTables ,$this->combinations, $this->bestCombination);
     }
     
 
