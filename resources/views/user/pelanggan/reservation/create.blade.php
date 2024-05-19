@@ -38,7 +38,7 @@
             </p>
         </div>
     </div>
-    @livewire('cret')
+    @livewire('create-reservation')
 </div>
 
 
