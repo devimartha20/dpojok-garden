@@ -79,7 +79,7 @@
                                             <input type="radio" class="form-check-input" id="table{{ $table[$combIndex] }}" wire:model.live="selected_table" value="{{ $tables[$combIndex] }}">
                                             @foreach ($tables as $tableIndex => $table) 
                                                 <div class="form-check">    
-                                                    <label class="form-check-label" for="table{{ $table['table_id'] }}">Jumlah Kursi: {{ $table['number'] }}</label>
+                                                    <label class="form-check-label" for="table{{ $table['table_id'] }}">ID Tabel : {{ $table['table_id'] }}, Jumlah Kursi: {{ $table['number'] }}</label>
                                                 </div>
                                             @endforeach
                                         </div>
