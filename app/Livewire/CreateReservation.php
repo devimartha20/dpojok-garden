@@ -7,7 +7,7 @@ use App\Models\Admin\DetailOrder;
 use App\Models\Admin\Order;
 use App\Models\Admin\Payment;
 use App\Models\Admin\Product;
-use App\Models\admin\Table;
+use App\Models\Admin\Table;
 use App\Models\Reservation;
 use App\Models\ReservationSetting;
 use Carbon\Carbon;
