@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h3 class="h5 mb-4 text-center">Laporan Penjualan</h3>
+                <h3 class="h5 mb-4 text-center">Laporan Absensi Pegawai</h3>
                 <form method="GET" action="{{ route('report.attendances') }}">
                     {{-- @csrf --}}
                     <div class="form-row align-items-center">
