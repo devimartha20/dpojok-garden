@@ -28,11 +28,11 @@ class ReportController extends Controller
          }
  
          // Fetch sales data grouped by product within the date range
-         $salesData = DetailOrder::selectRaw('products.id, products.image, products.nama, products.harga_jual, SUM(detail_orders.jumlah) as total_quantity, SUM(detail_orders.total_harga) as total_sales')
+         $salesData = DetailOrder::selectRaw('products.id, products.image, products.nama, detail_orders.harga, SUM(detail_orders.jumlah) as total_quantity, SUM(detail_orders.total_harga) as total_sales')
              ->join('products', 'detail_orders.product_id', '=', 'products.id')
              ->join('orders', 'detail_orders.order_id', '=', 'orders.id')
              ->whereBetween('orders.created_at', [$startDate, $endDate])
-             ->groupBy('products.id', 'products.image', 'products.nama', 'products.harga_jual')
+             ->groupBy('products.id', 'products.image', 'products.nama', 'detail_orders.harga')
              ->get();
  
          // Pass the sales data and the filter dates to the view
