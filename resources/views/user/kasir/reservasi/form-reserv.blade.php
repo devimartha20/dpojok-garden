@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Pemesanan
+    Form Reservasi
 @endsection
 @section('styles')
     @livewireStyles

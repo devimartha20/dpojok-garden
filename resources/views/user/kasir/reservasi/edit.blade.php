@@ -1,7 +1,7 @@
 @extends('layouts.main.layout')
 
 @section('title')
-    Detail Reservasi
+    Edit Reservasi
 @endsection
 
 @section('styles')

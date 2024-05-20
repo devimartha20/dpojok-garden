@@ -2,7 +2,7 @@
 @section('title')
 Pembayaran Reservasi
 @endsection
-div class="container">
+<div class="container">
         <div class="card shadow-lg">
             <div class="card-header bg-primary text-white">
                 <h5 class="card-title">Pembayaran Nomor 1716118775-ORDER-02024051918392822</h5>
