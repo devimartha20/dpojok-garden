@@ -40,7 +40,7 @@ class EmployeeHrController extends Controller
         $store = Attendance::create([
             'employee_id' => Auth::guard('employee')->id(),
             'method' => 'confirmation',
-            'date' => now()->toDateTimeString(), // Format date as datetime string
+            'date' => now()->toDateString(), // Format date as datetime string
             'time' => now()->toTimeString(), // Format time as time string
             'type' => $request->type,
             'status' => 'pending',

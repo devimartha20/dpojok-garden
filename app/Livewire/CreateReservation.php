@@ -7,9 +7,10 @@ use App\Models\Admin\DetailOrder;
 use App\Models\Admin\Order;
 use App\Models\Admin\Payment;
 use App\Models\Admin\Product;
-use App\Models\admin\Table;
+use App\Models\Admin\Table;
 use App\Models\Reservation;
 use App\Models\ReservationSetting;
+use App\Models\ReservationTable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class CreateReservation extends Component
     public $date, $start_time, $end_time, $guests, $reservation_price = 0, $order_price = 0, $total_price = 0, $deviation = 0;
     public $search, $available = false;
 
-    public $orderNo, $pemesan, $packing, $reservationNo;
+    public $orderNo, $pemesan, $catatan, $packing, $reservationNo, $combinations, $bestCombinations, $selected_table;
     public $products = [], $productOrders = [], $total_all = 0;
 
     public function mount()
@@ -33,18 +34,6 @@ class CreateReservation extends Component
 
     public function checkOverlap($date, $startTime, $endTime)
     {
-        // Validate input parameters
-        $validatedData = $this->validate([
-            'date' => 'required|date|after_or_equal:today',
-            'start_time' => 'required|date_format:H:i|after_or_equal:now',
-            'end_time' => 'required|date_format:H:i|after:start_time',
-        ]);
-
-        // Extract validated data
-        $date = $validatedData['date'];
-        $startTime = $validatedData['start_time'];
-        $endTime = $validatedData['end_time'];
-
         $overlappingReservations = DB::table('reservations')
             ->where('date', $date)
             ->where(function ($query) use ($startTime, $endTime) {
@@ -56,65 +45,67 @@ class CreateReservation extends Component
                       });
             })
             ->get();
-
+    
         return $overlappingReservations;
     }
-
+    
     public function getOverlappingTableIds($date, $startTime, $endTime)
     {
-        // Get overlapping reservations
         $overlappingReservations = $this->checkOverlap($date, $startTime, $endTime);
-
+    
         if ($overlappingReservations->isEmpty()) {
-            return collect(); // No overlapping reservations found, return empty collection
+            return [];
         }
-
-        // Extract reservation IDs
+    
         $reservationIds = $overlappingReservations->pluck('id');
-
-        // Get table IDs from reservation_tables where reservation_id is in the list of overlapping reservation IDs
+    
         $tableIds = DB::table('reservation_tables')
             ->whereIn('reservation_id', $reservationIds)
             ->pluck('table_id')
-            ->filter() // Remove null values
-            ->unique(); // Get unique table IDs
-
+            ->filter()
+            ->unique();
+    
         return $tableIds;
     }
-
+    
     public function getAvailableTableIds($date = null, $startTime = null, $endTime = null)
     {
         $date = $date ?? $this->date;
         $startTime = $startTime ?? $this->start_time;
         $endTime = $endTime ?? $this->end_time;
-
-        // Get the overlapping table IDs
+    
         $overlappingTableIds = $this->getOverlappingTableIds($date, $startTime, $endTime);
 
-        // Get available table IDs from tables where status is 'tersedia' and table_id is not in overlappingTableIds
+        // dd($overlappingTableIds);
+    
         $availableTableIds = DB::table('tables')
             ->whereNotIn('id', $overlappingTableIds)
             ->pluck('id');
-
+    
         return $availableTableIds;
     }
-
-    public function checkAvailability($date, $startTime, $endTime, $guests = 0, $deviation = 2)
+    
+    public function checkAvailability()
     {
-        $guests = $guests ?? $this->guests;
-        $deviation = $deviation ?? ReservationSetting::first('seat_deviation')->seat_deviation;
+        $this->validate([
+            'date' => 'required|date|after_or_equal:tomorrow',
+            'start_time' => 'required',
+            'end_time' => 'required|after:start_time',
+            'guests' => 'required|integer|min:1',
+        ]);
+    
+        $availableTables = $this->getAvailableTableIds();
 
-        $availableTables = $this->getAvailableTableIds($date, $startTime, $endTime);
-
+        // dd($availableTables);
+    
         if ($availableTables->isEmpty()) {
             $this->available = false;
-            return [];
+            return;
         }
-
-        // Separate seats into allowed and not allowed for joining
+    
         $seats = [];
         $notAllowedTables = [];
-
+    
         foreach ($availableTables as $tableId) {
             $availableTable = Table::find($tableId);
             $seats[] = ['table_id' => $availableTable->id, 'number' => $availableTable->jumlah_kursi];
@@ -122,17 +113,17 @@ class CreateReservation extends Component
                 $notAllowedTables[] = $availableTable->id;
             }
         }
-
-        // Find all possible combinations of tables to meet the guest requirement
-        $combinations = $this->findCombinations($seats, $guests, $deviation, $notAllowedTables);
-
-        // Find the best combination
+    
+        $combinations = $this->findCombinations($seats, $this->guests, $this->deviation, $notAllowedTables);
         $bestCombination = $this->findBestCombination($combinations);
-
+    
         $this->available = !empty($combinations) && !empty($bestCombination);
+        $this->combinations = $combinations;
+        $this->bestCombinations = $bestCombination;
 
-        return $bestCombination;
+        // dd($availableTables ,$this->combinations, $this->bestCombination);
     }
+    
 
     function findCombinations($seats, $target, $deviation, $notAllowedTables) {
         // Sort seats by table ID to ensure consistent output
@@ -345,10 +336,11 @@ class CreateReservation extends Component
             'orderNo' => 'required',
             'productOrders' => 'required|array|min:1',
             'date' => 'required|date|after_or_equal:today',
-            'start_time' => 'required|date_format:H:i|after_or_equal:now',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'start_time' => 'required',
+            'end_time' => 'required|after:start_time',
             'productOrders.*.product' => 'required',
             'productOrders.*.jumlah' => 'required|numeric|min:1',
+            'selected_table' => 'required',
         ], [
             'orderNo.required' => 'Nomor pesanan harus diisi.',
             'date.after_or_equal' => 'Tanggal harus di masa depan atau hari ini.',
@@ -370,6 +362,18 @@ class CreateReservation extends Component
             'status' => 'menunggu_pembayaran',
             'price' => $this->calculateReservationPrice(),
         ]);
+
+        foreach($this->combinations[$this->selected_table] as $table){
+            ReservationTable::create([
+                'reservation_id' => $reservation->id,
+                'table_id' => $table['table_id'],
+                'seats' => $this->guests,
+                'guests' => $this->guests,
+                'date' => $this->date,
+                'start_time' => $this->start_time,
+                'end_time' => $this->end_time,
+            ]);
+        }
 
         $customer = Customer::where('user_id', Auth::user()->id)->first();
 
@@ -436,7 +440,7 @@ class CreateReservation extends Component
         $this->loadProducts();
     }
 
-    public function updated($field)
+    public function updatedProductOrders($field)
     {
         if (strpos($field, 'productOrders.') === 0 && strpos($field, '.jumlah') !== false) {
             $index = explode('.', $field)[1];
