@@ -32,6 +32,7 @@ class ReportController extends Controller
              ->join('products', 'detail_orders.product_id', '=', 'products.id')
              ->join('orders', 'detail_orders.order_id', '=', 'orders.id')
              ->whereBetween('orders.created_at', [$startDate, $endDate])
+             ->where('orders.status', 'lunas')
              ->groupBy('products.id', 'products.image', 'products.nama', 'detail_orders.harga')
              ->get();
  
