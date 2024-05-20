@@ -146,10 +146,10 @@
                                         <td>{{ $order['nama'] }}</td>
                                         <td>Rp {{ number_format($order['harga_jual'], 0, ',', '.') }}</td>
                                         <td>
-                                            <input type="number" class="form-control" wire:model="productOrders.{{ $index }}.jumlah" min="1">
+                                            <input type="number" class="form-control" wire:model.live="productOrders.{{ $index }}.jumlah" min="1">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" wire:model="productOrders.{{ $index }}.catatan">
+                                            <input type="text" class="form-control" wire:model.live="productOrders.{{ $index }}.catatan">
                                         </td>
                                         <td>Rp {{ number_format($order['total_harga'], 0, ',', '.') }}</td>
                                         <td>
