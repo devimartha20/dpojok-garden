@@ -67,7 +67,7 @@
                                         <div class="combination-group">
                                             <div class="form-check">
                                                 <input type="radio" class="form-check-input" id="combination{{ $combIndex }}" wire:model.live="selected_table" value="{{ $combIndex }}" {{ $loop->first ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="combination{{ $combIndex }}">Kombinasi {{ $loop->iteration }}  : <hr>
+                                                <label class="form-check-label" for="combination{{ $combIndex }}">Kombinasi {{ $loop->iteration }}  : <br>
                                                     @forelse ($tables as $table)
                                                         ID Tabel: {{ $table['table_id'] }}, Jumlah Kursi: {{ $table['number'] }}
                                                         @if (!$loop->last)
@@ -79,6 +79,7 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <hr>
                                     @empty
                                         No combinations available
                                     @endforelse
