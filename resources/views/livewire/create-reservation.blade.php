@@ -61,21 +61,7 @@
                             <div class="table-selection mt-4">
                                 @if($available)
                                 <div class="form-group">
-                                    <!-- <label for="nomor_meja">Pilih Meja</label>
-                                    <p>Rekomendasi Terbaik</p>
-                                    @forelse ($bestCombinations as $index => $combination)
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="bestTable{{ $index }}" wire:model.live="selected_table" value="{{ $index }}" {{ $loop->first ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="bestTable{{ $index }}">Kombinasi {{ $index + 1 }} - 
-                                               
-                                                    ID Tabel: {{ $combination['table_id'] }}, Jumlah Kursi: {{ $combination['number'] }}
-                                                     
-                                            </label>
-                                        </div>
-                                    @empty
-                                        No best combinations available
-                                    @endforelse 
-                                    <hr>-->
+                                   
                                     <p>Pilihan Meja</p>
                                     @forelse ($combinations as $combIndex => $tables)
                                         <div class="combination-group">
