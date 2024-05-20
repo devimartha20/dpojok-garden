@@ -61,7 +61,7 @@
                             <div class="table-selection mt-4">
                                 @if($available)
                                 <div class="form-group">
-                                    <label for="nomor_meja">Pilih Meja</label>
+                                    <!-- <label for="nomor_meja">Pilih Meja</label>
                                     <p>Rekomendasi Terbaik</p>
                                     @forelse ($bestCombinations as $index => $combination)
                                         <div class="form-check">
@@ -79,9 +79,9 @@
                                         </div>
                                     @empty
                                         No best combinations available
-                                    @endforelse
+                                    @endforelse -->
                                     <hr>
-                                    <p>Rekomendasi Lainnya</p>
+                                    <p>Pilihan Meja</p>
                                     @forelse ($combinations as $combIndex => $tables)
                                         <div class="combination-group">
                                             <div class="form-check">
