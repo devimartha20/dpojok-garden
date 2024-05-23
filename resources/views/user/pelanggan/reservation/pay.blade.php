@@ -54,7 +54,7 @@ data-client-key="{{ config('app.client_key') }}"></script>
                             <h5>{{ $do->product->nama }}</h5>
                             <h5>{{ $do->harga }}</h5>
                             <h5>Jumlah: {{ $do->jumlah }}</h5>
-                            <h4>Total Harga: {{ number_format($do->total_harga) }}</h4>
+                            <h5>Total Harga: {{ number_format($do->total_harga) }}</h5>
                         </div>
                     @endforeach
                     <div class="separator"></div>
@@ -71,7 +71,7 @@ data-client-key="{{ config('app.client_key') }}"></script>
 
                     <div class="separator"></div>
                     <br>
-                    <p>Total Harga : {{ number_format($order->total_harga) }}</p>
+                    <h4>Total Harga : {{ number_format($order->total_harga) }}</h4>
                     <div class="separator"></div>
                     <div class="bottom-right">
                         <button id="pay-button" class="btn btn-primary">Bayar Reservasi</button>
