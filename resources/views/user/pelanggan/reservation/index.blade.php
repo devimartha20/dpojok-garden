@@ -23,57 +23,171 @@
         <div class="col-lg-6 col-xl-12">
             <ul class="nav nav-tabs md-tabs justify-content-center" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#menungguPembayaran" role="tab" aria-expanded="true">
+                    <a class="nav-link active" data-toggle="tab" href="#wp" role="tab" aria-expanded="true">
                         <i class="ti-shortcode"></i>
                         Menunggu Pembayaran</a>
                     <div class="slide"></div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#dibooking" role="tab" aria-expanded="false">
+                    <a class="nav-link" data-toggle="tab" href="#w" role="tab" aria-expanded="false">
                         <i class="ti-shortcode"></i>
                         Dibooking</a>
                     <div class="slide"></div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#sedangDibooking" role="tab" aria-expanded="false">
+                    <a class="nav-link" data-toggle="tab" href="#a" role="tab" aria-expanded="false">
                         <i class="ti-timer"></i>
                         Sedang Dibooking</a>
                     <div class="slide"></div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#dibatalkan" role="tab" aria-expanded="false">
+                    <a class="nav-link" data-toggle="tab" href="#s" role="tab" aria-expanded="false">
                         <i class="ti-close"></i>
-                        Dibatalkan</a>
+                        Selesai</a>
                     <div class="slide"></div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#selesai" role="tab" aria-expanded="false">
+                    <a class="nav-link" data-toggle="tab" href="#d" role="tab" aria-expanded="false">
                         <i class="ti-check-box"></i>
-                        Selesai</a>
+                        Dibatalkan</a>
                     <div class="slide"></div>
                 </li>
             </ul>
             <div class="tab-content card">
-                <div class="tab-pane active" id="home7" role="tabpanel" aria-expanded="true">
+                <div class="tab-pane active" id="wp" role="tabpanel" aria-expanded="true">
                     <div class="card-block caption-breadcrumb">
-                        <div class="breadcrumb-header">
-                            <h6>No Reservasi: #12345</h6>
-                            <p>Tanggal Reservasi: 12 April 2024</p>
-                            <p>Waktu Reservasi: 12:12 PM</p>
+                       @forelse ($wp as $r)
+                       <div class="breadcrumb-header">
+                        <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+                        <p>Tanggal Reservasi: {{ $r->date }}</p>
+                        <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
+                        @foreach ($r->reservationTables as $rt)
                             <div class="product-details">
-                                <p>Nomor Meja : 18</p>
-                                <p>Menu Pesanan : Roti Bakar 1, Mix Platter 1, Ice Cream Cookies 1</p>
+                                <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
+                                <p>Jumlah Kursi : {{ $rt->seats }}</p>
                             </div>
-                            <h6>Total Harga: Rp. 100.000</h6>
-                        </div>
-                        <div class="col float-start text-right">
-                            <span><a href="{{ route('detail.index') }}">Detail Pesanan</a></span>
-                        </div>
+                        @endforeach
+
+                        <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                    </div>
+                    <div class="col float-start text-right">
+                        <span><a href="{{ route('customer.reservation.detail', $reservation->id) }}">Detail Pesanan</a></span>
+                    </div>
+                    @empty
+                    <div class="text-center">
+                        Tidak Ada Pesanan Menunggu Pembayaran
+                    </div>
+                    @endforelse
+
                     </div>
                 </div>
-                <div class="tab-pane" id="profile7" role="tabpanel" aria-expanded="false">
+                <div class="tab-pane" id="w" role="tabpanel" aria-expanded="false">
+                    <div class="card-block caption-breadcrumb">
+                       @forelse ($w as $r)
+                       <div class="breadcrumb-header">
+                        <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+                        <p>Tanggal Reservasi: {{ $r->date }}</p>
+                        <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
+                        @foreach ($r->reservationTables as $rt)
+                            <div class="product-details">
+                                <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
+                                <p>Jumlah Kursi : {{ $rt->seats }}</p>
+                            </div>
+                        @endforeach
+
+                        <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                    </div>
+                    <div class="col float-start text-right">
+                        <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+                    </div>
+                    @empty
+                    <div class="text-center">
+                        Tidak Ada Pesanan Menunggu
+                    </div>
+                    @endforelse
+
+                    </div>
                 </div>
-                <div class="tab-pane" id="messages7" role="tabpanel" aria-expanded="false">
+                <div class="tab-pane" id="a" role="tabpanel" aria-expanded="false">
+                    <div class="card-block caption-breadcrumb">
+                       @forelse ($a as $r)
+                       <div class="breadcrumb-header">
+                        <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+                        <p>Tanggal Reservasi: {{ $r->date }}</p>
+                        <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
+                        @foreach ($wp->reservationTables as $rt)
+                            <div class="product-details">
+                                <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
+                                <p>Jumlah Kursi : {{ $rt->seats }}</p>
+                            </div>
+                        @endforeach
+
+                        <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                    </div>
+                    <div class="col float-start text-right">
+                        <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+                    </div>
+                    @empty
+                    <div class="text-center">
+                        Tidak Ada Pesanan Sedang Dibooking
+                    </div>
+                    @endforelse
+
+                    </div>
+                </div>
+                <div class="tab-pane" id="s" role="tabpanel" aria-expanded="false">
+                    <div class="card-block caption-breadcrumb">
+                       @forelse ($s as $r)
+                       <div class="breadcrumb-header">
+                        <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+                        <p>Tanggal Reservasi: {{ $r->date }}</p>
+                        <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
+                        @foreach ($r->reservationTables as $rt)
+                            <div class="product-details">
+                                <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
+                                <p>Jumlah Kursi : {{ $rt->seats }}</p>
+                            </div>
+                        @endforeach
+
+                        <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                    </div>
+                    <div class="col float-start text-right">
+                        <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+                    </div>
+                    @empty
+                    <div class="text-center">
+                        Tidak Ada Pesanan Selesai
+                    </div>
+                    @endforelse
+
+                    </div>
+                </div>
+                <div class="tab-pane" id="d" role="tabpanel" aria-expanded="false">
+                    <div class="card-block caption-breadcrumb">
+                       @forelse ($d as $r)
+                       <div class="breadcrumb-header">
+                        <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+                        <p>Tanggal Reservasi: {{ $r->date }}</p>
+                        <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
+                        @foreach ($r->reservationTables as $rt)
+                            <div class="product-details">
+                                <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
+                                <p>Jumlah Kursi : {{ $rt->seats }}</p>
+                            </div>
+                        @endforeach
+
+                        <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                    </div>
+                    <div class="col float-start text-right">
+                        <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+                    </div>
+                    @empty
+                    <div class="text-center">
+                        Tidak Ada Pesanan Menunggu Pembayaran
+                    </div>
+                    @endforelse
+
+                    </div>
                 </div>
             </div>
             </div>

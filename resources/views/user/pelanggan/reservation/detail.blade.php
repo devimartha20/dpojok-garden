@@ -83,7 +83,7 @@ data-client-key="{{ config('app.client_key') }}"></script>
                             <div class="badge badge-success">Diterima</div>
                         @endif
                     <div class="separator"></div>
-                    @if ($order->payment->status == 'belum_lunas')
+                    @if ($reservation->status = 'meunggu_pembayaran')
                     <div class="bottom-right">
                         <button id="pay-button" class="btn btn-primary">Bayar Reservasi</button>
                     </div>

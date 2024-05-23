@@ -14,8 +14,27 @@ class ReservationCustController extends Controller
 {
     public function index(){
         $cust = Customer::where('user_id', Auth::user()->id)->first();
-        $reservations = Reservation::where('customer_id', $cust->id)->orderBy('updated_at', 'desc');
-        return view('user.pelanggan.reservation.index', compact('reservations'));
+        $wp = Reservation::where('customer_id', $cust->id)
+            ->where('status', 'menunggu_pembayaran')
+            ->get()
+            ->orderBy('updated_at', 'desc');
+        $w = Reservation::where('customer_id', $cust->id)
+            ->where('status', 'menunggu')
+            ->get()
+            ->orderBy('updated_at', 'desc');
+        $a =  Reservation::where('customer_id', $cust->id)
+            ->where('status', 'aktif')
+            ->get()
+            ->orderBy('updated_at', 'desc');
+        $s = Reservation::where('customer_id', $cust->id)
+            ->where('status', 'selesai')
+            ->get()
+            ->orderBy('updated_at', 'desc');
+        $d = Reservation::where('customer_id', $cust->id)
+            ->where('status', 'dibatalkan')
+            ->get()
+            ->orderBy('updated_at', 'desc');
+        return view('user.pelanggan.reservation.index', compact('wp', 'w', 'a', 's', 'd'));
     }
 
     public function create(){
