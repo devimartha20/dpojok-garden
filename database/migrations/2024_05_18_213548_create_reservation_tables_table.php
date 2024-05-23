@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->string('note')->nullable();
             $table->timestamps();
 
             $table->foreign('table_id')->references('id')->on('tables')->onDelete('set null');

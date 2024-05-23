@@ -3,30 +3,26 @@
 @section('title')
     Detail Reservasi
 @endsection
-
 @section('styles')
-    <style>
-        /* Additional CSS styles can be added here if needed */
-        .product-image {
-            float: left;
-            margin-right: 100px;
-        }
-        .bottom-right {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
-        .separator {
-            margin-top: 20px;
-            border-top: 1px solid #ccc;
-        }
-        .icon-link {
-            margin-right: 10px;
-        }
-    </style>
-@endsection
-
-@section('styles')
+<style>
+    /* Additional CSS styles can be added here if needed */
+    .product-image {
+        float: left;
+        margin-right: 100px;
+    }
+    .bottom-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .separator {
+        margin-top: 20px;
+        border-top: 1px solid #ccc;
+    }
+    .icon-link {
+        margin-right: 10px;
+    }
+</style>
 <script type="text/javascript"
 src="https://app.sandbox.midtrans.com/snap/snap.js"
 data-client-key="{{ config('app.client_key') }}"></script>
@@ -40,46 +36,45 @@ data-client-key="{{ config('app.client_key') }}"></script>
                     <h5 class="card-header-text">Detail Reservasi</h5>
                 </div>
                 <div class="card-body">
-                    <p>Tanggal Sewa : </p>
-                    <p>Jam Awal Sewa : </p>
-                    <p>Jam Akhir Sewa : </p>
-                    <p>Jumlah Tamu : </p>
-                    <p>Catatan : </p>
+                    <p>Tanggal Sewa : {{ $reservation->date }}</p>
+                    <p>Jam Awal Sewa : {{ $reservation->start_time }}</p>
+                    <p>Jam Akhir Sewa : {{ $reservation->end_time }}</p>
+                    <p>Jumlah Tamu : {{ $reservation->guests }}</p>
+                    <p>Catatan : {{ $reservation->note }} </p>
                     <div class="separator"></div>
-                    <p>Menu pesanan : </p>
-                    <div class="product-image">
-                        <img src="{{ asset('images/1711265258.png') }}" alt="Nama Produk" width="100">
-                    </div>
-                    <div class="accordion-desc">
-                        <h5>Nasi Goreng Kecap Manis</h5>
-                        <h5>Rp. 45.000</h5>
-                        <p>Jumlah: 3</p>
-                    </div>
-
                     <div class="form-group">
                         <label for="ordered_menu">Menu yang Dipesan:</label>
                         <p class="form-control-static">Roti Bakar, Nasi Goreng, Es Teh</p>
                     </div>
-                    <div class="accordion-desc">
-                        <h5>Nasi Goreng Kecap Manis</h5>
-                        <h5>Rp. 45.000</h5>
-                        <p>Jumlah: 3</p>
-                    </div>
+                    @foreach ($order->detailorders as $do)
+                        <div class="product-image">
+                            <img src="{{ asset('images').'/'.$do->product->image }}" alt="Produk" width="100">
+                        </div>
+                        <div class="accordion-desc">
+                            <h5>{{ $do->product->nama }}</h5>
+                            <h5>{{ $do->harga }}</h5>
+                            <p>Jumlah: {{ $do->jumlah }}</p>
+                            <p>Total Harga: {{ $do->total_harga }}</p>
+                        </div>
+                    @endforeach
                     <div class="separator"></div>
                     <p>Meja pesanan : </p>
+                    @foreach ($reservation->reservationTables as $rt)
                     <div class="product-image">
-                        <img src="{{ asset('images/1711265258.png') }}" alt="Nama Produk" width="100">
+                        <img src="{{ asset('images').'/'.$rt->table->image }}" alt="Meja" width="100">
                     </div>
                     <div class="accordion-desc">
-                        <h5>Meja no 5</h5>
-                        <h5>4 kursi</h5>
+                        <h5>No Meja : {{ $rt->table->no_meja }}</h5>
+                        <h5>Jumlah Kursi : {{ $rt->seats }}</h5>
                     </div>
+                    @endforeach
+
                     <div class="separator"></div>
                     <br>
-                    <p>Total Harga : Rp. 90.000</p>
+                    <p>Total Harga : {{ $order->total_price }}</p>
                     <div class="separator"></div>
                     <div class="bottom-right">
-                        <button onclick="" class="btn btn-primary">Bayar Reservasi</button>
+                        <button id="pay-button" class="btn btn-primary">Bayar Reservasi</button>
                     </div>
                 </div>
             </div>
