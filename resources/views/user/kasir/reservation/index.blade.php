@@ -9,7 +9,7 @@ Riwayat Reservasi
             <i class="fa fa-envelope-open text-c-blue d-block f-40"></i>
             <h4 class="m-t-20"><span class="text-c-blue">0</span> Reservasi hari ini</h4>
             <br>
-            <a class="btn btn-primary btn-xl btn-round" href="http://127.0.0.1:8000/ordertrans/create/0">Tambah Reservasi</a>
+            <a class="btn btn-primary btn-xl btn-round" href="{{ route('reservation.create') }}">Tambah Reservasi</a>
         </div>
     </div>
 </div>
@@ -67,7 +67,7 @@ Riwayat Reservasi
                 <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
             </div>
             <div class="col float-start text-right">
-                <span><a href="{{ route('customer.reservation.detail', $reservation->id) }}">Detail Pesanan</a></span>
+                <span><a href="{{ route('reservation.show', $reservation->id) }}">Detail Pesanan</a></span>
             </div>
             @empty
             <div class="text-center">

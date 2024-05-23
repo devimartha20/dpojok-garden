@@ -66,7 +66,8 @@ class ReservationController extends Controller
      */
     public function show(string $id)
     {
-        return redirect()->route('reservation.index');
+        $reservation = Reservation::findOrFail($id);
+        return view('user.kasir.reservation.show', compact('reservation'));
     }
 
     /**
