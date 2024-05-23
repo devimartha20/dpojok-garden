@@ -14,7 +14,7 @@ class ReservationCustController extends Controller
 {
     public function index(){
         $cust = Customer::where('user_id', Auth::user()->id)->first();
-        $wp = Reservation::where('customer_id', $cust->id)
+        $wp = Reservation::with('order')->where('order.customer_id', $cust->id)
             ->where('status', 'menunggu_pembayaran')
             ->get()
             ->orderBy('updated_at', 'desc');
