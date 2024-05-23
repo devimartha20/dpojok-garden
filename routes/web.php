@@ -184,7 +184,7 @@ Route::middleware(['role:pelanggan'])->group(function () {
         Route::get('cust/reservation', [ReservationCustController::class, 'index'])->name('customer.reservation.index');
         Route::get('cust/reservation/create', [ReservationCustController::class, 'create'])->name('customer.reservation.create');
         Route::get('cust/reservation/payment/{id}', [ReservationCustController::class, 'payment'])->name('customer.reservation.pay');
-        Route::get('cust/reservation/detail/{id}', [ReservationCustController::class, 'show'])->name('customer.detail.pay');
+        Route::get('cust/reservation/detail/{id}', [ReservationCustController::class, 'show'])->name('customer.reservation.detail');
         // Route::get('/cart', function () {
         //     return view('user/pelanggan/cart');
         // })->name('cart.route');

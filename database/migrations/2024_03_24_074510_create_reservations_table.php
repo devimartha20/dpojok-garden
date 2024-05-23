@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservation_tables', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reservation_id');
-            $table->unsignedBigInteger('table_id')->nullable();
-            $table->integer('seats');
-            $table->integer('guests');
+            $table->string('no_reservasi')->unique();
+            $table->string('telepon')->nullable();
             $table->date('date');
+            $table->integer('guests')->default(0);
             $table->time('start_time');
             $table->time('end_time');
+            $table->bigInteger('price');
+            $table->string('note')->nullable();
+            $table->enum('status', ['menunggu_pembayaran', 'menunggu', 'aktif', 'selesai', 'dibatalkan'])->default('menunggu_pembayaran');
             $table->timestamps();
-
-            $table->foreign('table_id')->references('id')->on('tables')->onDelete('set null');
-            $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('CASCADE');
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservation_tables');
+        Schema::dropIfExists('orders');
     }
 };

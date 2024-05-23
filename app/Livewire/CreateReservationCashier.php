@@ -3,27 +3,27 @@
 namespace App\Livewire;
 
 use App\Models\Admin\Customer;
-use App\Models\Admin\Employee;
 use App\Models\Admin\DetailOrder;
+use App\Models\Admin\Employee;
 use App\Models\Admin\Order;
 use App\Models\Admin\Payment;
 use App\Models\Admin\Product;
-use App\Models\admin\Table;
+use App\Models\Admin\Table;
 use App\Models\Reservation;
 use App\Models\ReservationSetting;
+use App\Models\ReservationTable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class CreateReservationAdmin extends Component
+class CreateReservationCashier extends Component
 {
-
-    public $pemesan, $telp, $date, $start_time, $end_time, $guests, $reservation_price, $order_price, $total_price, $deviation = 0;
+    public $telepon, $date, $start_time, $end_time, $guests, $reservation_price = 0, $order_price = 0, $total_price = 0, $deviation = 0;
     public $search, $available = false;
 
-    public $orderNo, $packing, $reservationNo;
-    public $products, $productOrders = [], $total_all = 0;
+    public $orderNo, $pemesan, $catatan, $packing, $reservationNo, $combinations, $bestCombinations, $selected_table;
+    public $products = [], $productOrders = [], $total_all = 0;
 
     public function mount()
     {
@@ -35,27 +35,15 @@ class CreateReservationAdmin extends Component
 
     public function checkOverlap($date, $startTime, $endTime)
     {
-        // Validate input parameters
-        $validatedData = $this->validate([
-            'date' => 'required|date|after_or_equal:today',
-            'start_time' => 'required|date_format:H:i|after_or_equal:now',
-            'end_time' => 'required|date_format:H:i|after:start_time',
-        ]);
-
-        // Extract validated data
-        $date = $validatedData['date'];
-        $startTime = $validatedData['start_time'];
-        $endTime = $validatedData['end_time'];
-
         $overlappingReservations = DB::table('reservations')
             ->where('date', $date)
             ->where(function ($query) use ($startTime, $endTime) {
                 $query->whereBetween('start_time', [$startTime, $endTime])
-                        ->orWhereBetween('end_time', [$startTime, $endTime])
-                        ->orWhere(function ($query) use ($startTime, $endTime) {
-                            $query->where('start_time', '<=', $startTime)
+                      ->orWhereBetween('end_time', [$startTime, $endTime])
+                      ->orWhere(function ($query) use ($startTime, $endTime) {
+                          $query->where('start_time', '<=', $startTime)
                                 ->where('end_time', '>=', $endTime);
-                        });
+                      });
             })
             ->get();
 
@@ -64,22 +52,19 @@ class CreateReservationAdmin extends Component
 
     public function getOverlappingTableIds($date, $startTime, $endTime)
     {
-        // Get overlapping reservations
         $overlappingReservations = $this->checkOverlap($date, $startTime, $endTime);
 
         if ($overlappingReservations->isEmpty()) {
-            return collect(); // No overlapping reservations found, return empty collection
+            return [];
         }
 
-        // Extract reservation IDs
         $reservationIds = $overlappingReservations->pluck('id');
 
-        // Get table IDs from reservation_tables where reservation_id is in the list of overlapping reservation IDs
         $tableIds = DB::table('reservation_tables')
             ->whereIn('reservation_id', $reservationIds)
             ->pluck('table_id')
-            ->filter() // Remove null values
-            ->unique(); // Get unique table IDs
+            ->filter()
+            ->unique();
 
         return $tableIds;
     }
@@ -90,10 +75,10 @@ class CreateReservationAdmin extends Component
         $startTime = $startTime ?? $this->start_time;
         $endTime = $endTime ?? $this->end_time;
 
-        // Get the overlapping table IDs
         $overlappingTableIds = $this->getOverlappingTableIds($date, $startTime, $endTime);
 
-        // Get available table IDs from tables where status is 'tersedia' and table_id is not in overlappingTableIds
+        // dd($overlappingTableIds);
+
         $availableTableIds = DB::table('tables')
             ->whereNotIn('id', $overlappingTableIds)
             ->pluck('id');
@@ -101,19 +86,24 @@ class CreateReservationAdmin extends Component
         return $availableTableIds;
     }
 
-    public function checkAvailability($date, $startTime, $endTime, $guests = 0, $deviation = 2)
+    public function checkAvailability()
     {
-        $guests = $guests ?? $this->guests;
-        $deviation = $deviation ?? ReservationSetting::first('seat_deviation')->seat_deviation;
+        $this->validate([
+            'date' => 'required|date|after_or_equal:tomorrow',
+            'start_time' => 'required',
+            'end_time' => 'required|after:start_time',
+            'guests' => 'required|integer|min:1',
+        ]);
 
-        $availableTables = $this->getAvailableTableIds($date, $startTime, $endTime);
+        $availableTables = $this->getAvailableTableIds();
+
+        // dd($availableTables);
 
         if ($availableTables->isEmpty()) {
             $this->available = false;
-            return [];
+            return;
         }
 
-        // Separate seats into allowed and not allowed for joining
         $seats = [];
         $notAllowedTables = [];
 
@@ -125,16 +115,16 @@ class CreateReservationAdmin extends Component
             }
         }
 
-        // Find all possible combinations of tables to meet the guest requirement
-        $combinations = $this->findCombinations($seats, $guests, $deviation, $notAllowedTables);
-
-        // Find the best combination
+        $combinations = $this->findCombinations($seats, $this->guests, $this->deviation, $notAllowedTables);
         $bestCombination = $this->findBestCombination($combinations);
 
         $this->available = !empty($combinations) && !empty($bestCombination);
+        $this->combinations = $combinations;
+        $this->bestCombinations = $bestCombination;
 
-        return $bestCombination;
+        // dd($availableTables ,$this->combinations, $this->bestCombination);
     }
+
 
     function findCombinations($seats, $target, $deviation, $notAllowedTables) {
         // Sort seats by table ID to ensure consistent output
@@ -299,9 +289,11 @@ class CreateReservationAdmin extends Component
     public function loadProducts()
     {
         if (!empty($this->search)) {
-            $this->products = Product::where('nama', 'like', '%' . $this->search . '%')->get();
+            $this->products = Product::where('nama', 'like', '%' . $this->search . '%')
+            ->where('stok', '>', 0)
+            ->get();
         } else {
-            $this->products = Product::all();
+            $this->products = Product::where('stok', '>', 0)->get();
         }
     }
 
@@ -347,12 +339,13 @@ class CreateReservationAdmin extends Component
             'orderNo' => 'required',
             'productOrders' => 'required|array|min:1',
             'date' => 'required|date|after_or_equal:today',
+            'start_time' => 'required',
+            'end_time' => 'required|after:start_time',
+            'productOrders.*.product' => 'required',
             'pemesan' => 'required',
             'telepon' => 'required',
-            'start_time' => 'required|date_format:H:i|after_or_equal:now',
-            'end_time' => 'required|date_format:H:i|after:start_time',
-            'productOrders.*.product' => 'required',
             'productOrders.*.jumlah' => 'required|numeric|min:1',
+            'selected_table' => 'required',
         ], [
             'orderNo.required' => 'Nomor pesanan harus diisi.',
             'date.after_or_equal' => 'Tanggal harus di masa depan atau hari ini.',
@@ -372,11 +365,23 @@ class CreateReservationAdmin extends Component
             'end_time' => $this->end_time,
             'guests'=> $this->guests,
             'status' => 'menunggu_pembayaran',
+            'note' => $this->catatan,
             'telepon' => $this->telepon,
             'price' => $this->calculateReservationPrice(),
         ]);
 
-        $employee = Employee::where('user_id', Auth::user()->id)->first();
+        foreach($this->combinations[$this->selected_table] as $table){
+            ReservationTable::create([
+                'reservation_id' => $reservation->id,
+                'table_id' => $table['table_id'],
+                'seats' => $this->guests,
+                'date' => $this->date,
+                'start_time' => $this->start_time,
+                'end_time' => $this->end_time,
+            ]);
+        }
+
+        // $customer = Customer::where('user_id', Auth::user()->id)->first();
 
         $total_price = $this->calculateTotalPrice();
 
@@ -385,6 +390,8 @@ class CreateReservationAdmin extends Component
             'status' => 'belum_lunas',
             'total_bayar' => $total_price,
         ]);
+
+        $employee = Employee::where('user_id', Auth::user()->id)->first();
 
         $order = Order::create([
             'no_pesanan' => $this->orderNo,
@@ -411,8 +418,8 @@ class CreateReservationAdmin extends Component
             ]);
         }
 
-        session()->flash('success', 'Reservasi berhasil disimpan, silahkan input pembayaran!');
-        return redirect(route('reservation.pay', $reservation->id));
+        session()->flash('success', 'Reservasi berhasil disimpan, silahkan lakukan pembayaran!');
+        return redirect(route('customer.reservation.pay', $reservation->id));
     }
 
     public function removeProduct($index)
@@ -441,23 +448,24 @@ class CreateReservationAdmin extends Component
         $this->loadProducts();
     }
 
-    public function updated($field, $value)
+    public function updatedProductOrders($field)
     {
         if (strpos($field, 'productOrders.') === 0 && strpos($field, '.jumlah') !== false) {
             $index = explode('.', $field)[1];
-            if (!is_numeric($value) || $value <= 0) {
+            if (!is_numeric($this->productOrders[$index]['jumlah']) || $this->productOrders[$index]['jumlah'] <= 0) {
                 session()->flash('error', 'Jumlah harus berupa angka positif.');
                 return;
             }
-            $this->productOrders[$index]['jumlah'] = $value;
-            $this->productOrders[$index]['total_harga'] = $this->productOrders[$index]['harga_jual'] * $value;
+            $this->productOrders[$index]['total_harga'] = $this->productOrders[$index]['harga_jual'] * $this->productOrders[$index]['jumlah'];
             $this->calculateOrderPrice();
         }
     }
 
-
     public function render()
     {
-        return view('livewire.create-reservation-admin');
+        return view('livewire.create-reservation-cashier', [
+            'products' => $this->products,
+            'total_price' => $this->total_price,
+        ]);
     }
 }

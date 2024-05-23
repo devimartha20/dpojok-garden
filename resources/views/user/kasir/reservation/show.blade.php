@@ -1,4 +1,4 @@
-@extends('layouts.customer.layout')
+@extends('layouts.main.layout')
 
 @section('title')
     Detail Reservasi
@@ -23,9 +23,6 @@
         margin-right: 10px;
     }
 </style>
-<script type="text/javascript"
-src="https://app.sandbox.midtrans.com/snap/snap.js"
-data-client-key="{{ config('app.client_key') }}"></script>
 @endsection
 
 @section('content')
@@ -44,7 +41,6 @@ data-client-key="{{ config('app.client_key') }}"></script>
                     <div class="separator"></div>
                     <div class="form-group">
                         <label for="ordered_menu">Menu yang Dipesan:</label>
-                        <p class="form-control-static">Roti Bakar, Nasi Goreng, Es Teh</p>
                     </div>
                     @foreach ($order->detailorders as $do)
                         <div class="product-image">
@@ -54,6 +50,7 @@ data-client-key="{{ config('app.client_key') }}"></script>
                             <h5>{{ $do->product->nama }}</h5>
                             <h5>{{ $do->harga }}</h5>
                             <h5>Jumlah: {{ $do->jumlah }}</h5>
+                            <h5>Total Harga: {{ number_format($do->total_harga) }}</h5>
                         </div>
                     @endforeach
                     <div class="separator"></div>
@@ -71,40 +68,37 @@ data-client-key="{{ config('app.client_key') }}"></script>
                     <div class="separator"></div>
                     <br>
                     <h4>Total Harga : {{ number_format($order->total_harga) }}</h4>
+                    @if($reservation->status == 'menunggu_pembayaran')
+                            <div class="badge badge-danger">Menunggu Pembayaran</div>
+                        @elseif($order->progress == 'menunggu')
+                            <div class="badge badge-warning">Dibooking</div>
+                        @elseif($order->progress == 'aktif')
+                            <div class="badge badge-info">Sedang Dibooking</div>
+                        @elseif($order->progress == 'selesai')
+                            <div class="badge badge-success">Selesai</div>
+                        @elseif($order->progress == 'dibatalkan')
+                            <div class="badge badge-secondary">Dibatalkan</div>
+                        @endif
                     <div class="separator"></div>
+                    @if ($reservation->status == 'meunggu_pembayaran')
                     <div class="bottom-right">
-                        <button id="pay-button" class="btn btn-primary">Bayar Reservasi</button>
+                        <a href="{{ route('reservation.pay') }}" id="pay-button" class="btn btn-primary">Bayar Reservasi</a>
+                    </div>
+                    @endif
+
+                </div>
+                <div class="card-footer">
+                    <div class="bottom-left">
+                        <a class="btn btn-secondary" href="{{ route('customer.reservation.index') }}">
+                            Kembali
+                        </a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 @endsection
 @section('scripts')
-<script type="text/javascript">
-    // For example trigger on button clicked, or any time you need
-    var payButton = document.getElementById('pay-button');
-    payButton.addEventListener('click', function () {
-      // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-      window.snap.pay('{{$order->snap_token}}', {
-        onSuccess: function(result){
-          /* You may add your own implementation here */
-        //   alert("Pembayaran Berhasil"); console.log(result);
-        window.location.href = "{{ route('customer.reservation.detail', $reservation->id) }}";
-        },
-        onPending: function(result){
-          /* You may add your own implementation here */
-          alert("Menunggu Pembayaran"); console.log(result);
-        },
-        onError: function(result){
-          /* You may add your own implementation here */
-          alert("Pembayaran gagal!"); console.log(result);
-        },
-        onClose: function(){
-          /* You may add your own implementation here */
-          alert('Anda menutup pop-up sebelum melakukan pembayaran');
-        }
-      })
-    });
-  </script>
+
 @endsection

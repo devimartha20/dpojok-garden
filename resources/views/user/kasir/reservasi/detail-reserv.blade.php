@@ -1,78 +1,170 @@
-@extends('layouts.main.layout')
-
-@section('title')
-    Detail Reservasi
-@endsection
-
-@section('styles')
-    <style>
-        /* Additional CSS styles can be added here if needed */
-        .product-image {
-            float: left;
-            margin-right: 100px;
-        }
-        .bottom-right {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
-        .separator {
-            margin-top: 20px;
-            border-top: 1px solid #ccc;
-        }
-        .icon-link {
-            margin-right: 10px;
-        }
-    </style>
-@endsection
-
-@section('content')
-    <div class="container">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-header-text">Detail Reservasi</h5>
+<ul class="nav nav-tabs md-tabs justify-content-center" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#wp" role="tab" aria-expanded="true">
+            <i class="ti-shortcode"></i>
+            Menunggu Pembayaran</a>
+        <div class="slide"></div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#w" role="tab" aria-expanded="false">
+            <i class="ti-shortcode"></i>
+            Dibooking</a>
+        <div class="slide"></div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#a" role="tab" aria-expanded="false">
+            <i class="ti-timer"></i>
+            Sedang Dibooking</a>
+        <div class="slide"></div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#s" role="tab" aria-expanded="false">
+            <i class="ti-close"></i>
+            Selesai</a>
+        <div class="slide"></div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#d" role="tab" aria-expanded="false">
+            <i class="ti-check-box"></i>
+            Dibatalkan</a>
+        <div class="slide"></div>
+    </li>
+</ul>
+<div class="tab-content card">
+    <div class="tab-pane active" id="wp" role="tabpanel" aria-expanded="true">
+        <div class="card-block caption-breadcrumb">
+           @forelse ($wp as $r)
+           <div class="breadcrumb-header">
+            <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+            <p>Tanggal Reservasi: {{ $r->date }}</p>
+            <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
+            @foreach ($r->reservationTables as $rt)
+                <div class="product-details">
+                    <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
+                    <p>Jumlah Kursi : {{ $rt->seats }}</p>
                 </div>
-                <div class="card-body">
-                    <p>Tanggal Sewa : </p>
-                    <p>Jam Awal Sewa : </p>
-                    <p>Jam Akhir Sewa : </p>
-                    <p>Jumlah Tamu : </p>
-                    <p>Catatan : </p>
-                    <div class="separator"></div>
-                    <p>Menu pesanan : </p>
-                    <div class="product-image">
-                        <img src="{{ asset('images/1711265258.png') }}" alt="Nama Produk" width="100">
-                    </div>
-                    <div class="accordion-desc">
-                        <h5>Nasi Goreng Kecap Manis</h5>
-                        <h5>Rp. 45.000</h5>
-                        <p>Jumlah: 3</p>
-                    </div>
-                    <div class="product-image">
-                        <img src="{{ asset('images/1711265258.png') }}" alt="Nama Produk" width="100">
-                    </div>
-                    <div class="accordion-desc">
-                        <h5>Nasi Goreng Kecap Manis</h5>
-                        <h5>Rp. 45.000</h5>
-                        <p>Jumlah: 3</p>
-                    </div>
-                    <div class="separator"></div>
-                    <p>Meja pesanan : </p>
-                    <div class="product-image">
-                        <img src="{{ asset('images/1711265258.png') }}" alt="Nama Produk" width="100">
-                    </div>
-                    <div class="accordion-desc">
-                        <h5>Meja no 5</h5>
-                        <h5>4 kursi</h5>
-                    </div>
-                    <div class="separator"></div>
-                    <br>
-                    <div class="bottom-right">
-                        <button onclick="" class="btn btn-primary">Bayar Reservasi</button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
+            <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+        </div>
+        <div class="col float-start text-right">
+            <span><a href="{{ route('customer.reservation.detail', $reservation->id) }}">Detail Pesanan</a></span>
+        </div>
+        @empty
+        <div class="text-center">
+            Tidak Ada Pesanan Menunggu Pembayaran
+        </div>
+        @endforelse
+
         </div>
     </div>
-@endsection
+    <div class="tab-pane" id="w" role="tabpanel" aria-expanded="false">
+        <div class="card-block caption-breadcrumb">
+           @forelse ($w as $r)
+           <div class="breadcrumb-header">
+            <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+            <p>Tanggal Reservasi: {{ $r->date }}</p>
+            <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
+            @foreach ($r->reservationTables as $rt)
+                <div class="product-details">
+                    <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
+                    <p>Jumlah Kursi : {{ $rt->seats }}</p>
+                </div>
+            @endforeach
+
+            <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+        </div>
+        <div class="col float-start text-right">
+            <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+        </div>
+        @empty
+        <div class="text-center">
+            Tidak Ada Pesanan Menunggu
+        </div>
+        @endforelse
+
+        </div>
+    </div>
+    <div class="tab-pane" id="a" role="tabpanel" aria-expanded="false">
+        <div class="card-block caption-breadcrumb">
+           @forelse ($a as $r)
+           <div class="breadcrumb-header">
+            <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+            <p>Tanggal Reservasi: {{ $r->date }}</p>
+            <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
+            @foreach ($wp->reservationTables as $rt)
+                <div class="product-details">
+                    <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
+                    <p>Jumlah Kursi : {{ $rt->seats }}</p>
+                </div>
+            @endforeach
+
+            <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+        </div>
+        <div class="col float-start text-right">
+            <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+        </div>
+        @empty
+        <div class="text-center">
+            Tidak Ada Pesanan Sedang Dibooking
+        </div>
+        @endforelse
+
+        </div>
+    </div>
+    <div class="tab-pane" id="s" role="tabpanel" aria-expanded="false">
+        <div class="card-block caption-breadcrumb">
+           @forelse ($s as $r)
+           <div class="breadcrumb-header">
+            <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+            <p>Tanggal Reservasi: {{ $r->date }}</p>
+            <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
+            @foreach ($r->reservationTables as $rt)
+                <div class="product-details">
+                    <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
+                    <p>Jumlah Kursi : {{ $rt->seats }}</p>
+                </div>
+            @endforeach
+
+            <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+        </div>
+        <div class="col float-start text-right">
+            <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+        </div>
+        @empty
+        <div class="text-center">
+            Tidak Ada Pesanan Selesai
+        </div>
+        @endforelse
+
+        </div>
+    </div>
+    <div class="tab-pane" id="d" role="tabpanel" aria-expanded="false">
+        <div class="card-block caption-breadcrumb">
+           @forelse ($d as $r)
+           <div class="breadcrumb-header">
+            <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+            <p>Tanggal Reservasi: {{ $r->date }}</p>
+            <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
+            @foreach ($r->reservationTables as $rt)
+                <div class="product-details">
+                    <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
+                    <p>Jumlah Kursi : {{ $rt->seats }}</p>
+                </div>
+            @endforeach
+
+            <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+        </div>
+        <div class="col float-start text-right">
+            <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+        </div>
+        @empty
+        <div class="text-center">
+            Tidak Ada Pesanan Dibatalkan
+        </div>
+        @endforelse
+
+        </div>
+    </div>
+</div>
+</div>

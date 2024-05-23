@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\admin\Table;
+use App\Models\Admin\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,6 @@ class ReservationTable extends Model
         'reservation_id',
         'table_id',
         'seats',
-        'guests',
         'date',
         'start_time',
         'end_time',

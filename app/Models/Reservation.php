@@ -19,6 +19,7 @@ class Reservation extends Model
         'status',
         'price',
         'telepon',
+        'note',
     ];
 
     public $dates = [

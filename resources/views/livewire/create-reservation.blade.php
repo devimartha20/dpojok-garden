@@ -1,4 +1,4 @@
-<div>    
+<div>
         <div class="container-fluid px-0">
             <div class="row d-flex no-gutters">
                 <div class="col-md-12  makereservation p-4 p-md-5 pt-5">
@@ -44,10 +44,13 @@
                                                 <input type="number" min=1 class="form-control" wire:model.live="guests" id="jumlah_tamu" placeholder="Jumlah Tamu" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="catatan">Catatan</label>
-                                                <input type="text" class="form-control" wire:model="catatan" id="catatan" placeholder="Tambahkan Catatan">
+                                                <input type="text" class="form-control" wire:model.live="catatan" id="catatan" placeholder="Tambahkan Catatan">
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-3">
@@ -61,7 +64,7 @@
                             <div class="table-selection mt-4">
                                 @if($available)
                                 <div class="form-group">
-                                   
+
                                     <p>Pilihan Meja</p>
                                     @forelse ($combinations as $combIndex => $tables)
                                         <div class="combination-group">
@@ -84,8 +87,8 @@
                                         No combinations available
                                     @endforelse
                                 </div>
-                                
-                                
+
+
                                 @else
                                     <p>Tidak ada meja yang tersedia.</p>
                                 @endif
@@ -178,5 +181,5 @@
                 </div>
             </div>
         </div>
-        @endif   
+        @endif
 </div>
