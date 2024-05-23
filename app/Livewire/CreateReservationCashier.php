@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Admin\Customer;
 use App\Models\Admin\DetailOrder;
+use App\Models\Admin\Employee;
 use App\Models\Admin\Order;
 use App\Models\Admin\Payment;
 use App\Models\Admin\Product;
@@ -18,7 +19,7 @@ use Livewire\Component;
 
 class CreateReservationCashier extends Component
 {
-    public $date, $start_time, $end_time, $guests, $reservation_price = 0, $order_price = 0, $total_price = 0, $deviation = 0;
+    public $telepon, $date, $start_time, $end_time, $guests, $reservation_price = 0, $order_price = 0, $total_price = 0, $deviation = 0;
     public $search, $available = false;
 
     public $orderNo, $pemesan, $catatan, $packing, $reservationNo, $combinations, $bestCombinations, $selected_table;
@@ -266,7 +267,7 @@ class CreateReservationCashier extends Component
         $lastOrder = Order::latest()->first();
         $lastOrderId = $lastOrder ? $lastOrder->id : 0;
 
-        return 'ORDER-1' . $year . $month . $day . $hour . $minute . $second . $userId . ($lastOrderId + 1);
+        return 'ORDER-0' . $year . $month . $day . $hour . $minute . $second . $userId . ($lastOrderId + 1);
     }
 
     public function generateReservationNo()
@@ -282,7 +283,7 @@ class CreateReservationCashier extends Component
         $lastReservation = Reservation::latest()->first();
         $lastReservationId = $lastReservation ? $lastReservation->id : 0;
 
-        return 'RESERVATION-1' . $year . $month . $day . $hour . $minute . $second . $userId . ($lastReservationId + 1);
+        return 'RESERVATION-0' . $year . $month . $day . $hour . $minute . $second . $userId . ($lastReservationId + 1);
     }
 
     public function loadProducts()
@@ -341,6 +342,8 @@ class CreateReservationCashier extends Component
             'start_time' => 'required',
             'end_time' => 'required|after:start_time',
             'productOrders.*.product' => 'required',
+            'pemesan' => 'required',
+            'telepon' => 'required',
             'productOrders.*.jumlah' => 'required|numeric|min:1',
             'selected_table' => 'required',
         ], [
@@ -363,6 +366,7 @@ class CreateReservationCashier extends Component
             'guests'=> $this->guests,
             'status' => 'menunggu_pembayaran',
             'note' => $this->catatan,
+            'telepon' => $this->telepon,
             'price' => $this->calculateReservationPrice(),
         ]);
 
@@ -377,7 +381,7 @@ class CreateReservationCashier extends Component
             ]);
         }
 
-        $customer = Customer::where('user_id', Auth::user()->id)->first();
+        // $customer = Customer::where('user_id', Auth::user()->id)->first();
 
         $total_price = $this->calculateTotalPrice();
 
@@ -387,10 +391,12 @@ class CreateReservationCashier extends Component
             'total_bayar' => $total_price,
         ]);
 
+        $employee = Employee::where('user_id', Auth::user()->id)->first();
+
         $order = Order::create([
             'no_pesanan' => $this->orderNo,
-            'pemesan' => $customer->nama,
-            'customer_id' => $customer->id,
+            'pemesan' => $this->pemesan,
+            'employee_id' => $employee->id,
             'total_harga' => $total_price,
             'jumlah_pesanan' => collect($this->productOrders)->sum('jumlah'),
             'progress' => 'menunggu_pembayaran',

@@ -49,8 +49,14 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="catatan">Catatan</label>
-                                            <input type="text" class="form-control" wire:model.live="catatan" id="catatan" placeholder="Tambahkan Catatan">
+                                            <label for="pemesan">Pemesan</label>
+                                            <input type="text" class="form-control" wire:model.live="pemesan" id="pemesan" placeholder="Pemesan" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="catatan">Telepon</label>
+                                            <input type="text" class="form-control" wire:model.live="telepon" id="telepon" placeholder="Telepon" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12 mt-3">
