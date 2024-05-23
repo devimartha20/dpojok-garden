@@ -90,7 +90,15 @@ data-client-key="{{ config('app.client_key') }}"></script>
                     @endif
 
                 </div>
+                <div class="card-footer">
+                    <div class="bottom-left">
+                        <a class="btn btn-secondary" href="{{ route('customer.reservation.index') }}">
+                            Kembali
+                        </a>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 @endsection
