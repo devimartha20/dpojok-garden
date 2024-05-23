@@ -72,15 +72,15 @@ data-client-key="{{ config('app.client_key') }}"></script>
                     <br>
                     <h4>Total Harga : {{ number_format($order->total_harga) }}</h4>
                     @if($order->progress == 'menunggu_pembayaran')
-                            <div class="order-status waiting-payment">Menunggu Pembayaran</div>
+                            <div class="badge badge-danger">Menunggu Pembayaran</div>
                         @elseif($order->progress == 'menunggu')
-                            <div class="order-status waiting">Menunggu</div>
+                            <div class="badge badge-warning">Menunggu</div>
                         @elseif($order->progress == 'diproses')
-                            <div class="order-status in-process">Diproses</div>
+                            <div class="badge badge-info">Diproses</div>
                         @elseif($order->progress == 'selesai')
-                            <div class="order-status finished">Selesai</div>
+                            <div class="badge badge-primary">Selesai</div>
                         @elseif($order->progress == 'diterima')
-                            <div class="order-status delivered">Diterima</div>
+                            <div class="badge badge-success">Diterima</div>
                         @endif
                     <div class="separator"></div>
                     @if ($order->payment->status == 'belum_lunas')
