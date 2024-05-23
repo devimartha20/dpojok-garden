@@ -50,7 +50,7 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td><img src="{{ asset('images/' . $data->image) }}" alt="{{ $data->nama }}" width="50"></td>
                                 <td>{{ $data->nama }}</td>
-                                <td>{{ number_format($data->harga_jual, 2) }}</td>
+                                <td>{{ number_format($data->harga, 2) }}</td>
                                 <td>{{ $data->total_quantity }}</td>
                                 <td>{{ number_format($data->total_sales, 2) }}</td>
                             </tr>
