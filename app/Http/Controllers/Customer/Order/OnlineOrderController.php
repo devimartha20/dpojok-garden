@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Order;
 use App\Models\Admin\Payment;
 use App\Models\Admin\Product;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Services\Midtrans\CreateSnapTokenService;
 use App\Services\Midtrans\CallbackService;
@@ -43,6 +44,12 @@ class OnlineOrderController extends Controller
                     'status' => 'lunas',
                     'progress' => 'menunggu',
                 ]);
+
+                if($order->reservation_id != null){
+                    Reservation::find($order->reservation_id)->update([
+                        'status' => 'menunggu'
+                    ]);
+                }
 
                 Payment::find($order->payment_id)->update([
                     'status' => 'lunas',
