@@ -44,7 +44,10 @@
                                                 <input type="number" min=1 class="form-control" wire:model.live="guests" id="jumlah_tamu" placeholder="Jumlah Tamu" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="catatan">Catatan</label>
                                                 <input type="text" class="form-control" wire:model.live="catatan" id="catatan" placeholder="Tambahkan Catatan">
