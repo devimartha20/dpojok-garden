@@ -41,7 +41,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="jumlah_tamu">Jumlah Tamu</label>
-                                                <input type="number" class="form-control" wire:model.live="guests" id="jumlah_tamu" placeholder="Jumlah Tamu" required>
+                                                <input type="number" min=1 class="form-control" wire:model.live="guests" id="jumlah_tamu" placeholder="Jumlah Tamu" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -61,32 +61,13 @@
                             <div class="table-selection mt-4">
                                 @if($available)
                                 <div class="form-group">
-                                    <label for="nomor_meja">Pilih Meja</label>
-                                    <p>Rekomendasi Terbaik</p>
-                                    @forelse ($bestCombinations as $index => $combination)
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="bestTable{{ $index }}" wire:model.live="selected_table" value="{{ $index }}" {{ $loop->first ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="bestTable{{ $index }}">Kombinasi {{ $index + 1 }} - 
-                                                {{-- @forelse ($combination as $table) --}}
-                                                    ID Tabel: {{ $combination['table_id'] }}, Jumlah Kursi: {{ $combination['number'] }}
-                                                    {{-- @if (!$loop->last)
-                                                        <br>
-                                                    @endif --}}
-                                                {{-- @empty
-                                                    No tables available
-                                                @endforelse --}}
-                                            </label>
-                                        </div>
-                                    @empty
-                                        No best combinations available
-                                    @endforelse
-                                    <hr>
-                                    <p>Rekomendasi Lainnya</p>
+                                   
+                                    <p>Pilihan Meja</p>
                                     @forelse ($combinations as $combIndex => $tables)
                                         <div class="combination-group">
                                             <div class="form-check">
                                                 <input type="radio" class="form-check-input" id="combination{{ $combIndex }}" wire:model.live="selected_table" value="{{ $combIndex }}" {{ $loop->first ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="combination{{ $combIndex }}">Kombinasi {{ $combIndex + 1 }} - 
+                                                <label class="form-check-label" for="combination{{ $combIndex }}">Kombinasi {{ $loop->iteration }}  : <br>
                                                     @forelse ($tables as $table)
                                                         ID Tabel: {{ $table['table_id'] }}, Jumlah Kursi: {{ $table['number'] }}
                                                         @if (!$loop->last)
@@ -98,6 +79,7 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <hr>
                                     @empty
                                         No combinations available
                                     @endforelse
@@ -165,10 +147,10 @@
                                         <td>{{ $order['nama'] }}</td>
                                         <td>Rp {{ number_format($order['harga_jual'], 0, ',', '.') }}</td>
                                         <td>
-                                            <input type="number" class="form-control" wire:model="productOrders.{{ $index }}.jumlah" min="1">
+                                            <input type="number" class="form-control" wire:model.live="productOrders.{{ $index }}.jumlah" min="1">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" wire:model="productOrders.{{ $index }}.catatan">
+                                            <input type="text" class="form-control" wire:model.live="productOrders.{{ $index }}.catatan">
                                         </td>
                                         <td>Rp {{ number_format($order['total_harga'], 0, ',', '.') }}</td>
                                         <td>

@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Tambah Meja
+    Edit Meja
 @endsection
 @section('styles')
  <!-- Notification.css -->
