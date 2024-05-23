@@ -14,26 +14,41 @@ class ReservationCustController extends Controller
 {
     public function index(){
         $cust = Customer::where('user_id', Auth::user()->id)->first();
-        $wp = Reservation::with('order')->where('order.customer_id', $cust->id)
+        $wp = Reservation::with('order')
+            ->whereHas('order', function ($query) use ($cust) {
+                $query->where('customer_id', $cust->id);
+            })
             ->where('status', 'menunggu_pembayaran')
-            ->get()
-            ->orderBy('updated_at', 'desc');
-        $w = Reservation::where('customer_id', $cust->id)
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $w = Reservation::with('order')
+            ->whereHas('order', function ($query) use ($cust) {
+                $query->where('customer_id', $cust->id);
+            })
             ->where('status', 'menunggu')
-            ->get()
-            ->orderBy('updated_at', 'desc');
-        $a =  Reservation::where('customer_id', $cust->id)
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $a = Reservation::with('order')
+            ->whereHas('order', function ($query) use ($cust) {
+                $query->where('customer_id', $cust->id);
+            })
             ->where('status', 'aktif')
-            ->get()
-            ->orderBy('updated_at', 'desc');
-        $s = Reservation::where('customer_id', $cust->id)
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $s = Reservation::with('order')
+            ->whereHas('order', function ($query) use ($cust) {
+                $query->where('customer_id', $cust->id);
+            })
             ->where('status', 'selesai')
-            ->get()
-            ->orderBy('updated_at', 'desc');
-        $d = Reservation::where('customer_id', $cust->id)
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $d = Reservation::with('order')
+            ->whereHas('order', function ($query) use ($cust) {
+                $query->where('customer_id', $cust->id);
+            })
             ->where('status', 'dibatalkan')
-            ->get()
-            ->orderBy('updated_at', 'desc');
+            ->orderBy('updated_at', 'desc')
+            ->get();
         return view('user.pelanggan.reservation.index', compact('wp', 'w', 'a', 's', 'd'));
     }
 
