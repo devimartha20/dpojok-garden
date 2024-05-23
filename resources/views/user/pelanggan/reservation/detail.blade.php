@@ -71,16 +71,16 @@ data-client-key="{{ config('app.client_key') }}"></script>
                     <div class="separator"></div>
                     <br>
                     <h4>Total Harga : {{ number_format($order->total_harga) }}</h4>
-                    @if($order->progress == 'menunggu_pembayaran')
+                    @if($reservation->status == 'menunggu_pembayaran')
                             <div class="badge badge-danger">Menunggu Pembayaran</div>
                         @elseif($order->progress == 'menunggu')
-                            <div class="badge badge-warning">Menunggu</div>
-                        @elseif($order->progress == 'diproses')
-                            <div class="badge badge-info">Diproses</div>
+                            <div class="badge badge-warning">Dibooking</div>
+                        @elseif($order->progress == 'aktif')
+                            <div class="badge badge-info">Sedang Dibooking</div>
                         @elseif($order->progress == 'selesai')
-                            <div class="badge badge-primary">Selesai</div>
-                        @elseif($order->progress == 'diterima')
-                            <div class="badge badge-success">Diterima</div>
+                            <div class="badge badge-success">Selesai</div>
+                        @elseif($order->progress == 'dibatalkan')
+                            <div class="badge badge-secondary">Dibatalkan</div>
                         @endif
                     <div class="separator"></div>
                     @if ($reservation->status == 'meunggu_pembayaran')
