@@ -53,15 +53,15 @@ data-client-key="{{ config('app.client_key') }}"></script>
                         <div class="accordion-desc">
                             <h5>{{ $do->product->nama }}</h5>
                             <h5>{{ $do->harga }}</h5>
-                            <p>Jumlah: {{ $do->jumlah }}</p>
-                            <p>Total Harga: {{ $do->total_harga }}</p>
+                            <h5>Jumlah: {{ $do->jumlah }}</h5>
+                            <h4>Total Harga: {{ number_format($do->total_harga) }}</h4>
                         </div>
                     @endforeach
                     <div class="separator"></div>
                     <p>Meja pesanan : </p>
                     @foreach ($reservation->reservationTables as $rt)
                     <div class="product-image">
-                        <img src="{{ asset('images').'/'.$rt->table->image }}" alt="Meja" width="100">
+                        <img src="{{ asset($rt->table->image) }}" alt="Meja" width="100">
                     </div>
                     <div class="accordion-desc">
                         <h5>No Meja : {{ $rt->table->no_meja }}</h5>
@@ -71,7 +71,7 @@ data-client-key="{{ config('app.client_key') }}"></script>
 
                     <div class="separator"></div>
                     <br>
-                    <p>Total Harga : {{ $order->total_price }}</p>
+                    <p>Total Harga : {{ number_format($order->total_harga) }}</p>
                     <div class="separator"></div>
                     <div class="bottom-right">
                         <button id="pay-button" class="btn btn-primary">Bayar Reservasi</button>
