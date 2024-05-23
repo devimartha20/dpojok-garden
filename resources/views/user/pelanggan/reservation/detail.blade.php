@@ -73,7 +73,7 @@ data-client-key="{{ config('app.client_key') }}"></script>
                     <br>
                     <h4>Total Harga : {{ number_format($order->total_harga) }}</h4>
                     <div class="separator"></div>
-                    @if ($order->status == 'belum_lunas')
+                    @if ($order->payment->status == 'belum_lunas')
                     <div class="bottom-right">
                         <button id="pay-button" class="btn btn-primary">Bayar Reservasi</button>
                     </div>
