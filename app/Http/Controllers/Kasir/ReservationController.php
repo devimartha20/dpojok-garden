@@ -15,7 +15,22 @@ class ReservationController extends Controller
     public function index()
     {
         $reservations = Reservation::all();
-        return view('user.kasir.reservation.index', compact('reservations'));
+        $wp = Reservation::where('status', 'menunggu_pembayaran')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $w = Reservation::where('status', 'menunggu')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $a = Reservation::where('status', 'aktif')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $s = Reservation::where('status', 'selesai')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        $d = Reservation::where('status', 'dibatalkan')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+        return view('user.kasir.reservation.index', compact('wp', 'w', 'a', 's', 'd'));
     }
 
     /**
@@ -75,7 +90,7 @@ class ReservationController extends Controller
     public function update(Request $request, string $id)
     {
 
-       
+
     }
 
     /**

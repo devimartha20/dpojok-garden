@@ -288,9 +288,11 @@ class CreateReservation extends Component
     public function loadProducts()
     {
         if (!empty($this->search)) {
-            $this->products = Product::where('nama', 'like', '%' . $this->search . '%')->get();
+            $this->products = Product::where('nama', 'like', '%' . $this->search . '%')
+            ->where('stok', '>', 0)
+            ->get();
         } else {
-            $this->products = Product::all();
+            $this->products = Product::where('stok', '>', 0)->get();
         }
     }
 

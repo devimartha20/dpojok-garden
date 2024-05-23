@@ -324,7 +324,7 @@
                     </a>
                 </li>
                 <li>
-                    <a>
+                    <a href="{{ route('reservation.index') }}">
                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                         <span class="pcoded-mtext" >Reservasi</span>
                         <span class="pcoded-mcaret"></span>
