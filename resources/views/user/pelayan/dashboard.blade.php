@@ -3,13 +3,11 @@
     Dashboard
 @endsection
 @section('styles')
-
 @endsection
 @section('content')
 <div class="row">
-
     <!-- order-card start -->
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-5 col-xl-3">
         <div class="card bg-c-blue order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Pesanan Masuk</h6>
@@ -18,7 +16,16 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-5 col-xl-3">
+        <div class="card bg-c-green order-card">
+            <div class="card-block">
+                <h6 class="m-b-20">Pesanan Diproses</h6>
+                <h2 class="text-right"><i class="ti-tag f-left"></i><span>11</span></h2>
+                {{-- <p class="m-b-0">Bulan Ini<span class="f-right">213</span></p> --}}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-xl-3">
         <div class="card bg-c-green order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Pesanan Selesai</h6>
@@ -27,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xl-3">
+    <div class="col-md-5 col-xl-3">
         <div class="card bg-c-yellow order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Pesanan Diterima</h6>
@@ -36,289 +43,93 @@
             </div>
         </div>
     </div>
-    {{-- <div class="col-md-6 col-xl-3">
-        <div class="card bg-c-pink order-card">
-            <div class="card-block">
-                <h6 class="m-b-20">Total Profit</h6>
-                <h2 class="text-right"><i class="ti-wallet f-left"></i><span>Rp.15.000.000</span></h2>
-                <p class="m-b-0">This Month<span class="f-right">Rp.500.000</span></p>
-            </div>
-        </div>
-    </div> --}}
-    <!-- order-card end -->
+</div>
 
-    <!-- statustic and process start -->
-    {{-- <div class="col-lg-8 col-md-12">
+<div class="row">
+    <div class="col-md-6 col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h5>Statistik</h5>
-                <div class="card-header-right">
-                    <ul class="list-unstyled card-option">
-                        <li><i class="fa fa-chevron-left"></i></li>
-                        <li><i class="fa fa-window-maximize full-card"></i></li>
-                        <li><i class="fa fa-minus minimize-card"></i></li>
-                        <li><i class="fa fa-refresh reload-card"></i></li>
-                        <li><i class="fa fa-times close-card"></i></li>
-                    </ul>
-                </div>
+                <h5>Bar chart</h5>
+                <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                <div class="card-header-right">                                                             <i class="icofont icofont-spinner-alt-5"></i>                                                         </div>
             </div>
             <div class="card-block">
-                <canvas id="Statistics-chart" height="200"></canvas>
+                <div id="morris-bar-chart" style="position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg height="382.944" version="1.1" width="755.083" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; top: -0.239624px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><text x="32.95876693725586" y="350.4856669845581" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4.00000023269655" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan></text><path fill="none" stroke="#eef0f2" d="M45.45876693725586,350.4856669845581H730.083" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.95876693725586" y="269.1142502384186" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="3.9999824123382837" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">25</tspan></text><path fill="none" stroke="#eef0f2" d="M45.45876693725586,269.1142502384186H730.083" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.95876693725586" y="187.74283349227906" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4.000010368347176" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">50</tspan></text><path fill="none" stroke="#eef0f2" d="M45.45876693725586,187.74283349227906H730.083" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.95876693725586" y="106.37141674613952" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4.000000177383413" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">75</tspan></text><path fill="none" stroke="#eef0f2" d="M45.45876693725586,106.37141674613952H730.083" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.95876693725586" y="25" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4.000000476837158" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">100</tspan></text><path fill="none" stroke="#eef0f2" d="M45.45876693725586,25H730.083" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="681.1812690669468" y="362.9856669845581" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.6667)"><tspan dy="4.00000023269655" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2012</tspan></text><text x="583.3778072008405" y="362.9856669845581" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.6667)"><tspan dy="4.00000023269655" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2011</tspan></text><text x="485.5743453347342" y="362.9856669845581" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.6667)"><tspan dy="4.00000023269655" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2010</tspan></text><text x="387.7708834686279" y="362.9856669845581" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.6667)"><tspan dy="4.00000023269655" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2009</tspan></text><text x="289.96742160252165" y="362.9856669845581" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.6667)"><tspan dy="4.00000023269655" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2008</tspan></text><text x="192.1639597364153" y="362.9856669845581" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.6667)"><tspan dy="4.00000023269655" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2007</tspan></text><text x="94.36049787030902" y="362.9856669845581" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,6.6667)"><tspan dy="4.00000023269655" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2006</tspan></text><rect x="57.68419967051915" y="25" width="22.450865466526576" height="325.4856669845581" rx="0" ry="0" fill="#5fbeaa" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="83.13506513704573" y="57.54856669845577" width="22.450865466526576" height="292.93710028610235" rx="0" ry="0" fill="#5d9cec" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="108.58593060357231" y="155.19426679382323" width="22.450865466526576" height="195.2914001907349" rx="0" ry="0" fill="#cccccc" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="155.48766153662547" y="106.37141674613952" width="22.450865466526576" height="244.1142502384186" rx="0" ry="0" fill="#5fbeaa" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="180.93852700315205" y="138.91998344459532" width="22.450865466526576" height="211.5656835399628" rx="0" ry="0" fill="#5d9cec" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="206.38939246967863" y="220.29140019073486" width="22.450865466526576" height="130.19426679382326" rx="0" ry="0" fill="#cccccc" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="253.29112340273176" y="187.74283349227906" width="22.450865466526576" height="162.74283349227906" rx="0" ry="0" fill="#5fbeaa" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="278.7419888692583" y="220.29140019073486" width="22.450865466526576" height="130.19426679382326" rx="0" ry="0" fill="#5d9cec" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="304.1928543357849" y="252.8399668891907" width="22.450865466526576" height="97.64570009536743" rx="0" ry="0" fill="#cccccc" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="351.09458526883805" y="106.37141674613952" width="22.450865466526576" height="244.1142502384186" rx="0" ry="0" fill="#5fbeaa" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="376.5454507353646" y="138.91998344459532" width="22.450865466526576" height="211.5656835399628" rx="0" ry="0" fill="#5d9cec" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="401.9963162018912" y="220.29140019073486" width="22.450865466526576" height="130.19426679382326" rx="0" ry="0" fill="#cccccc" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="448.89804713494436" y="187.74283349227906" width="22.450865466526576" height="162.74283349227906" rx="0" ry="0" fill="#5fbeaa" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="474.34891260147094" y="220.29140019073486" width="22.450865466526576" height="130.19426679382326" rx="0" ry="0" fill="#5d9cec" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="499.7997780679975" y="252.8399668891907" width="22.450865466526576" height="97.64570009536743" rx="0" ry="0" fill="#cccccc" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="546.7015090010507" y="106.37141674613952" width="22.450865466526576" height="244.1142502384186" rx="0" ry="0" fill="#5fbeaa" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="572.1523744675773" y="138.91998344459532" width="22.450865466526576" height="211.5656835399628" rx="0" ry="0" fill="#5d9cec" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="597.6032399341038" y="220.29140019073486" width="22.450865466526576" height="130.19426679382326" rx="0" ry="0" fill="#cccccc" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="644.504970867157" y="25" width="22.450865466526576" height="325.4856669845581" rx="0" ry="0" fill="#5fbeaa" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="669.9558363336836" y="57.54856669845577" width="22.450865466526576" height="292.93710028610235" rx="0" ry="0" fill="#5d9cec" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="695.4067018002102" y="220.29140019073486" width="22.450865466526576" height="130.19426679382326" rx="0" ry="0" fill="#cccccc" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect></svg><div class="morris-hover morris-default-style" style="left: 631.181px; top: 131px; display: none;"><div class="morris-hover-row-label">2012</div><div class="morris-hover-point" style="color: #5FBEAA">
+A:
+100
+</div><div class="morris-hover-point" style="color: #5D9CEC">
+B:
+90
+</div><div class="morris-hover-point" style="color: #cCcCcC">
+C:
+40
+</div></div></div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h5>Customer Feedback</h5>
-            </div>
-            <div class="card-block">
-                <span class="d-block text-c-blue f-24 f-w-600 text-center">365247</span>
-                <canvas id="feedback-chart" height="100"></canvas>
-                <div class="row justify-content-center m-t-15">
-                    <div class="col-auto b-r-default m-t-5 m-b-5">
-                        <h4>83%</h4>
-                        <p class="text-success m-b-0"><i class="ti-hand-point-up m-r-5"></i>Positive</p>
-                    </div>
-                    <div class="col-auto m-t-5 m-b-5">
-                        <h4>17%</h4>
-                        <p class="text-danger m-b-0"><i class="ti-hand-point-down m-r-5"></i>Negative</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- statustic and process end -->
-    <!-- tabs card start -->
-    <div class="col-sm-12">
+
+    <div class="col-md-6 col-lg-6">
         <div class="card tabs-card">
             <div class="card-block p-0">
                 <div class="card-header">
-                    <h5>Pesanan Diantar</h5>
+                    <h5>Semua Pesanan</h5>
                 </div>
-                <!-- Nav tabs -->
-                {{-- <ul class="nav nav-tabs md-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#home3" role="">Recent Activities</a>
-                        <div class="slide"></div>
-                    </li> --}}
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#profile3" role="tab"><i class="fa fa-key"></i>Security</a>
-                        <div class="slide"></div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#messages3" role="tab"><i class="fa fa-play-circle"></i>Entertainment</a>
-                        <div class="slide"></div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#settings3" role="tab"><i class="fa fa-database"></i>Big Data</a>
-                        <div class="slide"></div>
-                    </li> --}}
-                {{-- </ul> --}}
-                <!-- Tab panes -->
                 <div class="tab-content card-block">
                     <div class="tab-pane active" id="home3" role="tabpanel">
-
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>
-                                    <th>Gambar</th>
                                     <th>Produk</th>
                                     <th>Jumlah</th>
-                                    <th>Status</th>
                                     <th>Pelanggan</th>
                                     <th>Tanggal Pemesanan</th>
                                     <th>Jumlah Harga</th>
-                                </tr>
-                                <tr>
-                                    {{-- <td><img src="{{ asset('main/assets/images/product/squash-lemon.jpg') }}" alt="prod img" class="img-fluid"></td> --}}
-                                    <td>PNG002344</td>
-                                    <td>Cireng</td>
-                                    <td>1</td>
-                                    <td><span class="label label-danger">Failed</span></td>
-                                    <td>Asep</td>
-                                    <td>05-05-2024</td>
-                                    <td>Rp. 10.000</td>
+                                    <th>Status</th>
                                 </tr>
                                 <tr>
                                     {{-- <td><img src="{{ asset('main/assets/images/product/prod3.jpg') }}" alt="prod img" class="img-fluid"></td> --}}
-                                    <td>PNG002653</td>
                                     <td>Spagetti</td>
                                     <td>2</td>
-                                    <td><span class="label label-success">Delivered</span></td>
                                     <td>Dodi</td>
                                     <td>06-05-2024</td>
                                     <td>Rp. 30.000</td>
+                                    <td><span class="label label-primary">Selesai</span></td>
                                 </tr>
                                 <tr>
-                                    {{-- <td><img src="{{ asset('main/assets/images/product/prod4.jpg') }}" alt="prod img" class="img-fluid"></td> --}}
-                                    <td>PNG002653</td>
-                                    <td>Ocean Ice Blue</td>
+                                    {{-- <td><img src="{{ asset('main/assets/images/product/squash-lemon.jpg') }}" alt="prod img" class="img-fluid"></td> --}}
+                                    <td>Cireng</td>
+                                    <td>1</td>
+                                    <td>Asep</td>
+                                    <td>05-05-2024</td>
+                                    <td>Rp. 10.000</td>
+                                    <td><span class="label label-success">Diterima</span></td>
+                                </tr>
+                                <tr>
+                                    {{-- <td><img src="{{ asset('main/assets/images/product/prod3.jpg') }}" alt="prod img" class="img-fluid"></td> --}}
+                                    <td>Spagetti</td>
                                     <td>2</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                    <td>Dedi</td>
-                                    <td>07-05-2024</td>
-                                    <td>Rp. 36.000</td>
+                                    <td>Dodi</td>
+                                    <td>06-05-2024</td>
+                                    <td>Rp. 30.000</td>
+                                    <td><span class="label label-warning">Diproses</span></td>
+                                </tr>
+                                <tr>
+                                    {{-- <td><img src="{{ asset('main/assets/images/product/prod3.jpg') }}" alt="prod img" class="img-fluid"></td> --}}
+                                    <td>Spagetti</td>
+                                    <td>2</td>
+                                    <td>Dodi</td>
+                                    <td>06-05-2024</td>
+                                    <td>Rp. 30.000</td>
+                                    <td><span class="label label-danger">Menunggu</span></td>
                                 </tr>
                             </table>
                         </div>
-                        <div class="text-center">
-                            <a href: {{ route('riwayatpesan.route') }} class="btn btn-outline-primary btn-round btn-sm">Load More</a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- tabs card end -->
-
-    <!-- social statustic start -->
-    {{-- <div class="col-md-12 col-lg-4">
-        <div class="card">
-            <div class="card-block text-center">
-                <i class="fa fa-envelope-open text-c-blue d-block f-40"></i>
-                <h4 class="m-t-20"><span class="text-c-blue">8.62k</span> Subscribers</h4>
-                <p class="m-b-20">Your main list is growing</p>
-                <button class="btn btn-primary btn-sm btn-round">Manage List</button>
-            </div>
-        </div>
-    </div> --}}
-    {{-- <div class="col-md-6 col-lg-4">
-        <div class="card">
-            <div class="card-block text-center">
-                <i class="fa fa-twitter text-c-green d-block f-40"></i>
-                <h4 class="m-t-20"><span class="text-c-blgreenue">+40</span> Followers</h4>
-                <p class="m-b-20">Your main list is growing</p>
-                <button class="btn btn-success btn-sm btn-round">Check them out</button>
-            </div>
-        </div>
-    </div> --}}
-    {{-- <div class="col-md-6 col-lg-4">
-        <div class="card">
-            <div class="card-block text-center">
-                <i class="fa fa-puzzle-piece text-c-pink d-block f-40"></i>
-                <h4 class="m-t-20">Business Plan</h4>
-                <p class="m-b-20">This is your current active plan</p>
-                <button class="btn btn-danger btn-sm btn-round">Upgrade to VIP</button>
-            </div>
-        </div>
-    </div> --}}
-    <!-- social statustic end -->
-
-    <!-- users visite and profile start -->
-    {{-- <div class="col-md-4">
-        <div class="card user-card">
-            <div class="card-header">
-                <h5>Profile</h5>
-            </div>
-            <div class="card-block">
-                <div class="usre-image">
-                    <img src="{{ asset('main/assets/images/avatar-4.jpg') }}" class="img-radius" alt="User-Profile-Image">
-                </div>
-                <h6 class="f-w-600 m-t-25 m-b-10">Alessa Robert</h6>
-                <p class="text-muted">Active | Male | Born 23.05.1992</p>
-                <hr/>
-                <p class="text-muted m-t-15">Activity Level: 87%</p>
-                <ul class="list-unstyled activity-leval">
-                    <li class="active"></li>
-                    <li class="active"></li>
-                    <li class="active"></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-                <div class="bg-c-blue counter-block m-t-10 p-20">
-                    <div class="row">
-                        <div class="col-4">
-                            <i class="ti-comments"></i>
-                            <p>1256</p>
-                        </div>
-                        <div class="col-4">
-                            <i class="ti-user"></i>
-                            <p>8562</p>
-                        </div>
-                        <div class="col-4">
-                            <i class="ti-bag"></i>
-                            <p>189</p>
-                        </div>
-                    </div>
-                </div>
-                <p class="m-t-15 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                <hr/>
-                <div class="row justify-content-center user-social-link">
-                    <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
-                    <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
-                    <div class="col-auto"><a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header">
-                <h5>Activity Feed</h5>
-                <div class="card-header-right">
-                    <ul class="list-unstyled card-option">
-                        <li><i class="fa fa-chevron-left"></i></li>
-                        <li><i class="fa fa-window-maximize full-card"></i></li>
-                        <li><i class="fa fa-minus minimize-card"></i></li>
-                        <li><i class="fa fa-refresh reload-card"></i></li>
-                        <li><i class="fa fa-times close-card"></i></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card-block">
-                <ul class="feed-blog">
-                    <li class="active-feed">
-                        <div class="feed-user-img">
-                            <img src="{{ asset('main/assets/images/avatar-3.jpg') }}" class="img-radius " alt="User-Profile-Image">
-                        </div>
-                        <h6><span class="label label-danger">File</span> Eddie uploaded new files: <small class="text-muted">2 hours ago</small></h6>
-                        <p class="m-b-15 m-t-15">hii <b> @everone</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                        <div class="row">
-                            <div class="col-auto text-center">
-                                <img src="{{ asset('main/assets/images/blog/blog-r-1.jpg') }}" alt="img" class="img-fluid img-100">
-                                <h6 class="m-t-15 m-b-0">Old Scooter</h6>
-                                <p class="text-muted m-b-0"><small>PNG-100KB</small></p>
-                            </div>
-                            <div class="col-auto text-center">
-                                <img src="{{ asset('main/assets/images/blog/blog-r-2.jpg') }}" alt="img" class="img-fluid img-100">
-                                <h6 class="m-t-15 m-b-0">Wall Art</h6>
-                                <p class="text-muted m-b-0"><small>PNG-150KB</small></p>
-                            </div>
-                            <div class="col-auto text-center">
-                                <img src="{{ asset('main/assets/images/blog/blog-r-3.jpg') }}" alt="img" class="img-fluid img-100">
-                                <h6 class="m-t-15 m-b-0">Microphone</h6>
-                                <p class="text-muted m-b-0"><small>PNG-150KB</small></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="diactive-feed">
-                        <div class="feed-user-img">
-                            <img src="{{ asset('main/assets/images/avatar-4.jpg') }}" class="img-radius " alt="User-Profile-Image">
-                        </div>
-                        <h6><span class="label label-success">Task</span>Sarah marked the Pending Review: <span class="text-c-green"> Trash Can Icon Design</span><small class="text-muted">2 hours ago</small></h6>
-                    </li>
-                    <li class="diactive-feed">
-                        <div class="feed-user-img">
-                            <img src="{{ asset('main/assets/images/avatar-2.jpg') }}" class="img-radius " alt="User-Profile-Image">
-                        </div>
-                        <h6><span class="label label-primary">comment</span> abc posted a task:  <span class="text-c-green">Design a new Homepage</span>  <small class="text-muted">6 hours ago</small></h6>
-                        <p class="m-b-15 m-t-15"hii <b> @everone</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    </li>
-                    <li class="active-feed">
-                        <div class="feed-user-img">
-                            <img src="{{ asset('main/assets/images/avatar-3.jpg') }}" class="img-radius " alt="User-Profile-Image">
-                        </div>
-                        <h6><span class="label label-warning">Task</span>Sarah marked : <span class="text-c-green"> do Icon Design</span><small class="text-muted">10 hours ago</small></h6>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div> --}}
-    <!-- users visite and profile end -->
-
 </div>
 @endsection
 @section('scripts')
-
 @endsection

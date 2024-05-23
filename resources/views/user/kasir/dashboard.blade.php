@@ -79,7 +79,7 @@
     <div class="col-lg-4 col-md-12">
         <div class="card">
             <div class="card-header">
-                <h5>Customer Feedback</h5>
+                <h5>Grafik Pemesanan</h5>
             </div>
             <div class="card-block">
                 <span class="d-block text-c-blue f-24 f-w-600 text-center">365247</span>
@@ -87,11 +87,11 @@
                 <div class="row justify-content-center m-t-15">
                     <div class="col-auto b-r-default m-t-5 m-b-5">
                         <h4>83%</h4>
-                        <p class="text-success m-b-0"><i class="ti-hand-point-up m-r-5"></i>Positive</p>
+                        <p class="text-success m-b-0"><i class="ti-hand-point-up m-r-5"></i>Online</p>
                     </div>
                     <div class="col-auto m-t-5 m-b-5">
                         <h4>17%</h4>
-                        <p class="text-danger m-b-0"><i class="ti-hand-point-down m-r-5"></i>Negative</p>
+                        <p class="text-danger m-b-0"><i class="ti-hand-point-down m-r-5"></i>Offline</p>
                     </div>
                 </div>
             </div>
