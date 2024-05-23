@@ -44,7 +44,6 @@ data-client-key="{{ config('app.client_key') }}"></script>
                     <div class="separator"></div>
                     <div class="form-group">
                         <label for="ordered_menu">Menu yang Dipesan:</label>
-                        <p class="form-control-static">Roti Bakar, Nasi Goreng, Es Teh</p>
                     </div>
                     @foreach ($order->detailorders as $do)
                         <div class="product-image">
@@ -72,6 +71,17 @@ data-client-key="{{ config('app.client_key') }}"></script>
                     <div class="separator"></div>
                     <br>
                     <h4>Total Harga : {{ number_format($order->total_harga) }}</h4>
+                    @if($order->progress == 'menunggu_pembayaran')
+                            <div class="order-status waiting-payment">Menunggu Pembayaran</div>
+                        @elseif($order->progress == 'menunggu')
+                            <div class="order-status waiting">Menunggu</div>
+                        @elseif($order->progress == 'diproses')
+                            <div class="order-status in-process">Diproses</div>
+                        @elseif($order->progress == 'selesai')
+                            <div class="order-status finished">Selesai</div>
+                        @elseif($order->progress == 'diterima')
+                            <div class="order-status delivered">Diterima</div>
+                        @endif
                     <div class="separator"></div>
                     @if ($order->payment->status == 'belum_lunas')
                     <div class="bottom-right">

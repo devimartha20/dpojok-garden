@@ -54,7 +54,6 @@ data-client-key="{{ config('app.client_key') }}"></script>
                             <h5>{{ $do->product->nama }}</h5>
                             <h5>{{ $do->harga }}</h5>
                             <h5>Jumlah: {{ $do->jumlah }}</h5>
-                            <h5>Total Harga: {{ number_format($do->total_harga) }}</h5>
                         </div>
                     @endforeach
                     <div class="separator"></div>
