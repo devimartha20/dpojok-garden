@@ -118,7 +118,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('/kelola-cuti', function () {
             return view('user/admin/leave/index');
         })->name('kelolacuti.route');
-
+        Route::get('/detail-produk', function () {
+            return view('user/admin/product/detailproduct');
+        })->name('product.detail');
 
     });
 

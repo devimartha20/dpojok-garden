@@ -11,11 +11,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-<<<<<<< HEAD
                 <h3 class="h5 mb-4 text-center">Laporan Absensi Pegawai</h3>
-=======
                 <h3 class="h5 mb-4 text-center">Laporan Kehadiran</h3>
->>>>>>> 4bb17070c7b9f8da3575ca593f912f32b580a657
                 <form method="GET" action="{{ route('report.attendances') }}">
                     <div class="form-row align-items-center">
                         <div class="col-auto">

@@ -8,7 +8,7 @@ Riwayat Reservasi
         <div class="card-block text-center">
             <i class="fa fa-envelope-open text-c-blue d-block f-40"></i>
             <h4 class="m-t-20"><span class="text-c-blue">0</span> Reservasi hari ini</h4>
-
+            <br>
             <a class="btn btn-primary btn-xl btn-round" href="http://127.0.0.1:8000/ordertrans/create/0">Tambah Reservasi</a>
         </div>
     </div>
