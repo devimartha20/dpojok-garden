@@ -183,7 +183,7 @@
                     </div>
                     @empty
                     <div class="text-center">
-                        Tidak Ada Pesanan Menunggu Pembayaran
+                        Tidak Ada Pesanan Dibatalkan
                     </div>
                     @endforelse
 
