@@ -20,6 +20,7 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->bigInteger('price');
+            $table->string('note')->nullable();
             $table->enum('status', ['menunggu_pembayaran', 'menunggu', 'aktif', 'selesai', 'dibatalkan'])->default('menunggu_pembayaran');
             $table->timestamps();
         });

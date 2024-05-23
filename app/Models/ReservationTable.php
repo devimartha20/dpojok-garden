@@ -14,7 +14,6 @@ class ReservationTable extends Model
         'reservation_id',
         'table_id',
         'seats',
-        'guests',
         'date',
         'start_time',
         'end_time',

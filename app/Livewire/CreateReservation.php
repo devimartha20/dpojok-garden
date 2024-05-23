@@ -45,46 +45,46 @@ class CreateReservation extends Component
                       });
             })
             ->get();
-    
+
         return $overlappingReservations;
     }
-    
+
     public function getOverlappingTableIds($date, $startTime, $endTime)
     {
         $overlappingReservations = $this->checkOverlap($date, $startTime, $endTime);
-    
+
         if ($overlappingReservations->isEmpty()) {
             return [];
         }
-    
+
         $reservationIds = $overlappingReservations->pluck('id');
-    
+
         $tableIds = DB::table('reservation_tables')
             ->whereIn('reservation_id', $reservationIds)
             ->pluck('table_id')
             ->filter()
             ->unique();
-    
+
         return $tableIds;
     }
-    
+
     public function getAvailableTableIds($date = null, $startTime = null, $endTime = null)
     {
         $date = $date ?? $this->date;
         $startTime = $startTime ?? $this->start_time;
         $endTime = $endTime ?? $this->end_time;
-    
+
         $overlappingTableIds = $this->getOverlappingTableIds($date, $startTime, $endTime);
 
         // dd($overlappingTableIds);
-    
+
         $availableTableIds = DB::table('tables')
             ->whereNotIn('id', $overlappingTableIds)
             ->pluck('id');
-    
+
         return $availableTableIds;
     }
-    
+
     public function checkAvailability()
     {
         $this->validate([
@@ -93,19 +93,19 @@ class CreateReservation extends Component
             'end_time' => 'required|after:start_time',
             'guests' => 'required|integer|min:1',
         ]);
-    
+
         $availableTables = $this->getAvailableTableIds();
 
         // dd($availableTables);
-    
+
         if ($availableTables->isEmpty()) {
             $this->available = false;
             return;
         }
-    
+
         $seats = [];
         $notAllowedTables = [];
-    
+
         foreach ($availableTables as $tableId) {
             $availableTable = Table::find($tableId);
             $seats[] = ['table_id' => $availableTable->id, 'number' => $availableTable->jumlah_kursi];
@@ -113,17 +113,17 @@ class CreateReservation extends Component
                 $notAllowedTables[] = $availableTable->id;
             }
         }
-    
+
         $combinations = $this->findCombinations($seats, $this->guests, $this->deviation, $notAllowedTables);
         $bestCombination = $this->findBestCombination($combinations);
-    
+
         $this->available = !empty($combinations) && !empty($bestCombination);
         $this->combinations = $combinations;
         $this->bestCombinations = $bestCombination;
 
         // dd($availableTables ,$this->combinations, $this->bestCombination);
     }
-    
+
 
     function findCombinations($seats, $target, $deviation, $notAllowedTables) {
         // Sort seats by table ID to ensure consistent output
@@ -368,7 +368,6 @@ class CreateReservation extends Component
                 'reservation_id' => $reservation->id,
                 'table_id' => $table['table_id'],
                 'seats' => $this->guests,
-                'guests' => $this->guests,
                 'date' => $this->date,
                 'start_time' => $this->start_time,
                 'end_time' => $this->end_time,
