@@ -91,7 +91,7 @@ data-client-key="{{ config('app.client_key') }}"></script>
         onSuccess: function(result){
           /* You may add your own implementation here */
         //   alert("Pembayaran Berhasil"); console.log(result);
-        window.location.href = "{{ route('order-history.show', $order->id) }}";
+        window.location.href = "{{ route('customer.reservation.detail', $reservation->id) }}";
         },
         onPending: function(result){
           /* You may add your own implementation here */
