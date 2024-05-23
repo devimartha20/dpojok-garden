@@ -360,6 +360,7 @@ class CreateReservation extends Component
             'end_time' => $this->end_time,
             'guests'=> $this->guests,
             'status' => 'menunggu_pembayaran',
+            'note' => $this->catatan,
             'price' => $this->calculateReservationPrice(),
         ]);
 
