@@ -4,10 +4,50 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
+use App\Models\Worktime;
+use App\Models\Holiday;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
+
+    public function index(){
+         return view('user.admin.schedule.index');   
+    }
+
+    public function storeHoliday(Request $request){
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'name' => 'required',
+            'desc' => 'nullable',
+        ]);
+
+        $holiday = Holiday::create([
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'name'=> $request->name,
+            'desc' => $request->desc,
+        ]);
+
+        if ($holiday){
+            return redirect()->back()->with('success', 'Hari Libur Berhasil Ditambahkan!');
+        }
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+    }
+
+    public function destroyHoliday($id){
+        $deleted = Holiday::destroy($id);
+
+        if ($deleted){
+            return redirect()->back()->with('success', 'Hari Libur Berhasil Dihapus!');
+        }
+    }
+
+    public function updateWorktime($id){
+
+    }
+
     public function leaveIndex(){
 
         $leaves = Leave::all(); 
