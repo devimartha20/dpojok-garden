@@ -157,7 +157,7 @@ class ScheduleController extends Controller
                 'date_format:H:i',
                 'after:rest_start_time',
                 function ($attribute, $value, $fail) use ($request) {
-                    if ($request->filled('rest_start_time') && empty($value)) {
+                    if ($request->rest_start_time != null && empty($value)) {
                         $fail('Waktu selesai istirahat harus diisi jika waktu mulai istirahat diisi');
                     }
                     if ($request->filled('end_time') && $value > $request->end_time) {
