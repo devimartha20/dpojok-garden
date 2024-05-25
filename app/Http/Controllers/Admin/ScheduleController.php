@@ -19,26 +19,46 @@ class ScheduleController extends Controller
 
         $events = [];
 
-        // Convert worktimes to events
-        foreach ($worktimes as $worktime) {
+        // Convert holidays to events
+    $events = [];
+    foreach ($holidays as $holiday) {
+        $events[] = [
+            'title' => $holiday->name,
+            'start' => $holiday->start_date,
+            'end' => $holiday->end_date,
+            'description' => $holiday->desc,
+            'color' => 'red'
+        ];
+    }
+
+    // Filter worktime events that overlap with holiday events
+    foreach ($worktimes as $worktime) {
+        $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
+        $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
+        $overlap = false;
+
+        foreach ($holidays as $holiday) {
+            $holidayStart = $holiday->start_date;
+            $holidayEnd = $holiday->end_date;
+
+            // Check for overlap between worktime and holiday events
+            if (($worktimeStart >= $holidayStart && $worktimeStart <= $holidayEnd) ||
+                ($worktimeEnd >= $holidayStart && $worktimeEnd <= $holidayEnd)) {
+                $overlap = true;
+                break;
+            }
+        }
+
+        // Add worktime event if no overlap with holidays
+        if (!$overlap) {
             $events[] = [
-                'title' => 'Worktime',
-                'start' => $this->convertToDateTime($worktime->day, $worktime->start_time),
-                'end' => $this->convertToDateTime($worktime->day, $worktime->end_time),
+                'title' => 'Jam Kerja',
+                'start' => $worktimeStart,
+                'end' => $worktimeEnd,
                 'color' => 'blue'
             ];
         }
-
-        // Convert holidays to events
-        foreach ($holidays as $holiday) {
-            $events[] = [
-                'title' => $holiday->name,
-                'start' => $holiday->start_date,
-                'end' => $holiday->end_date,
-                'description' => $holiday->desc,
-                'color' => 'red'
-            ];
-        }
+    }
 
          return view('user.admin.schedule.index', compact('events'));
     }
