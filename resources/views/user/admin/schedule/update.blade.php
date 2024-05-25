@@ -13,6 +13,10 @@
             <div class="card">
                 <div class="card-header">
                     Edit Jadwal Kerja per Minggu
+
+                    @if($errors->any())
+                        {!! implode('', $errors->all('<div style="color: red;">:message</div>')) !!}
+                    @endif
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
