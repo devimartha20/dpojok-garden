@@ -141,7 +141,7 @@ class ScheduleController extends Controller
             'total_duration_min' => $total_duration_min,
         ]);
 
-        return redirect()->back()->with('success', 'Hari Libur Berhasil Ditambahkan!');
+        return redirect()->back()->with('success', 'Jadwal Kerja Berhasil Diubah!');
     }
 
     public function storeHoliday(Request $request){
