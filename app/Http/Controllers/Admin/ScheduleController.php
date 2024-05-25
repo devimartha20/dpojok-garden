@@ -111,10 +111,15 @@ class ScheduleController extends Controller
                 'after:rest_start_time',
                 function ($attribute, $value, $fail) use ($request) {
                     if ($request->end_time && $value > $request->end_time) {
-                        $fail('The rest end time must be before the end time.');
+                        $fail('Waktu selesai istirahat harus sebelum jam pulang');
                     }
                 },
             ],
+        ], [
+            'end_time.after_or_equal' => 'Jam pulang harus setelah jam masuk',
+            'rest_start_time.after' => 'Jam mulai istirahat harus setelah jam masuk',
+            'rest_start_time.before' => 'Jam mulai istirahat harus sebelum jam pulang',
+            'rest_end_time.after' => 'Jam selesai istirahat harus setelah jam mulai istirahat',
         ]);
 
         // Find the Worktime record by ID
