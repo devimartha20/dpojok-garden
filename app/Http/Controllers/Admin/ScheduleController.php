@@ -114,7 +114,7 @@ class ScheduleController extends Controller
     public function removeRestTime($id){
 
         $worktime = Worktime::findOrFail($id);
-        $total_duration_min = $worktime->work_duration_time;
+        $total_duration_min = $worktime->work_duration_min;
 
         $removed = Worktime::findOrFail($id)->update([
             'rest_start_time' => null,
