@@ -38,7 +38,7 @@
                                             <form id="update{{ $w->id }}" action="{{ route('worktime.update', $w->id) }}" method="POST">
                                                 @csrf
                                                 <td>
-                                                    <select name="day" class="form-control" disabled readonly>
+                                                    <select class="form-control" readonly>
                                                         @foreach($days as $idx => $day)
                                                         <option value="{{ $idx }}" {{ $idx == $w->day ? 'selected' : '' }}>{{ $day }}</option>
                                                         @endforeach

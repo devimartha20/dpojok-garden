@@ -102,12 +102,12 @@ class ScheduleController extends Controller
     {
         // Validate the request
         $request->validate([
-            'start_time' => 'required|date_format:H:i:s',
-            'end_time' => 'required|date_format:H:i:s|after_or_equal:start_time',
-            'rest_start_time' => 'nullable|date_format:H:i:s|before:end_time|after:start_time',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i|after_or_equal:start_time',
+            'rest_start_time' => 'nullable|date_format:H:i|before:end_time|after:start_time',
             'rest_end_time' => [
                 'nullable',
-                'date_format:H:i:s',
+                'date_format:H:i',
                 'after:rest_start_time',
                 function ($attribute, $value, $fail) use ($request) {
                     if ($request->end_time && $value > $request->end_time) {
@@ -141,7 +141,7 @@ class ScheduleController extends Controller
             'total_duration_min' => $total_duration_min,
         ]);
 
-        return response()->json(['message' => 'Worktime updated successfully']);
+        return redirect()->back()->with('success', 'Hari Libur Berhasil Ditambahkan!');
     }
 
     public function storeHoliday(Request $request){
@@ -200,8 +200,8 @@ class ScheduleController extends Controller
 
     private function calculateWorkingDuration(string $start_time, string $end_time, int $rest_duration_min): int
     {
-        $start = Carbon::createFromFormat('H:i:s', $start_time);
-        $end = Carbon::createFromFormat('H:i:s', $end_time);
+        $start = Carbon::createFromFormat('H:i', $start_time);
+        $end = Carbon::createFromFormat('H:i', $end_time);
         $working_minutes = $start->diffInMinutes($end) - $rest_duration_min;
         return $working_minutes;
     }
@@ -209,8 +209,8 @@ class ScheduleController extends Controller
 
     private function calculateTotalDuration(string $start_time, string $end_time): int
     {
-        $start = Carbon::createFromFormat('H:i:s', $start_time);
-        $end = Carbon::createFromFormat('H:i:s', $end_time);
+        $start = Carbon::createFromFormat('H:i', $start_time);
+        $end = Carbon::createFromFormat('H:i', $end_time);
         $total_minutes = $start->diffInMinutes($end);
         return $total_minutes;
     }
@@ -218,8 +218,8 @@ class ScheduleController extends Controller
 
     private function calculateRestDuration(string $rest_start_time, string $rest_end_time): int
     {
-        $start = Carbon::createFromFormat('H:i:s', $rest_start_time);
-        $end = Carbon::createFromFormat('H:i:s', $rest_end_time);
+        $start = Carbon::createFromFormat('H:i', $rest_start_time);
+        $end = Carbon::createFromFormat('H:i', $rest_end_time);
         $rest_minutes = $start->diffInMinutes($end);
         return $rest_minutes;
     }
