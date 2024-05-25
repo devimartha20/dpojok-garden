@@ -61,11 +61,11 @@
                                     <form id="formAdd" action="{{ route('holiday.store') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <label for="start_time" class="col-form-label">Tanggal & Waktu Awal</label>
+                                            <label for="start_date" class="col-form-label">Tanggal & Waktu Awal</label>
                                             <input type="datetime-local" class="form-control" name="start_time" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="end_time" class="col-form-label">Tanggal & Waktu Akhir</label>
+                                            <label for="end_date" class="col-form-label">Tanggal & Waktu Akhir</label>
                                             <input type="datetime-local" class="form-control" name="end_time" required>
                                         </div>
                                         <div class="form-group">
@@ -110,11 +110,11 @@
                                             <form id="formEdit{{ $holiday->id }}" action="{{ route('holiday.update', $holiday->id) }}" method="POST">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="start_time" class="col-form-label">Tanggal & Waktu Awal</label>
+                                                    <label for="start_date" class="col-form-label">Tanggal & Waktu Awal</label>
                                                     <input type="datetime-local" class="form-control" name="start_time" required value="{{ $holiday->start_time }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="end_time" class="col-form-label">Tanggal & Waktu Akhir</label>
+                                                    <label for="end_date" class="col-form-label">Tanggal & Waktu Akhir</label>
                                                     <input type="datetime-local" class="form-control" name="end_time" required value="{{ $holiday->end_time }}">
                                                 </div>
                                                 <div class="form-group">
