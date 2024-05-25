@@ -115,7 +115,7 @@
                         <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
                         <p>Tanggal Reservasi: {{ $r->date }}</p>
                         <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
-                        @foreach ($wp->reservationTables as $rt)
+                        @foreach ($r->reservationTables as $rt)
                             <div class="product-details">
                                 <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
                                 <p>Jumlah Kursi : {{ $rt->seats }}</p>
