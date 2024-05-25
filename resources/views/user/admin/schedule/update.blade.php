@@ -16,7 +16,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <div class="table table-hover">
+                        <div class="table">
                             <table>
                                 <thead>
                                     <tr>
@@ -34,7 +34,7 @@
                                             <form id="update{{ $w->id }}" action="{{ route('worktime.update', $w->id) }}" method="POST">
                                                 @csrf
                                                 <td>
-                                                    <select name="day" class="form-control" required>
+                                                    <select name="day" class="form-control" disabled readonly>
                                                         @foreach($days as $idx => $day)
                                                         <option value="{{ $idx }}" {{ $idx == $w->day ? 'selected' : '' }}>{{ $day }}</option>
                                                         @endforeach
