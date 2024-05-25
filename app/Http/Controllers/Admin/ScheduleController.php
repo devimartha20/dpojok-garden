@@ -19,54 +19,129 @@ class ScheduleController extends Controller
 
         $events = [];
 
+
         // Convert holidays to events
-    $events = [];
-    foreach ($holidays as $holiday) {
-        $events[] = [
-            'title' => $holiday->name,
-            'start' => $holiday->start_date,
-            'end' => $holiday->end_date,
-            'description' => $holiday->desc,
-            'color' => 'red'
-        ];
-    }
-
-    // Filter worktime events that overlap with holiday events
-    foreach ($worktimes as $worktime) {
-        $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
-        $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
-        $overlap = false;
-
+        $events = [];
         foreach ($holidays as $holiday) {
-            $holidayStart = $holiday->start_date;
-            $holidayEnd = $holiday->end_date;
+            $events[] = [
+                'title' => $holiday->name,
+                'start' => $holiday->start_date,
+                'end' => $holiday->end_date,
+                'description' => $holiday->desc,
+                'color' => 'red'
+            ];
+        }
 
-            // Check for overlap between worktime and holiday events
-            if (($worktimeStart >= $holidayStart && $worktimeStart <= $holidayEnd) ||
-                ($worktimeEnd >= $holidayStart && $worktimeEnd <= $holidayEnd)) {
-                $overlap = true;
-                break;
+        // Adjust worktime events to remove overlapping time with holidays
+        foreach ($worktimes as $worktime) {
+            $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
+            $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
+
+            foreach ($holidays as $holiday) {
+                $holidayStart = $holiday->start_date;
+                $holidayEnd = $holiday->end_date;
+
+                // Calculate the intersection of time between worktime and holiday events
+                $intersectionStart = max($worktimeStart, $holidayStart);
+                $intersectionEnd = min($worktimeEnd, $holidayEnd);
+
+                // Adjust worktime if there is an overlap with holiday
+                if ($intersectionStart < $intersectionEnd) {
+                    if($worktimeStart < $holidayStart){
+                        $worktimeEnd = $intersectionStart;
+                    }elseif($worktimeStart > $holidayStart){
+                        $worktimeStart = $intersectionEnd;
+                    }elseif ($worktimeStart == $holidayStart){
+                        if($worktimeEnd > $holidayEnd){
+                            $worktimeStart = $intersectionStart;
+                        }else{
+                            $worktimeStart = $worktimeEnd;
+                        }
+                    }
+
+                }
+            }
+
+            // Add adjusted worktime event to events array
+            if ($worktimeStart < $worktimeEnd) {
+                $events[] = [
+                    'title' => 'Worktime',
+                    'start' => $worktimeStart,
+                    'end' => $worktimeEnd,
+                    'color' => 'blue'
+                ];
             }
         }
 
-        // Add worktime event if no overlap with holidays
-        if (!$overlap) {
-            $events[] = [
-                'title' => 'Jam Kerja',
-                'start' => $worktimeStart,
-                'end' => $worktimeEnd,
-                'color' => 'blue'
-            ];
-        }
-    }
-
-         return view('user.admin.schedule.index', compact('events'));
+         return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
     }
 
     private function convertToDateTime($day, $time)
     {
         $date = now()->startOfWeek()->addDays($day - 1);
         return $date->format('Y-m-d') . 'T' . $time;
+    }
+
+    public function editWorktime(){
+        $worktimes = Worktime::orderBy('day', 'asc')->get();
+
+        $days = [
+            1 => 'Senin',
+            2 => 'Selasa',
+            3 => 'Rabu',
+            4 => 'Kamis',
+            5 => 'Jumat',
+            6 => 'Sabtu',
+            7 => 'Minggu',
+        ];
+
+        return view('user.admin.schedule.update', compact('worktimes', 'days'));
+    }
+
+    public function updateWorktime(Request $request, $id)
+    {
+        // Validate the request
+        $request->validate([
+            'start_time' => 'required|date_format:H:i:s',
+            'end_time' => 'required|date_format:H:i:s|after_or_equal:start_time',
+            'rest_start_time' => 'nullable|date_format:H:i:s|before:end_time|after:start_time',
+            'rest_end_time' => [
+                'nullable',
+                'date_format:H:i:s',
+                'after:rest_start_time',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->end_time && $value > $request->end_time) {
+                        $fail('The rest end time must be before the end time.');
+                    }
+                },
+            ],
+        ]);
+
+        // Find the Worktime record by ID
+        $worktime = Worktime::findOrFail($id);
+
+        // Calculate rest duration if rest times are provided
+        $rest_duration_min = 0;
+        if ($request->rest_start_time && $request->rest_end_time) {
+            $rest_duration_min = $this->calculateRestDuration($request->rest_start_time, $request->rest_end_time);
+        }
+
+        // Calculate working and total durations
+        $working_duration_min = $this->calculateWorkingDuration($request->start_time, $request->end_time, $rest_duration_min);
+        $total_duration_min = $this->calculateTotalDuration($request->start_time, $request->end_time);
+
+        // Update the Worktime record with new values
+        $worktime->update([
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'rest_start_time' => $request->rest_start_time,
+            'rest_end_time' => $request->rest_end_time,
+            'rest_duration_min' => $rest_duration_min,
+            'working_duration_min' => $working_duration_min,
+            'total_duration_min' => $total_duration_min,
+        ]);
+
+        return response()->json(['message' => 'Worktime updated successfully']);
     }
 
     public function storeHoliday(Request $request){
@@ -120,51 +195,7 @@ class ScheduleController extends Controller
         return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
-    public function updateWorktime(Request $request, $id)
-    {
-        // Validate the request
-        $request->validate([
-            'start_time' => 'required|date_format:H:i:s',
-            'end_time' => 'required|date_format:H:i:s|after_or_equal:start_time',
-            'rest_start_time' => 'nullable|date_format:H:i:s|before:end_time|after:start_time',
-            'rest_end_time' => [
-                'nullable',
-                'date_format:H:i:s',
-                'after:rest_start_time',
-                function ($attribute, $value, $fail) use ($request) {
-                    if ($request->end_time && $value > $request->end_time) {
-                        $fail('The rest end time must be before the end time.');
-                    }
-                },
-            ],
-        ]);
 
-        // Find the Worktime record by ID
-        $worktime = Worktime::findOrFail($id);
-
-        // Calculate rest duration if rest times are provided
-        $rest_duration_min = 0;
-        if ($request->rest_start_time && $request->rest_end_time) {
-            $rest_duration_min = $this->calculateRestDuration($request->rest_start_time, $request->rest_end_time);
-        }
-
-        // Calculate working and total durations
-        $working_duration_min = $this->calculateWorkingDuration($request->start_time, $request->end_time, $rest_duration_min);
-        $total_duration_min = $this->calculateTotalDuration($request->start_time, $request->end_time);
-
-        // Update the Worktime record with new values
-        $worktime->update([
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time,
-            'rest_start_time' => $request->rest_start_time,
-            'rest_end_time' => $request->rest_end_time,
-            'rest_duration_min' => $rest_duration_min,
-            'working_duration_min' => $working_duration_min,
-            'total_duration_min' => $total_duration_min,
-        ]);
-
-        return response()->json(['message' => 'Worktime updated successfully']);
-    }
 
 
     private function calculateWorkingDuration(string $start_time, string $end_time, int $rest_duration_min): int
