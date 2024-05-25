@@ -29,6 +29,9 @@
                                         <th>Jam Pulang</th>
                                         <th>Jam Mulai Istirahat <small>(Optional)</small></th>
                                         <th>Jam Selesai Istirahat <small>(Optional)</small></th>
+                                        <th>Durasi Kerja (Jam)</th>
+                                        <th>Durasi Istirahat (Jam)</th>
+                                        <th>Total Durasi (Jam)</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -38,23 +41,28 @@
                                             <form id="update{{ $w->id }}" action="{{ route('worktime.update', $w->id) }}" method="POST">
                                                 @csrf
                                                 <td>
-                                                    <select class="form-control" readonly>
-                                                        @foreach($days as $idx => $day)
-                                                        <option value="{{ $idx }}" {{ $idx == $w->day ? 'selected' : '' }}>{{ $day }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    {{ $days[$w->day] }}
                                                 </td>
                                                 <td>
-                                                    <input type="time" name="start_time" class="form-control" required value="{{ $w->start_time }}">
+                                                    <input type="time" name="start_time" class="form-control" required value="{{ date('H:i', strtotime($w->start_time)) }}">
                                                 </td>
                                                 <td>
-                                                    <input type="time" name="end_time" class="form-control" required value="{{ $w->end_time }}">
+                                                    <input type="time" name="end_time" class="form-control" required value="{{ date('H:i', strtotime($w->end_time)) }}">
                                                 </td>
                                                 <td>
-                                                    <input type="time" name="rest_start_time" class="form-control" value="{{ $w->rest_start_time }}">
+                                                    <input type="time" name="rest_start_time" class="form-control" value="{{ date('H:i', strtotime($w->rest_start_time)) }}">
                                                 </td>
                                                 <td>
-                                                    <input type="time" name="rest_end_time" class="form-control" value="{{ $w->rest_end_time }}">
+                                                    <input type="time" name="rest_end_time" class="form-control" value="{{ date('H:i', strtotime($w->rest_end_time)) }}">
+                                                </td>
+                                                <td>
+                                                    {{ $w->working_duration_min / 60 }}
+                                                </td>
+                                                <td>
+                                                    {{ $w->rest_duration_min / 60 }}
+                                                </td>
+                                                <td>
+                                                    {{ $w->total_duration_min/ 60 }}
                                                 </td>
                                                 <td>
                                                     <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
