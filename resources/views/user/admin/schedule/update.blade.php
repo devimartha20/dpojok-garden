@@ -7,7 +7,7 @@
 
 @endsection
 @section('content')
-<div class="container">
+<div class="">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -34,9 +34,9 @@
                                             <form id="update{{ $w->id }}" action="{{ route('worktime.update', $w->id) }}" method="POST">
                                                 @csrf
                                                 <td>
-                                                    <select name="day" class="form-select" required>
+                                                    <select name="day" class="form-control" required>
                                                         @foreach($days as $idx => $day)
-                                                        <option value="{{ $idx }}" {{ $idx == $w->day ? 'selected' : '' }}>$day</option>
+                                                        <option value="{{ $idx }}" {{ $idx == $w->day ? 'selected' : '' }}>{{ $day }}</option>
                                                         @endforeach
                                                     </select>
                                                 </td>
