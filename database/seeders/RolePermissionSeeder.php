@@ -6,6 +6,7 @@ use App\Models\Admin\Customer;
 use App\Models\Admin\Employee;
 use App\Models\ReservationSetting;
 use App\Models\User;
+use App\Models\Worktime;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -240,7 +241,18 @@ class RolePermissionSeeder extends Seeder
             'price' => 0,
             'period' => 1,
             'seat_deviation' => 3,
-            'period_unit' => 'hours', 
+            'period_unit' => 'hours',
+        ]);
+
+        Worktime::create([
+            'day' => 1,
+            'start_time' => '10:00:00',
+            'end_time' => '22:00:00' ,
+            'rest_start_time' => null,
+            'rest_end_time' => null,
+            'rest_duration_min',
+            'working_duration_min',
+            'total_duration_min',
         ]);
     }
 }

@@ -89,6 +89,12 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index');
         Route::get('leave', [ScheduleController::class, 'leaveIndex'])->name('leave.index');
 
+        Route::get('schedule',[ScheduleController::class, 'index'])->name('schedule.index');
+        Route::post('worktime/update{id}',[ScheduleController::class, 'updateWorktime'])->name('worktime.update');
+        Route::post('holiday/store',[ScheduleController::class, 'storeHoliday'])->name('holiday.store');
+        Route::post('holiday/update/{id}',[ScheduleController::class, 'updateHoliday'])->name('holiday.update');
+        Route::get('holiday/destroy/{id}',[ScheduleController::class, 'destroyHoliday'])->name('holiday.destroy');
+
         Route::post('update/qr', [AttendanceController::class, 'updateQRStatus'])->name('attendance.qr.status');
         Route::post('update/attendance/status/{id}', [AttendanceController::class, 'updateAttendanceStatus'])->name('attendance.update.status');
         Route::post('update/absence/status/{id}', [AttendanceController::class, 'updateAbsenceStatus'])->name('absence.update.status');
