@@ -50,10 +50,10 @@
                                                     <input type="time" name="end_time" class="form-control" required value="{{ date('H:i', strtotime($w->end_time)) }}">
                                                 </td>
                                                 <td>
-                                                    <input type="time" name="rest_start_time" class="form-control" value="{{ date('H:i', strtotime($w->rest_start_time)) }}">
+                                                    <input type="time" name="rest_start_time" class="form-control" @if ($w->rest_start_time) value="{{ date('H:i', strtotime($w->rest_start_time)) }}" @endif >
                                                 </td>
                                                 <td>
-                                                    <input type="time" name="rest_end_time" class="form-control" value="{{ date('H:i', strtotime($w->rest_end_time)) }}">
+                                                    <input type="time" name="rest_end_time" class="form-control" @if($w->rest_end_time) value="{{ date('H:i', strtotime($w->rest_end_time)) }}" @endif>
                                                 </td>
                                                 <td>
                                                     {{ $w->working_duration_min / 60 }}
