@@ -40,7 +40,7 @@ class ScheduleController extends Controller
             ];
         }
 
-         return view('user.admin.schedule.index', compact('envents'));
+         return view('user.admin.schedule.index', compact('events'));
     }
 
     private function convertToDateTime($day, $time)
