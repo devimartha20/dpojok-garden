@@ -12,16 +12,14 @@ use Illuminate\Http\Request;
 class ScheduleController extends Controller
 {
 
-    public function index(){
-
+    public function index()
+    {
         $worktimes = Worktime::all();
         $holidays = Holiday::all();
 
         $events = [];
 
-
         // Convert holidays to events
-        $events = [];
         foreach ($holidays as $holiday) {
             $events[] = [
                 'title' => $holiday->name,
@@ -37,6 +35,7 @@ class ScheduleController extends Controller
             $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
             $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
 
+            // Adjust worktime based on holiday
             foreach ($holidays as $holiday) {
                 $holidayStart = $holiday->start_date;
                 $holidayEnd = $holiday->end_date;
@@ -47,34 +46,71 @@ class ScheduleController extends Controller
 
                 // Adjust worktime if there is an overlap with holiday
                 if ($intersectionStart < $intersectionEnd) {
-                    if($worktimeStart < $holidayStart){
+                    if ($worktimeStart < $holidayStart) {
                         $worktimeEnd = $intersectionStart;
-                    }elseif($worktimeStart > $holidayStart){
+                    } elseif ($worktimeStart > $holidayStart) {
                         $worktimeStart = $intersectionEnd;
-                    }elseif ($worktimeStart == $holidayStart){
-                        if($worktimeEnd > $holidayEnd){
+                    } elseif ($worktimeStart == $holidayStart) {
+                        if ($worktimeEnd > $holidayEnd) {
                             $worktimeStart = $intersectionStart;
-                        }else{
+                        } else {
                             $worktimeStart = $worktimeEnd;
                         }
                     }
-
                 }
             }
 
             // Add adjusted worktime event to events array
             if ($worktimeStart < $worktimeEnd) {
                 $events[] = [
-                    'title' => 'Worktime',
+                    'title' => 'Kerja',
                     'start' => $worktimeStart,
                     'end' => $worktimeEnd,
                     'color' => 'blue'
                 ];
             }
+
+            // Add rest time event if rest_start_time and rest_end_time are set
+            if ($worktime->rest_start_time && $worktime->rest_end_time) {
+                $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
+                $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
+
+                foreach ($holidays as $holiday) {
+                    $holidayStart = $holiday->start_date;
+                    $holidayEnd = $holiday->end_date;
+
+                    // Calculate the intersection of time between rest time and holiday events
+                    $restIntersectionStart = max($restStart, $holidayStart);
+                    $restIntersectionEnd = min($restEnd, $holidayEnd);
+
+                    // Adjust worktime if there is an overlap with holiday
+                    if ($intersectionStart < $restIntersectionStart) {
+                        if ($restStart < $holidayStart) {
+                            $restEnd = $restIntersectionStart;
+                        } elseif ($restStart > $holidayStart) {
+                            $restStart = $restIntersectionEnd;
+                        } elseif ($restStart == $holidayStart) {
+                            if ($restEnd > $holidayEnd) {
+                                $restStart = $restIntersectionStart;
+                            } else {
+                                $restStart = $restEnd;
+                            }
+                        }
+                    }
+                }
+
+                $events[] = [
+                    'title' => 'Istirahat',
+                    'start' => $restStart,
+                    'end' => $restEnd,
+                    'color' => 'yellow'
+                ];
+            }
         }
 
-         return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
+        return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
     }
+
 
     private function convertToDateTime($day, $time)
     {
@@ -110,11 +146,15 @@ class ScheduleController extends Controller
                 'date_format:H:i',
                 'after:rest_start_time',
                 function ($attribute, $value, $fail) use ($request) {
-                    if ($request->end_time && $value > $request->end_time) {
+                    if ($request->filled('rest_start_time') && empty($value)) {
+                        $fail('Waktu selesai istirahat harus diisi jika waktu mulai istirahat diisi');
+                    }
+                    if ($request->filled('end_time') && $value > $request->end_time) {
                         $fail('Waktu selesai istirahat harus sebelum jam pulang');
                     }
                 },
             ],
+
         ], [
             'end_time.after_or_equal' => 'Jam pulang harus setelah jam masuk',
             'rest_start_time.after' => 'Jam mulai istirahat harus setelah jam masuk',
