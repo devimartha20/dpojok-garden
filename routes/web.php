@@ -91,6 +91,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
         Route::get('schedule',[ScheduleController::class, 'index'])->name('schedule.index');
         Route::get('worktime/edit',[ScheduleController::class, 'editWorktime'])->name('worktime.edit');
+        Route::get('worktime/remvove/rest',[ScheduleController::class, 'removeRestTime'])->name('worktime.remove.rest');
         Route::post('worktime/update{id}',[ScheduleController::class, 'updateWorktime'])->name('worktime.update');
         Route::post('holiday/store',[ScheduleController::class, 'storeHoliday'])->name('holiday.store');
         Route::post('holiday/update/{id}',[ScheduleController::class, 'updateHoliday'])->name('holiday.update');

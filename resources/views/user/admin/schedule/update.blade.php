@@ -66,6 +66,7 @@
                                                 </td>
                                                 <td>
                                                     <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                                                    <a href="{{ route('worktime.remove.rest', $w->id) }}" class="btn btn-sm btn-danger">Hapus Waktu Istirahat</a>
                                                 </td>
                                             </form>
                                         </tr>

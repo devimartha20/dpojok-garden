@@ -111,6 +111,17 @@ class ScheduleController extends Controller
         return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
     }
 
+    public function removeRestTime($id){
+        $removed = Worktime::findOrFail($id)->update([
+            'rest_start_time' => null,
+            'rest_end_time' => null,
+        ]);
+
+        if ($removed){
+            return redirect()->back()->with('success', 'Waktu istirahat berhasil dihapus!');
+        }
+    }
+
 
     private function convertToDateTime($day, $time)
     {
