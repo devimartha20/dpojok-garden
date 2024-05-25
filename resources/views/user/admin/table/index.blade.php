@@ -64,7 +64,6 @@
                                 </a>
                             </td>
                         </tr>
-                        <!-- Modal Edit -->
                         <!-- Modal Hapus -->
                         <div class="modal fade" id="hapusModal{{ $t->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
