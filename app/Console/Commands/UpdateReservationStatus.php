@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class UpdateReservationStatus extends Command
 {
@@ -20,10 +21,22 @@ class UpdateReservationStatus extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update reservation statuses';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * Execute the console command.
+     *
+     * @return mixed
      */
     public function handle()
     {
@@ -31,22 +44,26 @@ class UpdateReservationStatus extends Command
 
         // Update reservations to 'aktif' where the time is exactly now
         Reservation::where('status', 'menunggu')
-            ->where('date', $now->toDateString())
-            ->where('start_time', '<=', $now->toTimeString())
-            ->where('end_time', '>', $now->toTimeString())
+            ->whereDate('date', $now->toDateString())
+            ->whereTime('start_time', '<=', $now->toTimeString())
+            ->whereTime('end_time', '>', $now->toTimeString())
             ->update(['status' => 'aktif']);
 
         // Update reservations to 'selesai' where the time is in the past
-        Reservation::where('status', 'menunggu')->where('status', 'aktif')
-            ->where(function($query) use ($now) {
-                $query->where('date', '<', $now->toDateString())
-                      ->orWhere(function($query) use ($now) {
-                          $query->where('date', $now->toDateString())
-                                ->where('end_time', '<=', $now->toTimeString());
-                      });
+        Reservation::where('status', 'menunggu')
+            ->where(function ($query) use ($now) {
+                $query->whereDate('date', '<', $now->toDateString())
+                    ->orWhere(function ($query) use ($now) {
+                        $query->whereDate('date', $now->toDateString())
+                            ->whereTime('end_time', '<=', $now->toTimeString());
+                    });
             })
             ->update(['status' => 'selesai']);
 
+        // Log the message to the file
+        Log::info('Reservation statuses updated successfully.');
+
+        // Output the message to the console
         $this->info('Reservation statuses updated successfully.');
     }
 }
