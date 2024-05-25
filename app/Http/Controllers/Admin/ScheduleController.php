@@ -103,7 +103,7 @@ class ScheduleController extends Controller
                     'title' => 'Istirahat',
                     'start' => $restStart,
                     'end' => $restEnd,
-                    'color' => 'yellow'
+                    'color' => 'green'
                 ];
             }
         }
