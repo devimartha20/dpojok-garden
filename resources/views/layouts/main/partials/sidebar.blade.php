@@ -167,7 +167,7 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" ">
-                        <a href="{{ route('kelolatidakhadir.route')}}">
+                        <a href="{{ route('schedule.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jam Kerja</span>
                             <span class="pcoded-mcaret"></span>
