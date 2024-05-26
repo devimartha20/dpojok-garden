@@ -72,8 +72,8 @@ class ScheduleController extends Controller
     private function isTimeWithinAnyHoliday($start, $end, $holidays)
     {
         foreach ($holidays as $holiday) {
-            $holidayStart = $holiday->start_date;
-            $holidayEnd = $holiday->end_date;
+            $holidayStart = Carbon::parse($holiday->start_date);
+            $holidayEnd = Carbon::parse($holiday->end_date);
 
             // Check if the time is within any holiday
             if (($start < $holidayEnd) && ($end > $holidayStart)) {
@@ -82,6 +82,7 @@ class ScheduleController extends Controller
         }
         return false;
     }
+
     public function removeRestTime($id){
 
         $worktime = Worktime::findOrFail($id);
