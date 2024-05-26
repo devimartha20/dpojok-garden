@@ -39,6 +39,12 @@ class ScheduleController extends Controller
             foreach ($holidays as $holiday) {
                 $holidayStart = $holiday->start_date;
                 $holidayEnd = $holiday->end_date;
+                
+                $worktimeIsWithinHoliday = true;
+                if ($worktimeStart >= $holidayStart && $worktimeEnd <= $holidayEnd) {
+                    $worktimeIsWithinHoliday = true;
+                    break;
+                }
 
                 // Calculate the intersection of time between worktime and holiday events
                 $intersectionStart = max($worktimeStart, $holidayStart);
@@ -76,6 +82,11 @@ class ScheduleController extends Controller
                 foreach ($holidays as $holiday) {
                     $holidayStart = $holiday->start_date;
                     $holidayEnd = $holiday->end_date;
+
+                    if ($restStart >= $holidayStart && $restEnd <= $holidayEnd) {
+                        $worktimeIsWithinHoliday = true;
+                        break;
+                    }
 
                     // Calculate the intersection of time between rest time and holiday events
                     $restIntersectionStart = max($restStart, $holidayStart);
