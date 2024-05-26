@@ -4,32 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    {{-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
-    <link rel="stylesheet" href="{{ asset('report') }}/css/style.css">
+    <title>Laporan Absensi Pegawai</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        .thead-primary {
+            background-color: #f2f2f2;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+        .h5 {
+            font-size: 1.25rem;
+        }
+    </style>
 </head>
 <body>
-    <section class="">
+    <section>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <h3 class="h5 mb-4 text-center">Laporan Absensi Pegawai</h3>
-                    {{-- <form method="GET" action="{{ route('check.report.attendances') }}">
-                        <div class="form-row align-items-center">
-                            <div class="col-auto">
-                                <label for="start_date">Start Date:</label>
-                                <input type="date" name="start_date" class="form-control mb-2" id="start_date" required value="{{ $startDate }}">
-                            </div>
-                            <div class="col-auto">
-                                <label for="end_date">End Date:</label>
-                                <input type="date" name="end_date" class="form-control mb-2" id="end_date" required value="{{ $endDate }}">
-                            </div>
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-primary mb-2">Filter</button>
-                            </div>
-                        </div>
-                    </form> --}}
                 </div>
             </div>
             <div class="row">
@@ -63,9 +75,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-                    <div class="alert alert-warning mt-4">
-                        No attendance data found for the selected date range.
                     </div>
                 </div>
             </div>
