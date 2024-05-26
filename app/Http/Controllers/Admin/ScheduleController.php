@@ -77,35 +77,35 @@ class ScheduleController extends Controller
         return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
     }
 
-private function isWithinHoliday($start, $end, $holidays)
-{
-    foreach ($holidays as $holiday) {
-        if ($start >= $holiday->start_date && $end <= $holiday->end_date) {
-            return true;
-        }
-    }
-    return false;
-}
-
-private function adjustForHolidayOverlap($start, $end, $holidays)
-{
-    foreach ($holidays as $holiday) {
-        $holidayStart = $holiday->start_date;
-        $holidayEnd = $holiday->end_date;
-
-        $intersectionStart = max($start, $holidayStart);
-        $intersectionEnd = min($end, $holidayEnd);
-
-        if ($intersectionStart < $intersectionEnd) {
-            if ($start < $holidayStart) {
-                $end = $intersectionStart;
-            } else {
-                $start = $intersectionEnd;
+    private function isWithinHoliday($start, $end, $holidays)
+    {
+        foreach ($holidays as $holiday) {
+            if ($start >= $holiday->start_date && $end <= $holiday->end_date) {
+                return true;
             }
         }
+        return false;
     }
-    return [$start, $end];
-}
+
+    private function adjustForHolidayOverlap($start, $end, $holidays)
+    {
+        foreach ($holidays as $holiday) {
+            $holidayStart = $holiday->start_date;
+            $holidayEnd = $holiday->end_date;
+
+            $intersectionStart = max($start, $holidayStart);
+            $intersectionEnd = min($end, $holidayEnd);
+
+            if ($intersectionStart < $intersectionEnd) {
+                if ($start < $holidayStart) {
+                    $end = $intersectionStart;
+                } else {
+                    $start = $intersectionEnd;
+                }
+            }
+        }
+        return [$start, $end];
+    }
 
 
     public function removeRestTime($id){
