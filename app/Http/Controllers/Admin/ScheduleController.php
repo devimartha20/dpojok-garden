@@ -35,18 +35,13 @@ class ScheduleController extends Controller
             $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
             $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
 
-            // Adjust worktime based on holiday
-            $adjustedWorktimes = $this->adjustTimeForHolidays($worktimeStart, $worktimeEnd, $holidays);
-
-            foreach ($adjustedWorktimes as $adjusted) {
-                if ($adjusted['start'] < $adjusted['end']) {
-                    $events[] = [
-                        'title' => 'Kerja',
-                        'start' => $adjusted['start'],
-                        'end' => $adjusted['end'],
-                        'color' => 'blue'
-                    ];
-                }
+            if (!$this->isTimeOverlappingHolidays($worktimeStart, $worktimeEnd, $holidays)) {
+                $events[] = [
+                    'title' => 'Kerja',
+                    'start' => $worktimeStart,
+                    'end' => $worktimeEnd,
+                    'color' => 'blue'
+                ];
             }
 
             // Adjust rest time events similarly
@@ -54,17 +49,13 @@ class ScheduleController extends Controller
                 $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
                 $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
 
-                $adjustedRestTimes = $this->adjustTimeForHolidays($restStart, $restEnd, $holidays);
-
-                foreach ($adjustedRestTimes as $adjusted) {
-                    if ($adjusted['start'] < $adjusted['end']) {
-                        $events[] = [
-                            'title' => 'Istirahat',
-                            'start' => $adjusted['start'],
-                            'end' => $adjusted['end'],
-                            'color' => 'green'
-                        ];
-                    }
+                if (!$this->isTimeOverlappingHolidays($restStart, $restEnd, $holidays)) {
+                    $events[] = [
+                        'title' => 'Istirahat',
+                        'start' => $restStart,
+                        'end' => $restEnd,
+                        'color' => 'green'
+                    ];
                 }
             }
         }
@@ -72,37 +63,20 @@ class ScheduleController extends Controller
         return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
     }
 
-    private function adjustTimeForHolidays($start, $end, $holidays)
+    private function isTimeOverlappingHolidays($start, $end, $holidays)
     {
-        $adjustedTimes = [];
-        $currentStart = $start;
-
         foreach ($holidays as $holiday) {
             $holidayStart = $holiday->start_date;
             $holidayEnd = $holiday->end_date;
 
-            if ($currentStart < $holidayStart && $end > $holidayStart) {
-                // Before holiday start
-                $adjustedTimes[] = [
-                    'start' => $currentStart,
-                    'end' => $holidayStart
-                ];
-                $currentStart = $holidayEnd;
-            } elseif ($currentStart >= $holidayStart && $currentStart < $holidayEnd) {
-                // Within holiday
-                $currentStart = $holidayEnd;
+            // Check if time overlaps with any holiday
+            if (($start < $holidayEnd) && ($end > $holidayStart)) {
+                return true;
             }
         }
-
-        if ($currentStart < $end) {
-            $adjustedTimes[] = [
-                'start' => $currentStart,
-                'end' => $end
-            ];
-        }
-
-        return $adjustedTimes;
+        return false;
     }
+
 
 
     public function removeRestTime($id){
