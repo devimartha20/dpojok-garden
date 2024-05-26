@@ -158,7 +158,11 @@ class ScheduleController extends Controller
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after_or_equal:start_time',
             'rest_start_time' => [
-                'required_if:rest_end_time,!=,null',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->rest_end_time != null && empty($value)) {
+                        $fail('Waktu mulai istirahat harus diisi jika waktu selesai istirahat diisi');
+                    }
+                },
                 'nullable',
                 'date_format:H:i',
                 'before:end_time',
