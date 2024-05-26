@@ -281,6 +281,10 @@ class ScheduleController extends Controller
 
     private function calculateTotalDuration(string $start_time, string $end_time): int
     {
+        //Trim any extra spaces
+        $start_time = trim($start_time);
+        $end_time = trim($end_time);
+
         $start = Carbon::createFromFormat('H:i', $start_time);
         $end = Carbon::createFromFormat('H:i', $end_time);
         $total_minutes = $start->diffInMinutes($end);
