@@ -114,13 +114,16 @@ class ScheduleController extends Controller
     public function removeRestTime($id){
 
         $worktime = Worktime::findOrFail($id);
-        $total_duration_min = $worktime->working_duration_min;
+        $start_time = Carbon::parse($worktime->start_time);
+        $end_time = Carbon::parse($worktime->end_time);
+        $total_duration_min = $start_time->diffInMinutes($end_time);
 
         $removed = Worktime::findOrFail($id)->update([
             'rest_start_time' => null,
             'rest_end_time' => null,
             'rest_duration_min' => 0,
             'total_duration_min' => $total_duration_min,
+            'working_duration_min' => $total_duration_min,
         ]);
 
         if ($removed){
@@ -281,6 +284,10 @@ class ScheduleController extends Controller
 
     private function calculateTotalDuration(string $start_time, string $end_time): int
     {
+        //Trim any extra spaces
+        $start_time = trim($start_time);
+        $end_time = trim($end_time);
+
         $start = Carbon::createFromFormat('H:i', $start_time);
         $end = Carbon::createFromFormat('H:i', $end_time);
         $total_minutes = $start->diffInMinutes($end);
