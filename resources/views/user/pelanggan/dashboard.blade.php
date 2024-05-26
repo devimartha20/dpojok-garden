@@ -26,9 +26,9 @@
                                 <div class="text text-center">
                                     <h3>{{ $product->nama }}</h3>
                                     <p>
-                                        @foreach ($product->categories as $category)
-                                            <span>{{ $category->nama }}</span>
-                                        @endforeach
+
+                                            <span>{{ $product->productCategory->nama }}</span>
+
                                     </p>
                                     <p><span>{{ $product->harga_jual }}</span></p>
                                     {{-- Additional information or buttons --}}
