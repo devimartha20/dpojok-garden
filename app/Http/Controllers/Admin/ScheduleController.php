@@ -123,6 +123,7 @@ class ScheduleController extends Controller
             'rest_end_time' => null,
             'rest_duration_min' => 0,
             'total_duration_min' => $total_duration_min,
+            'working_duration_min' => $total_duration_min,
         ]);
 
         if ($removed){
