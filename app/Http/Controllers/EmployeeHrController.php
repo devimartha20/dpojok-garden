@@ -118,6 +118,7 @@ class EmployeeHrController extends Controller
     }
 
 
+
     private function isTimeOverlapping($start, $end, $compareStart, $compareEnd)
     {
         return $start < $compareEnd && $end > $compareStart;
