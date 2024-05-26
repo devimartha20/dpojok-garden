@@ -395,7 +395,7 @@ class CreateReservation extends Component
             'jumlah_pesanan' => collect($this->productOrders)->sum('jumlah'),
             'progress' => 'menunggu_pembayaran',
             'status' => 'belum_lunas',
-            'tipe' => 'in_store',
+            'tipe' => 'online',
             'payment_id' => $payment->id,
             'packing' => $this->packing,
             'reservation_id' => $reservation->id,
