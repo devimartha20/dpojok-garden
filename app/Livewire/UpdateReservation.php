@@ -91,6 +91,7 @@ class UpdateReservation extends Component
             'total_harga' => $detailOrderData['harga_jual'] * $detailOrderData['jumlah'],
             'catatan' => $detailOrderData['catatan'],
         ]);
+        $this->order = Order::where('reservation_id', $this->reservation->id)->first();
 
         $this->calculateTotalHarga();
     }
@@ -143,11 +144,9 @@ class UpdateReservation extends Component
 
     public function updatePayment()
     {
-        if($this->uang == null){
-            $this->validate([
-                'uang' => 'required|numeric|min:0',
-            ]);
-        }
+        $this->validate([
+            'uang' => 'required|numeric|min:0',
+        ]);
 
         $payment = Payment::find($this->payment->id);
         $total_bayar = $this->uang;
