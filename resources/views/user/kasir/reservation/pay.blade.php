@@ -3,7 +3,9 @@
     @livewireStyles
 @endsection
 @section('content')
-    @livewire('reservation-pay')
+    @livewire('reservation-pay', [
+        'reservation' => $reservation,
+    ])
 @endsection
 @section('scripts')
     @livewireScripts
