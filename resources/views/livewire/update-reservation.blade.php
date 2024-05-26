@@ -55,10 +55,10 @@
 
     <div class="payment-details mb-4">
         <h4>Previous Payment</h4>
-        <p>Amount Paid: {{ $previousPayment->uang }}</p>
-        <p>Total to Pay: {{ $previousPayment->total_bayar }}</p>
-        <p>Change: {{ $previousPayment->kembali }}</p>
-        <p>Status: {{ $previousPayment->status }}</p>
+        <p>Amount Paid: {{ $payment->uang }}</p>
+        <p>Total to Pay: {{ $payment->total_bayar }}</p>
+        <p>Change: {{ $payment->kembali }}</p>
+        <p>Status: {{ $payment->status }}</p>
     </div>
 
     <div class="payment-form mb-4">
