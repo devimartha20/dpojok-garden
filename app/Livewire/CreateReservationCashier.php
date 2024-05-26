@@ -419,7 +419,7 @@ class CreateReservationCashier extends Component
         }
 
         session()->flash('success', 'Reservasi berhasil disimpan, silahkan lakukan pembayaran!');
-        return redirect(route('customer.reservation.pay', $reservation->id));
+        return redirect(route('reservation.pay', $reservation->id));
     }
 
     public function removeProduct($index)
