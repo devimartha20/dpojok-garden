@@ -35,6 +35,7 @@
                     <select class="form-control" id="tipe_absen" name="reason" required>
                         <option value="sakit">Sakit</option>
                         <option value="izin">Izin</option>
+                        <option value="Libur">Libur</option>
                     </select>
                 </div>
             </div>
