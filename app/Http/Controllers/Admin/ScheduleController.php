@@ -35,18 +35,15 @@ class ScheduleController extends Controller
             $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
             $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
 
-            // Check if the worktime falls completely within any holiday period
-            $isWorktimeWithinHoliday = $this->isWithinHoliday($worktimeStart, $worktimeEnd, $holidays);
+            // Adjust worktime based on holiday
+            $adjustedWorktimes = $this->adjustTimeForHolidays($worktimeStart, $worktimeEnd, $holidays);
 
-            if (!$isWorktimeWithinHoliday) {
-                // Check for partial overlaps with holidays and adjust worktime accordingly
-                list($adjustedWorktimeStart, $adjustedWorktimeEnd) = $this->adjustForHolidayOverlap($worktimeStart, $worktimeEnd, $holidays);
-
-                if ($adjustedWorktimeStart < $adjustedWorktimeEnd) {
+            foreach ($adjustedWorktimes as $adjusted) {
+                if ($adjusted['start'] < $adjusted['end']) {
                     $events[] = [
                         'title' => 'Kerja',
-                        'start' => $adjustedWorktimeStart,
-                        'end' => $adjustedWorktimeEnd,
+                        'start' => $adjusted['start'],
+                        'end' => $adjusted['end'],
                         'color' => 'blue'
                     ];
                 }
@@ -57,16 +54,14 @@ class ScheduleController extends Controller
                 $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
                 $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
 
-                $isResttimeWithinHoliday = $this->isWithinHoliday($restStart, $restEnd, $holidays);
+                $adjustedRestTimes = $this->adjustTimeForHolidays($restStart, $restEnd, $holidays);
 
-                if (!$isResttimeWithinHoliday) {
-                    list($adjustedRestStart, $adjustedRestEnd) = $this->adjustForHolidayOverlap($restStart, $restEnd, $holidays);
-
-                    if ($adjustedRestStart < $adjustedRestEnd) {
+                foreach ($adjustedRestTimes as $adjusted) {
+                    if ($adjusted['start'] < $adjusted['end']) {
                         $events[] = [
                             'title' => 'Istirahat',
-                            'start' => $adjustedRestStart,
-                            'end' => $adjustedRestEnd,
+                            'start' => $adjusted['start'],
+                            'end' => $adjusted['end'],
                             'color' => 'green'
                         ];
                     }
@@ -77,34 +72,36 @@ class ScheduleController extends Controller
         return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
     }
 
-    private function isWithinHoliday($start, $end, $holidays)
+    private function adjustTimeForHolidays($start, $end, $holidays)
     {
-        foreach ($holidays as $holiday) {
-            if ($start >= $holiday->start_date && $end <= $holiday->end_date) {
-                return true;
-            }
-        }
-        return false;
-    }
+        $adjustedTimes = [];
+        $currentStart = $start;
 
-    private function adjustForHolidayOverlap($start, $end, $holidays)
-    {
         foreach ($holidays as $holiday) {
             $holidayStart = $holiday->start_date;
             $holidayEnd = $holiday->end_date;
 
-            $intersectionStart = max($start, $holidayStart);
-            $intersectionEnd = min($end, $holidayEnd);
-
-            if ($intersectionStart < $intersectionEnd) {
-                if ($start < $holidayStart) {
-                    $end = $intersectionStart;
-                } else {
-                    $start = $intersectionEnd;
-                }
+            if ($currentStart < $holidayStart && $end > $holidayStart) {
+                // Before holiday start
+                $adjustedTimes[] = [
+                    'start' => $currentStart,
+                    'end' => $holidayStart
+                ];
+                $currentStart = $holidayEnd;
+            } elseif ($currentStart >= $holidayStart && $currentStart < $holidayEnd) {
+                // Within holiday
+                $currentStart = $holidayEnd;
             }
         }
-        return [$start, $end];
+
+        if ($currentStart < $end) {
+            $adjustedTimes[] = [
+                'start' => $currentStart,
+                'end' => $end
+            ];
+        }
+
+        return $adjustedTimes;
     }
 
 
