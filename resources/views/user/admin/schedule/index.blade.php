@@ -87,16 +87,23 @@
                         </div>
                         <ul>
                             @foreach($holidays as $holiday)
-                                <li>
-                                    {{ $holiday->name }} <br>
-                                    <small>{{ $holiday->start_date->format('F j, Y, g:i a') }} - {{ $holiday->start_date->format('F j, Y, g:i a') }}</small>
-                                    <button type="button" class="btn btn-warning btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $holiday->id }}">
-                                        Edit
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#deleteModal{{ $holiday->id }}">
-                                        Hapus
-                                    </button>
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>{{ $holiday->name }}</strong><br>
+                                        <small class="text-muted">{{ $holiday->start_date->format('F j, Y, g:i a') }} - {{ $holiday->end_date->format('F j, Y, g:i a') }}</small>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-warning btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $holiday->id }}">
+                                            Edit
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#deleteModal{{ $holiday->id }}">
+                                            Hapus
+                                        </button>
+                                    </div>
                                 </li>
+                                <!-- Repeat for other holidays -->
+                            </ul>
                                 {{-- EDIT MODAL --}}
                                 <div class="modal fade" id="editModal{{ $holiday->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
