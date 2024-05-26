@@ -22,7 +22,7 @@
                     @forelse ($products as $product)
                         <div class="col-md-3">
                             <div class="featured-menus ftco-animate">
-                                <div class="menu-img img" style="background-image: url({{ asset('customer-template')}}/images/{{$product->image}});"></div>
+                                <div class="menu-img img" style="background-image: url({{ asset('images')}}/{{$product->image}});"></div>
                                 <div class="text text-center">
                                     <h3>{{ $product->nama }}</h3>
                                     <p>
