@@ -9,13 +9,40 @@ use App\Models\Holiday;
 use App\Models\Leave;
 use App\Models\Worktime;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 use Auth;
 
 class EmployeeHrController extends Controller
 {
     public function dashboard(){
-        return view('employee.dashboard');
+        $employeeId = Auth::guard('employee')->id(); // Asumsi karyawan memiliki relasi dengan user
+
+        // Mengambil 5 aktivitas terbaru dari karyawan yang sedang login
+        $latestActivities = DB::table('absences')
+            ->select('employee_id', 'start_date as date', 'reason as type', 'status', 'keterangan', 'catatan', DB::raw('"Absence" as source'))
+            ->where('employee_id', $employeeId)
+            ->unionAll(
+                DB::table('leaves')
+                    ->select('employee_id', 'start_date as date', 'reason as type', 'status', DB::raw('NULL as keterangan'), 'catatan', DB::raw('"Leave" as source'))
+                    ->where('employee_id', $employeeId)
+            )
+            ->unionAll(
+                DB::table('attendances')
+                    ->select('employee_id', 'date', 'type', 'status', DB::raw('NULL as keterangan'), DB::raw('NULL as catatan'), DB::raw('"Attendance" as source'))
+                    ->where('employee_id', $employeeId)
+            )
+            ->orderBy('date', 'desc')
+            ->take(5)
+            ->get();
+
+        // Menghitung total kehadiran, izin, sakit, libur, dan cuti
+        $totalHadir = Attendance::where('employee_id', $employeeId)->where('type', 'in')->count();
+        $totalIzin = Absence::where('employee_id', $employeeId)->where('reason', 'izin')->count();
+        $totalSakit = Absence::where('employee_id', $employeeId)->where('reason', 'sakit')->count();
+        $totalLibur = Absence::where('employee_id', $employeeId)->where('reason', 'libur')->count();
+        $totalCuti = Leave::where('employee_id', $employeeId)->count();
+        return view('employee.dashboard', compact('latestActivities', 'totalHadir', 'totalIzin', 'totalSakit', 'totalLibur', 'totalCuti'));
     }
 
     public function schedule()
