@@ -49,6 +49,9 @@ class EmployeeHrController extends Controller
                 'end' => $leaveEnd,
                 'color' => 'yellow'
             ];
+
+            // Remove overlapping worktimes
+            $worktimes = $this->removeOverlappingWorktimes($worktimes, $leaveStart, $leaveEnd);
         }
 
         // Convert absences to events and exclude conflicting worktimes
@@ -66,72 +69,54 @@ class EmployeeHrController extends Controller
                 'end' => $absenceEnd,
                 'color' => 'orange'
             ];
+
+            // Remove overlapping worktimes
+            $worktimes = $this->removeOverlappingWorktimes($worktimes, $absenceStart, $absenceEnd);
         }
 
-        // Adjust worktime events to remove overlapping time with holidays, leaves, and absences
+        // Add remaining worktimes to events
         foreach ($worktimes as $worktime) {
             $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
             $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
 
-            // Check if the worktime overlaps with any holiday, leave, or absence
-            $overlap = false;
-            foreach ($holidays as $holiday) {
-                $holidayStart = Carbon::parse($holiday->start_date)->startOfDay();
-                $holidayEnd = Carbon::parse($holiday->end_date)->endOfDay();
-                if ($this->isTimeOverlapping($worktimeStart, $worktimeEnd, $holidayStart, $holidayEnd)) {
-                    $overlap = true;
-                    break;
-                }
-            }
-            if (!$overlap) {
-                foreach ($leaves as $leave) {
-                    $leaveStart = Carbon::parse($leave->start_date)->startOfDay();
-                    $leaveEnd = Carbon::parse($leave->end_date)->endOfDay();
-                    if ($this->isTimeOverlapping($worktimeStart, $worktimeEnd, $leaveStart, $leaveEnd)) {
-                        $overlap = true;
-                        break;
-                    }
-                }
-            }
-            if (!$overlap) {
-                foreach ($absences as $absence) {
-                    $absenceStart = Carbon::parse($absence->start_date)->startOfDay();
-                    $absenceEnd = Carbon::parse($absence->end_date)->endOfDay();
-                    if ($this->isTimeOverlapping($worktimeStart, $worktimeEnd, $absenceStart, $absenceEnd)) {
-                        $overlap = true;
-                        break;
-                    }
-                }
-            }
+            $events[] = [
+                'title' => 'Work',
+                'start' => $worktimeStart,
+                'end' => $worktimeEnd,
+                'color' => 'blue'
+            ];
 
-            if (!$overlap) {
-                // If no overlap, add worktime event
-                $events[] = [
-                    'title' => 'Work',
-                    'start' => $worktimeStart,
-                    'end' => $worktimeEnd,
-                    'color' => 'blue'
-                ];
+            // Adjust rest time events similarly
+            if ($worktime->rest_start_time && $worktime->rest_end_time) {
+                $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
+                $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
 
-                // Adjust rest time events similarly
-                if ($worktime->rest_start_time && $worktime->rest_end_time) {
-                    $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
-                    $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
-
-                    if (!$this->isDateWithinAnyHoliday($restStart, $holidays)) {
-                        $events[] = [
-                            'title' => 'Rest',
-                            'start' => $restStart,
-                            'end' => $restEnd,
-                            'color' => 'green'
-                        ];
-                    }
+                if (!$this->isDateWithinAnyHoliday($restStart, $holidays)) {
+                    $events[] = [
+                        'title' => 'Rest',
+                        'start' => $restStart,
+                        'end' => $restEnd,
+                        'color' => 'green'
+                    ];
                 }
             }
         }
 
         return view('employee.schedule.index', compact('events', 'worktimes', 'holidays', 'leaves', 'absences'));
     }
+
+    private function removeOverlappingWorktimes($worktimes, $startDate, $endDate)
+    {
+        $filteredWorktimes = $worktimes->filter(function ($worktime) use ($startDate, $endDate) {
+            $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
+            $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
+
+            return !($startDate < $worktimeEnd && $endDate > $worktimeStart);
+        });
+
+        return $filteredWorktimes;
+    }
+
 
     private function isTimeOverlapping($start, $end, $compareStart, $compareEnd)
     {
