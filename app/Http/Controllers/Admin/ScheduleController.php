@@ -35,8 +35,8 @@ class ScheduleController extends Controller
             $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
             $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
 
-            // Skip if the worktime is within any holiday
-            if ($this->isTimeWithinAnyHoliday($worktimeStart, $worktimeEnd, $holidays)) {
+            // Skip the entire worktime if it falls on a holiday
+            if ($this->isDateWithinAnyHoliday($worktimeStart, $holidays)) {
                 continue;
             }
 
@@ -52,8 +52,8 @@ class ScheduleController extends Controller
                 $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
                 $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
 
-                // Skip if the rest time is within any holiday
-                if ($this->isTimeWithinAnyHoliday($restStart, $restEnd, $holidays)) {
+                // Skip the rest time if it falls on a holiday
+                if ($this->isDateWithinAnyHoliday($restStart, $holidays)) {
                     continue;
                 }
 
@@ -69,14 +69,14 @@ class ScheduleController extends Controller
         return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
     }
 
-    private function isTimeWithinAnyHoliday($start, $end, $holidays)
+    private function isDateWithinAnyHoliday($date, $holidays)
     {
         foreach ($holidays as $holiday) {
-            $holidayStart = Carbon::parse($holiday->start_date);
-            $holidayEnd = Carbon::parse($holiday->end_date);
+            $holidayStart = Carbon::parse($holiday->start_date)->startOfDay();
+            $holidayEnd = Carbon::parse($holiday->end_date)->endOfDay();
 
-            // Check if the time is within any holiday
-            if (($start < $holidayEnd) && ($end > $holidayStart)) {
+            // Check if the date is within any holiday
+            if ($date->between($holidayStart, $holidayEnd)) {
                 return true;
             }
         }
