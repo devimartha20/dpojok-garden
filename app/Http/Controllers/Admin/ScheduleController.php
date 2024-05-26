@@ -44,23 +44,20 @@ class ScheduleController extends Controller
                 $intersectionStart = max($worktimeStart, $holidayStart);
                 $intersectionEnd = min($worktimeEnd, $holidayEnd);
 
-                // Adjust worktime if there is an overlap with holiday
+                // If there is an overlap, adjust worktime
                 if ($intersectionStart < $intersectionEnd) {
-                    if ($worktimeStart < $holidayStart) {
-                        $worktimeEnd = $intersectionStart;
-                    } elseif ($worktimeStart > $holidayStart) {
-                        $worktimeStart = $intersectionEnd;
-                    } elseif ($worktimeStart == $holidayStart) {
-                        if ($worktimeEnd > $holidayEnd) {
-                            $worktimeStart = $intersectionStart;
-                        } else {
-                            $worktimeStart = $worktimeEnd;
-                        }
-                    }
+                    $events[] = [
+                        'title' => 'Kerja',
+                        'start' => $worktimeStart,
+                        'end' => $intersectionStart,
+                        'color' => 'blue'
+                    ];
+
+                    $worktimeStart = $intersectionEnd;
                 }
             }
 
-            // Add adjusted worktime event to events array
+            // Add remaining worktime event
             if ($worktimeStart < $worktimeEnd) {
                 $events[] = [
                     'title' => 'Kerja',
@@ -75,6 +72,7 @@ class ScheduleController extends Controller
                 $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
                 $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
 
+                // Adjust rest time based on holiday
                 foreach ($holidays as $holiday) {
                     $holidayStart = $holiday->start_date;
                     $holidayEnd = $holiday->end_date;
@@ -83,28 +81,28 @@ class ScheduleController extends Controller
                     $restIntersectionStart = max($restStart, $holidayStart);
                     $restIntersectionEnd = min($restEnd, $holidayEnd);
 
-                    // Adjust worktime if there is an overlap with holiday
-                    if ($intersectionStart < $restIntersectionStart) {
-                        if ($restStart < $holidayStart) {
-                            $restEnd = $restIntersectionStart;
-                        } elseif ($restStart > $holidayStart) {
-                            $restStart = $restIntersectionEnd;
-                        } elseif ($restStart == $holidayStart) {
-                            if ($restEnd > $holidayEnd) {
-                                $restStart = $restIntersectionStart;
-                            } else {
-                                $restStart = $restEnd;
-                            }
-                        }
+                    // If there is an overlap, adjust rest time
+                    if ($restIntersectionStart < $restIntersectionEnd) {
+                        $events[] = [
+                            'title' => 'Istirahat',
+                            'start' => $restStart,
+                            'end' => $restIntersectionStart,
+                            'color' => 'green'
+                        ];
+
+                        $restStart = $restIntersectionEnd;
                     }
                 }
 
-                $events[] = [
-                    'title' => 'Istirahat',
-                    'start' => $restStart,
-                    'end' => $restEnd,
-                    'color' => 'green'
-                ];
+                // Add remaining rest time event
+                if ($restStart < $restEnd) {
+                    $events[] = [
+                        'title' => 'Istirahat',
+                        'start' => $restStart,
+                        'end' => $restEnd,
+                        'color' => 'green'
+                    ];
+                }
             }
         }
 
