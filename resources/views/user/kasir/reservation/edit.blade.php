@@ -56,7 +56,9 @@
                     ])
                 </div>
                 <div class="card-footer">
+
                     <a href="{{ route('reservation.index') }}" class="btn btn-sm btn-secondary">Kembali</a>
+                    <a href="{{ route('reservation.cancel', $reservation->id) }}" class="btn btn-sm btn-danger">Batalkan</a>
                 </div>
             </div>
         </div>
