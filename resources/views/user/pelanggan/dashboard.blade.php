@@ -15,29 +15,32 @@
           </div>
         </div>
         @forelse ($products as $product)
-        <div class="row no-gutters d-flex align-items-stretch">
-            <div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-                <div class="menus d-sm-flex ftco-animate align-items-stretch fadeInUp ftco-animated">
-              <div class="menu-img img" style="background-image: url({{ asset('images').'/'.$product->image }});"></div>
-              <div class="text d-flex align-items-center">
-                                <div>
-                      <div class="d-flex">
-                        <div class="one-half">
-                          <h3>{{ $product->nama }}</h3>
+        <div class="container-fluid">
+            <div class="row">
+                @forelse ($products as $product)
+                    <div class="col-md-3">
+                        <div class="featured-menus ftco-animate">
+                            <div class="menu-img img" style="background-image: url({{ asset('customer-template')}}/images/{{$product->image}});"></div>
+                            <div class="text text-center">
+                                <h3>{{ $product->nama }}</h3>
+                                <p>
+                                    @foreach ($product->categories as $category)
+                                        <span>{{ $category->nama }}</span>
+                                    @endforeach
+                                </p>
+                                <p><span>{{ $product->harga_jual }}</span></p>
+                                {{-- Additional information or buttons --}}
+                            </div>
                         </div>
-                        <div class="one-forth">
-                          <span class="price">{{ $product->harga_jual }}</span>
-                        </div>
-                      </div>
-                      <p><span>{{ $product->productCategory->nama }}</span></p>
-                      {{-- <p><a href="#" class="btn btn-primary">Order now</a></p> --}}
-                  </div>
-              </div>
+                    </div>
+                @empty
+                    <div class="col-md-12">
+                        <p>No products available</p>
+                    </div>
+                @endforelse
             </div>
-            </div>
-        @empty
+        </div>
 
-        @endforelse
 
 
 
