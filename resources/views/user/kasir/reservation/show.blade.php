@@ -93,11 +93,14 @@
                             Kembali
                         </a>
                     </div>
+                    @if ($reservation->status != 'dibatalkan')
                     <div class="bottom-right">
                         <a class="btn btn-primary" href="{{ route('reservation.edit', $reservation->id) }}">
                             Edit
                         </a>
                     </div>
+                    @endif
+
                 </div>
             </div>
 

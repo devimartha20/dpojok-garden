@@ -97,6 +97,7 @@ class ReservationController extends Controller
         $order = Order::where('reservation_id', $reservation->id)->update([
             'progress' => 'dibatalkan',
         ]);
+        return redirect()->route('reservation.show', $id);
     }
 
     /**
