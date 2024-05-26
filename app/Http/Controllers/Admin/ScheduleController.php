@@ -82,9 +82,6 @@ class ScheduleController extends Controller
         }
         return false;
     }
-
-
-
     public function removeRestTime($id){
 
         $worktime = Worktime::findOrFail($id);
