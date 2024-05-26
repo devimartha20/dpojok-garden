@@ -55,6 +55,9 @@
                         'reservation' => $reservation,
                     ])
                 </div>
+                <div class="card-footer">
+                    <a href="{{ route('reservation.index') }}" class="btn btn-sm btn-secondary">Kembali</a>
+                </div>
             </div>
         </div>
     </div>

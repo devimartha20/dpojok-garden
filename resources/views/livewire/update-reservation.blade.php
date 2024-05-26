@@ -4,7 +4,7 @@
     </div>
 
     <div class="product-list mb-4">
-        <h4>Products</h4>
+        <h4>Menu</h4>
         @foreach ($products as $product)
             <div class="product-item mb-2">
                 <div class="d-flex justify-content-between">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="order-details mb-4">
-        <h4>Order Details</h4>
+        <h4>Detail Order</h4>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -50,36 +50,36 @@
     </div>
 
     <div class="total-price mb-4">
-        <h4>Total Price: {{ $total_price }}</h4>
+        <h4>Total Harga: {{ $total_price }}</h4>
     </div>
 
     <div class="payment-details mb-4">
-        <h4>Previous Payment</h4>
-        <p>Amount Paid: {{ $payment->uang }}</p>
-        <p>Total to Pay: {{ $payment->total_bayar }}</p>
-        <p>Change: {{ $payment->kembali }}</p>
+        <h4>Data Pembayaran</h4>
+        <p>Jumlah Terbayar: {{ $payment->uang }}</p>
+        <p>Total Harga: {{ $payment->total_bayar }}</p>
+        <p>Kembalian: {{ $payment->kembali }}</p>
         <p>Status: {{ $payment->status }}</p>
     </div>
 
     <div class="payment-form mb-4">
-        <h4>Update Payment</h4>
+        <h4>Update Pembayaran</h4>
         <form wire:submit.prevent="updatePayment">
             <div class="form-group">
-                <label for="uang">Amount:</label>
+                <label for="uang">Jumlah Terbayar:</label>
                 <input type="number" wire:model.live="uang" class="form-control" id="uang" min="0" required />
             </div>
-            <button type="submit" class="btn btn-success">Update Payment</button>
+            <button type="submit" class="btn btn-success">Update Pembayaran</button>
         </form>
     </div>
 
     <div class="payment-form mb-4">
-        <h4>Add to Payment</h4>
+        <h4>Tambah Jumlah Pembayaran</h4>
         <form wire:submit.prevent="addAmountToPayment">
             <div class="form-group">
-                <label for="uang_new">Amount:</label>
+                <label for="uang_new">Jumlah Ditambahkan:</label>
                 <input type="number" wire:model.live="uang_new" class="form-control" id="uang_new" min="0" required />
             </div>
-            <button type="submit" class="btn btn-primary">Add Amount</button>
+            <button type="submit" class="btn btn-primary">Tambahkan</button>
         </form>
     </div>
 </div>
