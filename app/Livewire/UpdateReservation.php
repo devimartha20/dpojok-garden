@@ -151,11 +151,8 @@ class UpdateReservation extends Component
 
         $payment = Payment::find($this->payment->id);
         $total_bayar = $this->uang;
-        $kembali = 0;
+        $kembali = $total_bayar - $this->calculateOrderPrice();
 
-        if ($total_bayar >= $this->order->total_price) {
-            $kembali = $total_bayar - $this->order->total_price;
-        }
 
         $payment->update([
             'uang' => $total_bayar,
@@ -175,11 +172,8 @@ class UpdateReservation extends Component
         $uang = $this->payment->uang += $this->uang_new;
         $this->payment->save();
         $payment = Payment::find($this->payment->id);
-        $kembali = 0;
+        $kembali = $uang - $this->calculateOrderPrice();
 
-        if ($uang >= $this->order->total_price) {
-            $kembali = $uang - $this->order->total_price;
-        }
 
         $payment->update([
             'uang' => $uang,
