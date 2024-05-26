@@ -22,8 +22,8 @@ class EmployeeHrController extends Controller
     {
         $worktimes = Worktime::all();
         $holidays = Holiday::all();
-        $leaves = Leave::where('employee_id', Auth::guard('employee')->id())->get();
-        $absences = Absence::where('employee_id', Auth::guard('employee')->id())->where('reason', 'libur')->get();
+        $leaves = Leave::where('employee_id', Auth::guard('employee')->id())->where('status', 'confirmed')->get();
+        $absences = Absence::where('employee_id', Auth::guard('employee')->id())->where('reason', 'libur')->where('status', 'confirmed')->get();
 
         $events = [];
 
