@@ -35,89 +35,53 @@ class ScheduleController extends Controller
             $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
             $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
 
-            // Adjust worktime based on holiday
-            foreach ($holidays as $holiday) {
-                $holidayStart = $holiday->start_date;
-                $holidayEnd = $holiday->end_date;
-                
-                $worktimeIsWithinHoliday = true;
-                if ($worktimeStart >= $holidayStart && $worktimeEnd <= $holidayEnd) {
-                    $worktimeIsWithinHoliday = true;
-                    break;
-                }
-
-                // Calculate the intersection of time between worktime and holiday events
-                $intersectionStart = max($worktimeStart, $holidayStart);
-                $intersectionEnd = min($worktimeEnd, $holidayEnd);
-
-                // If there is an overlap, adjust worktime
-                if ($intersectionStart < $intersectionEnd) {
-                    $events[] = [
-                        'title' => 'Kerja',
-                        'start' => $worktimeStart,
-                        'end' => $intersectionStart,
-                        'color' => 'blue'
-                    ];
-
-                    $worktimeStart = $intersectionEnd;
-                }
+            // Skip the entire worktime if it falls on a holiday
+            if ($this->isDateWithinAnyHoliday($worktimeStart, $holidays)) {
+                continue;
             }
 
-            // Add remaining worktime event
-            if ($worktimeStart < $worktimeEnd) {
-                $events[] = [
-                    'title' => 'Kerja',
-                    'start' => $worktimeStart,
-                    'end' => $worktimeEnd,
-                    'color' => 'blue'
-                ];
-            }
+            $events[] = [
+                'title' => 'Kerja',
+                'start' => $worktimeStart,
+                'end' => $worktimeEnd,
+                'color' => 'blue'
+            ];
 
-            // Add rest time event if rest_start_time and rest_end_time are set
+            // Adjust rest time events similarly
             if ($worktime->rest_start_time && $worktime->rest_end_time) {
                 $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
                 $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
 
-                // Adjust rest time based on holiday
-                foreach ($holidays as $holiday) {
-                    $holidayStart = $holiday->start_date;
-                    $holidayEnd = $holiday->end_date;
-
-                    if ($restStart >= $holidayStart && $restEnd <= $holidayEnd) {
-                        $worktimeIsWithinHoliday = true;
-                        break;
-                    }
-
-                    // Calculate the intersection of time between rest time and holiday events
-                    $restIntersectionStart = max($restStart, $holidayStart);
-                    $restIntersectionEnd = min($restEnd, $holidayEnd);
-
-                    // If there is an overlap, adjust rest time
-                    if ($restIntersectionStart < $restIntersectionEnd) {
-                        $events[] = [
-                            'title' => 'Istirahat',
-                            'start' => $restStart,
-                            'end' => $restIntersectionStart,
-                            'color' => 'green'
-                        ];
-
-                        $restStart = $restIntersectionEnd;
-                    }
+                // Skip the rest time if it falls on a holiday
+                if ($this->isDateWithinAnyHoliday($restStart, $holidays)) {
+                    continue;
                 }
 
-                // Add remaining rest time event
-                if ($restStart < $restEnd) {
-                    $events[] = [
-                        'title' => 'Istirahat',
-                        'start' => $restStart,
-                        'end' => $restEnd,
-                        'color' => 'green'
-                    ];
-                }
+                $events[] = [
+                    'title' => 'Istirahat',
+                    'start' => $restStart,
+                    'end' => $restEnd,
+                    'color' => 'green'
+                ];
             }
         }
 
         return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
+    }
+
+    private function isDateWithinAnyHoliday($date, $holidays)
+    {
+        $date = Carbon::parse($date);
+        foreach ($holidays as $holiday) {
+            $holidayStart = Carbon::parse($holiday->start_date)->startOfDay();
+            $holidayEnd = Carbon::parse($holiday->end_date)->endOfDay();
+
+            // Check if the date is within any holiday
+            if ($date->between($holidayStart, $holidayEnd)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function removeRestTime($id){

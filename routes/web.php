@@ -64,15 +64,15 @@ Route::middleware('auth.employee')->group(function () {
     Route::get('employee/scan', [EmployeeHrController::class, 'showScan'])->name('employee.scan');
     Route::post('employee/scan', [EmployeeHrController::class, 'scan'])->name('employee.scan.submit');
 
-    Route::get('/employee/form-attendance', [EmployeeHrController::class, 'addConfirm'])->name('employee.attendance.submit');
-    Route::post('/employee/form-attendance', [EmployeeHrController::class, 'storeConfirm'])->name('employee.attendance.submit.store');
+    Route::get('employee/form-attendance', [EmployeeHrController::class, 'addConfirm'])->name('employee.attendance.submit');
+    Route::post('employee/form-attendance', [EmployeeHrController::class, 'storeConfirm'])->name('employee.attendance.submit.store');
 
-    Route::get('/employee/form-absence', [EmployeeHrController::class, 'addAbsence'])->name('employee.absence.submit');
-    Route::post('/employee/form-absence', [EmployeeHrController::class, 'storeAbsence'])->name('employee.absence.submit.store');
+    Route::get('employee/form-absence', [EmployeeHrController::class, 'addAbsence'])->name('employee.absence.submit');
+    Route::post('employee/form-absence', [EmployeeHrController::class, 'storeAbsence'])->name('employee.absence.submit.store');
 
-    Route::get('/employee/leave', [EmployeeHrController::class, 'indexLeave'])->name('employee.leave.index');
-    Route::get('/employee/form-leave', [EmployeeHrController::class, 'addLeave'])->name('employee.leave.submit');
-    Route::post('/employee/form-leave', [EmployeeHrController::class, 'storeLeave'])->name('employee.leave.store');
+    Route::get('employee/leave', [EmployeeHrController::class, 'indexLeave'])->name('employee.leave.index');
+    Route::get('employee/form-leave', [EmployeeHrController::class, 'addLeave'])->name('employee.leave.submit');
+    Route::post('employee/form-leave', [EmployeeHrController::class, 'storeLeave'])->name('employee.leave.store');
 
 });
 
