@@ -112,11 +112,11 @@
                                                 @csrf
                                                 <div class="form-group">
                                                     <label for="start_date" class="col-form-label">Tanggal & Waktu Awal</label>
-                                                    <input type="datetime-local" class="form-control" name="start_date" required value="{{ $holiday->start_time }}">
+                                                    <input type="datetime-local" class="form-control" name="start_date" required value="{{ $holiday->start_date->format('Y-m-d\TH:i') }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="end_date" class="col-form-label">Tanggal & Waktu Akhir</label>
-                                                    <input type="datetime-local" class="form-control" name="end_date" required value="{{ $holiday->end_time }}">
+                                                    <input type="datetime-local" class="form-control" name="end_date" required value="{{ $holiday->end_date->format('Y-m-d\TH:i') }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-form-label">Nama Hari Libur</label>
