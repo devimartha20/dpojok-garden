@@ -120,7 +120,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($pesanan_masuk as $pt)
+                                    @forelse ($pesanan_terbaru as $pt)
                                     <tr>
                                         <td>{{ $pt->product->nama  }}</td>
                                         <td>{{ $pt->jumlah }}</td>
