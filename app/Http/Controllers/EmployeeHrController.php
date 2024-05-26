@@ -40,14 +40,17 @@ class EmployeeHrController extends Controller
 
         // Convert leaves to events and exclude conflicting worktimes
         foreach ($leaves as $leave) {
-            if ($this->isTimeOverlapping($leave->start_date, $leave->end_date, $worktimes)) {
-                continue;
+            $leaveStart = $leave->start_date;
+            $leaveEnd = $leave->end_date;
+
+            if ($this->isTimeOverlapping($leaveStart, $leaveEnd, $worktimes)) {
+                continue; // Skip the leave if it overlaps with a worktime
             }
 
             $events[] = [
                 'title' => 'Cuti',
-                'start' => $leave->start_date,
-                'end' => $leave->end_date,
+                'start' => $leaveStart,
+                'end' => $leaveEnd,
                 'color' => 'yellow'
             ];
         }
@@ -58,14 +61,17 @@ class EmployeeHrController extends Controller
                 continue;
             }
 
-            if ($this->isTimeOverlapping($absence->start_date, $absence->end_date, $worktimes)) {
-                continue;
+            $absenceStart = $absence->start_date;
+            $absenceEnd = $absence->end_date;
+
+            if ($this->isTimeOverlapping($absenceStart, $absenceEnd, $worktimes)) {
+                continue; // Skip the absence if it overlaps with a worktime
             }
 
             $events[] = [
                 'title' => 'Libur',
-                'start' => $absence->start_date,
-                'end' => $absence->end_date,
+                'start' => $absenceStart,
+                'end' => $absenceEnd,
                 'color' => 'orange'
             ];
         }
@@ -82,14 +88,20 @@ class EmployeeHrController extends Controller
             // Check if the worktime overlaps with any leave or absence
             $worktimeOverlaps = false;
             foreach ($leaves as $leave) {
-                if ($this->isTimeOverlapping($leave->start_date, $leave->end_date, collect([$worktime]))) {
+                $leaveStart = $leave->start_date;
+                $leaveEnd = $leave->end_date;
+
+                if ($this->isTimeOverlapping($leaveStart, $leaveEnd, collect([$worktime]))) {
                     $worktimeOverlaps = true;
                     break;
                 }
             }
 
             foreach ($absences as $absence) {
-                if ($this->isTimeOverlapping($absence->start_date, $absence->end_date, collect([$worktime]))) {
+                $absenceStart = $absence->start_date;
+                $absenceEnd = $absence->end_date;
+
+                if ($this->isTimeOverlapping($absenceStart, $absenceEnd, collect([$worktime]))) {
                     $worktimeOverlaps = true;
                     break;
                 }
