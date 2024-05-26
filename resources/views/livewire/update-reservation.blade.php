@@ -76,8 +76,8 @@
         <h4>Add to Payment</h4>
         <form wire:submit.prevent="addAmountToPayment">
             <div class="form-group">
-                <label for="uang">Amount:</label>
-                <input type="number" wire:model.live="uang_new" class="form-control" id="uang" min="0" required />
+                <label for="uang_new">Amount:</label>
+                <input type="number" wire:model.live="uang_new" class="form-control" id="uang_new" min="0" required />
             </div>
             <button type="submit" class="btn btn-primary">Add Amount</button>
         </form>

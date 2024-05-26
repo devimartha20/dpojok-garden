@@ -85,13 +85,15 @@ class UpdateReservation extends Component
     public function updateDetailOrder($index)
     {
         $detailOrderData = $this->productOrders[$index];
+        $detailOrderData['total_harga'] = $detailOrderData['jumlah'] * $detailOrderData['harga_jual']; // Update total_harga
+        $this->productOrders[$index] = $detailOrderData; // Reflect the change in the productOrders array
+
         $detailOrder = DetailOrder::find($detailOrderData['id']);
         $detailOrder->update([
             'jumlah' => $detailOrderData['jumlah'],
-            'total_harga' => $detailOrderData['harga_jual'] * $detailOrderData['jumlah'],
+            'total_harga' => $detailOrderData['total_harga'],
             'catatan' => $detailOrderData['catatan'],
         ]);
-        $this->order = Order::where('reservation_id', $this->reservation->id)->first();
 
         $this->calculateTotalHarga();
     }
