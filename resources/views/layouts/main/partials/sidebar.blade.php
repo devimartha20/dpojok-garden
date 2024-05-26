@@ -345,7 +345,7 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a>
+                                    <a href="{{ route('absence.index')}}">
                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                         <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-22.menu-level-31">Ketidakhadiran</span>
                                         <span class="pcoded-mcaret"></span>
