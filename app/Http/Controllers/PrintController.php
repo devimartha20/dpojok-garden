@@ -49,54 +49,54 @@ class PrintController extends Controller
 
     public function printAttendances()
     {
-         // Fetch all employees
-         $employees = Employee::all();
+        // Fetch all employees
+        $employees = Employee::all();
 
-         // Initialize an array to hold the attendance data
-         $attendanceData = [];
+        // Initialize an array to hold the attendance data
+        $attendanceData = [];
         foreach ($employees as $employee) {
-        $sickDays = Absence::where('employee_id', $employee->id)
-            ->where('reason', 'sakit')
-            ->where('status', 'confirmed')
-            ->count();
+            $sickDays = Absence::where('employee_id', $employee->id)
+                ->where('reason', 'sakit')
+                ->where('status', 'confirmed')
+                ->count();
 
-        $permissionDays = Absence::where('employee_id', $employee->id)
-            ->where('reason', 'izin')
-            ->where('status', 'confirmed')
-            ->count();
+            $permissionDays = Absence::where('employee_id', $employee->id)
+                ->where('reason', 'izin')
+                ->where('status', 'confirmed')
+                ->count();
 
-        $unexplainedAbsences = Attendance::where('employee_id', $employee->id)
-            ->where('status', 'rejected')
-            ->count();
+            $unexplainedAbsences = Attendance::where('employee_id', $employee->id)
+                ->where('status', 'rejected')
+                ->count();
 
-        $leaveCount = Leave::where('employee_id', $employee->id)
-            ->where('status', 'confirmed')
-            ->count();
+            $leaveCount = Leave::where('employee_id', $employee->id)
+                ->where('status', 'confirmed')
+                ->count();
 
-        // Calculate the number of present days
-        $presentDays = Attendance::where('employee_id', $employee->id)
-        ->where('status', 'confirmed')
-        ->where('type', 'in')
-        ->distinct('date')
-        ->count();
+            // Calculate the number of present days
+            $presentDays = Attendance::where('employee_id', $employee->id)
+                ->where('status', 'confirmed')
+                ->where('type', 'in')
+                ->distinct('date')
+                ->count();
 
-        $attendanceData[] = [
-            'employee_id' => $employee->id,
-            'employee_name' => $employee->nama,
-            'present_days' => $presentDays,
-            'sick_days' => $sickDays,
-            'permission_days' => $permissionDays,
-            'unexplained_absences' => $unexplainedAbsences,
-            'leave_count' => $leaveCount,
+            $attendanceData[] = [
+                'employee_id' => $employee->id,
+                'employee_name' => $employee->nama,
+                'present_days' => $presentDays,
+                'sick_days' => $sickDays,
+                'permission_days' => $permissionDays,
+                'unexplained_absences' => $unexplainedAbsences,
+                'leave_count' => $leaveCount,
+            ];
+        }
+
+        $data = [
+            'attendanceData' => $attendanceData,
         ];
-    }
-    $data = [
-        'attendanceData' => $attendanceData,
-    ];
 
-        $pdf = PDF::loadView('print.attendances', $data);
+        $pdf = PDF::loadView('print.attendances', $data)->setPaper('a4', 'landscape');
         return $pdf->download('attendances.pdf');
-
     }
 
     public function printSales()
