@@ -54,7 +54,7 @@ Riwayat Reservasi
             <div class="card-block caption-breadcrumb">
                @forelse ($wp as $r)
                <div class="breadcrumb-header">
-                <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
+                <h6>No Reservasi: {{ $r->no_reservasi }}<$reservation->id/h6>
                 <p>Tanggal Reservasi: {{ $r->date }}</p>
                 <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
                 @foreach ($r->reservationTables as $rt)
@@ -64,10 +64,10 @@ Riwayat Reservasi
                     </div>
                 @endforeach
 
-                <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                <h6>Total Harga: Rp. {{ $r->order ? number_format($r->order->total_harga) : '' }}</h6>
             </div>
             <div class="col float-start text-right">
-                <span><a href="{{ route('reservation.show', $reservation->id) }}">Detail Pesanan</a></span>
+                <span><a href="{{ route('reservation.show', $r->id) }}">Detail Pesanan</a></span>
             </div>
             @empty
             <div class="text-center">
@@ -91,10 +91,10 @@ Riwayat Reservasi
                     </div>
                 @endforeach
 
-                <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                <h6>Total Harga: Rp. {{ $r->order ? number_format($r->order->total_harga) : '' }}</h6>
             </div>
             <div class="col float-start text-right">
-                <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+                <span><a href="{{ route('reservation.show', $r->id) }}">Detail Pesanan</a></span>
             </div>
             @empty
             <div class="text-center">
@@ -111,17 +111,17 @@ Riwayat Reservasi
                 <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
                 <p>Tanggal Reservasi: {{ $r->date }}</p>
                 <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
-                @foreach ($wp->reservationTables as $rt)
+                @foreach ($r->reservationTables as $rt)
                     <div class="product-details">
                         <p>Nomor Meja : {{ $rt->table->no_meja }}</p>
                         <p>Jumlah Kursi : {{ $rt->seats }}</p>
                     </div>
                 @endforeach
 
-                <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                <h6>Total Harga: Rp. {{ $r->order ? number_format($r->order->total_harga) : '' }}</h6>
             </div>
             <div class="col float-start text-right">
-                <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+                <span><a href="{{ route('reservation.show', $r->id) }}">Detail Pesanan</a></span>
             </div>
             @empty
             <div class="text-center">
@@ -145,10 +145,10 @@ Riwayat Reservasi
                     </div>
                 @endforeach
 
-                <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                <h6>Total Harga: Rp. {{ $r->order ? number_format($r->order->total_harga) : '' }}</h6>
             </div>
             <div class="col float-start text-right">
-                <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+                <span><a href="{{ route('reservation.show', $r->id) }}">Detail Pesanan</a></span>
             </div>
             @empty
             <div class="text-center">
@@ -172,10 +172,10 @@ Riwayat Reservasi
                     </div>
                 @endforeach
 
-                <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                <h6>Total Harga: Rp. {{ $r->order ? number_format($r->order->total_harga) : '' }}</h6>
             </div>
             <div class="col float-start text-right">
-                <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
+                <span><a href="{{ route('reservation.show', $r->id) }}">Detail Pesanan</a></span>
             </div>
             @empty
             <div class="text-center">

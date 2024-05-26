@@ -28,8 +28,8 @@
                         <div class="form-group">
                             <label for="payment_method">Metode Pembayaran</label>
                             <select class="form-control" id="payment_method" wire:model.live="payment_method" required>
-                                <option value="cash" {{ $payment_mehtod == 'cash' ? 'selected' : '' }}>Tunai</option>
-                                <option value="qris" {{ $payment_mehtod == 'qris' ? 'selected' : '' }}>QRIS</option>
+                                <option value="cash" {{ $payment_method == 'cash' ? 'selected' : '' }}>Tunai</option>
+                                <option value="qris" {{ $payment_method == 'qris' ? 'selected' : '' }}>QRIS</option>
                             </select>
                         </div>
 
@@ -40,7 +40,7 @@
 
                         <div class="form-group">
                             <label for="uang">Total Uang Diberikan</label>
-                            <input type="number" min="{{ $payment->total_bayar }}" class="form-control" id="uang" wire:model.lazy="uang" required>
+                            <input type="number" min=0 class="form-control" id="uang" wire:model.lazy="uang" required>
                         </div>
 
                         <!-- Display total_bayar -->

@@ -4,35 +4,23 @@ namespace App\Livewire;
 
 use App\Models\Admin\Order;
 use App\Models\Admin\Payment;
-use App\Models\Admin\Product;
 use App\Models\Reservation;
 use Livewire\Component;
 
-class ReservationPay extends Component
+class EditResvPayment extends Component
 {
-    public $payment, $uang, $kembali = 0, $order, $payment_method = 'cash';
+    public $payment, $uang, $uang_new, $kembali = 0, $order, $payment_method = 'cash';
     public $transaction_number, $reservation;
-
-
-    public function generateTransactionNumber()
-    {
-        if($this->payment_method == 'cash'){
-            $this->transaction_number = 'CASH' . $this->payment->id . 'ON' . time();
-        }else if($this->payment_method == 'qris'){
-            $this->transaction_number = 'QRIS' . $this->payment->id . 'ON' . time();
-        }
-
-    }
-
-    public function updatedPaymentMethod(){
-        $this->generateTransactionNumber();
-    }
 
     public function mount($reservation){
         $this->reservation = Reservation::findOrFail($reservation->id);
         $this->order = Order::where('reservation_id', $reservation->id)->first();
         $this->payment = Payment::findOrFail($this->order->payment_id);
-        $this->generateTransactionNumber();
+        $this->uang = $this->payment->uang;
+        $this->kembali = $this->uang - $this->payment->total_bayar;
+        $this->payment_method = $this->payment->payment_type;
+        $this->transaction_number = $this->payment->no_payment;
+
     }
 
     public function updatedUang($value)
@@ -57,11 +45,11 @@ class ReservationPay extends Component
         ]);
 
         $update_reservasi = Reservation::findOrFail($this->reservation->id)->update([
-            'status' => $this->uang > 0 ? 'menunggu' : 'menunggu_pembayaran',
+            'status' => $this->uang + $this->uang_new > 0 ? 'menunggu' : 'menunggu_pembayaran',
         ]);
 
         $update_payment = Payment::findOrFail($this->payment->id)->update([
-            'status' => $this->uang >= $this->payment->total_bayar ? 'lunas' : 'belum_lunas',
+            'status' =>  $this->uang + $this->uang_new >= $this->payment->total_bayar ? 'lunas' : 'belum_lunas',
             'transaction_time' => now(),
             'transaction_id' => $this->transaction_number,
             'payment_type' => $this->payment_method,
@@ -72,29 +60,20 @@ class ReservationPay extends Component
         $payment = Payment::findOrFail($this->payment->id);
 
         $order = Order::where('payment_id', $payment->id)->first();
+        $reservation = Reservation::find($order->reservation_id)->update([
+            
+        ]);
         $order->update([
             'progress' =>$this->uang > 0 ? 'menunggu' : 'menunggu_pembayaran',
-            'status' => $this->uang >= $this->payment->total_bayar ? 'lunas' : 'belum_lunas',
+            'status' =>  $this->uang + $this->uang_new >= $this->payment->total_bayar ? 'lunas' : 'belum_lunas',
         ]);
-
-        foreach($order->detailOrders as $do){
-            $product = Product::findOrFail($do->product_id);
-            if($do->jumlah <= $product->stok){
-                $update_product = Product::findOrFail($do->product_id)->update(['stok'=> $product->stok - $do->jumlah]);
-            }else{
-                session()->flash('fail', 'Silahkan update stok produk '.$product->nama);
-            }
-
-        }
 
         $this->payment = $payment;
 
-        session()->flash('success', 'Pembayaran berhasil, Reservasi dan Pesanan sudah masuk ke daftar antrian!');
-        return redirect(route('reservation.show', $this->reservation->id));
-
+        session()->flash('success', 'Pembayaran berhasil diupdate!');
     }
     public function render()
     {
-        return view('livewire.reservation-pay');
+        return view('livewire.edit-resv-payment');
     }
 }

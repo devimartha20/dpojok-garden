@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kasir;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Order;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Admin\Unit;
@@ -67,7 +68,8 @@ class ReservationController extends Controller
     public function show(string $id)
     {
         $reservation = Reservation::findOrFail($id);
-        return view('user.kasir.reservation.show', compact('reservation'));
+        $order = Order::where('reservation_id', $reservation->id)->first();
+        return view('user.kasir.reservation.show', compact('reservation', 'order'));
     }
 
     /**
@@ -76,13 +78,15 @@ class ReservationController extends Controller
     public function edit(string $id)
     {
         $reservation = Reservation::findOrFail($id);
-        return view('user.kasir.reservation.edit', compact('reservation'));
+        $order = Order::where('reservation_id', $reservation->id)->first();
+        return view('user.kasir.reservation.edit', compact('reservation', 'order'));
     }
 
     public function payment(string $id)
     {
         $reservation = Reservation::findOrFail($id);
-        return view('user.kasir.reservation.pay', compact('reservation'));
+        $order = Order::where('reservation_id', $reservation->id)->first();
+        return view('user.kasir.reservation.pay', compact('reservation', 'order'));
     }
 
     /**
