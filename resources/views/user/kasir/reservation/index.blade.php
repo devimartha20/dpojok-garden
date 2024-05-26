@@ -64,7 +64,7 @@ Riwayat Reservasi
                     </div>
                 @endforeach
 
-                <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                <h6>Total Harga: Rp. {{ $r->order ? number_format($r->order->total_harga) : '' }}</h6>
             </div>
             <div class="col float-start text-right">
                 <span><a href="{{ route('reservation.show', $reservation->id) }}">Detail Pesanan</a></span>
@@ -91,7 +91,7 @@ Riwayat Reservasi
                     </div>
                 @endforeach
 
-                <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                <h6>Total Harga: Rp. {{ $r->order ? number_format($r->order->total_harga) : '' }}</h6>
             </div>
             <div class="col float-start text-right">
                 <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
@@ -118,7 +118,7 @@ Riwayat Reservasi
                     </div>
                 @endforeach
 
-                <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                <h6>Total Harga: Rp. {{ $r->order ? number_format($r->order->total_harga) : '' }}</h6>
             </div>
             <div class="col float-start text-right">
                 <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
@@ -145,7 +145,7 @@ Riwayat Reservasi
                     </div>
                 @endforeach
 
-                <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                <h6>Total Harga: Rp. {{ $r->order ? number_format($r->order->total_harga) : '' }}</h6>
             </div>
             <div class="col float-start text-right">
                 <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
@@ -172,7 +172,7 @@ Riwayat Reservasi
                     </div>
                 @endforeach
 
-                <h6>Total Harga: Rp. {{ number_format($r->order->total_harga) }}</h6>
+                <h6>Total Harga: Rp. {{ $r->order ? number_format($r->order->total_harga) : '' }}</h6>
             </div>
             <div class="col float-start text-right">
                 <span><a href="{{ route('customer.reservation.detail', $r->id) }}">Detail Pesanan</a></span>
