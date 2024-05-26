@@ -90,6 +90,7 @@ class ReservationPay extends Component
         $this->payment = $payment;
 
         session()->flash('success', 'Pembayaran berhasil, Reservasi dan Pesanan sudah masuk ke daftar antrian!');
+        return redirect(route('reservation.show', $this->reservation->id));
 
     }
     public function render()
