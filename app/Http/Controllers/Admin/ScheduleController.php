@@ -35,7 +35,7 @@ class ScheduleController extends Controller
             $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
             $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
 
-            if (!$this->isTimeOverlappingHolidays($worktimeStart, $worktimeEnd, $holidays)) {
+            if (!$this->isTimeWithinAnyHoliday($worktimeStart, $worktimeEnd, $holidays)) {
                 $events[] = [
                     'title' => 'Kerja',
                     'start' => $worktimeStart,
@@ -49,7 +49,7 @@ class ScheduleController extends Controller
                 $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
                 $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
 
-                if (!$this->isTimeOverlappingHolidays($restStart, $restEnd, $holidays)) {
+                if (!$this->isTimeWithinAnyHoliday($restStart, $restEnd, $holidays)) {
                     $events[] = [
                         'title' => 'Istirahat',
                         'start' => $restStart,
@@ -63,7 +63,7 @@ class ScheduleController extends Controller
         return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
     }
 
-    private function isTimeOverlappingHolidays($start, $end, $holidays)
+    private function isTimeWithinAnyHoliday($start, $end, $holidays)
     {
         foreach ($holidays as $holiday) {
             $holidayStart = $holiday->start_date;
