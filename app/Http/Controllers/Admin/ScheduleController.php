@@ -63,7 +63,7 @@ class ScheduleController extends Controller
                 }
             }
 
-            // if ($worktimeIsWithinHoliday){
+            if ($worktimeIsWithinHoliday){
                  // Add remaining worktime event
                 if ($worktimeStart < $worktimeEnd) {
                     $events[] = [
@@ -73,7 +73,9 @@ class ScheduleController extends Controller
                         'color' => 'blue'
                     ];
                 }
-            // }
+            }else{
+                break;
+            }
 
 
             // Add rest time event if rest_start_time and rest_end_time are set
