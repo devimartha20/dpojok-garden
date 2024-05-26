@@ -92,6 +92,7 @@ class PrintController extends Controller
         }
 
         $data = [
+            'title' => 'Laporan Absensi Karyawan',
             'attendanceData' => $attendanceData,
         ];
 
@@ -109,7 +110,7 @@ class PrintController extends Controller
              ->get();
 
         $data = [
-            'title' => 'Struk Pembayaran',
+            'title' => 'Laporan Penjualan',
             'salesData' => $salesData,
         ];
 

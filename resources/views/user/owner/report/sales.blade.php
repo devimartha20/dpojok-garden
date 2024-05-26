@@ -26,7 +26,7 @@
                             <button type="submit" class="btn btn-primary mb-2">Filter</button>
                         </div>
                         <div class="col-auto">
-                            <a href="{{ route('print.report-sales') }}" class="btn btn-primary mb-2">Print</a>
+                            <a href="{{ route('print.report-sales') }}" class="btn btn-primary mb-2">Print as PDF</a>
                         </div>
                     </div>
                 </form>
