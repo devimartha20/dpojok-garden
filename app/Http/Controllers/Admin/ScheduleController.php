@@ -34,13 +34,13 @@ class ScheduleController extends Controller
         foreach ($worktimes as $worktime) {
             $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
             $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
-
+            $worktimeIsWithinHoliday = false;
             // Adjust worktime based on holiday
             foreach ($holidays as $holiday) {
                 $holidayStart = $holiday->start_date;
                 $holidayEnd = $holiday->end_date;
-                
-                $worktimeIsWithinHoliday = true;
+
+
                 if ($worktimeStart >= $holidayStart && $worktimeEnd <= $holidayEnd) {
                     $worktimeIsWithinHoliday = true;
                     break;
@@ -63,28 +63,31 @@ class ScheduleController extends Controller
                 }
             }
 
-            // Add remaining worktime event
-            if ($worktimeStart < $worktimeEnd) {
-                $events[] = [
-                    'title' => 'Kerja',
-                    'start' => $worktimeStart,
-                    'end' => $worktimeEnd,
-                    'color' => 'blue'
-                ];
+            if ($worktimeIsWithinHoliday){
+                 // Add remaining worktime event
+                if ($worktimeStart < $worktimeEnd) {
+                    $events[] = [
+                        'title' => 'Kerja',
+                        'start' => $worktimeStart,
+                        'end' => $worktimeEnd,
+                        'color' => 'blue'
+                    ];
+                }
             }
+
 
             // Add rest time event if rest_start_time and rest_end_time are set
             if ($worktime->rest_start_time && $worktime->rest_end_time) {
                 $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
                 $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
-
+                $resttimeIsWithinHoliday = false;
                 // Adjust rest time based on holiday
                 foreach ($holidays as $holiday) {
                     $holidayStart = $holiday->start_date;
                     $holidayEnd = $holiday->end_date;
 
                     if ($restStart >= $holidayStart && $restEnd <= $holidayEnd) {
-                        $worktimeIsWithinHoliday = true;
+                        $resttimeIsWithinHoliday = true;
                         break;
                     }
 
@@ -105,15 +108,18 @@ class ScheduleController extends Controller
                     }
                 }
 
-                // Add remaining rest time event
-                if ($restStart < $restEnd) {
-                    $events[] = [
-                        'title' => 'Istirahat',
-                        'start' => $restStart,
-                        'end' => $restEnd,
-                        'color' => 'green'
-                    ];
+                if ($resttimeIsWithinHoliday){
+                    // Add remaining rest time event
+                    if ($restStart < $restEnd) {
+                        $events[] = [
+                            'title' => 'Istirahat',
+                            'start' => $restStart,
+                            'end' => $restEnd,
+                            'color' => 'green'
+                        ];
+                    }
                 }
+
             }
         }
 
