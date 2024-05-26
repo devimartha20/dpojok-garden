@@ -30,7 +30,7 @@
     <div class="col-md-6 col-xl-3">
         <div class="card bg-c-green order-card">
             <div class="card-block">
-                <h6 class="m-b-20">Total Penjualan</h6>
+                <h6 class="m-b-20">Produk Terjual</h6>
                 <h2 class="text-right"><i class="ti-tag f-left"></i><span>1641</span></h2>
                 {{-- <p class="m-b-0">Bulan Ini<span class="f-right">213</span></p> --}}
             </div>
