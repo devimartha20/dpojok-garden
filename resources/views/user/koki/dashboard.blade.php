@@ -69,7 +69,7 @@
                                     <tr>
                                         <td>{{ $pmt->product->nama  }}</td>
                                         <td>{{ $pmt->jumlah }}</td>
-                                        <td>{{ $pmt->order->pemesanan ?? '' }}</td>
+                                        <td>{{ $pmt->order->pemesan ?? '' }}</td>
                                         <td>{{ $pmt->created_at }}</td>
                                         <td>Rp. {{ number_format($pmt->total_harga) }}</td>
                                         <td>
@@ -124,7 +124,7 @@
                                     <tr>
                                         <td>{{ $pt->product->nama  }}</td>
                                         <td>{{ $pt->jumlah }}</td>
-                                        <td>{{ $pt->order->pemesanan ?? '' }}</td>
+                                        <td>{{ $pt->order->pemesan ?? '' }}</td>
                                         <td>{{ $pt->created_at }}</td>
                                         <td>Rp. {{ number_format($pt->total_harga) }}</td>
                                         <td>
