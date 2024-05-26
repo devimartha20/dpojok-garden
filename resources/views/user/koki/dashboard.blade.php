@@ -74,15 +74,15 @@
                                         <td>Rp. {{ number_format($pmt->total_harga) }}</td>
                                         <td>
                                             @if ($pmt->order->progress == 'menunggu')
-                                            <span class="label label-warning">{{ $pt->order->progress }}</span>
+                                            <span class="label label-warning">{{ $pmt->order->progress }}</span>
                                             @elseif($pmt->order->progress == 'diproses')
-                                            <span class="label label-info">{{ $pt->order->progress }}</span>
+                                            <span class="label label-info">{{ $pmt->order->progress }}</span>
                                             @elseif($pmt->order->progress == 'selesai')
-                                            <span class="label label-success">{{ $pt->order->progress }}</span>
+                                            <span class="label label-success">{{ $pmt->order->progress }}</span>
                                             @elseif($pmt->order->progress == 'diterima')
-                                            <span class="label label-primary">{{ $pt->order->progress }}</span>
+                                            <span class="label label-primary">{{ $pmt->order->progress }}</span>
                                             @elseif($pmt->order->progress == 'dibatalkan')
-                                            <span class="label label-secondary">{{ $pt->order->progress }}</span>
+                                            <span class="label label-secondary">{{ $pmt->order->progress }}</span>
                                             @endif
                                         </td>
                                     </tr>
