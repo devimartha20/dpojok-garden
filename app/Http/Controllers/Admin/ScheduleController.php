@@ -35,28 +35,34 @@ class ScheduleController extends Controller
             $worktimeStart = $this->convertToDateTime($worktime->day, $worktime->start_time);
             $worktimeEnd = $this->convertToDateTime($worktime->day, $worktime->end_time);
 
-            if (!$this->isTimeWithinAnyHoliday($worktimeStart, $worktimeEnd, $holidays)) {
-                $events[] = [
-                    'title' => 'Kerja',
-                    'start' => $worktimeStart,
-                    'end' => $worktimeEnd,
-                    'color' => 'blue'
-                ];
+            // Skip if the worktime is within any holiday
+            if ($this->isTimeWithinAnyHoliday($worktimeStart, $worktimeEnd, $holidays)) {
+                continue;
             }
+
+            $events[] = [
+                'title' => 'Kerja',
+                'start' => $worktimeStart,
+                'end' => $worktimeEnd,
+                'color' => 'blue'
+            ];
 
             // Adjust rest time events similarly
             if ($worktime->rest_start_time && $worktime->rest_end_time) {
                 $restStart = $this->convertToDateTime($worktime->day, $worktime->rest_start_time);
                 $restEnd = $this->convertToDateTime($worktime->day, $worktime->rest_end_time);
 
-                if (!$this->isTimeWithinAnyHoliday($restStart, $restEnd, $holidays)) {
-                    $events[] = [
-                        'title' => 'Istirahat',
-                        'start' => $restStart,
-                        'end' => $restEnd,
-                        'color' => 'green'
-                    ];
+                // Skip if the rest time is within any holiday
+                if ($this->isTimeWithinAnyHoliday($restStart, $restEnd, $holidays)) {
+                    continue;
                 }
+
+                $events[] = [
+                    'title' => 'Istirahat',
+                    'start' => $restStart,
+                    'end' => $restEnd,
+                    'color' => 'green'
+                ];
             }
         }
 
@@ -69,7 +75,7 @@ class ScheduleController extends Controller
             $holidayStart = $holiday->start_date;
             $holidayEnd = $holiday->end_date;
 
-            // Check if time overlaps with any holiday
+            // Check if the time is within any holiday
             if (($start < $holidayEnd) && ($end > $holidayStart)) {
                 return true;
             }
