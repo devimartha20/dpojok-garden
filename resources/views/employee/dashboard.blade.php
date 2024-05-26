@@ -60,12 +60,22 @@
                             <h5>{{ now()->format('l, d F Y') }}</h5>
                         </div>
                         <div class="page-header-breadcrumb">
-                            <ul class="breadcrumb-title m-t-10">
-                                <li class="breadcrumb-item"><a href="#!">Masuk - Selesai</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="#!">11:00 - 23:00</a>
-                                </li>
-                            </ul>
+                            @if($worktime)
+                                <ul class="breadcrumb-title m-t-10">
+                                    <li class="breadcrumb-item"><a href="#!">Masuk - Selesai</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#!">{{ $worktime->start_time }} - {{ $worktime->end_time }}</a>
+                                    </li>
+                                    @if($worktime->rest_start_time && $worktime->rest_end_time)
+                                        <li class="breadcrumb-item"><a href="#!">Istirahat: {{ $worktime->rest_start_time }} - {{ $worktime->rest_end_time }}</a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            @else
+                                <ul class="breadcrumb-title m-t-10">
+                                    <li class="breadcrumb-item"><a href="#!">Tidak ada jadwal kerja hari ini</a></li>
+                                </ul>
+                            @endif
                         </div>
                     </div>
                 </div>
