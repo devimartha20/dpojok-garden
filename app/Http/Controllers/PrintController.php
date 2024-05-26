@@ -113,7 +113,7 @@ class PrintController extends Controller
             'salesData' => $salesData,
         ];
 
-        $pdf = PDF::loadView('print.sales', $data);
-        return $pdf->download('receipt.pdf');
+        $pdf = PDF::loadView('print.sales', $data)->setPaper('a4', 'landscape');
+        return $pdf->download('sales.pdf');
     }
 }
