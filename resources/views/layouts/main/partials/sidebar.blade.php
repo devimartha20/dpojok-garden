@@ -95,7 +95,7 @@
             </ul>
 
             {{-- Penjualan --}}
-            <div class="pcoded-navigatio-lavel">Penjualan</div>
+            {{-- <div class="pcoded-navigatio-lavel">Penjualan</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li>
                     <a>
@@ -111,18 +111,18 @@
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
 
         {{-- Human Resource --}}
         <div class="pcoded-navigatio-lavel">Human Resource</div>
         <ul class="pcoded-item pcoded-left-item">
-            <li>
+            {{-- <li>
                 <a href="{{ route('employee.index') }}">
                     <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Daftar Pegawai</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
-            </li>
+            </li> --}}
             <li>
                 <a href="{{ route('attendance.index') }}">
                     <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
@@ -165,7 +165,7 @@
         </ul>
 
             {{-- Pelanggan --}}
-            <div class="pcoded-navigatio-lavel">Kelola Pelanggan</div>
+            {{-- <div class="pcoded-navigatio-lavel">Kelola Pelanggan</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li class="pcoded-hasmenu">
                     <a>
@@ -190,7 +190,7 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul> --}}
 
             {{-- Laporan --}}
             <div class="pcoded-navigatio-lavel">Kelola Laporan</div>
@@ -203,14 +203,14 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li class=" ">
-                            <a href="{{ route('report.sales') }}">
+                            <a href="{{ route('check.report.sales') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Penjualan</span>
                                 <span class="pcoded-mcaret"></span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="{{ route('report.attendances') }}">
+                            <a href="{{ route('check.report.attendances') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Kinerja Karyawan</span>
                                 <span class="pcoded-mcaret"></span>
@@ -221,7 +221,7 @@
             </ul>
 
             {{-- Pengguna --}}
-            <div class="pcoded-navigatio-lavel">Kelola Pengguna</div>
+            {{-- <div class="pcoded-navigatio-lavel">Kelola Pengguna</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li>
                     <a>
@@ -230,7 +230,7 @@
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
 
             {{-- Profile --}}
             <div class="pcoded-navigatio-lavel">Profil</div>
@@ -374,14 +374,14 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li class=" ">
-                            <a href="{{ route('report.sales') }}">
+                            <a href="{{ route('check.report.sales') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Penjualan</span>
                                 <span class="pcoded-mcaret"></span>
                             </a>
                         </li>
                         <li class=" ">
-                            <a href="{{ route('report.attendances') }}">
+                            <a href="{{ route('check.report.attendances') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Kinerja Karyawan</span>
                                 <span class="pcoded-mcaret"></span>
