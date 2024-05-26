@@ -120,6 +120,7 @@ class ScheduleController extends Controller
 
             }
         }
+        return dd($events);
 
         return view('user.admin.schedule.index', compact('events', 'holidays', 'worktimes'));
     }
