@@ -19,7 +19,7 @@ class UpdateReservation extends Component
         $this->order = Order::where('reservation_id', $reservation->id)->first();
         $this->payment = Payment::find($this->order->payment_id);
         $this->previousPayment = $this->payment->replicate(); // Clone the current payment details
-        $this->uang = $this->payment->uang;
+        $this->uang = $this->payment->uang ? $this->payment->uang : 0;
         $this->loadProducts();
         $this->loadOrderDetails();
     }
