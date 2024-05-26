@@ -63,7 +63,7 @@ class ScheduleController extends Controller
                 }
             }
 
-            if (!$worktimeIsWithinHoliday){
+            if ($worktimeIsWithinHoliday == false){
                 if ($worktimeStart < $worktimeEnd) {
                     $events[] = [
                         'title' => 'Kerja',
@@ -106,7 +106,7 @@ class ScheduleController extends Controller
                     }
                 }
 
-                if (!$resttimeIsWithinHoliday){
+                if ($resttimeIsWithinHoliday == false){
                     // Add remaining rest time event
                     if ($restStart < $restEnd) {
                         $events[] = [
