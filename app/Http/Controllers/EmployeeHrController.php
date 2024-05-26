@@ -91,6 +91,12 @@ class EmployeeHrController extends Controller
         return false;
     }
 
+    private function convertToDateTime($day, $time)
+    {
+        $date = now()->startOfWeek()->addDays($day - 1);
+        return $date->format('Y-m-d') . 'T' . $time;
+    }
+
     public function attendance(){
         $attendances = Attendance::where('employee_id', Auth::guard('employee')->id())->orderBy('created_at', 'desc')->get();
         return view('employee.attendance.index', compact('attendances'));
