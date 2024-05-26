@@ -51,12 +51,11 @@
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-
             </ul>
 
             @hasrole('admin')
-            {{-- Produk dan Bahan Baku --}}
-            <div class="pcoded-navigatio-lavel">Produk & Bahan Baku</div>
+            {{-- Produk --}}
+            <div class="pcoded-navigatio-lavel">Data Produk</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li class="pcoded-hasmenu">
                     <a>
@@ -80,37 +79,11 @@
                             </a>
                         </li>
                     </ul>
-
-                    <li class="pcoded-hasmenu">
-                        <a>
-                            <span class="pcoded-micon"><i class="ti-menu-alt"></i></span>
-                            <span class="pcoded-mtext">Bahan Baku</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                        <ul class="pcoded-submenu">
-                            <li class=" ">
-                                <a href="{{ route('material.index') }}">
-                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext" data-i18n="">Bahan Baku</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="pcoded-submenu">
-                            <li class=" ">
-                                <a href="{{ route('unit.index') }}">
-                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext" data-i18n="">Satuan</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                 </li>
             </ul>
 
             {{-- Meja --}}
-            <div class="pcoded-navigatio-lavel">Meja</div>
+            <div class="pcoded-navigatio-lavel">Data Meja</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li>
                     <a href="{{ route('table.index') }}">
@@ -286,7 +259,7 @@
                 <li>
                     <a>
                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                        <span class="pcoded-mtext" >Stok Bahan Baku</span>
+                        <span class="pcoded-mtext" >Reservasi</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
@@ -341,17 +314,6 @@
             @endhasrole
 
             @hasrole('owner')
-            <div class="pcoded-navigatio-lavel">Persediaan Bahan Baku</div>
-            <ul class="pcoded-item pcoded-left-item">
-                <li>
-                    <a>
-                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                        <span class="pcoded-mtext" >Bahan Baku</span>
-                        <span class="pcoded-mcaret"></span>
-                    </a>
-                </li>
-            </ul>
-
             <div class="pcoded-navigatio-lavel">Human Resource</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li class="pcoded-hasmenu">
@@ -382,13 +344,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                {{-- <li class="">
+                                <li class="">
                                     <a>
                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-22.menu-level-31">Lembur</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-22.menu-level-31">Ketidakhadiran</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                </li> --}}
+                                </li>
                                 <li class="">
                                     <a href="{{ route('leave.index')}}">
                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
