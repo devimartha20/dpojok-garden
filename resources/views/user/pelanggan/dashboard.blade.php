@@ -29,7 +29,7 @@
                           <span class="price">{{ $product->harga_jual }}</span>
                         </div>
                       </div>
-                      <p><span>{{ $product->category->nama }}</span></p>
+                      <p><span>{{ $product->productCategory->nama }}</span></p>
                       {{-- <p><a href="#" class="btn btn-primary">Order now</a></p> --}}
                   </div>
               </div>
