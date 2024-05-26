@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\PrintController;
 use App\Models\Admin\Payment;
 
 /*
@@ -82,9 +83,14 @@ Route::post('employee/login', [EmployeeLoginController::class, 'login'])->name('
 Route::middleware(['auth', 'verified'])->group(function(){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+    Route::get('print/receipt-resv/{id}', [PrintController::class, 'printReceiptReservation'])->name('print.receipt-resv');
 
     Route::group(['middleware' => ['role:admin|owner']], function () {
+
+        Route::get('check/report/sales/', [ReportController::class, 'sales'])->name('check.report.sales');
+        Route::get('check/report/attendances/', [ReportController::class, 'attendances'])->name('check.report.attendances');
+        Route::get('print/report-atend/', [PrintController::class, 'printAttendances'])->name('print.report-atend');
+        Route::get('print/report-sales/', [PrintController::class, 'printSales'])->name('print.report-sales');
         Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
         Route::get('absence', [AttendanceController::class, 'absenceIndex'])->name('absence.index');
         Route::get('leave', [ScheduleController::class, 'leaveIndex'])->name('leave.index');
@@ -102,8 +108,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::post('update/absence/status/{id}', [AttendanceController::class, 'updateAbsenceStatus'])->name('absence.update.status');
         Route::post('update/leave/status/{id}', [ScheduleController::class, 'updateLeaveStatus'])->name('leave.update.status');
 
-        Route::get('report/sales/', [ReportController::class, 'salesReport'])->name('report.sales');
-        Route::get('report/attendances/', [ReportController::class, 'attendancesReport'])->name('report.attendances');
+
      });
 
 
@@ -144,10 +149,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('reservation/pay/{id}', [ReservationController::class, 'payment'])->name('reservation.pay');
         Route::get('reservation/cancel/{id}', [ReservationController::class, 'cancel'])->name('reservation.cancel');
         //print
-        Route::get('/print/invoice/{id}', function($id){
-            $payment = Payment::findOrFail($id);
-            return view('print.invoice', compact('payment'));
-        })->name('print.invoice');
+        Route::get('print/receipt-order/{id}', [PrintController::class, 'printReceiptOrder'])->name('print.receipt-ord');
+
         Route::get('/print/receipt/{id}', function($id){
             $payment = Payment::findOrFail($id);
             return view('print.receipt', compact('payment'));

@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h3 class="h5 mb-4 text-center">Laporan Penjualan</h3>
-                <form method="GET" action="{{ route('report.sales') }}">
+                <form method="GET" action="{{ route('check.report.sales') }}">
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label for="start_date">Start Date:</label>
@@ -24,6 +24,9 @@
                         </div>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary mb-2">Filter</button>
+                        </div>
+                        <div class="col-auto">
+                            <a href="{{ route('print.report-sales') }}" class="btn btn-primary mb-2">Print</a>
                         </div>
                     </div>
                 </form>

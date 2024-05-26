@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
-    public function salesReport(Request $request)
+    public function sales(Request $request)
     {
+        // return dd('hi');
          // Retrieve the start and end date from the request
          $startDate = $request->input('start_date');
          $endDate = $request->input('end_date');
- 
+
          // Set default date range to current month if not provided
          if (!$startDate) {
              $startDate = Carbon::now()->startOfMonth()->toDateString();
@@ -26,7 +27,7 @@ class ReportController extends Controller
          if (!$endDate) {
              $endDate = Carbon::now()->endOfMonth()->toDateString();
          }
- 
+
          // Fetch sales data grouped by product within the date range
          $salesData = DetailOrder::selectRaw('products.id, products.image, products.nama, detail_orders.harga, SUM(detail_orders.jumlah) as total_quantity, SUM(detail_orders.total_harga) as total_sales')
              ->join('products', 'detail_orders.product_id', '=', 'products.id')
@@ -35,12 +36,12 @@ class ReportController extends Controller
              ->where('orders.status', 'lunas')
              ->groupBy('products.id', 'products.image', 'products.nama', 'detail_orders.harga')
              ->get();
- 
+
          // Pass the sales data and the filter dates to the view
          return view('user.owner.report.sales', compact('salesData', 'startDate', 'endDate'));
     }
 
-    public function attendancesReport(Request $request)
+    public function attendances(Request $request)
     {
           // Retrieve the start and end date from the request
         $startDate = $request->input('start_date');
