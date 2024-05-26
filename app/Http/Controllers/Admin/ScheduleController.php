@@ -71,6 +71,7 @@ class ScheduleController extends Controller
 
     private function isDateWithinAnyHoliday($date, $holidays)
     {
+        $date = Carbon::parse($date);
         foreach ($holidays as $holiday) {
             $holidayStart = Carbon::parse($holiday->start_date)->startOfDay();
             $holidayEnd = Carbon::parse($holiday->end_date)->endOfDay();
