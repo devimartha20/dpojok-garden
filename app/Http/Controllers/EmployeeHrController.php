@@ -48,7 +48,7 @@ class EmployeeHrController extends Controller
 
         // Mengambil jadwal kerja hari ini
         $worktime = Worktime::where('day', $today)->first();
-        return view('employee.dashboard', compact('latestActivities', 'totalHadir', 'totalIzin', 'totalSakit', 'totalLibur', 'totalCuti'));
+        return view('employee.dashboard', compact('latestActivities', 'totalHadir', 'totalIzin', 'totalSakit', 'totalLibur', 'totalCuti', 'worktime'));
     }
 
     public function schedule()
