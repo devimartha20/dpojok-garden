@@ -63,8 +63,7 @@ class ScheduleController extends Controller
                 }
             }
 
-            if ($worktimeIsWithinHoliday){
-                 // Add remaining worktime event
+            if (!$worktimeIsWithinHoliday){
                 if ($worktimeStart < $worktimeEnd) {
                     $events[] = [
                         'title' => 'Kerja',
@@ -73,10 +72,7 @@ class ScheduleController extends Controller
                         'color' => 'blue'
                     ];
                 }
-            }else{
-                break;
             }
-
 
             // Add rest time event if rest_start_time and rest_end_time are set
             if ($worktime->rest_start_time && $worktime->rest_end_time) {
@@ -110,7 +106,7 @@ class ScheduleController extends Controller
                     }
                 }
 
-                // if ($resttimeIsWithinHoliday){
+                if (!$resttimeIsWithinHoliday){
                     // Add remaining rest time event
                     if ($restStart < $restEnd) {
                         $events[] = [
@@ -120,7 +116,7 @@ class ScheduleController extends Controller
                             'color' => 'green'
                         ];
                     }
-                // }
+                }
 
             }
         }
