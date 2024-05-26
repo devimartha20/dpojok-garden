@@ -160,6 +160,17 @@ class UpdateReservation extends Component
         $this->updateStatus();
     }
 
+    public function addAmountToPayment()
+    {
+        $this->validate([
+            'uang' => 'required|numeric|min:0',
+        ]);
+
+        $this->payment->uang += $this->uang;
+        $this->payment->save();
+        $this->updatePayment();
+    }
+
     public function loadProducts()
     {
         if (!empty($this->search)) {

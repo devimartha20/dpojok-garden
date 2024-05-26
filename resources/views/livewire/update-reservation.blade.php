@@ -71,4 +71,15 @@
             <button type="submit" class="btn btn-success">Update Payment</button>
         </form>
     </div>
+
+    <div class="payment-form mb-4">
+        <h4>Add to Payment</h4>
+        <form wire:submit.prevent="addAmountToPayment">
+            <div class="form-group">
+                <label for="uang">Amount:</label>
+                <input type="number" wire:model="uang" class="form-control" id="uang" min="0" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Add Amount</button>
+        </form>
+    </div>
 </div>
