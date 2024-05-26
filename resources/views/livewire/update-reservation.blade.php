@@ -1,6 +1,6 @@
 <div>
     <div class="mb-4">
-        <input type="text" wire:model="search" placeholder="Search for products..." class="form-control" />
+        <input type="text" wire:model.live="search" placeholder="Search for products..." class="form-control" />
     </div>
 
     <div class="product-list mb-4">
@@ -33,12 +33,12 @@
                     <tr>
                         <td>{{ $order['nama'] }}</td>
                         <td>
-                            <input type="number" wire:model="productOrders.{{ $index }}.jumlah" wire:change="updateDetailOrder({{ $index }})" class="form-control" />
+                            <input type="number" wire:model.live="productOrders.{{ $index }}.jumlah" wire:change="updateDetailOrder({{ $index }})" class="form-control" />
                         </td>
                         <td>{{ $order['harga_jual'] }}</td>
                         <td>{{ $order['total_harga'] }}</td>
                         <td>
-                            <input type="text" wire:model="productOrders.{{ $index }}.catatan" wire:change="updateDetailOrder({{ $index }})" class="form-control" />
+                            <input type="text" wire:model.live="productOrders.{{ $index }}.catatan" wire:change="updateDetailOrder({{ $index }})" class="form-control" />
                         </td>
                         <td>
                             <button wire:click="removeDetailOrder({{ $index }})" class="btn btn-danger btn-sm">Remove</button>
@@ -66,7 +66,7 @@
         <form wire:submit.prevent="updatePayment">
             <div class="form-group">
                 <label for="uang">Amount:</label>
-                <input type="number" wire:model="uang" class="form-control" id="uang" min="0" required />
+                <input type="number" wire:model.live="uang" class="form-control" id="uang" min="0" required />
             </div>
             <button type="submit" class="btn btn-success">Update Payment</button>
         </form>
@@ -77,7 +77,7 @@
         <form wire:submit.prevent="addAmountToPayment">
             <div class="form-group">
                 <label for="uang">Amount:</label>
-                <input type="number" wire:model="uang" class="form-control" id="uang" min="0" required />
+                <input type="number" wire:model.live="uang_new" class="form-control" id="uang" min="0" required />
             </div>
             <button type="submit" class="btn btn-primary">Add Amount</button>
         </form>

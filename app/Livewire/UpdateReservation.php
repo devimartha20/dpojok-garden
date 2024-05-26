@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class UpdateReservation extends Component
 {
-    public $total_price, $order, $payment, $search, $uang, $products, $productOrders = [], $total_all = 0, $reservation, $order_price, $previousPayment;
+    public $total_price, $order, $payment, $search, $uang, $uang_new, $products, $productOrders = [], $total_all = 0, $reservation, $order_price, $previousPayment;
 
     public function mount($reservation)
     {
@@ -19,6 +19,7 @@ class UpdateReservation extends Component
         $this->order = Order::where('reservation_id', $reservation->id)->first();
         $this->payment = Payment::find($this->order->payment_id);
         $this->previousPayment = $this->payment->replicate(); // Clone the current payment details
+        $this->uang = $this->payment->uang;
         $this->loadProducts();
         $this->loadOrderDetails();
     }
@@ -117,6 +118,9 @@ class UpdateReservation extends Component
         $this->order->update([
             'total_price' => $this->total_price,
         ]);
+        $this->payment->update([
+            'total_bayar' => $this->total_price
+        ]);
 
         $this->updatePayment();
     }
@@ -139,12 +143,14 @@ class UpdateReservation extends Component
 
     public function updatePayment()
     {
-        $this->validate([
-            'uang' => 'required|numeric|min:0',
-        ]);
+        if($this->uang == null){
+            $this->validate([
+                'uang' => 'required|numeric|min:0',
+            ]);
+        }
 
         $payment = Payment::find($this->payment->id);
-        $total_bayar = $payment->uang + $this->uang;
+        $total_bayar = $this->uang;
         $kembali = 0;
 
         if ($total_bayar >= $this->order->total_price) {
@@ -163,20 +169,33 @@ class UpdateReservation extends Component
     public function addAmountToPayment()
     {
         $this->validate([
-            'uang' => 'required|numeric|min:0',
+            'uang_new' => 'required|numeric|min:0',
         ]);
 
-        $this->payment->uang += $this->uang;
+        $uang = $this->payment->uang += $this->uang_new;
         $this->payment->save();
-        $this->updatePayment();
+        $payment = Payment::find($this->payment->id);
+        $kembali = 0;
+
+        if ($uang >= $this->order->total_price) {
+            $kembali = $uang - $this->order->total_price;
+        }
+
+        $payment->update([
+            'uang' => $uang,
+            'kembali' => $kembali,
+            'status' => $uang >= $payment->total_bayar ? 'lunas' : 'belum_lunas',
+        ]);
+
+        $this->updateStatus();
     }
 
     public function loadProducts()
     {
         if (!empty($this->search)) {
-            $this->products = Product::where('nama', 'like', '%' . $this->search . '%')->get();
+            $this->products = Product::where('stok', '>', 0)->where('nama', 'like', '%' . $this->search . '%')->get();
         } else {
-            $this->products = Product::all();
+            $this->products = Product::where('stok', '>', 0)->get();
         }
     }
 
