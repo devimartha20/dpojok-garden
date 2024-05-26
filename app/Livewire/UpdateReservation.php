@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class UpdateReservation extends Component
 {
-    public $total_price, $order, $payment, $search, $uang, $uang_new, $products, $productOrders = [], $total_all = 0, $reservation, $order_price, $previousPayment;
+    public $total_price, $order, $payment, $search, $uang = 0, $uang_new, $products, $productOrders = [], $total_all = 0, $reservation, $order_price, $previousPayment;
 
     public function mount($reservation)
     {
