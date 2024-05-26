@@ -11,7 +11,7 @@
         <div class="card bg-c-blue order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Hadir</h6>
-                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>486</span></h2>
+                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>{{ $totalHadir }}</span></h2>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
         <div class="card bg-c-blue order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Sakit</h6>
-                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>486</span></h2>
+                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>{{ $totalSakit }}</span></h2>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="card bg-c-blue order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Libur</h6>
-                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>486</span></h2>
+                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>{{ $totalLibur }}</span></h2>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         <div class="card bg-c-blue order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Izin</h6>
-                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>486</span></h2>
+                <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>{{ $totalIzin }}</span></h2>
             </div>
         </div>
     </div>
@@ -43,39 +43,10 @@
         <div class="card bg-c-green order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Cuti Kerja</h6>
-                <h2 class="text-right"><i class="ti-tag f-left"></i><span>1641</span></h2>
+                <h2 class="text-right"><i class="ti-tag f-left"></i><span>{{ $totalCuti }}</span></h2>
             </div>
         </div>
     </div>
-    {{-- Uncomment and adjust as necessary --}}
-    {{-- <div class="col-md-6 col-xl-3">
-        <div class="card bg-c-yellow order-card">
-            <div class="card-block">
-                <h6 class="m-b-20">Total Pendapatan</h6>
-                <h2 class="text-right"><i class="ti-reload f-left"></i><span>Rp. 12.000.000</span></h2>
-            </div>
-        </div>
-    </div> --}}
-    {{-- <div class="col-lg-8 col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h5>Grafik KInerja Kerja</h5>
-                <p></p>
-                <div class="card-header-right">
-                    <ul class="list-unstyled card-option">
-                        <li><i class="fa fa-chevron-left"></i></li>
-                        <li><i class="fa fa-window-maximize full-card"></i></li>
-                        <li><i class="fa fa-minus minimize-card"></i></li>
-                        <li><i class="fa fa-refresh reload-card"></i></li>
-                        <li><i class="fa fa-times close-card"></i></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card-block">
-                <canvas id="Statistics-chart" height="200"></canvas>
-            </div>
-        </div>
-    </div> --}}
     <div class="col-lg-12 col-md-12">
         <div class="card">
             <div class="card-header">
@@ -86,7 +57,7 @@
                 <div class="card borderless-card">
                     <div class="card-block info-breadcrumb">
                         <div class="breadcrumb-header">
-                            <h5>Senin, 26 Mei 2024</h5>
+                            <h5>{{ now()->format('l, d F Y') }}</h5>
                         </div>
                         <div class="page-header-breadcrumb">
                             <ul class="breadcrumb-title m-t-10">
@@ -114,7 +85,6 @@
                 <li><i class="fa fa-times close-card"></i></li>
             </ul>
         </div>
-
     </div>
     <div class="card-block table-border-style">
         <div class="table-responsive">
@@ -125,14 +95,29 @@
                         <th>Metode</th>
                         <th>Tanggal</th>
                         <th>Waktu</th>
-                        <th>Tipe Absen</th>
+                        <th>Tipe</th>
                         <th>Status</th>
+                        <th>Keterangan</th>
+                        <th>Catatan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td colspan="6" class="text-center">No Data</td>
-                    </tr>
+                    @forelse($latestActivities as $index => $activity)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $activity->source }}</td>
+                            <td>{{ \Carbon\Carbon::parse($activity->date)->format('Y-m-d') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($activity->date)->format('H:i') }}</td>
+                            <td>{{ ucfirst($activity->type) }}</td>
+                            <td>{{ ucfirst($activity->status) }}</td>
+                            <td>{{ $activity->keterangan }}</td>
+                            <td>{{ $activity->catatan }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="8" class="text-center">No Data</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
