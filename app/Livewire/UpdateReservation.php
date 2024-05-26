@@ -171,6 +171,7 @@ class UpdateReservation extends Component
         ]);
 
         $uang = $this->payment->uang += $this->uang_new;
+        $this->uang = $uang;
         $this->payment->save();
         $payment = Payment::find($this->payment->id);
         $kembali = $uang - $this->calculateOrderPrice();
