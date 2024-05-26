@@ -43,9 +43,9 @@ class EmployeeHrController extends Controller
             $leaveStart = $leave->start_date;
             $leaveEnd = $leave->end_date;
 
-            if ($this->isTimeOverlapping($leaveStart, $leaveEnd, $worktimes)) {
-                continue; // Skip the leave if it overlaps with a worktime
-            }
+            // if ($this->isTimeOverlapping($leaveStart, $leaveEnd, $worktimes)) {
+            //     continue; // Skip the leave if it overlaps with a worktime
+            // }
 
             $events[] = [
                 'title' => 'Cuti',
@@ -64,9 +64,9 @@ class EmployeeHrController extends Controller
             $absenceStart = $absence->start_date;
             $absenceEnd = $absence->end_date;
 
-            if ($this->isTimeOverlapping($absenceStart, $absenceEnd, $worktimes)) {
-                continue; // Skip the absence if it overlaps with a worktime
-            }
+            // if ($this->isTimeOverlapping($absenceStart, $absenceEnd, $worktimes)) {
+            //     continue; // Skip the absence if it overlaps with a worktime
+            // }
 
             $events[] = [
                 'title' => 'Libur',
