@@ -93,6 +93,11 @@
                             Kembali
                         </a>
                     </div>
+                    <div class="bottom-right">
+                        <a class="btn btn-primary" href="{{ route('reservation.edit', $reservation->id) }}">
+                            Edit
+                        </a>
+                    </div>
                 </div>
             </div>
 

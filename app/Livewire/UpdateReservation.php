@@ -11,13 +11,14 @@ use Livewire\Component;
 
 class UpdateReservation extends Component
 {
-    public $total_price, $order, $payment, $search, $uang, $products, $productOrders = [], $total_all = 0, $reservation, $order_price;
+    public $total_price, $order, $payment, $search, $uang, $products, $productOrders = [], $total_all = 0, $reservation, $order_price, $previousPayment;
 
     public function mount($reservation)
     {
         $this->reservation = $reservation;
         $this->order = Order::where('reservation_id', $reservation->id)->first();
         $this->payment = Payment::find($this->order->payment_id);
+        $this->previousPayment = $this->payment->replicate(); // Clone the current payment details
         $this->loadProducts();
         $this->loadOrderDetails();
     }
@@ -179,6 +180,7 @@ class UpdateReservation extends Component
             'products' => $this->products,
             'productOrders' => $this->productOrders,
             'total_price' => $this->total_price,
+            'previousPayment' => $this->previousPayment,
         ]);
     }
 }
