@@ -89,7 +89,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="bottom-left">
-                        <a class="btn btn-secondary" href="{{ route('customer.reservation.index') }}">
+                        <a class="btn btn-secondary" href="{{ route('reservation.index') }}">
                             Kembali
                         </a>
                     </div>
