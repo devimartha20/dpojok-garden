@@ -157,7 +157,13 @@ class ScheduleController extends Controller
         $request->validate([
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after_or_equal:start_time',
-            'rest_start_time' => 'nullable|date_format:H:i|before:end_time|after:start_time',
+            'rest_start_time' => [
+                'required_if:rest_end_time,!=,null',
+                'nullable',
+                'date_format:H:i',
+                'before:end_time',
+                'after:start_time',
+            ],
             'rest_end_time' => [
                 'nullable',
                 'date_format:H:i',

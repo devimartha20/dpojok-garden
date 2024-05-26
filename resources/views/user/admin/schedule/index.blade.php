@@ -89,7 +89,7 @@
                             @foreach($holidays as $holiday)
                                 <li>
                                     {{ $holiday->name }} <br>
-                                    <small>{{ $holiday->start_date->format('Y-m-d H:i') }} - {{ $holiday->end_date->format('Y-m-d H:i') }}</small>
+                                    <small>{{ $holiday->start_date->format('F j, Y, g:i a') }} - {{ $holiday->start_date->format('F j, Y, g:i a') }}</small>
                                     <button type="button" class="btn btn-warning btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $holiday->id }}">
                                         Edit
                                     </button>
@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="modal-body">
                                             Apakah Anda yakin untuk menghapus hari libur
-                                            {{ $holiday->name }} : {{ $holiday->start_date->format('Y-m-d H:i') }} - {{ $holiday->end_date->format('Y-m-d H:i') }} ?
+                                            {{ $holiday->name }} : {{ $holiday->start_date->format('F j, Y, g:i a') }} - {{ $holiday->end_date->format('F j, Y, g:i a') }} ?
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
