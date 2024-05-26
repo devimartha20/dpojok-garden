@@ -236,7 +236,7 @@
             <div class="pcoded-navigatio-lavel">Profil</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li>
-                    <a>
+                    <a href="{{ route('profile.edit') }}">
                         <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
                         <span class="pcoded-mtext" >Profil</span>
                         <span class="pcoded-mcaret"></span>
