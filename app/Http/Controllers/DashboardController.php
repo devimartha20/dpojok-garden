@@ -32,7 +32,7 @@ class DashboardController extends Controller
             })
             ->select('detail_orders.product_id', DB::raw('SUM(detail_orders.jumlah) as total_sold'))
             ->groupBy('detail_orders.product_id')
-            ->get();
+            ->count();
             $total_pendapatan = Order::where('status', 'lunas')->sum('total_harga');
             $total_pesanan_online = Order::where('tipe', 'online')->count();
             $total_pesanan_offline = Order::where('tipe', 'in_store')->count();

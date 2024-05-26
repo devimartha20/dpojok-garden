@@ -76,7 +76,7 @@
             </div>
         </div>
     </div> --}}
-    <div class="col-lg-12 col-md-12">
+    <div class="col-sm-12 col-md-12">
         <div class="card">
             <div class="card-header">
                 <h5>Grafik Pemesanan</h5>
@@ -144,7 +144,7 @@
                                 <tbody>
                                     @forelse ($pesanan_terbaru as $pt)
                                     <tr>
-                                        <td><img src="{{ asset('image/'.$pt->product->image) }}" alt="prod img" class="img-fluid"></td>
+                                        <td><img src="{{ asset('images/'.$pt->product->image) }}" alt="prod img" class="img-fluid"></td>
                                         <td>{{ $pt->product->nama }}</td>
                                         <td>{{ $pt->jumlah }}</td>
                                         <td>
