@@ -142,7 +142,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         })->name('riwayatpesan.route');
         Route::resource('reservation', ReservationController::class);
         Route::get('reservation/pay/{id}', [ReservationController::class, 'payment'])->name('reservation.pay');
-
+        Route::get('reservation/cancel/{id}', [ReservationController::class, 'cancel'])->name('reservation.cancel');
         //print
         Route::get('/print/invoice/{id}', function($id){
             $payment = Payment::findOrFail($id);

@@ -89,6 +89,16 @@ class ReservationController extends Controller
         return view('user.kasir.reservation.pay', compact('reservation', 'order'));
     }
 
+    public function cancel($id){
+        $reservation = Reservation::find($id);
+        $reservation->update([
+            'status' => 'dibatalkan',
+        ]);
+        $order = Order::where('reservation_id', $reservation->id)->update([
+            'progress' => 'dibatalkan',
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      */

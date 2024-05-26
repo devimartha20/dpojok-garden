@@ -130,7 +130,7 @@ class UpdateReservation extends Component
 
     public function updateStatus()
     {
-        $status = $this->uang <= 0 ? 'menunggu' : $this->reservation->status;
+        $status = $this->reservation->status == 'menunggu_pembayaran' ? $this->uang > 0 ? 'menunggu' : $this->reservation->status : $this->reservation->status;
         Reservation::findOrFail($this->reservation->id)->update([
             'status' => $status,
         ]);
