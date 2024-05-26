@@ -16,8 +16,8 @@ class Holiday extends Model
         'desc',
     ];
 
-    public $dates = [
-        'start_date',
-        'end_date',
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
     ];
 }
