@@ -14,33 +14,49 @@
                 <h2 class="mb-4">Our Menu</h2>
             </div>
         </div>
+
+        @php
+            $count = 0;
+        @endphp
+
         @forelse ($products as $product)
-            <div class="row no-gutters d-flex align-items-stretch">
-                <div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-                    <div class="menus d-sm-flex ftco-animate align-items-stretch fadeInUp ftco-animated">
-                        <div class="menu-img img" style="background-image: url({{ asset('images').'/'.$product->image }});"></div>
-                        <div class="text d-flex align-items-center">
-                            <div>
-                                <div class="d-flex">
-                                    <div class="one-half">
-                                        <h3>{{ $product->nama }}</h3>
-                                    </div>
-                                    <div class="one-forth">
-                                        <span class="price">{{ $product->harga_jual }}</span>
-                                    </div>
+            @if ($count % 5 == 0)
+                <div class="row no-gutters d-flex align-items-stretch">
+            @endif
+
+            <div class="col-md-12 col-lg-6 d-flex align-self-stretch">
+                <div class="menus d-sm-flex ftco-animate align-items-stretch fadeInUp ftco-animated">
+                    <div class="menu-img img" style="background-image: url({{ asset('images').'/'.$product->image }});"></div>
+                    <div class="text d-flex align-items-center">
+                        <div>
+                            <div class="d-flex">
+                                <div class="one-half">
+                                    <h3>{{ $product->nama }}</h3>
                                 </div>
-                                <p><span>{{ $product->productCategory->nama }}</span></p>
-                                {{-- <p><a href="#" class="btn btn-primary">Order now</a></p> --}}
+                                <div class="one-forth">
+                                    <span class="price">{{ $product->harga_jual }}</span>
+                                </div>
                             </div>
+                            <p><span>{{ $product->productCategory->nama }}</span></p>
                         </div>
                     </div>
                 </div>
             </div>
-        @empty
 
+            @php
+                $count++;
+            @endphp
+
+            @if ($count % 5 == 0 || $loop->last)
+                </div>
+            @endif
+
+        @empty
+            <!-- Handle empty case -->
         @endforelse
     </div>
 </section>
+
     <section class="ftco-section bg-light">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-2">
