@@ -20,16 +20,16 @@ class EmployeeHrController extends Controller
 
         // Mengambil 5 aktivitas terbaru dari karyawan yang sedang login
         $latestActivities = DB::table('absences')
-            ->select('employee_id', 'start_date as date', 'reason as type', 'status', 'keterangan', 'catatan', DB::raw('"Absence" as source'))
+            ->select('employee_id', 'start_date as date', 'reason as type', 'status', 'keterangan', 'catatan', DB::raw('"Tdak Hadir" as source'))
             ->where('employee_id', $employeeId)
             ->unionAll(
                 DB::table('leaves')
-                    ->select('employee_id', 'start_date as date', 'reason as type', 'status', DB::raw('NULL as keterangan'), 'catatan', DB::raw('"Leave" as source'))
+                    ->select('employee_id', 'start_date as date', 'reason as type', 'status', DB::raw('NULL as keterangan'), 'catatan', DB::raw('"Cuti" as source'))
                     ->where('employee_id', $employeeId)
             )
             ->unionAll(
                 DB::table('attendances')
-                    ->select('employee_id', 'date', 'type', 'status', DB::raw('NULL as keterangan'), DB::raw('NULL as catatan'), DB::raw('"Attendance" as source'))
+                    ->select('employee_id', 'date', 'type', 'status', DB::raw('NULL as keterangan'), DB::raw('NULL as catatan'), DB::raw('"Hadir" as source'))
                     ->where('employee_id', $employeeId)
             )
             ->orderBy('date', 'desc')
@@ -42,7 +42,13 @@ class EmployeeHrController extends Controller
         $totalSakit = Absence::where('employee_id', $employeeId)->where('reason', 'sakit')->count();
         $totalLibur = Absence::where('employee_id', $employeeId)->where('reason', 'libur')->count();
         $totalCuti = Leave::where('employee_id', $employeeId)->count();
-        return view('employee.dashboard', compact('latestActivities', 'totalHadir', 'totalIzin', 'totalSakit', 'totalLibur', 'totalCuti'));
+
+        // Mendapatkan hari ini dalam bentuk integer (1-7, dimana 1 = Senin, 7 = Minggu)
+        $today = Carbon::now()->dayOfWeekIso;
+
+        // Mengambil jadwal kerja hari ini
+        $worktime = Worktime::where('day', $today)->first();
+        return view('employee.dashboard', compact('latestActivities', 'totalHadir', 'totalIzin', 'totalSakit', 'totalLibur', 'totalCuti', 'worktime'));
     }
 
     public function schedule()

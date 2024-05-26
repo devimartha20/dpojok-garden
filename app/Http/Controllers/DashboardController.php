@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\DetailOrder;
 use App\Models\Admin\Order;
+use App\Models\Admin\Product;
 use DB;
 use Illuminate\Http\Request;
 use Auth;
@@ -164,7 +165,8 @@ class DashboardController extends Controller
         }
         else if (Auth::user()->hasRole('pelanggan'))
         {
-            return view('user.pelanggan.dashboard');
+            $products = Product::where('stok', '>', 0)->get();
+            return view('user.pelanggan.dashboard', compact('products'));
         }
 
         return abort('403');
