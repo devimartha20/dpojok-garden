@@ -256,13 +256,13 @@
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a>
                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                         <span class="pcoded-mtext" >Reservasi</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
             @endhasrole
 
@@ -276,13 +276,13 @@
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a>
                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                         <span class="pcoded-mtext" >Reservasi</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
             @endhasrole
 
