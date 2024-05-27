@@ -21,9 +21,9 @@
                 @endif
 
                 @if($payment->status === 'belum_lunas')
-                    <div class="text-right mb-4">
+                    {{-- <div class="text-right mb-4">
                         <a class="btn btn-info" href="{{ route('print.invoice', $payment->id) }}" target="_blank">Print Invoice</a>
-                    </div>
+                    </div> --}}
                     <form wire:submit.prevent="pay">
                         <div class="form-group">
                             <label for="payment_method">Metode Pembayaran</label>
@@ -72,8 +72,7 @@
                     </form>
                 @elseif($payment->status === 'lunas')
                     <div class="text-right mb-4">
-                        <a class="btn btn-success mr-2" href ="{{ route('print.receipt', $payment->id) }}" target="_blank">Print Receipt</a>
-                        <a class="btn btn-info" href="{{ route('print.invoice', $payment->id) }}" target="_blank">Print Invoice</a>
+                        <a class="btn btn-success mr-2" href ="{{ route('print.receipt-resv', $reservation->id) }}" target="_blank">Print Receipt</a>
                     </div>
                     <div>
                         <p class="mb-2">Status Pembayaran: <span class="font-weight-bold">{{ $payment->status }}</span></p>
