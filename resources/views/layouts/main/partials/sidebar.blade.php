@@ -303,13 +303,13 @@
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-                <li class="">
+                {{-- <li class="">
                     <a href="{{ route('riwayatpesan.route') }}">
                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                         <span class="pcoded-mtext" >Riwayat</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
             @endhasrole
 
