@@ -122,7 +122,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('metode', PaymentMethodController::class);
         Route::resource('customer', CustomerController::class);
         Route::resource('employee', EmployeeController::class);
-        Route::resource('reservation', ReservationController::class);
+        // Route::resource('reservation', ReservationController::class);
 
 
         Route::get('/kelola-ketidakhadiran', function () {
