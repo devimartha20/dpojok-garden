@@ -86,12 +86,12 @@ class ProductCategoryController extends Controller
                 'deskripsi.required' => 'Deskripsi Wajib Diisi',
             ]);
 
-            $kategori = ProductCategory::findOrFail($id)->update([
+            $updated = ProductCategory::findOrFail($id)->update([
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
             ]);
 
-            if ($kategori)
+            if ($updated)
             {
                 return redirect()->back()->with('success', 'Kategori Berhasil Diubah!');
             }
@@ -104,7 +104,10 @@ class ProductCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        ProductCategory::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Kategori Berhasil Dihapus!');
+        $deleted = ProductCategory::destroy($id);
+        if($deleted){
+            return redirect()->back()->with('success', 'Kategori Berhasil Dihapus!');
+        }
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 }

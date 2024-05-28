@@ -37,7 +37,7 @@
                                     <span class="price">{{ $product->harga_jual }}</span>
                                 </div>
                             </div>
-                            <p><span>{{ $product->productCategory->nama }}</span></p>
+                            <p><span>{{ $product->productCategory->nama ?? '-' }}</span></p>
                         </div>
                     </div>
                 </div>
