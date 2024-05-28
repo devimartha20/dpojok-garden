@@ -16,6 +16,9 @@ class DetailOrder extends Model
         'total_harga',
         'jumlah',
         'catatan',
+        'nama',
+        'deskripsi',
+        'image',
     ];
 
     public function product()

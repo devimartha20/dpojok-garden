@@ -13,10 +13,10 @@
                         <div class="accordion-box ui-accordion ui-widget ui-helper-reset" id="single-open" role="tablist">
                             <div class="product-details">
                                 <div class="col-md-2">
-                                    <img src="{{ asset('images/'.$do['product']->image) }}" alt="Product Image" class="product-image">
+                                    <img src="{{ asset('images/'.$do['image']) }}" alt="Product Image" class="product-image">
                                 </div>
                                 <div class="col-md-4">
-                                    <h3>{{ $do['product']->nama }}</h3>
+                                    <h3>{{ $do['nama'] }}</h3>
                                     <p class="total-price">Harga : Rp. {{ number_format($do['harga']) }}</p>
                                     <p class="total-price">Total : Rp. {{ number_format($do['total_harga']) }}</p>
                                 </div>

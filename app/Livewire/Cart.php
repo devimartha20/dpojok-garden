@@ -104,18 +104,24 @@ class Cart extends Component
         foreach ($this->selectedItems as $itemId => $isChecked) {
             if ($isChecked) {
                 $dc = DetailCart::findOrFail($itemId);
-                $product = Product::findOrFail($dc->product->id);
-                $detailOrders[] = [
-                    'detail_cart_id' => $dc->id,
-                    'product' => $product,
-                    'harga' => $product->harga_jual,
-                    'total_harga' => $product->harga_jual * $dc->jumlah,
-                    'jumlah' => $dc->jumlah,
-                ];
+                $product = Product::find($dc->product->id);
+                if ($product){
+                    $detailOrders[] = [
+                        'detail_cart_id' => $dc->id,
+                        'product' => $product,
+                        'harga' => $product->harga_jual,
+                        'total_harga' => $product->harga_jual * $dc->jumlah,
+                        'jumlah' => $dc->jumlah,
+                        'nama' => $product->nama,
+                        'deskripsi' => $product->deskripsi,
+                        'image' => $product->image,
+                    ];
+                }
+                
             }
         }
 
-        if (empty($detailOrders)) {
+        if ($detailOrders == []) {
             session()->flash('error', 'Tidak ada item yang dipilih.');
         }
 

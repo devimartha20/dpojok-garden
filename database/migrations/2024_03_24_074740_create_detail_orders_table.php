@@ -16,6 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id')->nullable();
             $table->integer('jumlah');
+            $table->string('nama');
+            $table->string('deskripsi');
+            $table->string('image')->nullable();
             $table->bigInteger('harga');
             $table->bigInteger('total_harga');
             $table->string('catatan')->nullable();

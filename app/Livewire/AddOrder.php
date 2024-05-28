@@ -126,16 +126,36 @@ class AddOrder extends Component
 
         // Save each item in productOrders array to DetailOrder model
         foreach ($this->productOrders as $productOrder) {
-            DetailOrder::create([
-                'order_id' => $order->id,
-                'product_id' => $productOrder['product'],
-                'jumlah' => $productOrder['jumlah'],
-                'total_harga' => $productOrder['total_harga'],
-                'harga' => $productOrder['harga_jual'],
-                'catatan' => $productOrder['catatan'],
-                // Add other fields as needed
-            ]);
+            $product = Product::find($productOrder['product']);
+            if($product){
+                DetailOrder::create([
+                    'order_id' => $order->id,
+                    'product_id' => $productOrder['product'],
+                    'jumlah' => $productOrder['jumlah'],
+                    'total_harga' => $productOrder['total_harga'],
+                    'harga' => $productOrder['harga_jual'],
+                    'nama' => $product->nama,
+                    'deskripsi'=> $product->deskripsi,
+                    'image' => $product->image,
+                    'catatan' => $productOrder['catatan'],
+                    // Add other fields as needed
+                ]);
+            }
         }
+
+        //update to ensure price is calculated properly
+        $jumlah_pesanan = DetailOrder::where('order_id', $order->id)->sum('jumlah');
+        $total_harga = DetailOrder::where('order_id', $order_id)->sum('total_harga');
+
+        Order::find($order->id)->update([
+            'jumlah_pesanan' => $jumlah_pesanan,
+            'total_harga' => $total_harga,
+        ]);
+
+        Payment::find($order->payment_id)->update([
+            'total_bayar' => $total_harga,
+        ]);
+
 
         // Optionally, you can redirect to another page after saving
         session()->flash('success', 'Pemesanan berhasil disimpan, silahkan lakukan pembayaran!');

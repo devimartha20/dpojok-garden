@@ -15,7 +15,6 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::all();
-
         $productCategory = ProductCategory::all();
         return view('user.admin.product.index', compact('product','productCategory'));
     }
@@ -39,13 +38,23 @@ class ProductController extends Controller
             'nama' => 'required|unique:products,nama',
             'image' => 'required|image',
             'deskripsi' => 'required',
-            'product_category_id' => 'required',
-            'harga_jual' => 'required',
-            'stok' => 'required',
-
+            'product_category_id' => 'required|int',
+            'harga_jual' => 'required|min:1',
+            'stok' => 'required|min:0',
+        ], [
+            'nama.required' => 'Nama produk wajib diisi.',
+            'nama.unique' => 'Produk dengan nama tersebut sudah ada.',
+            'image.required' => 'Gambar produk wajib diisi.',
+            'image.required' => 'Format gambar tidak valid',
+            'product_category_id.required' => 'Kategori produk wajib diisi.',
+            'product_category_id.int' => 'Kategori produk tidak valid.',
+            'harga_jual.required' => 'Harga jual wajib diisi.',
+            'harga_jual.min' => 'Harga jual harus lebih besar dari 0 rupiah',
+            'stok.required' => 'Stok wajib diisi.',
+            'stok.min' => 'Stok harus bernilai positif.',
         ]);
 
-        $imageName = time().'.'.$request->image->extension();
+        $imageName = time().'-produk.'.$request->image->extension();
 
         $request->image->move(public_path('images'), $imageName);
 
