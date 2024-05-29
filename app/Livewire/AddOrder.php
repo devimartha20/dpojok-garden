@@ -128,6 +128,12 @@ class AddOrder extends Component
         foreach ($this->productOrders as $productOrder) {
             $product = Product::find($productOrder['product']);
             if($product){
+                $sourcePath = public_path('images/' . $product->image);
+                if (File::exists($sourcePath)) {
+                    $destinationFolder = public_path('images/details');
+                    $destinationPath = $destinationFolder . '/' . $product->image;
+                    File::copy($sourcePath, $destinationPath);
+                }
                 DetailOrder::create([
                     'order_id' => $order->id,
                     'product_id' => $productOrder['product'],

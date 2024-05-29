@@ -84,14 +84,27 @@ class ConfirmController extends Controller
         // return dd($request);
         //insert product to detail orders
         foreach($request->product as $idx => $do){
-            DetailOrder::create([
-                'order_id' => $order->id,
-                'product_id' => $idx,
-                'jumlah' => $request->jumlah[$idx],
-                'harga' => $request->harga[$idx],
-                'total_harga' => $request->jumlah[$idx] * $request->harga[$idx],
-                'catatan' => $request->catatan[$idx]
-            ]);
+            $product = Product::find($idx);
+            if ($product){
+                $sourcePath = public_path('images/' . $product->image);
+                if (File::exists($sourcePath)) {
+                    $destinationFolder = public_path('images/details');
+                    $destinationPath = $destinationFolder . '/' . $product->image;
+                    File::copy($sourcePath, $destinationPath);
+                }
+                DetailOrder::create([
+                    'order_id' => $order->id,
+                    'product_id' => $idx,
+                    'jumlah' => $request->jumlah[$idx],
+                    'harga' => $request->harga[$idx],
+                    'total_harga' => $request->jumlah[$idx] * $request->harga[$idx],
+                    'catatan' => $request->catatan[$idx],
+                    'nama' => $product->nama,
+                    'image' => $product->image,
+                    'deskripsi' => $product->deskripsi,
+                ]);
+            }
+            
         }
 
         foreach($request->dc as $idx => $dc){
