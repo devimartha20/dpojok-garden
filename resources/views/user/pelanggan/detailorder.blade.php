@@ -72,10 +72,10 @@
                             @foreach ($order->detailOrders as $do)
                             <div>
                                 <div class="product-image">
-                                    <img src="{{ asset('images/'.$do->product->image) }}" alt="Gambar Produk" width="150">
+                                    <img src="{{ asset('images/details/'.$do->image) }}" alt="Gambar Produk" width="150">
                                 </div>
                                 <div>
-                                    <p><strong>Produk:</strong> {{ $do->product->nama }}</p>
+                                    <p><strong>Produk:</strong> {{ $do->nama }}</p>
                                     <p><strong>Jumlah:</strong> {{ $do->jumlah }}</p>
                                     <p><strong>Harga:</strong> Rp. {{ number_format($do->harga) }}</p>
                                     <p><strong>Catatan:</strong> {{ $do->catatan ?? '-' }}</p> <br>

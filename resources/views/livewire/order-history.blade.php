@@ -49,7 +49,7 @@
                             <div class="product-details">
                                 <p>
                                     @foreach ($o->detailOrders as $do)
-                                        {{ $do->product->nama }} {{ $do->jumlah }}x, <br>
+                                        {{ $do->nama }} {{ $do->jumlah }}x, <br>
                                     @endforeach
                                 </p>
                             </div>
@@ -76,7 +76,7 @@
                             <div class="product-details">
                                 <p>
                                     @foreach ($o->detailOrders as $do)
-                                        {{ $do->product->nama }} {{ $do->jumlah }}x, <br>
+                                        {{ $do->nama}} {{ $do->jumlah }}x, <br>
                                     @endforeach
                                 </p>
                             </div>
@@ -103,7 +103,7 @@
                             <div class="product-details">
                                 <p>
                                     @foreach ($o->detailOrders as $do)
-                                        {{ $do->product->nama }} {{ $do->jumlah }}x, <br>
+                                        {{ $do->nama}} {{ $do->jumlah }}x, <br>
                                     @endforeach
                                 </p>
                             </div>
@@ -129,7 +129,7 @@
                             <div class="product-details">
                                 <p>
                                     @foreach ($o->detailOrders as $do)
-                                        {{ $do->product->nama }} {{ $do->jumlah }}x, <br>
+                                        {{ $do->nama}} {{ $do->jumlah }}x, <br>
                                     @endforeach
                                 </p>
                             </div>
@@ -156,7 +156,7 @@
                             <div class="product-details">
                                 <p>
                                     @foreach ($o->detailOrders as $do)
-                                        {{ $do->product->nama }} {{ $do->jumlah }}x, <br>
+                                        {{ $do->nama}} {{ $do->jumlah }}x, <br>
                                     @endforeach
                                 </p>
                             </div>
