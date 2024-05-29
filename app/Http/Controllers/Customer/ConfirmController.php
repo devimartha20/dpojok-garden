@@ -13,15 +13,19 @@ use Illuminate\Http\Request;
 class ConfirmController extends Controller
 {
     public function index(){
-        $detailOrders = session()->get('detailOrders');
-
-        $total_items = count($detailOrders);
-
+        $detailOrders_old = session()->get('detailOrders');
+        $detailOrders = [];
+        $total_items = 0;
         $total_amount = 0;
-        foreach($detailOrders as $do){
-            $total_amount += $do['total_harga'];
+        foreach($detailOrders_old as $do){
+            $product = Product::find($do['product']->id);
+            if ($product){
+                $detailOrders[] = $do
+                $total_amount += $do['total_harga'];
+            }
+           
         }
-        // Fetch products based on the extracted product IDs
+        $total_items = count($detailOrders);
 
 
         return view('user.pelanggan.confirm', compact('detailOrders', 'total_items', 'total_amount'));
