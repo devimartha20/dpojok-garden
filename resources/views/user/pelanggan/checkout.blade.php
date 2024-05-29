@@ -77,10 +77,10 @@ data-client-key="{{ config('app.client_key') }}"></script>
             <div class="accordion-box ui-accordion ui-widget ui-helper-reset" id="single-open" role="tablist">
                 <div class="product-details row">
                     <div class="col-md-3 col-4">
-                        <img src="{{ asset('images/'.$do->product->image) }}" alt="Product Image" class="product-image">
+                        <img src="{{ asset('images/details/'.$do->image) }}" alt="Product Image" class="product-image">
                     </div>
                     <div class="col-md-6 col-8">
-                        <h3>{{ $do->product->nama }}</h3>
+                        <h3>{{ $do->nama }}</h3>
                         <p class="total-price">Harga Satuan : Rp. {{ number_format($do->harga) }}</p>
                         <p class="total-price">Total : Rp. {{ number_format($do->total_harga) }}</p>
                         <p class="total-price">Catatan : {{ $do->catatan }}</p>

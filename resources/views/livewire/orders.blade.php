@@ -107,7 +107,7 @@
                                         @foreach ($o->detailOrders as $do)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $do->product->nama }}</td>
+                                            <td>{{ $do->nama }}</td>
                                             <td>{{ $do->jumlah }}</td>
                                             <td>{{ $do->catatan ?? '-' }}</td>
                                         </tr>
@@ -212,7 +212,7 @@
                                         @foreach ($o->detailOrders as $do)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $do->product->nama }}</td>
+                                            <td>{{ $do->nama }}</td>
                                             <td>{{ $do->jumlah }}</td>
                                             <td>{{ $do->catatan ?? '-' }}</td>
                                         </tr>
@@ -318,7 +318,7 @@
                                         @foreach ($o->detailOrders as $do)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $do->product->nama }}</td>
+                                            <td>{{ $do->nama }}</td>
                                             <td>{{ $do->jumlah }}</td>
                                             <td>{{ $do->catatan ?? '-' }}</td>
                                         </tr>
@@ -418,7 +418,7 @@
                                         @foreach ($o->detailOrders as $do)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $do->product->nama }}</td>
+                                            <td>{{ $do->nama }}</td>
                                             <td>{{ $do->jumlah }}</td>
                                             <td>{{ $do->catatan ?? '-' }}</td>
                                         </tr>
