@@ -39,19 +39,22 @@ class ProductController extends Controller
             'nama' => 'required|unique:products,nama',
             'image' => 'required|image',
             'deskripsi' => 'required',
-            'product_category_id' => 'required|int',
-            'harga_jual' => 'required|min:1',
-            'stok' => 'required|min:0',
+            'product_category_id' => 'required|integer',
+            'harga_jual' => 'required|numeric|min:1',
+            'stok' => 'required|integer|min:0',
         ], [
             'nama.required' => 'Nama produk wajib diisi.',
             'nama.unique' => 'Produk dengan nama tersebut sudah ada.',
             'image.required' => 'Gambar produk wajib diisi.',
             'image.image' => 'Format gambar tidak valid',
+            'deskripsi.required' => 'Deskripsi produk wajib diisi.',
             'product_category_id.required' => 'Kategori produk wajib diisi.',
-            'product_category_id.int' => 'Kategori produk tidak valid.',
+            'product_category_id.integer' => 'Kategori produk tidak valid.',
             'harga_jual.required' => 'Harga jual wajib diisi.',
-            'harga_jual.min' => 'Harga jual harus lebih besar dari 0 rupiah',
+            'harga_jual.numeric' => 'Harga jual harus berupa angka.',
+            'harga_jual.min' => 'Harga jual harus lebih besar dari 0 rupiah.',
             'stok.required' => 'Stok wajib diisi.',
+            'stok.integer' => 'Stok harus berupa angka.',
             'stok.min' => 'Stok harus bernilai positif.',
         ]);
 
@@ -106,6 +109,9 @@ class ProductController extends Controller
             'deskripsi' => 'required',
             'product_category_id' => 'required|int',
             'harga_jual' => 'required',
+
+        ], [
+            'nama.unique' => 'Nama sudah ada',
 
         ]);
 
