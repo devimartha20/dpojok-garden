@@ -207,9 +207,9 @@
     	    margin-right: 10px;
     	}
         &:hover{
-            color: #524C42;
+            color: $primary-color;
             span,i{
-                color: #524C42 !important;
+                color: $primary-color !important;
             }
         }
 	}

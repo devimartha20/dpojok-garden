@@ -4,7 +4,7 @@
 .email-card {
     padding: 0 15px;
     .user-head {
-        background-color: #524C42;
+        background-color: $primary-color;
         padding: 10px;
         min-height: 80px;
         display: flex;
@@ -43,8 +43,8 @@
                         border: 0px solid transparent;
                         &.active,
                         &:hover {
-                            color:#524C42;
-                            background-color: lighten(#524C42,30%);
+                            color:$primary-color;
+                            background-color: lighten($primary-color,30%);
                         }
                     }
                 }
@@ -75,7 +75,7 @@
                 }
                 &.mail-work {
                     &:before {
-                        background-color: #524C42;
+                        background-color: $primary-color;
                     }
                 }
                 &.mail-design {
@@ -102,7 +102,7 @@
         }
     }
     .mail-box-head {
-        background-color: #524C42;
+        background-color: $primary-color;
         min-height: 80px;
         padding: 20px 0;
         h3 {
@@ -133,7 +133,7 @@
             transition: all ease-in .3s;
         }
         tr:hover {
-            background-color: lighten(#524C42,30%);
+            background-color: lighten($primary-color,30%);
             cursor: pointer;
         }
         .unread {

@@ -24,7 +24,7 @@
             top: 0;
             left: 32px;
             bottom: 0;
-            border-left: 1px solid #524C42;;
+            border-left: 1px solid $primary-color;;
         }
         &:after {
             content: '';
@@ -33,10 +33,10 @@
             top: 0;
             left: 34px;
             bottom: 0;
-            border-left: 1px solid #524C42;
+            border-left: 1px solid $primary-color;
         }
 
-        background:-webkit-linear-gradient(top, lighten(#524C42,15%) 0%, lighten(#524C42,30%) 5%) 0 0;
+        background:-webkit-linear-gradient(top, lighten($primary-color,15%) 0%, lighten($primary-color,30%) 5%) 0 0;
         background-size:100% 35px;
     }
     #Note-pad {

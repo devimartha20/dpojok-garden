@@ -405,13 +405,13 @@ $or:#2a363b;
 /**====== Primary-color css start ======**/
 
 $m-val:14;
-$primary-color:#524C42;
+$primary-colorr:#1abc9c;
 @while $m-val >=1 {
     .primary-colorr ul li:nth-child(#{$m-val}) {
-        $primary-color: lighten($primary-color, 3%);
-        background-color: $primary-color;
+        $primary-colorr: lighten($primary-colorr, 3%);
+        background-color: $primary-colorr;
         p:before {
-            content: "#{$primary-color}";
+            content: "#{$primary-colorr}";
         }
         $m-val: $m-val - 1;
     }

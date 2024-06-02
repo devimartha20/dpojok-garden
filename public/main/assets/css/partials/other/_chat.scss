@@ -10,7 +10,7 @@
 #main-chat {
     .chat-single-box.active {
         .chat-header {
-            background-color: #524C42;
+            background-color: $primary-color;
             a {
                 color: #fff;
             }
@@ -291,7 +291,7 @@
     height: 0;
     content: '';
     border: 8px solid transparent;
-    border-left-color: #524C42;
+    border-left-color: $primary-color;
 }
 
 .chat-reply-box {
@@ -319,7 +319,7 @@
     right: 0;
     border: none;
     background-color: transparent;
-    color: #524C42;
+    color: $primary-color;
     transform: rotate(45deg);
 }
 
@@ -371,7 +371,7 @@
 }
 
 .chat-menu-reply {
-    background: #524C42;
+    background: $primary-color;
     margin-right: 10px;
 }
 
@@ -398,7 +398,7 @@
 
 .chat-footer,
 .chat-link {
-    border-color: #524C42;
+    border-color: $primary-color;
 }
 
 .chat-footer .input-group-addon {
@@ -406,7 +406,7 @@
 }
 
 .form-control:focus ~ .chat-send {
-    border-color: #524C42;
+    border-color: $primary-color;
 }
 
 .minimized-box {
@@ -432,7 +432,7 @@
 
 .form-control:focus ~ .input-group-btn .btn-secondary {
     border-color: #66afe9;
-    color: #524C42;
+    color: $primary-color;
 }
 
 .img-chat-profile {

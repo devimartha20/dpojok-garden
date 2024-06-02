@@ -15,7 +15,7 @@
     }
     li.active {
         a {
-            color: #524C42;
+            color: $primary-color;
             font-weight: 600;
         }
     }
@@ -59,7 +59,7 @@
 
 .primary-nav {
     @extend .light-nav-border;
-    background-color: lighten(#524C42, 20%);
+    background-color: lighten($primary-color, 20%);
     a {
         color: #666;
     }
@@ -302,7 +302,7 @@
 
 .primary-nav-dark {
     @extend .dark-nav-border;
-    background-color: darken(#524C42, 10%);
+    background-color: darken($primary-color, 10%);
     border: none;
     a {
         color: #fff;
@@ -322,10 +322,10 @@
         color: rgba(255, 255, 255, 0.5);
     }
     .navbar-varient-submenu {
-        background-color: darken(#524C42, 10%);
-        border-color: darken(#524C42, 15%);
+        background-color: darken($primary-color, 10%);
+        border-color: darken($primary-color, 15%);
         a:hover {
-            background-color: darken(#524C42, 15%);
+            background-color: darken($primary-color, 15%);
         }
     }
 }

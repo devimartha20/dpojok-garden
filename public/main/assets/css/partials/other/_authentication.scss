@@ -4,7 +4,7 @@
 
 .common-img-bg {
     background-size: cover;
-    background:linear-gradient(45deg, #524C42, lighten(#524C42,10%)) ;
+    background:linear-gradient(45deg, $color-blue, lighten($color-blue,10%)) ;
     height: 100%;
 }
 .signin-card .auth-box button i,.signup-card .auth-box button i,.login-card .auth-box button i{
@@ -72,7 +72,7 @@
         background: #fff;
     }
     h1 {
-        color: #524C42;
+        color: #1b8bf9;
     }
     .forget {
         border-bottom: 1px solid #fff;
@@ -165,7 +165,7 @@
     padding: 20px;
     box-shadow: 0 2px 18px -2px rgb(0, 0, 0);
     .confirm h3 {
-        color: #524C42;
+        color: $primary-color;
         font-size: 34px;
     }
     i.icofont-check-circled {
