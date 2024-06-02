@@ -30,7 +30,7 @@
                                         </div>
                                     </div>
                                     <p>{{ $product->productCategory->nama ?? '-' }}</p>
-                                    <p><a href="{{ route('login') }}" class="btn btn-primary">Pesan sekarang</a></p>
+                                   
                                 </div>
                             </div>
                             <div class="menu-img img" style="background-image: url({{ asset('images/' . $product->image) }});"></div>
@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
                                     <p>{{ $product->productCategory->nama ?? '-' }}</p>
-                                    <p><a href="{{ route('login') }}" class="btn btn-primary">Pesan sekarang</a></p>
+                                    
                                 </div>
                             </div>
                         @endif
