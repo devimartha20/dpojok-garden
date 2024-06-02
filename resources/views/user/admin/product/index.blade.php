@@ -79,9 +79,9 @@
                                 </div>
                                 <div class="modal-body">
                                     Apakah Anda yakin untuk menghapus data produk {{ $p->product }} ? <br>
-                                    <span class="alert alert-danger">
+                                    <div class="alert-danger">
                                         Penghapusan akan menyebabkan pembatalan pada beberapa pemesanan dan pemesanan yang telah dibayar akan tetap dilanjutkan.
-                                    </span>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
