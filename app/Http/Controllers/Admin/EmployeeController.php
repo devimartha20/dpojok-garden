@@ -38,7 +38,7 @@ class EmployeeController extends Controller
                 'id_pegawai' => 'required|unique:employees,id_pegawai',
                 'nama' => 'required',
                 'role' => 'required',
-                'email' => 'required|unique:users,email',
+                'email' => 'required|unique:employees,email|unique:users,email',
                 'alamat' => 'required',
                 'telepon' => 'required|unique:employees,telepon',
             ],
@@ -115,7 +115,7 @@ class EmployeeController extends Controller
             [
                 'id_pegawai' => 'required|unique:employees,id_pegawai,'.$id,
                 'nama' => 'required',
-                'email' => 'required|unique:users,email,'.$user->id,
+                'email' => 'required|unique:users,email,'.$user->id.'|unique:employees,email,'.$employee->id,
                 'alamat' => 'required',
                 'telepon' => 'required|unique:employees,telepon,'.$id,
             ], [
@@ -167,7 +167,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::findOrFail($id);
         $user_delete = User::destroy($employee->user_id);
-        $customer_delete = Employee::destroy($id);
+        $employee_delete = Employee::destroy($id);
         return redirect()->back()->with('success', 'Data Pegawai Berhasil Dihapus!');
     }
 }
