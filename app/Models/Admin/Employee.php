@@ -15,7 +15,7 @@ class Employee extends Authenticatable
     use HasFactory;
 
     protected $fillable = [
-        'nik',
+        'id_pegawai',
         'nama',
         'alamat',
         'telepon',
