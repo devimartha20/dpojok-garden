@@ -46,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($pegawai as $e)
+                    @forelse ($employee as $e)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $e->user->getRoleNames()->first()}}</td>
