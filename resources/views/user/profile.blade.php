@@ -15,7 +15,7 @@
             </button>
         </div>
         <h2 class="name">{{ Auth::user()->name ?? '-' }}</h2>
-        <p class="idd">@eleanorpena</p>
+        <p class="idd">{{ Auth::user()->email }}</p>
         <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
             <span class="idd1">
             @foreach(Auth::user()->roles as $role)

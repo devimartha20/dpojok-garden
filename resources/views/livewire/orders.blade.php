@@ -450,7 +450,7 @@
                 @endforelse
 
             </div>
-            <div class="tab-pane {{ $state == 'dibatalkan' ? 'active' : '' }}" id="diterima" role="tabpanel" aria-expanded="false">
+            <div class="tab-pane {{ $state == 'dibatalkan' ? 'active' : '' }}" id="dibatalkan" role="tabpanel" aria-expanded="false">
                 <hr>
                 @forelse ($orders_d as $o)
                 <div class="card"  style="border: solid 0.5px #B4B4B8">
