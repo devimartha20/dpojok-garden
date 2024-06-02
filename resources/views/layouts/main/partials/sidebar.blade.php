@@ -116,13 +116,13 @@
         {{-- Human Resource --}}
         <div class="pcoded-navigatio-lavel">Human Resource</div>
         <ul class="pcoded-item pcoded-left-item">
-            {{-- <li>
-                <a href="{{ route('employee.index') }}">
+            <li>
+                <a href="{{ route('pegawai.index') }}">
                     <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Daftar Pegawai</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
-            </li> --}}
+            </li>
             <li>
                 <a href="{{ route('attendance.index') }}">
                     <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
@@ -165,7 +165,7 @@
         </ul>
 
             {{-- Pelanggan --}}
-            {{-- <div class="pcoded-navigatio-lavel">Kelola Pelanggan</div>
+            <div class="pcoded-navigatio-lavel">Kelola Pelanggan</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li class="pcoded-hasmenu">
                     <a>
@@ -190,7 +190,7 @@
                         </li>
                     </ul>
                 </li>
-            </ul> --}}
+            </ul>
 
             {{-- Laporan --}}
             <div class="pcoded-navigatio-lavel">Kelola Laporan</div>

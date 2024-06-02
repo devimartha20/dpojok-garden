@@ -121,7 +121,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('table', TableController::class);
         Route::resource('metode', PaymentMethodController::class);
         Route::resource('customer', CustomerController::class);
-        Route::resource('employee', EmployeeController::class);
+        Route::resource('pegawai', EmployeeController::class);
         // Route::resource('reservation', ReservationController::class);
 
 
