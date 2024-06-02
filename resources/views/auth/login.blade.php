@@ -19,7 +19,7 @@
     <link rel="icon" href="{{ asset('main/assets/images/favicon.ico') }}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
-    <!-- Required Fremwork -->
+    <!-- Required Framework -->
     <link rel="stylesheet" type="text/css" href="{{ asset('main/assets/css/bootstrap/css/bootstrap.min.css') }}">
     <!-- themify-icons line icon -->
     <link rel="stylesheet" type="text/css" href="{{ asset('main/assets/icon/themify-icons/themify-icons.css') }}">
@@ -27,6 +27,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('main/assets/icon/icofont/css/icofont.css') }}">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('main/assets/css/style.css') }}">
+
+    <style>
+        .common-img-bg {
+            background-image: url('{{ asset('main/assets/images/your-background.jpg') }}');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 
 <body class="fix-menu">
@@ -59,21 +67,12 @@
                                 <hr/>
                                 <div class="input-group">
                                     <input type="email" name="email" value="{{ old('email') }}" required class="form-control" placeholder="Your Email Address">
-
-
-                                    {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
-                                    {{-- <span class="md-line"></span> --}}
                                 </div>
                                 @if ($errors->first('email'))
                                 <span class="alert-danger">{{ $errors->first('email') }}</span>
                                 @endif
                                 <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="Password"
-                                    name="password"
-                                    required
-                                    autocomplete="current-password"
-                                    >
-
+                                    <input type="password" class="form-control" placeholder="Password" name="password" required autocomplete="current-password">
                                 </div>
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     <span class="md-line"></span>
@@ -99,16 +98,6 @@
                                     </div>
                                 </div>
                                 <hr/>
-                                {{-- <div class="row">
-                                    <div class="col-md-10">
-                                        <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
-                                        <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <img src="{{ asset('main/assets/images/auth/Logo-small-bottom.png') }}" alt="small-logo.png">
-                                    </div>
-                                </div> --}}
-
                             </div>
                         </form>
                         <!-- end of form -->
@@ -179,52 +168,3 @@
 </body>
 
 </html>
-
-
-{{-- <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}
