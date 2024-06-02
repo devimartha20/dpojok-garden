@@ -197,7 +197,6 @@
                 @foreach ($products as $product)
                     <div class="col-md-12 col-lg-6 d-flex align-self-stretch">
                         <div class="menus d-sm-flex ftco-animate align-items-stretch">
-                            <div class="menu-img img" style="background-image: url({{ asset('images/' . $product->image) }});"></div>
                             <div class="text d-flex align-items-center">
                                 <div>
                                     <div class="d-flex">
@@ -214,6 +213,8 @@
                                     <p><a href="{{ route('login') }}" class="btn btn-primary">Pesan sekarang</a></p>
                                 </div>
                             </div>
+                            <div class="menu-img img" style="background-image: url({{ asset('images/' . $product->image) }});"></div>
+                            
                         </div>
                     </div>
                 @endforeach
