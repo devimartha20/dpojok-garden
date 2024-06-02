@@ -21,6 +21,7 @@ class Employee extends Authenticatable
         'alamat',
         'telepon',
         'user_id',
+        'password',
     ];
 
     public function order()

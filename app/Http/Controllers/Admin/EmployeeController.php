@@ -80,6 +80,7 @@ class EmployeeController extends Controller
                 'alamat' => $request->alamat,
                 'telepon' => $request->telepon,
                 'user_id' => $user->id,
+                'password' => Hash::make($request->password),
             ]);
 
             return redirect()->route('employee.index')->with('success', 'Data Pegawai Berhasil Ditambahkan!');
