@@ -27,7 +27,7 @@
             {!! implode('', $errors->all('<div style="color: red;">:message</div>')) !!}
         @endif
         <br>
-        <a href="{{ route('employee.create') }}" class="btn btn-sm btn-info btn-round">
+        <a href="{{ route('pegawai.create') }}" class="btn btn-sm btn-info btn-round">
             Tambah Data Pegawai
         </a>
         <br>
@@ -46,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($employee as $e)
+                    @forelse ($pegawai as $e)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $e->user->getRoleNames()->first()}}</td>
@@ -56,7 +56,7 @@
                             <td>{{ $e->alamat }}</td>
                             <td>{{ $e->telepon }}</td>
                             <td>
-                                <a href="/employee/{{ $e->id }}/edit" type="button" class="btn btn-primary btn-round btn-sm">
+                                <a href="/pegawai/{{ $e->id }}/edit" type="button" class="btn btn-primary btn-round btn-sm">
                                     Edit
                                 </a>
                                 <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $e->id }}">
@@ -76,11 +76,11 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    Apakah Anda yakin untuk menghapus data pegawai {{ $e->employee }} ?
+                                    Apakah Anda yakin untuk menghapus data pegawai {{ $e->pegawai }} ?
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <form action="{{ route('employee.destroy', $e->id) }}" method="POST">
+                                <form action="{{ route('pegawai.destroy', $e->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Hapus</button>

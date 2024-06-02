@@ -29,7 +29,7 @@
             @endif
         <div class="card-block">
             {{-- <h4 class="sub-title">Form Tambah Produk</h4> --}}
-            <form action="{{ route('employee.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('pegawai.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Role</label>
@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="card-footer text-right">
-                <a href="{{ route('employee.index') }}" class="btn btn-round btn-secondary">Kembali</a>
+                <a href="{{ route('pegawai.index') }}" class="btn btn-round btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-round btn-primary">Simpan</button>
             </div>
         </div>

@@ -29,7 +29,7 @@
             @endif
         <div class="card-block">
             {{-- <h4 class="sub-title">Form Tambah Produk</h4> --}}
-            <form action="{{ route('employee.update',$employee->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('pegawai.update',$pegawai->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="form-group row">
@@ -37,46 +37,46 @@
                     <div class="col-sm-10">
                         <select name="role" required class="form-control">
                                 <option>Pilih Role</option>
-                                <option value='admin'{{ $employee->user->getRoleNames()->first() == 'admin' ? 'selected' : '' }}>Admin</option>
-                                <option value='kasir' {{ $employee->user->getRoleNames()->first() == 'kasir' ? 'selected' : '' }}>Kasir</option>
-                                <option value='koki' {{ $employee->user->getRoleNames()->first() == 'koki' ? 'selected' : '' }}>Koki</option>
-                                <option value='pelayan' {{ $employee->user->getRoleNames()->first() == 'pelayan' ? 'selected' : '' }}>Pelayan</option>
+                                <option value='admin'{{ $pegawai->user->getRoleNames()->first() == 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value='kasir' {{ $pegawai->user->getRoleNames()->first() == 'kasir' ? 'selected' : '' }}>Kasir</option>
+                                <option value='koki' {{ $pegawai->user->getRoleNames()->first() == 'koki' ? 'selected' : '' }}>Koki</option>
+                                <option value='pelayan' {{ $pegawai->user->getRoleNames()->first() == 'pelayan' ? 'selected' : '' }}>Pelayan</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">NIK</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="NIK"  value="{{ $employee->nik }}" name="nik" required>
+                        <input type="text" class="form-control" placeholder="NIK"  value="{{ $pegawai->nik }}" name="nik" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Nama"  value="{{ $employee->nama }}"name="nama" required>
+                        <input type="text" class="form-control" placeholder="Nama"  value="{{ $pegawai->nama }}"name="nama" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" placeholder="Email" required value="{{ $employee->user->email }}" name="email">
+                        <input type="email" class="form-control" placeholder="Email" required value="{{ $pegawai->user->email }}" name="email">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <input type="text" min=1 class="form-control" placeholder="Alamat" required value="{{ $employee->alamat }}" name="alamat">
+                        <input type="text" min=1 class="form-control" placeholder="Alamat" required value="{{ $pegawai->alamat }}" name="alamat">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Telepon</label>
                     <div class="col-sm-10">
-                        <input type="text" min=1 class="form-control" placeholder="Telepon" required value="{{ $employee->telepon }}" name="telepon">
+                        <input type="text" min=1 class="form-control" placeholder="Telepon" required value="{{ $pegawai->telepon }}" name="telepon">
                     </div>
                 </div>
             </div>
             <div class="card-footer text-right">
-                <a href="{{ route('employee.index') }}" class="btn btn-round btn-secondary">Kembali</a>
+                <a href="{{ route('pegawai.index') }}" class="btn btn-round btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-round btn-primary">Simpan</button>
             </div>
         </div>
