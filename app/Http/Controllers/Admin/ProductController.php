@@ -104,15 +104,21 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nama' => 'required|unique:products,nama,'.$id,
+            'nama' => 'required|unique:products,nama,' . $id,
             'image' => 'nullable|image',
             'deskripsi' => 'required',
             'product_category_id' => 'required|int',
-            'harga_jual' => 'required',
-
+            'harga_jual' => 'required|numeric|min:1',
         ], [
-            'nama.unique' => 'Nama sudah ada',
-
+            'nama.required' => 'Nama produk wajib diisi.',
+            'nama.unique' => 'Nama sudah ada.',
+            'image.image' => 'Format gambar tidak valid.',
+            'deskripsi.required' => 'Deskripsi produk wajib diisi.',
+            'product_category_id.required' => 'Kategori produk wajib diisi.',
+            'product_category_id.int' => 'Kategori produk tidak valid.',
+            'harga_jual.required' => 'Harga jual wajib diisi.',
+            'harga_jual.numeric' => 'Harga jual harus berupa angka.',
+            'harga_jual.min' => 'Harga jual harus lebih besar dari 0 rupiah.',
         ]);
 
         $product = Product::findOrFail($id);
