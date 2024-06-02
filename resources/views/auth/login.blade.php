@@ -30,7 +30,7 @@
 
     <style>
         .common-img-bg {
-            background-image: url('{{ asset('main/assets/images/your-background.jpg') }}');
+            background-image: url('{{ asset('main/assets/images/background-login.jpg') }}');
             background-size: cover;
             background-position: center;
         }

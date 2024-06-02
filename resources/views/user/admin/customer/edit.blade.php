@@ -57,6 +57,12 @@
                         <input type="text" min=1 class="form-control" placeholder="Telepon" required value="{{ $customer->telepon }}" name="telepon">
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" min=1 class="form-control" placeholder="Password" name="password">
+                    </div>
+                </div>
             </div>
             <div class="card-footer text-right">
                 <a href="{{ route('customer.index') }}" class="btn btn-round btn-secondary">Kembali</a>

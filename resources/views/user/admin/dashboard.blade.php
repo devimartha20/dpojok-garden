@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="col-md-6 col-xl-3">
-        <div class="card bg-c-blue order-card">
+        <div class="card bg-c-green order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Pesanan Selesai</h6>
                 <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>{{ $total_pesanan_selesai }}</span></h2>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="col-md-6 col-xl-3">
-        <div class="card bg-c-green order-card">
+        <div class="card bg-c-yellow order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Total Produk Terjual</h6>
                 <h2 class="text-right"><i class="ti-tag f-left"></i><span>{{ $total_produk_terjual }}</span></h2>
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="col-md-6 col-xl-3">
-        <div class="card bg-c-yellow order-card">
+        <div class="card bg-c-pink order-card">
             <div class="card-block">
                 <h6 class="m-b-20">Total Pendapatan</h6>
                 <h2 class="text-right"><i class="ti-reload f-left"></i><span>Rp. {{ number_format($total_pendapatan) }}</span></h2>
@@ -155,7 +155,7 @@
                                 <tbody>
                                     @forelse ($pesanan_terbaru as $pt)
                                     <tr>
-                                        <td><img src="{{ asset('images/'.$pt->product->image) }}" alt="prod img" class="img-fluid"></td>
+                                        <td><img src="{{ asset('images/'.$pt->product->image) }}" alt="prod img" class="img-fluid" style="width: 200px; height: auto"></td>
                                         <td>{{ $pt->product->nama }}</td>
                                         <td>{{ $pt->jumlah }}</td>
                                         <td>
@@ -173,7 +173,7 @@
                                             @endif
 
                                         </td>
-                                        <td>{{ $pt->customer ? $pt->customer->nama : $pt->pemesan ?? '' }}</td>
+                                        <td>{{ $pt->order->pemesan ?? '-' }}</td>
                                         <td>{{ $pt->created_at }}</td>
                                         <td>{{ $pt->total_harga }}</td>
                                     </tr>

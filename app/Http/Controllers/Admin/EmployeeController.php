@@ -83,7 +83,7 @@ class EmployeeController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            return redirect()->route('employee.index')->with('success', 'Data Pegawai Berhasil Ditambahkan!');
+            return redirect()->route('pegawai.index')->with('success', 'Data Pegawai Berhasil Ditambahkan!');
     }
 
     /**
@@ -157,7 +157,7 @@ class EmployeeController extends Controller
                 'email' => $request->email,
             ]);
 
-            return redirect()->route('employee.index')->with('success', 'Data Pegawai Berhasil Diupdate!');
+            return redirect()->route('pegawai.index')->with('success', 'Data Pegawai Berhasil Diupdate!');
     }
 
     /**
