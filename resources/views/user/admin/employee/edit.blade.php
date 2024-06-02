@@ -45,9 +45,9 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">NIK</label>
+                    <label class="col-sm-2 col-form-label">id_pegawai</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="NIK"  value="{{ $pegawai->nik }}" name="nik" required>
+                        <input type="text" class="form-control" placeholder="id_pegawai"  value="{{ $pegawai->id_pegawai }}" name="id_pegawai" required>
                     </div>
                 </div>
                 <div class="form-group row">

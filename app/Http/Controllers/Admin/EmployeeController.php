@@ -47,7 +47,7 @@ class EmployeeController extends Controller
             ]);
 
             $user = User::create([
-                'nik' => $request->nik,
+                'id_pegawai' => $request->id_pegawai,
                 'name' => $request->nama,
                 'email' => $request->email,
                 'alamat' => $request->alamat,
@@ -74,7 +74,7 @@ class EmployeeController extends Controller
             }
 
             $employee = Employee::create([
-                'nik' => $request->nik,
+                'id_pegawai' => $request->id_pegawai,
                 'nama' => $request->nama,
                 'alamat' => $request->alamat,
                 'telepon' => $request->telepon,
@@ -111,7 +111,7 @@ class EmployeeController extends Controller
         $user = User::findOrFail($employee->user_id);
         $request->validate(
             [
-                'nik' => 'required|unique:employees,nik,'.$id,
+                'id_pegawai' => 'required|unique:employees,id_pegawai,'.$id,
                 'nama' => 'required',
                 'email' => 'required|unique:users,email,'.$user->id,
                 'alamat' => 'required',
@@ -143,7 +143,7 @@ class EmployeeController extends Controller
 
             $employee_update = Employee::findOrFail($id)->update(
             [
-            'nik' => $request->nik,
+            'id_pegawai' => $request->id_pegawai,
             'nama' => $request->nama,
             'email' => $request->email,
             'alamat' => $request->alamat,

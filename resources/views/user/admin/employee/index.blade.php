@@ -37,7 +37,7 @@
                     <tr>
                         <th>No</th>
                         <th>Role</th>
-                        <th>NIK</th>
+                        <th>ID Pegawai</th>
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Alamat</th>
@@ -50,7 +50,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $e->user->getRoleNames()->first()}}</td>
-                            <td>{{ $e->nik }}</td>
+                            <td>{{ $e->id_pegawai }}</td>
                             <td>{{ $e->nama }}</td>
                             <td>{{ $e->user->email }}</td>
                             <td>{{ $e->alamat }}</td>
