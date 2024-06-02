@@ -45,7 +45,7 @@
                         <div class="breadcrumb-header">
                             <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
                             <p>Tanggal Pesanan: {{ $o->created_at }}</p>
-                    
+
                             <div class="product-details">
                                 <p>
                                     @foreach ($o->detailOrders as $do)
