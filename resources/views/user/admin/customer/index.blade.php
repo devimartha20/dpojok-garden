@@ -37,7 +37,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Pelanggan</th>
-                        <th>Email</th>
+                        {{-- <th>Email</th> --}}
                         <th>Alamat</th>
                         <th>Telepon</th>
                         <th>Aksi</th>
@@ -48,7 +48,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $c->nama }}</td>
-                            <td>{{ $c->email }}</td>
+                            {{-- <td>{{ $c->email }}</td> --}}
                             <td>{{ $c->alamat }}</td>
                             <td>{{ $c->telepon }}</td>
                             <td>

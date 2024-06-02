@@ -57,21 +57,21 @@
             {{-- Produk --}}
             <div class="pcoded-navigatio-lavel">Data Produk</div>
             <ul class="pcoded-item pcoded-left-item">
-                <li class="pcoded-hasmenu {{ request()->is('product-category.index') || request()->is('product.index') ? 'active' : '' }}">
+                <li class="pcoded-hasmenu {{ request()->RouteIs('product-category.index') || request()->RouteIs('product.index') ? 'active' : '' }}">
                     <a>
                         <span class="pcoded-micon"><i class="ti-menu"></i></span>
                         <span class="pcoded-mtext">Produk</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                     <ul class="pcoded-submenu">
-                        <li class="{{ request()->is('product-category.index') ? 'active' : '' }}">
+                        <li class="{{ request()->RouteIs('product-category.index') ? 'active' : '' }}">
                             <a href="{{ route('product-category.index') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="">Kategori Produk</span>
                                 <span class="pcoded-mcaret"></span>
                             </a>
                         </li>
-                        <li class="{{ request()->is('product.index') ? 'active' : '' }}">
+                        <li class="{{ request()->RouteIs('product.index') ? 'active' : '' }}">
                             <a href="{{ route('product.index') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Daftar Produk</span>
@@ -84,8 +84,8 @@
 
             {{-- Meja --}}
             <div class="pcoded-navigatio-lavel">Data Meja</div>
-            <ul class="pcoded-item pcoded-left-item {{ request()->is('table.index') ? 'active' : '' }}">
-                <li>
+            <ul class="pcoded-item pcoded-left-item">
+                <li  class="{{ request()->RouteIs('table.index') ? 'active' : '' }}">
                     <a href="{{ route('table.index') }}">
                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                         <span class="pcoded-mtext" >Daftar Meja</span>
@@ -115,15 +115,15 @@
 
         {{-- Human Resource --}}
         <div class="pcoded-navigatio-lavel">Human Resource</div>
-        <ul class="pcoded-item pcoded-left-item {{ request()->is('pegawai.index') ? 'active' : '' }}">
-            <li>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="{{ request()->RouteIs('pegawai.index') ? 'active' : '' }}">
                 <a href="{{ route('pegawai.index') }}">
                     <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Daftar Pegawai</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li>
+            <li class="{{ request()->RouteIs('attendance.index') ? 'active' : '' }}">
                 <a href="{{ route('attendance.index') }}">
                     <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Absensi Karyawan</span>
@@ -132,28 +132,28 @@
             </li>
         </ul>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="pcoded-hasmenu">
+            <li class="pcoded-hasmenu {{ request()->RouteIs('schedule.index') || request()->RouteIs('absence.index') || request()->RouteIs('absence.index') ? 'active' : '' }}">
                 <a>
                     <span class="pcoded-micon"><i class="ti-agenda"></i></span>
                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Jadwal Kerja</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu">
-                    <li class="{{ request()->is('schedule.index') ? 'active' : '' }}">
+                    <li class="{{ request()->RouteIs('schedule.index') ? 'active' : '' }}">
                         <a href="{{ route('schedule.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jam Kerja</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
-                    <li class=" ">
+                    <li class="{{ request()->RouteIs('absence.index') ? 'active' : '' }}">
                         <a href="{{ route('absence.index')}}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Ketidakhadiran</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
-                    <li class=" ">
+                    <li class="{{ request()->RouteIs('leave.index') ? 'active' : '' }}">
                         <a href="{{ route('leave.index')}}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Cuti</span>
@@ -166,7 +166,7 @@
 
             {{-- Pelanggan --}}
             <div class="pcoded-navigatio-lavel">Kelola Pelanggan</div>
-            <ul class="pcoded-item pcoded-left-item">
+            <ul class="pcoded-item pcoded-left-item {{ request()->RouteIs('customer.index') ? 'active' : ''}}">
                 <li class="pcoded-hasmenu">
                     <a>
                         <span class="pcoded-micon"><i class="ti-id-badge"></i></span>
@@ -174,20 +174,20 @@
                         <span class="pcoded-mcaret"></span>
                     </a>
                     <ul class="pcoded-submenu">
-                        <li class=" ">
+                        <li class="{{ request()->RouteIs('customer.index')}} ? 'active' : ''">
                             <a href="{{ route('customer.index') }}">
                                 <span class="pcoded-micon"><i class="ti-id-badge"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Daftar Pelanggan</span>
                                 <span class="pcoded-mcaret"></span>
                             </a>
                         </li>
-                        <li class=" ">
+                        {{-- <li class=" ">
                             <a>
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">News Letter</span>
                                 <span class="pcoded-mcaret"></span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
             </ul>
@@ -195,21 +195,21 @@
             {{-- Laporan --}}
             <div class="pcoded-navigatio-lavel">Kelola Laporan</div>
             <ul class="pcoded-item pcoded-left-item">
-                <li class="pcoded-hasmenu">
+                <li class="pcoded-hasmenu {{ request()->RouteIs('check.report.sales') || request()->RouteIs('check.report.attendances') ? 'active' : '' }}">
                     <a>
                         <span class="pcoded-micon"><i class="ti-file"></i></span>
                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Laporan</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                     <ul class="pcoded-submenu">
-                        <li class=" ">
+                        <li class="{{ request()->RouteIs('check.report.sales') ? 'active' : ''}}">
                             <a href="{{ route('check.report.sales') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Penjualan</span>
                                 <span class="pcoded-mcaret"></span>
                             </a>
                         </li>
-                        <li class=" ">
+                        <li class="{{ request()->RouteIs('check.report.attendances') ? 'active' : ''}}">
                             <a href="{{ route('check.report.attendances') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Laporan Kinerja Karyawan</span>
@@ -234,7 +234,7 @@
 
             {{-- Profile --}}
             <div class="pcoded-navigatio-lavel">Profil</div>
-            <ul class="pcoded-item pcoded-left-item">
+            <ul class="pcoded-item pcoded-left-item request()->RouteIs('check.report.attendances') ? 'active' : ''}}">
                 <li>
                     <a href="{{ route('profile.edit') }}">
                         <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>

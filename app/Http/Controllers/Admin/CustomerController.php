@@ -36,7 +36,7 @@ class CustomerController extends Controller
         $request->validate(
             [
                 'nama' => 'required',
-                'email' => 'required|unique:customers,email|unique:users,email',
+                'email' => 'required|unique:users,email',
                 'alamat' => 'required',
                 'telepon' => 'required|unique:customers,telepon',
             ],
@@ -54,7 +54,6 @@ class CustomerController extends Controller
 
             $customer = Customer::create([
                 'nama' => $request->nama,
-                'email' => $request->email,
                 'alamat' => $request->alamat,
                 'telepon' => $request->telepon,
                 'user_id' => $user->id,
@@ -96,18 +95,16 @@ class CustomerController extends Controller
         $request->validate(
             [
                 'nama' => 'required',
-                'email' => 'required|unique:customers,email,'.$id.'|unique:users,email,'.$user->id,
+                'email' => 'required|unique:users,email,'.$user->id,
                 'alamat' => 'required',
                 'telepon' => 'required|unique:customers,telepon,'.$id,
             ], [
                 'nama.required' => 'Nama wajib diiis!',
             ]);
 
-
             $customer_update = Customer::findOrFail($id)->update(
             [
             'nama' => $request->nama,
-            'email' => $request->email,
             'alamat' => $request->alamat,
             'telepon' => $request->telepon,
             ]);
@@ -115,8 +112,10 @@ class CustomerController extends Controller
             $user_update = User::findOrFail($customer->user_id)->update([
             'name' => $request->nama,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
             ]);
+            if ($request->password){
+                User::findOrFail($customer->user_id)->update(['password' => Hash::make($request->password) ]);
+            }
 
             if ($customer_update)
             {
