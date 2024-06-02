@@ -83,7 +83,7 @@
             </div>
             <div class="card-block">
                 <span class="d-block text-c-blue f-24 f-w-600 text-center">{{ $total_pesanan_online + $total_pesanan_offline }}</span>
-                <canvas id="myChart" height="100"></canvas>
+                <canvas id="myChart" height="200"></canvas>
                 <div class="row justify-content-center m-t-15">
                     <div class="col-auto b-r-default m-t-5 m-b-5">
                         <h4>
