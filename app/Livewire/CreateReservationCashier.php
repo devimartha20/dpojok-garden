@@ -486,6 +486,7 @@ class CreateReservationCashier extends Component
         return view('livewire.create-reservation-cashier', [
             'products' => $this->products,
             'total_price' => $this->total_price,
+            'productOrders' => $this->productOrders,
         ]);
     }
 }
