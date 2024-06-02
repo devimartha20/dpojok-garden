@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Facades\File;
 
 class CreateReservation extends Component
 {
@@ -403,12 +404,20 @@ class CreateReservation extends Component
 
         foreach ($this->productOrders as $productOrder) {
             $product = Product::find($productOrder['product']);
-            if ($product){
+
+            if ($product) {
                 $sourcePath = public_path('images/' . $product->image);
-                if (\File::exists($sourcePath)) {
+
+                if (File::exists($sourcePath)) {
                     $destinationFolder = public_path('images/details');
-                    $destinationPath = $destinationFolder . '/' . $product->image;
-                    \File::copy($sourcePath, $destinationPath);
+
+                    // Ensure the destination folder exists
+                    File::ensureDirectoryExists($destinationFolder);
+
+                    $destinationPath = $destinationFolder . '/' . basename($sourcePath);
+
+                    // Copy the file to the destination folder
+                    File::copy($sourcePath, $destinationPath);
                 }
                 DetailOrder::create([
                     'order_id' => $order->id,
