@@ -84,7 +84,7 @@
 
             {{-- Meja --}}
             <div class="pcoded-navigatio-lavel">Data Meja</div>
-            <ul class="pcoded-item pcoded-left-item">
+            <ul class="pcoded-item pcoded-left-item {{ request()->is('table.index') ? 'active' : '' }}">
                 <li>
                     <a href="{{ route('table.index') }}">
                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
@@ -115,7 +115,7 @@
 
         {{-- Human Resource --}}
         <div class="pcoded-navigatio-lavel">Human Resource</div>
-        <ul class="pcoded-item pcoded-left-item">
+        <ul class="pcoded-item pcoded-left-item {{ request()->is('pegawai.index') ? 'active' : '' }}">
             <li>
                 <a href="{{ route('pegawai.index') }}">
                     <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
@@ -139,7 +139,7 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu">
-                    <li class=" ">
+                    <li class="{{ request()->is('schedule.index') ? 'active' : '' }}">
                         <a href="{{ route('schedule.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jam Kerja</span>
