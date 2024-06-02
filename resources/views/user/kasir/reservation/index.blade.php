@@ -54,7 +54,7 @@ Riwayat Reservasi
             <div class="card-block caption-breadcrumb">
                @forelse ($wp as $r)
                <div class="breadcrumb-header">
-                <h6>No Reservasi: {{ $r->no_reservasi }}<$reservation->id/h6>
+                <h6>No Reservasi: {{ $r->no_reservasi }}</h6>
                 <p>Tanggal Reservasi: {{ $r->date }}</p>
                 <p>Waktu Reservasi: {{ $r->start_time }} - {{ $r->end_time }}</p>
                 @foreach ($r->reservationTables as $rt)

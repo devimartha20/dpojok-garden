@@ -129,10 +129,10 @@ class AddOrder extends Component
             $product = Product::find($productOrder['product']);
             if($product){
                 $sourcePath = public_path('images/' . $product->image);
-                if (File::exists($sourcePath)) {
+                if (\File::exists($sourcePath)) {
                     $destinationFolder = public_path('images/details');
                     $destinationPath = $destinationFolder . '/' . $product->image;
-                    File::copy($sourcePath, $destinationPath);
+                    \File::copy($sourcePath, $destinationPath);
                 }
                 DetailOrder::create([
                     'order_id' => $order->id,
@@ -151,7 +151,7 @@ class AddOrder extends Component
 
         //update to ensure price is calculated properly
         $jumlah_pesanan = DetailOrder::where('order_id', $order->id)->sum('jumlah');
-        $total_harga = DetailOrder::where('order_id', $order_id)->sum('total_harga');
+        $total_harga = DetailOrder::where('order_id', $order->id)->sum('total_harga');
 
         Order::find($order->id)->update([
             'jumlah_pesanan' => $jumlah_pesanan,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\DetailOrder;
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductCategory;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class ProductController extends Controller
             'nama.required' => 'Nama produk wajib diisi.',
             'nama.unique' => 'Produk dengan nama tersebut sudah ada.',
             'image.required' => 'Gambar produk wajib diisi.',
-            'image.required' => 'Format gambar tidak valid',
+            'image.image' => 'Format gambar tidak valid',
             'product_category_id.required' => 'Kategori produk wajib diisi.',
             'product_category_id.int' => 'Kategori produk tidak valid.',
             'harga_jual.required' => 'Harga jual wajib diisi.',
@@ -140,7 +141,36 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        Product::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Produk Berhasil Dihapus!');
+        // Find the product by its ID
+        $product = Product::find($id);
+
+        // If the product exists, proceed with the logic
+        if ($product) {
+            // Find detail orders related to the product
+            $detailOrders = DetailOrder::where('product_id', $id)->get();
+
+            // Loop through each detail order
+            foreach ($detailOrders as $detailOrder) {
+                // Access the associated order
+                $order = $detailOrder->order;
+
+                // Check if the order status is 'belum_lunas' and progress is 'menunggu_pembayaran'
+                if ($order->status == 'belum_lunas' && $order->progress == 'menunggu_pembayaran') {
+                    // Change the order's progress to 'dibatalkan'
+                    $order->progress = 'dibatalkan';
+                    $order->save();
+                }
+            }
+
+            // Proceed to delete the product
+            $deleted = $product->delete();
+
+            if ($deleted) {
+                return redirect()->back()->with('success', 'Produk Berhasil Dihapus!');
+            }
+        }
+
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan');
     }
+
 }

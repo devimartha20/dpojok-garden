@@ -20,10 +20,10 @@ class ConfirmController extends Controller
         foreach($detailOrders_old as $do){
             $product = Product::find($do['product']->id);
             if ($product){
-                $detailOrders[] = $do
+                $detailOrders[] = $do;
                 $total_amount += $do['total_harga'];
             }
-           
+
         }
         $total_items = count($detailOrders);
 
@@ -91,10 +91,10 @@ class ConfirmController extends Controller
             $product = Product::find($idx);
             if ($product){
                 $sourcePath = public_path('images/' . $product->image);
-                if (File::exists($sourcePath)) {
+                if (\File::exists($sourcePath)) {
                     $destinationFolder = public_path('images/details');
                     $destinationPath = $destinationFolder . '/' . $product->image;
-                    File::copy($sourcePath, $destinationPath);
+                    \File::copy($sourcePath, $destinationPath);
                 }
                 DetailOrder::create([
                     'order_id' => $order->id,
@@ -108,7 +108,7 @@ class ConfirmController extends Controller
                     'deskripsi' => $product->deskripsi,
                 ]);
             }
-            
+
         }
 
         foreach($request->dc as $idx => $dc){

@@ -408,14 +408,26 @@ class CreateReservationCashier extends Component
         ]);
 
         foreach ($this->productOrders as $productOrder) {
-            DetailOrder::create([
-                'order_id' => $order->id,
-                'product_id' => $productOrder['product'],
-                'jumlah' => $productOrder['jumlah'],
-                'total_harga' => $productOrder['total_harga'],
-                'harga' => $productOrder['harga_jual'],
-                'catatan' => $productOrder['catatan'],
-            ]);
+            $product = Product::find($productOrder['product']);
+            if ($product){
+                $sourcePath = public_path('images/' . $product->image);
+                if (\File::exists($sourcePath)) {
+                    $destinationFolder = public_path('images/details');
+                    $destinationPath = $destinationFolder . '/' . $product->image;
+                    \File::copy($sourcePath, $destinationPath);
+                }
+                DetailOrder::create([
+                    'order_id' => $order->id,
+                    'product_id' => $productOrder['product'],
+                    'jumlah' => $productOrder['jumlah'],
+                    'total_harga' => $productOrder['total_harga'],
+                    'harga' => $productOrder['harga_jual'],
+                    'catatan' => $productOrder['catatan'],
+                    'nama' => $product->nama,
+                    'deskripsi'=> $product->deskripsi,
+                    'image' => $product->image,
+                ]);
+            }
         }
 
         session()->flash('success', 'Reservasi berhasil disimpan, silahkan lakukan pembayaran!');

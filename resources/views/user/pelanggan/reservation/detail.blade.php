@@ -47,10 +47,10 @@ data-client-key="{{ config('app.client_key') }}"></script>
                     </div>
                     @foreach ($order->detailorders as $do)
                         <div class="product-image">
-                            <img src="{{ asset('images').'/'.$do->product->image }}" alt="Produk" width="100">
+                            <img src="{{ asset('images/details').'/'.$do->image }}" alt="Produk" width="100">
                         </div>
                         <div class="accordion-desc">
-                            <h5>{{ $do->product->nama }}</h5>
+                            <h5>{{ $do->nama }}</h5>
                             <h5>{{ $do->harga }}</h5>
                             <h5>Jumlah: {{ $do->jumlah }}</h5>
                             <h5>Total Harga: {{ number_format($do->total_harga) }}</h5>

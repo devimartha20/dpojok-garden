@@ -63,6 +63,17 @@ class OnlineOrderController extends Controller
                         $update_product = Product::findOrFail($do->product_id)->update(['stok'=> $product->stok - $do->jumlah]);
                     }
                 }
+            }elseif ($order && request()->transaction_status == 'expired') {
+                // Update order status to 'dibatalkan'
+                $order->update([
+                    'progress' => 'dibatalkan',
+                ]);
+
+                if($order->reservation_id != null){
+                    Reservation::find($order->reservation_id)->update([
+                        'status' => 'dibatalkan'
+                    ]);
+                }
             }
 
             if ($order){
@@ -78,54 +89,10 @@ class OnlineOrderController extends Controller
 
 
         }
-            // return dd($request);
+
 
         }
-        // $callback = new CallbackService();
-        // $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
-        // return 'hi';
-        // $callback = new CallbackService();
 
-        // return dd($callback);
-
-        // if ($callback->isSignatureKeyVerified()) {
-        //     $notification = $callback->getNotification();
-        //     $order = $callback->getOrder();
-
-        //     if ($callback->isSuccess()) {
-        //         Order::where('no_pesanan', $order->no_pesanan)->update([
-        //             'status' => 'lunas',
-        //             'progress' => 'menunggu',
-        //         ]);
-        //         Payment::findOrFail($order->payment_id)->update([
-        //             'status' => 'lunas',
-        //             'kembali' => 0,
-        //             'uang'=> $order->total_harga,
-        //         ]);
-        //     }
-
-        //     Payment::findOrFail($order->payment_id)->update([
-        //         'transaction_time' => $notification->transaction_time,
-        //         'transaction_status' => $notification->transaction_status,
-        //         'transaction_id' => $notification->transaction_id,
-        //         'status_code' => $notification->status_code,
-        //         'payment_type' => $notification->payment_type,
-        //         'signature_key' => $notification->signature_key,
-
-        //     ]);
-
-        //     return response()
-        //         ->json([
-        //             'success' => true,
-        //             'message' => 'Notifikasi berhasil diproses',
-        //         ]);
-        // } else {
-        //     return response()
-        //         ->json([
-        //             'error' => true,
-        //             'message' => 'Signature key tidak terverifikasi',
-        //         ], 403);
-        // }
     }
 
     public function midtransCallback(Request $request){

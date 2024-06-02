@@ -31,8 +31,8 @@ class UpdateReservation extends Component
                 'id' => $detail->id,
                 'product' => $detail->product_id,
                 'jumlah' => $detail->jumlah,
-                'stok' => $detail->product->stok,
-                'nama' => $detail->product->nama,
+                'stok' => $detail->product->stok ?? 0,
+                'nama' => $detail->nama,
                 'harga_jual' => $detail->harga,
                 'total_harga' => $detail->total_harga,
                 'catatan' => $detail->catatan,
@@ -57,25 +57,37 @@ class UpdateReservation extends Component
                 $detailOrder->total_harga = $this->productOrders[$existingProductIndex]['total_harga'];
                 $detailOrder->save();
             } else {
-                $newDetailOrder = DetailOrder::create([
-                    'order_id' => $this->order->id,
-                    'product_id' => $product->id,
-                    'jumlah' => 1,
-                    'harga' => $product->harga_jual,
-                    'total_harga' => $product->harga_jual,
-                    'catatan' => '',
-                ]);
+                if($product){
+                    $sourcePath = public_path('images/' . $product->image);
+                    if (\File::exists($sourcePath)) {
+                        $destinationFolder = public_path('images/details');
+                        $destinationPath = $destinationFolder . '/' . $product->image;
+                        \File::copy($sourcePath, $destinationPath);
+                    }
+                    $newDetailOrder = DetailOrder::create([
+                        'order_id' => $this->order->id,
+                        'product_id' => $product->id,
+                        'jumlah' => 1,
+                        'harga' => $product->harga_jual,
+                        'total_harga' => $product->harga_jual,
+                        'catatan' => '',
+                        'nama' => $product->nama,
+                        'deskripsi'=> $product->deskripsi,
+                        'image' => $product->image,
+                    ]);
 
-                $this->productOrders[] = [
-                    'id' => $newDetailOrder->id,
-                    'product' => $product->id,
-                    'jumlah' => 1,
-                    'stok' => $product->stok,
-                    'nama' => $product->nama,
-                    'harga_jual' => $product->harga_jual,
-                    'total_harga' => $product->harga_jual,
-                    'catatan' => '',
-                ];
+                    $this->productOrders[] = [
+                        'id' => $newDetailOrder->id,
+                        'product' => $product->id,
+                        'jumlah' => 1,
+                        'stok' => $product->stok,
+                        'nama' => $product->nama,
+                        'harga_jual' => $product->harga_jual,
+                        'total_harga' => $product->harga_jual,
+                        'catatan' => '',
+                    ];
+                }
+
             }
 
             $this->calculateTotalHarga();
