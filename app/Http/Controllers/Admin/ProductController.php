@@ -104,7 +104,7 @@ class ProductController extends Controller
             'nama' => 'required|unique:products,nama,'.$id,
             'image' => 'nullable|image',
             'deskripsi' => 'required',
-            'product_category_id' => 'required',
+            'product_category_id' => 'required|int',
             'harga_jual' => 'required',
 
         ]);

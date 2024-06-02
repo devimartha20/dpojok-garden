@@ -3,6 +3,11 @@
     Tambah Produk
 @endsection
 @section('styles')
+<style>
+    #imagePreview{
+        display: none;
+    }
+</style>
  <!-- Notification.css -->
  <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/assets/pages/notification/notification.css">
 @endsection
@@ -34,7 +39,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Kategori Produk</label>
                     <div class="col-sm-10">
-                        <select name="product_category_id" required class="form-control">
+                        <select name="product_category_id" required class="form-control" required>
                             <option>Pilih Jenis Kategori</option>
                             @foreach ($productCategory as $c)
                                 <option value="{{ $c->id }}">{{ $c->nama }}</option>
@@ -84,6 +89,20 @@
     </form>
 @endsection
 @section('scripts')
+<script>
+    function previewImage(event) {
+         var input = event.target;
+         var reader = new FileReader();
+
+         reader.onload = function() {
+             var img = document.getElementById('imagePreview');
+             img.src = reader.result;
+             img.style.display = 'block';
+         };
+
+         reader.readAsDataURL(input.files[0]);
+     }
+ </script>
 <!-- notification js -->
 <script type="text/javascript" src="{{ asset('main/assets/js/bootstrap-growl.min.js') }}"></script>
 <script>
