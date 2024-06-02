@@ -93,7 +93,7 @@ class ConfirmController extends Controller
                 $sourcePath = public_path('images/' . $product->image);
                 if (\File::exists($sourcePath)) {
                     $destinationFolder = public_path('images/details');
-                    $destinationPath = $destinationFolder . '/' . $product->image;
+                    $destinationPath = $destinationFolder . '/' . basename($sourcePath);
                     \File::copy($sourcePath, $destinationPath);
                 }
                 DetailOrder::create([
