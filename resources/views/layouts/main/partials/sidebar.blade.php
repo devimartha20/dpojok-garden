@@ -117,7 +117,7 @@
         <div class="pcoded-navigatio-lavel">Human Resource</div>
         <ul class="pcoded-item pcoded-left-item">
             <li>
-                <a href="{{ route('employee.index') }}">
+                <a href="{{ route('pegawai.index') }}">
                     <span class="pcoded-micon"><i class="ti-calendar"></i><b>FC</b></span>
                     <span class="pcoded-mtext" >Daftar Pegawai</span>
                     <span class="pcoded-mcaret"></span>
