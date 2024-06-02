@@ -35,7 +35,7 @@ class EmployeeController extends Controller
     {
         $request->validate(
             [
-                'nik' => 'required|unique:employees,nik',
+                'id_pegawai' => 'required|unique:employees,id_pegawai',
                 'nama' => 'required',
                 'role' => 'required',
                 'email' => 'required|unique:users,email',
