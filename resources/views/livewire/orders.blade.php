@@ -1,11 +1,15 @@
 <div>
     <div class="col-lg-6 col-xl-12">
-        <!-- <h6 class="sub-title">Tab With Icon</h6> -->
-        <div class="sub-title">Pemesanan</div>
-        <!-- Nav tabs -->
+        <div class="title">Pemesanan</div>
         <ul class="nav nav-tabs md-tabs justify-content-center" role="tablist">
             <li class="nav-item">
-                <a class="nav-link {{ $state == 'menunggu' ? 'active' : '' }}" data-toggle="tab" href="#menunggu" role="tab" aria-expanded="true">
+                <a class="nav-link {{ $state == 'menunggu_pembayaran' ? 'active' : '' }}" data-toggle="tab" href="#menunggu_pembayaran" role="tab" aria-expanded="true">
+                    <i class="ti-timer"></i>
+                    Menunggu Pembayaran</a>
+                <div class="slide"></div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $state == 'menunggu' ? 'active' : '' }}" data-toggle="tab" href="#menunggu" role="tab" aria-expanded="false">
                     <i class="ti-timer"></i>
                     Menunggu</a>
                 <div class="slide"></div>
@@ -35,522 +39,163 @@
                 <div class="slide"></div>
             </li>
         </ul>
-        <!-- Tab panes -->
         <div class="tab-content card-block">
+            <div class="tab-pane {{ $state == 'menunggu_pembayaran' ? 'active' : '' }}" id="menunggu_pembayaran" role="tabpanel" aria-expanded="true">
+                <hr>
+                @forelse ($orders_wp as $o)
+                    <div class="card">
+                        <div class="card-block caption-breadcrumb card-body">
+                            <div class="breadcrumb-header">
+                                <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                                <div class="product-details">
+                                    <p>
+                                        @foreach ($o->detailOrders as $do)
+                                            {{ $do->nama }} {{ $do->jumlah }}x, <br>
+                                        @endforeach
+                                    </p>
+                                </div>
+                                <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                            </div>
+                            <div class="col float-start text-right">
+                                <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a></i></span>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="text-center">Tidak Ada Pesanan Menunggu Pembayaran</div>
+                @endforelse
+            </div>
             <div class="tab-pane {{ $state == 'menunggu' ? 'active' : '' }}" id="menunggu" role="tabpanel" aria-expanded="true">
                 <hr>
                 @forelse ($orders_w as $o)
-                <div class="card" style="border: solid 0.5px #B4B4B8">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col">
-                                <div class="breadcrumb-header">
-                                    <h5>No Pesanan : {{ $o->no_pesanan }}</h5>
-                                    <span>Pemesan :
-                                    @if ($o->tipe == 'in_store')
-                                        {{ $o->pemesan }}
-                                    @elseif($o->tipe == 'online')
-                                        {{ $o->customer->nama }}
-                                    @endif</span>
-                                    <p>@if ($o->packing == 'dine_in')
-                                        Makan di Tempat
-                                        @elseif($o->packing == 'take_away')
-                                        Dibungkus
-                                    @endif</p>
-                                </div>
-
-                                <div class="page-header-breadcrumb">
-                                    <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#detail{{ $o->id }}">
-                                        Lihat Detail Pemesanan
-                                    </button>
-                                    <ul class="breadcrumb-title m-t-10">
-                                        <li class="breadcrumb-item"><a href="#!">{{ $o->updated_at }}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col float-end text-right">
-                                <span><i>{{ $o->updated_at->diffForHumans() }}</i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer text-right">
-                        @role(['koki'])
-                        <button class="btn btn-warning" wire:click="updateStatus('{{ $o->id }}', 'diproses')">Proses ></button>
-                        @endrole
-                    </div>
-                </div>
-
-                {{-- Modal Detail --}}
-                <div class="modal fade" id="detail{{ $o->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                            Detail Order {{ $o->no_pesanan }}
-                            @if ($o->detailOrders->count() > 0)
-                                @if ($o->packing == 'dine_in')
-                                    <p class="text-uppercase">Makan di Tempat</p>
-                                @elseif($o->packing == 'take_away')
-                                <p class="text-uppercase">Dibungkus</p>
-                                @endif
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Menu</th>
-                                            <th>Jumlah</th>
-                                            <th>Catatan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    <div class="card">
+                        <div class="card-block caption-breadcrumb card-body">
+                            <div class="breadcrumb-header">
+                                <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                                <div class="product-details">
+                                    <p>
                                         @foreach ($o->detailOrders as $do)
-                                        <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $do->nama }}</td>
-                                            <td>{{ $do->jumlah }}</td>
-                                            <td>{{ $do->catatan ?? '-' }}</td>
-                                        </tr>
+                                            {{ $do->nama}} {{ $do->jumlah }}x, <br>
                                         @endforeach
-                                    </tbody>
-                                </table>
+                                    </p>
+                                </div>
+                                <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
                             </div>
-
-
-                            @endif
-
-
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-
+                            <div class="col float-start text-right">
+                                <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a></i></span>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
                 @empty
-                <div class="text-center">Tidak Ada Pesanan Menunggu</div>
+                    <div class="text-center">Tidak Ada Pesanan Menunggu</div>
                 @endforelse
             </div>
             <div class="tab-pane {{ $state == 'diproses' ? 'active' : '' }}" id="diproses" role="tabpanel" aria-expanded="false">
                 <hr>
                 @forelse ($orders_p as $o)
-                <div class="card"  style="border: solid 0.5px #B4B4B8">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col">
-                                <div class="breadcrumb-header">
-                                    <h5>No Pesanan : {{ $o->no_pesanan }}</h5>
-                                    <span>Pemesan :
-                                    @if ($o->tipe == 'in_store')
-                                        {{ $o->pemesan }}
-                                    @elseif($o->tipe == 'online')
-                                        {{ $o->customer->name }}
-                                    @endif</span>
-                                    <p>@if ($o->packing == 'dine_in')
-                                        Makan di Tempat
-                                        @elseif($o->packing == 'take_away')
-                                        Dibungkus
-                                    @endif</p>
-                                </div>
-                                <div class="page-header-breadcrumb">
-                                    <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#detail{{ $o->id }}">
-                                        Lihat Detail Pemesanan
-                                    </button>
-                                    <ul class="breadcrumb-title m-t-10">
-                                        <li class="breadcrumb-item"><a href="#!">{{ $o->updated_at }}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col float-end text-right">
-
-                                <span><i>{{ $o->updated_at->diffForHumans() }}</i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-between">
-                        @role(['koki'])
-                        <div>
-                            <button class="btn btn-danger" wire:click="updateStatus('{{ $o->id }}', 'menunggu')">< Menunggu</button>
-                        </div>
-                        <div>
-                            <button class="btn btn-info" wire:click="updateStatus('{{ $o->id }}', 'selesai')">Selesai ></button>
-                        </div>
-                        @endrole
-                    </div>
-                </div>
-                {{-- Modal Detail --}}
-                <div class="modal fade" id="detail{{ $o->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                            Detail Order {{ $o->no_pesanan }}
-                            @if ($o->detailOrders->count() > 0)
-                                @if ($o->packing == 'dine_in')
-                                    <p class="text-uppercase">Makan di Tempat</p>
-                                @elseif($o->packing == 'take_away')
-                                <p class="text-uppercase">Dibungkus</p>
-                                @endif
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Menu</th>
-                                            <th>Jumlah</th>
-                                            <th>Catatan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    <div class="card">
+                        <div class="card-block caption-breadcrumb card-body">
+                            <div class="breadcrumb-header">
+                                <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                                <div class="product-details">
+                                    <p>
                                         @foreach ($o->detailOrders as $do)
-                                        <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $do->nama }}</td>
-                                            <td>{{ $do->jumlah }}</td>
-                                            <td>{{ $do->catatan ?? '-' }}</td>
-                                        </tr>
+                                            {{ $do->nama}} {{ $do->jumlah }}x, <br>
                                         @endforeach
-                                    </tbody>
-                                </table>
+                                    </p>
+                                </div>
+                                <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
                             </div>
-
-
-                            @endif
-
-
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-
+                            <div class="col float-start text-right">
+                                <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a></i></span>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
                 @empty
-                <div class="text-center">Tidak Ada Pesanan Diproses</div>
+                    <div class="text-center">Tidak Ada Pesanan Diproses</div>
                 @endforelse
             </div>
             <div class="tab-pane {{ $state == 'selesai' ? 'active' : '' }}" id="selesai" role="tabpanel" aria-expanded="false">
                 <hr>
                 @forelse ($orders_f as $o)
-                <div class="card"  style="border: solid 0.5px #B4B4B8">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col">
-                                <div class="breadcrumb-header">
-                                    <h5>No Pesanan : {{ $o->no_pesanan }}</h5>
-                                    <span>Pemesan :
-                                    @if ($o->tipe == 'in_store')
-                                        {{ $o->pemesan }}
-                                    @elseif($o->tipe == 'online')
-                                        {{ $o->customer->name }}
-                                    @endif</span>
-                                    <p>@if ($o->packing == 'dine_in')
-                                        Makan di Tempat
-                                        @elseif($o->packing == 'take_away')
-                                        Dibungkus
-                                    @endif</p>
-                                </div>
-                                <div class="page-header-breadcrumb">
-                                    <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#detail{{ $o->id }}">
-                                        Lihat Detail Pemesanan
-                                    </button>
-                                    <ul class="breadcrumb-title m-t-10">
-                                        <li class="breadcrumb-item"><a href="#!">{{ $o->updated_at }}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col float-end text-right">
-                                <span><i>{{ $o->updated_at->diffForHumans() }}</i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                        @role('koki')
-                        <div class="card-footer text-left">
-                            <button class="btn btn-warning" wire:click="updateStatus('{{ $o->id }}', 'diproses')">< Proses</button>
-                        </div>
-                        @endrole
-                        @role('pelayan')
-                        <div class="card-footer text-right">
-                            <button class="btn btn-success" wire:click="updateStatus('{{ $o->id }}', 'diterima')">Diterima ></button>
-                        </div>
-                        @endrole
-
-                </div>
-                {{-- Modal Detail --}}
-                <div class="modal fade" id="detail{{ $o->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                            Detail Order {{ $o->no_pesanan }}
-                            @if ($o->detailOrders->count() > 0)
-                                @if ($o->packing == 'dine_in')
-                                    <p class="text-uppercase">Makan di Tempat</p>
-                                @elseif($o->packing == 'take_away')
-                                <p class="text-uppercase">Dibungkus</p>
-                                @endif
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Menu</th>
-                                            <th>Jumlah</th>
-                                            <th>Catatan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    <div class="card">
+                        <div class="card-block caption-breadcrumb card-body">
+                            <div class="breadcrumb-header">
+                                <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                                <div class="product-details">
+                                    <p>
                                         @foreach ($o->detailOrders as $do)
-                                        <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $do->nama }}</td>
-                                            <td>{{ $do->jumlah }}</td>
-                                            <td>{{ $do->catatan ?? '-' }}</td>
-                                        </tr>
+                                            {{ $do->nama}} {{ $do->jumlah }}x, <br>
                                         @endforeach
-                                    </tbody>
-                                </table>
+                                    </p>
+                                </div>
+                                <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
                             </div>
-
-
-                            @endif
-
-
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-
+                            <div class="col float-start text-right">
+                                <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a></i></span>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
                 @empty
-                <div class="text-center">Tidak Ada Pesanan yang Selesai</div>
+                    <div class="text-center">Tidak Ada Pesanan yang Selesai</div>
                 @endforelse
-
             </div>
             <div class="tab-pane {{ $state == 'diterima' ? 'active' : '' }}" id="diterima" role="tabpanel" aria-expanded="false">
                 <hr>
                 @forelse ($orders_s as $o)
-                <div class="card"  style="border: solid 0.5px #B4B4B8">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col">
-                                <div class="breadcrumb-header">
-                                    <h5>No Pesanan : {{ $o->no_pesanan }}</h5>
-                                    <span>Pemesan :
-                                    @if ($o->tipe == 'in_store')
-                                        {{ $o->pemesan }}
-                                    @elseif($o->tipe == 'online')
-                                        {{ $o->customer->name }}
-                                    @endif</span>
-                                    <p>@if ($o->packing == 'dine_in')
-                                        Makan di Tempat
-                                        @elseif($o->packing == 'take_away')
-                                        Dibungkus
-                                    @endif</p>
-                                </div>
-                                <div class="page-header-breadcrumb">
-                                    <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#detail{{ $o->id }}">
-                                        Lihat Detail Pemesanan
-                                    </button>
-                                    <ul class="breadcrumb-title m-t-10">
-                                        <li class="breadcrumb-item"><a href="#!">{{ $o->updated_at }}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col float-end text-right">
-                                <span><i>{{ $o->updated_at->diffForHumans() }}</i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer text-left">
-                        @role('pelayan')
-                        <button class="btn btn-info" wire:click="updateStatus('{{ $o->id }}', 'selesai')">< Selesai</button>
-                        @endrole
-                    </div>
-                </div>
-                {{-- Modal Detail --}}
-                <div class="modal fade" id="detail{{ $o->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                            Detail Order {{ $o->no_pesanan }}
-                            @if ($o->detailOrders->count() > 0)
-                                @if ($o->packing == 'dine_in')
-                                    <p class="text-uppercase">Makan di Tempat</p>
-                                @elseif($o->packing == 'take_away')
-                                <p class="text-uppercase">Dibungkus</p>
-                                @endif
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Menu</th>
-                                            <th>Jumlah</th>
-                                            <th>Catatan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    <div class="card">
+                        <div class="card-block caption-breadcrumb card-body">
+                            <div class="breadcrumb-header">
+                                <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                                <div class="product-details">
+                                    <p>
                                         @foreach ($o->detailOrders as $do)
-                                        <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $do->nama }}</td>
-                                            <td>{{ $do->jumlah }}</td>
-                                            <td>{{ $do->catatan ?? '-' }}</td>
-                                        </tr>
+                                            {{ $do->nama}} {{ $do->jumlah }}x, <br>
                                         @endforeach
-                                    </tbody>
-                                </table>
+                                    </p>
+                                </div>
+                                <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
                             </div>
-
-
-                            @endif
-
-
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-
+                            <div class="col float-start text-right">
+                                <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a></i></span>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
                 @empty
-                <div class="text-center">Tidak Ada Pesanan yang Diterima</d>
+                    <div class="text-center">Tidak Ada Pesanan yang Diterima</div>
                 @endforelse
-
             </div>
             <div class="tab-pane {{ $state == 'dibatalkan' ? 'active' : '' }}" id="dibatalkan" role="tabpanel" aria-expanded="false">
                 <hr>
                 @forelse ($orders_d as $o)
-                <div class="card"  style="border: solid 0.5px #B4B4B8">
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col">
-                                <div class="breadcrumb-header">
-                                    <h5>No Pesanan : {{ $o->no_pesanan }}</h5>
-                                    <span>Pemesan :
-                                    @if ($o->tipe == 'in_store')
-                                        {{ $o->pemesan }}
-                                    @elseif($o->tipe == 'online')
-                                        {{ $o->customer->name }}
-                                    @endif</span>
-                                    <p>@if ($o->packing == 'dine_in')
-                                        Makan di Tempat
-                                        @elseif($o->packing == 'take_away')
-                                        Dibungkus
-                                    @endif</p>
-                                </div>
-                                <div class="page-header-breadcrumb">
-                                    <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#detail{{ $o->id }}">
-                                        Lihat Detail Pemesanan
-                                    </button>
-                                    <ul class="breadcrumb-title m-t-10">
-                                        <li class="breadcrumb-item"><a href="#!">{{ $o->updated_at }}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col float-end text-right">
-                                <span><i>{{ $o->updated_at->diffForHumans() }}</i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer text-left">
-                        @role('pelayan')
-                        <button class="btn btn-info" wire:click="updateStatus('{{ $o->id }}', 'selesai')">< Selesai</button>
-                        @endrole
-                    </div>
-                </div>
-                {{-- Modal Detail --}}
-                <div class="modal fade" id="detail{{ $o->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                            Detail Order {{ $o->no_pesanan }}
-                            @if ($o->detailOrders->count() > 0)
-                                @if ($o->packing == 'dine_in')
-                                    <p class="text-uppercase">Makan di Tempat</p>
-                                @elseif($o->packing == 'take_away')
-                                <p class="text-uppercase">Dibungkus</p>
-                                @endif
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Menu</th>
-                                            <th>Jumlah</th>
-                                            <th>Catatan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                    <div class="card">
+                        <div class="card-block caption-breadcrumb card-body">
+                            <div class="breadcrumb-header">
+                                <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                                <div class="product-details">
+                                    <p>
                                         @foreach ($o->detailOrders as $do)
-                                        <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $do->nama }}</td>
-                                            <td>{{ $do->jumlah }}</td>
-                                            <td>{{ $do->catatan ?? '-' }}</td>
-                                        </tr>
+                                            {{ $do->nama}} {{ $do->jumlah }}x, <br>
                                         @endforeach
-                                    </tbody>
-                                </table>
+                                    </p>
+                                </div>
+                                <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
                             </div>
-
-
-                            @endif
-
-
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-
+                            <div class="col float-start text-right">
+                                <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a></i></span>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
                 @empty
-                <div class="text-center">Tidak Ada Pesanan yang Diterima</d>
+                    <div class="text-center">Tidak Ada Pesanan yang Dibatalkan</div>
                 @endforelse
-
             </div>
         </div>
     </div>
-
 </div>
