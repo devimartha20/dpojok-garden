@@ -76,9 +76,11 @@ class EmployeeController extends Controller
             $employee = Employee::create([
                 'id_pegawai' => $request->id_pegawai,
                 'nama' => $request->nama,
+                'email' => $request->email,
                 'alamat' => $request->alamat,
                 'telepon' => $request->telepon,
                 'user_id' => $user->id,
+                'password' => Hash::make($request->password),
             ]);
 
             return redirect()->route('employee.index')->with('success', 'Data Pegawai Berhasil Ditambahkan!');

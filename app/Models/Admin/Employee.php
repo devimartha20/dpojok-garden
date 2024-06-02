@@ -17,9 +17,11 @@ class Employee extends Authenticatable
     protected $fillable = [
         'id_pegawai',
         'nama',
+        'email',
         'alamat',
         'telepon',
         'user_id',
+        'password',
     ];
 
     public function order()
