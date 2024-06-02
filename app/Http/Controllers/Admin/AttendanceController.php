@@ -58,7 +58,7 @@ class AttendanceController extends Controller
 
         if ($attendance) {
             return [
-                'status' => 'attended',
+                'status' => 'Hadir',
                 'details' => $attendance
             ];
         }
@@ -71,7 +71,7 @@ class AttendanceController extends Controller
 
         if ($absence) {
             return [
-                'status' => 'absent',
+                'status' => $absence->reason,
                 'details' => $absence
             ];
         }
@@ -84,13 +84,13 @@ class AttendanceController extends Controller
 
         if ($leave) {
             return [
-                'status' => 'on leave',
+                'status' => 'Cuti',
                 'details' => $leave
             ];
         }
 
         return [
-            'status' => 'not attending',
+            'status' => 'Tidak Hadir',
             'details' => null
         ];
     }

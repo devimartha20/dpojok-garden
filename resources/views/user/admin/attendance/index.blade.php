@@ -22,16 +22,16 @@
         </div>
     </div>
      <div class="card-block table-border-style">
-        <form method="GET" action="{{ url('/employee-status-report') }}">
-            <div>
+        <form method="GET" action="{{ route('attendance.index') }}">
+            <div class="form-group">
                 <label for="start_date">Tanggal Mulai:</label>
-                <input type="date" id="start_date" name="start_date" required>
+                <input class="form-control" type="date" id="start_date" name="start_date" required>
             </div>
-            <div>
+            <div class="form-group">
                 <label for="end_date">Tanggal Akhir:</label>
-                <input type="date" id="end_date" name="end_date" required>
+                <input class="form-control" type="date" id="end_date" name="end_date" required>
             </div>
-            <button type="submit">Buat Laporan</button>
+            <button class="btn btn-sm btn-primary" type="submit">Filter Tanggal</button>
         </form>
         <div class="table-responsive">
             @if (isset($report))
