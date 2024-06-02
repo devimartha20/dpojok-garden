@@ -488,7 +488,7 @@ class CreateReservationCashier extends Component
             $this->productOrders[$index]['total_harga'] = $this->productOrders[$index]['harga_jual'] * $value;
 
             // Recalculate the total harga for all product orders
-            $this->calculateTotalHarga();
+            $this->calculateOrderPrice();
         }
     }
 
