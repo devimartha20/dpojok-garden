@@ -82,41 +82,7 @@
                 <h5>Grafik Pemesanan</h5>
             </div>
             <div class="card-block">
-                <div style="width: 75%; margin: auto;">
-                    <canvas id="myChart"></canvas>
-                </div>
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const ctx = document.getElementById('myChart').getContext('2d');
-
-                        const data = @json($orders);
-
-                        const labels = data.map(order => order.date);
-                        const counts = data.map(order => order.count);
-
-                        const myChart = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'Orders Count',
-                                    data: counts,
-                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                    borderColor: 'rgba(54, 162, 235, 1)',
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
-                    });
-                </script>
+                <canvas id="myChart"></canvas>
             </div>
             {{-- <div class="card-block">
                 <span class="d-block text-c-blue f-24 f-w-600 text-center">{{ $total_pesanan_online + $total_pesanan_offline }}</span>
@@ -382,5 +348,36 @@
 </div>
 @endsection
 @section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('myChart').getContext('2d');
 
+        const onlineOrdersCount = @json($total_pesanan_online);
+        const offlineOrdersCount = @json($total_pesanan_offline);
+
+        const labels = ['Online Orders', 'Offline Orders'];
+        const data = [onlineOrdersCount, offlineOrdersCount];
+
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Orders',
+                    data: data,
+                    backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
 @endsection
