@@ -57,21 +57,21 @@
             {{-- Produk --}}
             <div class="pcoded-navigatio-lavel">Data Produk</div>
             <ul class="pcoded-item pcoded-left-item">
-                <li class="pcoded-hasmenu">
+                <li class="pcoded-hasmenu {{ request()->is('product-category.index') || request()->is('product.index') ? 'active' : '' }}">
                     <a>
                         <span class="pcoded-micon"><i class="ti-menu"></i></span>
                         <span class="pcoded-mtext">Produk</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                     <ul class="pcoded-submenu">
-                        <li class=" ">
+                        <li class="{{ request()->is('product-category.index') ? 'active' : '' }}">
                             <a href="{{ route('product-category.index') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="">Kategori Produk</span>
                                 <span class="pcoded-mcaret"></span>
                             </a>
                         </li>
-                        <li class="">
+                        <li class="{{ request()->is('product.index') ? 'active' : '' }}">
                             <a href="{{ route('product.index') }}">
                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Daftar Produk</span>
