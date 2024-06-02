@@ -94,7 +94,7 @@
                 </table>
             @endif
         </div>
-        <div class="table-responsive">
+        {{-- <div class="table-responsive">
             @if (isset($employeesWithoutAttendance) && $employeesWithoutAttendance->isNotEmpty())
             <h2>Pegawai tanpa record kehadiran</h2>
             <table class="table">
@@ -114,7 +114,7 @@
                 </tbody>
             </table>
         @endif
-        </div>
+        </div> --}}
        
     </div> 
 </div>

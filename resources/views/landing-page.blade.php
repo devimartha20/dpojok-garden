@@ -50,16 +50,19 @@
               <div class="col-md-12">
                   <div class="featured">
                       <div class="row">
-                          <div class="col-md-3">
-                              <div class="featured-menus ftco-animate">
-                        <div class="menu-img img" style="background-image: url({{asset('customer-template')}}/images/breakfast-1.jpg);"></div>
-                        <div class="text text-center">
-                        <h3>Grilled Beef with potatoes</h3>
-                            <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-                        </div>
-                      </div>
-                          </div>
-                          <div class="col-md-3">
+                        @foreach ($products as $product)
+                        <div class="col-md-3">
+                            <div class="featured-menus ftco-animate">
+                                  <div class="menu-img img" style="background-image: url({{asset('images/'.$product->image)}});"></div>
+                                  <div class="text text-center">
+                                      <h3>{{ $product->name }}</h3>
+                                      <p>{{ $product->productCategory->nama ?? '-' }}</p>
+                                  </div>
+                            </div>
+                        </div> 
+                        @endforeach
+                          
+                          {{-- <div class="col-md-3">
                               <div class="featured-menus ftco-animate">
                         <div class="menu-img img" style="background-image: url({{asset('customer-template')}}/images/breakfast-2.jpg);"></div>
                         <div class="text text-center">
@@ -85,7 +88,7 @@
                             <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
                         </div>
                       </div>
-                          </div>
+                          </div> --}}
                       </div>
                   </div>
               </div>
