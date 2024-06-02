@@ -9,7 +9,7 @@ use App\Models\Admin\Payment;
 use App\Models\Admin\Product;
 use App\Models\DetailCart;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\File;
 class ConfirmController extends Controller
 {
     public function index(){
@@ -87,28 +87,36 @@ class ConfirmController extends Controller
         ]);
         // return dd($request);
         //insert product to detail orders
-        foreach($request->product as $idx => $do){
+        foreach ($request->product as $idx => $do) {
             $product = Product::find($idx);
-            if ($product){
+            if ($product) {
                 $sourcePath = public_path('images/' . $product->image);
-                if (\File::exists($sourcePath)) {
+
+                if (File::exists($sourcePath)) {
                     $destinationFolder = public_path('images/details');
+
+                    // Ensure the destination folder exists
+                    File::ensureDirectoryExists($destinationFolder);
+
                     $destinationPath = $destinationFolder . '/' . basename($sourcePath);
-                    \File::copy($sourcePath, $destinationPath);
+
+                    // Copy the file to the destination folder
+                    File::copy($sourcePath, $destinationPath);
                 }
+
+                // Create a new DetailOrder entry
                 DetailOrder::create([
                     'order_id' => $order->id,
                     'product_id' => $idx,
                     'jumlah' => $request->jumlah[$idx],
                     'harga' => $request->harga[$idx],
                     'total_harga' => $request->jumlah[$idx] * $request->harga[$idx],
-                    'catatan' => $request->catatan[$idx],
+                    'catatan' => $request->catatan[$idx] ?? null,  // Handle cases where catatan might not be provided
                     'nama' => $product->nama,
                     'image' => $product->image,
                     'deskripsi' => $product->deskripsi,
                 ]);
             }
-
         }
 
         foreach($request->dc as $idx => $dc){
