@@ -149,7 +149,7 @@
                                 <tbody>
                                     @forelse ($pesanan_terbaru as $pt)
                                     <tr>
-                                        <td><img src="{{ asset('images/'.$pt->product->image) }}" alt="prod img" class="img-fluid"></td>
+                                        <td><img src="{{ asset('images/'.$pt->product->image) }}" alt="prod img" class="img-fluid" style="width : 200px; height :auto"></td>
                                         <td>{{ $pt->product->nama }}</td>
                                         <td>{{ $pt->jumlah }}</td>
                                         <td>
