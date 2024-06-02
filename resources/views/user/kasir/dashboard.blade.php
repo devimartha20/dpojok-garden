@@ -86,11 +86,24 @@
                 <canvas id="feedback-chart" height="100"></canvas>
                 <div class="row justify-content-center m-t-15">
                     <div class="col-auto b-r-default m-t-5 m-b-5">
-                        <h4>{{ ($total_pesanan_online / ($total_pesanan_online + $total_pesanan_offline)) * 100 }}%</h4>
+                        <h4>
+                            @if (($total_pesanan_online + $total_pesanan_offline) > 0)
+                                {{ ($total_pesanan_online / ($total_pesanan_online + $total_pesanan_offline)) * 100 }}%
+                            @else
+                                0%
+                            @endif
+
+                        </h4>
                         <p class="text-success m-b-0"><i class="ti-hand-point-up m-r-5"></i>Online</p>
                     </div>
                     <div class="col-auto m-t-5 m-b-5">
-                        <h4>{{ ($total_pesanan_offline / ($total_pesanan_online + $total_pesanan_offline)) * 100 }}%</h4>
+                        <h4>
+                            @if (($total_pesanan_online + $total_pesanan_offline) > 0)
+                                {{ ($total_pesanan_offline / ($total_pesanan_online + $total_pesanan_offline)) * 100 }}%
+                            @else
+                                0%
+                            @endif
+                        </h4>
                         <p class="text-danger m-b-0"><i class="ti-hand-point-down m-r-5"></i>Offline</p>
                     </div>
                 </div>
