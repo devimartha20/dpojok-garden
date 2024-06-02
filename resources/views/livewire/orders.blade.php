@@ -40,8 +40,8 @@
             <div class="tab-pane {{ $state == 'menunggu' ? 'active' : '' }}" id="menunggu" role="tabpanel" aria-expanded="true">
                 <hr>
                 @forelse ($orders_w as $o)
-                <div class="card borderless-card">
-                    <div class="card-block danger-breadcrumb">
+                <div class="card" style="border: solid 0.5px #B4B4B8">
+                    <div class="card-block">
                         <div class="row">
                             <div class="col">
                                 <div class="breadcrumb-header">
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg-danger text-right">
+                    <div class="card-footer text-right">
                         @role(['koki'])
                         <button class="btn btn-warning" wire:click="updateStatus('{{ $o->id }}', 'diproses')">Proses ></button>
                         @endrole
@@ -141,8 +141,8 @@
             <div class="tab-pane {{ $state == 'diproses' ? 'active' : '' }}" id="diproses" role="tabpanel" aria-expanded="false">
                 <hr>
                 @forelse ($orders_p as $o)
-                <div class="card borderless-card">
-                    <div class="card-block warning-breadcrumb">
+                <div class="card"  style="border: solid 0.5px #B4B4B8">
+                    <div class="card-block">
                         <div class="row">
                             <div class="col">
                                 <div class="breadcrumb-header">
@@ -175,7 +175,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg-warning d-flex justify-content-between">
+                    <div class="card-footer d-flex justify-content-between">
                         @role(['koki'])
                         <div>
                             <button class="btn btn-danger" wire:click="updateStatus('{{ $o->id }}', 'menunggu')">< Menunggu</button>
@@ -246,8 +246,8 @@
             <div class="tab-pane {{ $state == 'selesai' ? 'active' : '' }}" id="selesai" role="tabpanel" aria-expanded="false">
                 <hr>
                 @forelse ($orders_f as $o)
-                <div class="card borderless-card">
-                    <div class="card-block info-breadcrumb">
+                <div class="card"  style="border: solid 0.5px #B4B4B8">
+                    <div class="card-block">
                         <div class="row">
                             <div class="col">
                                 <div class="breadcrumb-header">
@@ -281,12 +281,12 @@
                     </div>
 
                         @role('koki')
-                        <div class="card-footer bg-info text-left">
+                        <div class="card-footer text-left">
                             <button class="btn btn-warning" wire:click="updateStatus('{{ $o->id }}', 'diproses')">< Proses</button>
                         </div>
                         @endrole
                         @role('pelayan')
-                        <div class="card-footer bg-info text-right">
+                        <div class="card-footer text-right">
                             <button class="btn btn-success" wire:click="updateStatus('{{ $o->id }}', 'diterima')">Diterima ></button>
                         </div>
                         @endrole
@@ -353,8 +353,8 @@
             <div class="tab-pane {{ $state == 'diterima' ? 'active' : '' }}" id="diterima" role="tabpanel" aria-expanded="false">
                 <hr>
                 @forelse ($orders_s as $o)
-                <div class="card borderless-card">
-                    <div class="card-block success-breadcrumb">
+                <div class="card"  style="border: solid 0.5px #B4B4B8">
+                    <div class="card-block">
                         <div class="row">
                             <div class="col">
                                 <div class="breadcrumb-header">
@@ -386,7 +386,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg-success text-left">
+                    <div class="card-footer text-left">
                         @role('pelayan')
                         <button class="btn btn-info" wire:click="updateStatus('{{ $o->id }}', 'selesai')">< Selesai</button>
                         @endrole
@@ -453,8 +453,8 @@
             <div class="tab-pane {{ $state == 'dibatalkan' ? 'active' : '' }}" id="diterima" role="tabpanel" aria-expanded="false">
                 <hr>
                 @forelse ($orders_d as $o)
-                <div class="card borderless-card">
-                    <div class="card-block success-breadcrumb">
+                <div class="card"  style="border: solid 0.5px #B4B4B8">
+                    <div class="card-block">
                         <div class="row">
                             <div class="col">
                                 <div class="breadcrumb-header">
@@ -486,7 +486,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg-success text-left">
+                    <div class="card-footer text-left">
                         @role('pelayan')
                         <button class="btn btn-info" wire:click="updateStatus('{{ $o->id }}', 'selesai')">< Selesai</button>
                         @endrole

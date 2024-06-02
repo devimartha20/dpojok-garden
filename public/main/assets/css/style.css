@@ -5525,25 +5525,25 @@ table tbody .border-bottom-info td {
   color: #000; }
 
 .bg-c-blue {
-  background: linear-gradient(45deg, #4099ff, #73b4ff); }
+  background: linear-gradient(45deg, #DED0B6, #C8B6A6); }
 
 .text-c-blue {
   color: #4099ff; }
 
 .bg-c-pink {
-  background: linear-gradient(45deg, #FF5370, #ff869a); }
+  background: linear-gradient(45deg, #7D7463, #C8B6A6); }
 
 .text-c-pink {
   color: #FF5370; }
 
 .bg-c-green {
-  background: linear-gradient(45deg, #2ed8b6, #59e0c5); }
+  background: linear-gradient(45deg, #BBAB8C, #C8B6A6); }
 
 .text-c-green {
   color: #2ed8b6; }
 
 .bg-c-yellow {
-  background: linear-gradient(45deg, #FFB64D, #ffcb80); }
+  background: linear-gradient(45deg, #948979, #C8B6A6); }
 
 .text-c-yellow {
   color: #FFB64D; }
@@ -7626,14 +7626,15 @@ table tbody .border-bottom-info td {
     color: #4680ff !important; }
   .pcoded .pcoded-navbar[active-item-theme="theme4"] .pcoded-item li:hover > a:before {
     border-left-color: transparent; }
+    /* INI UBAH LINK AKTIF */
 .pcoded .pcoded-navbar[active-item-theme="theme4"] .pcoded-item > li.active > a {
-  background: -webkit-gradient(linear, left top, right top, from(#004ef9), to(#79a3ff)) !important;
-  background: linear-gradient(to right, #004ef9, #79a3ff) !important;
+  background: -webkit-gradient(linear, left top, right top, from(#7D7463), to(#D6DAC8)) !important;
+  background: linear-gradient(to right, #7D7463, #D6DAC8) !important;
   color: #fff !important; }
   .pcoded .pcoded-navbar[active-item-theme="theme4"] .pcoded-item > li.active > a .pcoded-micon {
     color: #fff !important; }
   .pcoded .pcoded-navbar[active-item-theme="theme4"] .pcoded-item > li.active > a:before {
-    border-left-color: #004ef9; }
+    border-left-color: #c8a97e; }
 .pcoded .pcoded-navbar[active-item-theme="theme4"] .pcoded-item .pcoded-hasmenu[subitem-icon="style7"] .pcoded-submenu {
   border-left: 1px solid #d6d6d6; }
   .pcoded .pcoded-navbar[active-item-theme="theme4"] .pcoded-item .pcoded-hasmenu[subitem-icon="style7"] .pcoded-submenu > li.active > a > .pcoded-mtext:after, .pcoded .pcoded-navbar[active-item-theme="theme4"] .pcoded-item .pcoded-hasmenu[subitem-icon="style7"] .pcoded-submenu > li:hover > a > .pcoded-mtext:after {
@@ -8022,8 +8023,8 @@ table tbody .border-bottom-info td {
       transition: all 0.3s ease-in-out; }
       #styleSelector .nav-tabs .nav-item a.active {
         color: #fff;
-        background: -webkit-gradient(linear, left top, right top, from(#0071f3), to(#73b4ff));
-        background: linear-gradient(to right, #0071f3, #73b4ff); }
+        background: -webkit-gradient(linear, left top, right top, from(#c8a97e), to(#c8a97e));
+        background: linear-gradient(to right, #c8a97e, #c8a97e); }
 #styleSelector .style-cont {
   background-color: #F6F7FB;
   padding: 10px; }
@@ -8346,9 +8347,10 @@ table tbody .border-bottom-info td {
   background: linear-gradient(to right, #1d9c83, #59e0c5); }
   .pcoded .pcoded-header[header-theme="theme4"] a {
     color: #fff; }
+    /* INI UBAH NAVBAR */
 .pcoded .pcoded-header[header-theme="theme5"] {
-  background: -webkit-gradient(linear, left top, right top, from(#0071f3), to(#73b4ff));
-  background: linear-gradient(to right, #0071f3, #73b4ff); }
+  background: -webkit-gradient(linear, left top, right top, from(#7D7463), to(#7D7463));
+  background: linear-gradient(to right, #7D7463, #7D7463); }
   .pcoded .pcoded-header[header-theme="theme5"] a {
     color: #fff; }
 .pcoded .pcoded-header[header-theme="theme6"] {
@@ -8642,8 +8644,8 @@ body.menu-bottom #collapse-menu {
 
 /**====== Basic-Buttons css Start ======**/
 .btn-primary, .sweet-alert button.confirm, .wizard > .actions a {
-  background-color: #4099ff;
-  border-color: #4099ff;
+  background-color: #a3a3a3;
+  border-color: #a3a3a3;
   color: #fff;
   cursor: pointer;
   -webkit-transition: all ease-in 0.3s;
@@ -8768,8 +8770,8 @@ body.menu-bottom #collapse-menu {
     border-color: rgba(34, 34, 34, 0.5); }
 
 .btn-info {
-  background-color: #00bcd4;
-  border-color: #00bcd4;
+  background-color: #c8a97e;
+  border-color: #c8a97e;
   color: #fff;
   cursor: pointer;
   -webkit-transition: all ease-in 0.3s;
