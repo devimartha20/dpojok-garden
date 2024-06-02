@@ -76,6 +76,7 @@ class EmployeeController extends Controller
             $employee = Employee::create([
                 'id_pegawai' => $request->id_pegawai,
                 'nama' => $request->nama,
+                'email' => $request->email,
                 'alamat' => $request->alamat,
                 'telepon' => $request->telepon,
                 'user_id' => $user->id,
