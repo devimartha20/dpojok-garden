@@ -343,8 +343,8 @@
     document.addEventListener('DOMContentLoaded', function () {
         const ctx = document.getElementById('myChart').getContext('2d');
 
-        const onlineOrdersCount = @json($total_pesanan_online);
-        const offlineOrdersCount = @json($total_pesanan_offline);
+        const onlineOrdersCount = {!! json_encode($total_pesanan_online) !!};
+        const offlineOrdersCount = {!! json_encode($total_pesanan_offline) !!};
 
         const labels = ['Online Orders', 'Offline Orders'];
         const data = [onlineOrdersCount, offlineOrdersCount];
@@ -371,4 +371,5 @@
         });
     });
 </script>
+
 @endsection
