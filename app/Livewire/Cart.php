@@ -123,6 +123,7 @@ class Cart extends Component
 
         if ($detailOrders == []) {
             session()->flash('error', 'Tidak ada item yang dipilih.');
+            return;
         }
 
 

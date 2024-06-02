@@ -14,11 +14,14 @@
                 <img src="{{ asset('/main/assets/images/avatar-4.jpg') }}" height="100" width="100" />
             </button>
         </div>
-        <h2 class="name">Eleanor Pena</h2>
-        <p class="idd">@eleanorpena</p>
+        <h2 class="name">{{ Auth::user()->name ?? '-' }}</h2>
+        <p class="idd">{{ Auth::user()->email }}</p>
         <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-            <span class="idd1">Oxc4c16a645_b21a</span>
-            <button class="btn btn-dark"><i class="fa fa-copy"></i> Copy ID</button>
+            <span class="idd1">
+            @foreach(Auth::user()->roles as $role)
+               {{ $role->name }}
+            @endforeach</span>
+            {{-- <button class="btn btn-dark"><i class="fa fa-copy"></i> Copy ID</button> --}}
         </div>
         {{-- <div class="number mt-3">
             <span class="fw-bold">1069</span> <span class="follow">Followers</span>
@@ -36,7 +39,7 @@
             <span><i class="fa fa-linkedin"></i></span>
         </div>
         <div class="date mt-4">
-            <span class="join">Joined May, 2021</span>
+            <span class="join">Joined {{ Auth::user()->created_at }}</span>
         </div>
     </div>
 </div>
@@ -53,11 +56,11 @@
                 @include('profile.partials.update-password-form')
             </div>
         </div>
-        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg mt-4">
+        {{-- <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg mt-4">
             <div class="max-w-xl">
                 @include('profile.partials.delete-user-form')
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection
