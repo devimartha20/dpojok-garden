@@ -46,7 +46,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">id_pegawai</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="id_pegawai" required value="{{ old('id_pegawai') }}" name="id_pegawai" required>
+                        <input type="text" class="form-control" placeholder="ID Pegawai" required value="{{ old('id_pegawai') }}" name="id_pegawai" required>
                     </div>
                 </div>
                 <div class="form-group row">
