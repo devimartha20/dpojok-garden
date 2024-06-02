@@ -65,7 +65,7 @@
                                 <td>
                                     @if ($entry['details'])
                                         @if ($entry['status'] == 'attended')
-                                            {{ $entry['details']->time }}
+                                            {{ $entry['details'] }}
                                         @elseif ($entry['status'] == 'absent' || $entry['status'] == 'on leave')
                                             {{ $entry['details']->start_date }} - {{ $entry['details']->end_date }}
                                         @endif
