@@ -81,12 +81,10 @@
             <div class="card-header">
                 <h5>Grafik Pemesanan</h5>
             </div>
+
             <div class="card-block">
-                <canvas id="myChart"></canvas>
-            </div>
-            {{-- <div class="card-block">
                 <span class="d-block text-c-blue f-24 f-w-600 text-center">{{ $total_pesanan_online + $total_pesanan_offline }}</span>
-                <canvas id="feedback-chart" height="100"></canvas>
+                <canvas id="myChart" height="100"></canvas>
                 <div class="row justify-content-center m-t-15">
                     <div class="col-auto b-r-default m-t-5 m-b-5">
                         <h4>
@@ -107,7 +105,7 @@
                         <p class="text-danger m-b-0"><i class="ti-hand-point-down m-r-5"></i>Offline</p>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
     <!-- statustic and process end -->
