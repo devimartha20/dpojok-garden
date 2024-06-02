@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Table;
+use App\Models\ReservationTable;
 use Illuminate\Http\Request;
 
 class TableController extends Controller
@@ -122,7 +123,17 @@ class TableController extends Controller
      */
     public function destroy(string $id)
     {
-        Table::findOrFail($id)->delete();
-        return redirect()->back()->with('success', 'Meja Berhasil Dihapus!');
+        $table = Table::find($id);
+        if ($table){
+            $reservation_table_count = ReservationTable::where('table_id', $id)->count();
+           if($reservation_table_count > 0){
+            return redirect()->back()->with('fail', 'Meja tidak dapat dihapus karena terdapat dalam data reservasi!');
+           }
+        }
+        $deleted = Table::destroy($id);
+        if ($deleted){
+            return redirect()->back()->with('success', 'Meja Berhasil Dihapus!');
+        }
+        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 }
