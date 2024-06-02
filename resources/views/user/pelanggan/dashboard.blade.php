@@ -9,51 +9,53 @@
 {{-- <section class="ftco-section">
     <div class="container">
         <div class="row no-gutters justify-content-center mb-5 pb-2">
-            <div class="col-md-12 text-center heading-section ftco-animate fadeInUp ftco-animated">
+            <div class="col-md-12 text-center heading-section ftco-animate">
                 <span class="subheading">Specialties</span>
                 <h2 class="mb-4">Our Menu</h2>
             </div>
         </div>
-
-        @php
-            $count = 0;
-        @endphp
-
-        @forelse ($products as $product)
-            @if ($count % 5 == 0)
-                <div class="row no-gutters d-flex align-items-stretch">
-            @endif
-
-            <div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-                <div class="menus d-sm-flex ftco-animate align-items-stretch fadeInUp ftco-animated">
-                    <div class="menu-img img" style="background-image: url({{ asset('images').'/'.$product->image }});"></div>
-                    <div class="text d-flex align-items-center">
-                        <div>
-                            <div class="d-flex">
-                                <div class="one-half">
-                                    <h3>{{ $product->nama }}</h3>
-                                </div>
-                                <div class="one-forth">
-                                    <span class="price">{{ $product->harga_jual }}</span>
+        <div class="row no-gutters d-flex align-items-stretch">
+            @foreach ($products as $product)
+                <div class="col-md-12 col-lg-6 d-flex align-self-stretch">
+                    <div class="menus d-sm-flex ftco-animate align-items-stretch">
+                        @if($loop->iteration % 2 != 0)
+                            <div class="text d-flex align-items-center">
+                                <div>
+                                    <div class="d-flex">
+                                        <div class="one-half">
+                                            <h3>{{ $product->nama }}</h3>
+                                        </div>
+                                        <div class="one-forth">
+                                            <span class="price">${{ $product->harga_jual }}</span>
+                                        </div>
+                                    </div>
+                                    <p>{{ $product->productCategory->nama ?? '-' }}</p>
+                                   
                                 </div>
                             </div>
-                            <p><span>{{ $product->productCategory->nama ?? '-' }}</span></p>
-                        </div>
+                            <div class="menu-img img" style="background-image: url({{ asset('images/' . $product->image) }});"></div>
+                        @else
+                            <div class="menu-img img" style="background-image: url({{ asset('images/' . $product->image) }});"></div>
+                            <div class="text d-flex align-items-center">
+                                <div>
+                                    <div class="d-flex">
+                                        <div class="one-half">
+                                            <h3>{{ $product->nama }}</h3>
+                                        </div>
+                                        <div class="one-forth">
+                                            <span class="price">${{ $product->harga_jual }}</span>
+                                        </div>
+                                    </div>
+                                    <p>{{ $product->productCategory->nama ?? '-' }}</p>
+                                    
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-            </div>
-
-            @php
-                $count++;
-            @endphp
-
-            @if ($count % 5 == 0 || $loop->last)
-                </div>
-            @endif
-
-        @empty
-            <!-- Handle empty case -->
-        @endforelse
+            @endforeach
+        </div>
+        
     </div>
 </section> --}}
 

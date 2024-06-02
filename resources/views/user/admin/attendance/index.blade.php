@@ -22,91 +22,100 @@
         </div>
     </div>
      <div class="card-block table-border-style">
+        <form method="GET" action="{{ route('attendance.index') }}">
+            <div class="form-group">
+                <label for="start_date">Tanggal Mulai:</label>
+                <input class="form-control" type="date" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">Tanggal Akhir:</label>
+                <input class="form-control" type="date" id="end_date" name="end_date" required>
+            </div>
+            <button class="btn btn-sm btn-primary" type="submit">Filter Tanggal</button>
+        </form>
+        @if ($errors->any())
+        <div class="alert alert-danger mt-3">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <div class="table-responsive">
+            @if (isset($report))
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>ID Pegawai</th>
+                            <th>Nama</th>
+                            <th>Waktu</th>
+                            <th>Kehadiran</th>
+                            <th>Catatan</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($report as $entry)
+                            <tr>
+                                <td>{{ $entry['date'] }}</td>
+                                <td>{{ $entry['employee']->id_pegawai }}</td>
+                                <td>{{ $entry['employee']->nama }}</td>
+                                <td>
+                                    @if ($entry['details'])
+                                        @if ($entry['status'] == 'Hadir')
+                                            {{ $entry['details']->time }}
+                                        @elseif ($entry['status'] == 'sakit' || $entry['status'] == 'izin' || $entry['status'] == 'libur' || $entry['status'] == 'Cuti')
+                                            {{ $entry['details']->start_date }} - {{ $entry['details']->end_date }}
+                                        @endif
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                                <td>{{ $entry['status'] }}</td>
+                                <td>
+                                    @if ($entry['details'])
+                                        {{ $entry['details']->catatan ?? 'N/A' }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($entry['details'])
+                                        {{ $entry['details']->status }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
+        </div>
+        {{-- <div class="table-responsive">
+            @if (isset($employeesWithoutAttendance) && $employeesWithoutAttendance->isNotEmpty())
+            <h2>Pegawai tanpa record kehadiran</h2>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Tanggal</th>
                         <th>ID Pegawai</th>
                         <th>Nama</th>
-                        <th>Waktu</th>
-                        <th>Kehadiran</th>
-                        <th>Catatan</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($groupedData as $idx1 => $date)
-                        @foreach ($date as $idx2 => $d)
-                            @if ($idx2 == 'attendances')
-                                @foreach ($d as $at)
-                                    @if ($at->type == 'in')
-                                        <tr class="table-success">
-                                            <th scope="row">{{ \Carbon\Carbon::parse($idx1)->format('l, F j, Y') }}</th>
-                                            <td>{{ $at->employee->id_pegawai }}</td>
-                                            <td>{{ $at->employee->nama }}</td>
-                                            <td>{{ $at->time }}</td>
-                                            <td>Masuk</td>
-                                            <td>-</td>
-                                            <td>
-                                                @if ($at->status == 'confirmed')
-                                                    <span class="label label-success">Dikonfirmasi</span>
-                                                @elseif ($at->status == 'pending')
-                                                    <span class="label label-warning">Menunggu</span>
-                                                @elseif($at->status == 'rejected')
-                                                    <span class="label label-danger">Ditolak</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            @elseif($idx2 == 'absences')
-                                @foreach ($d as $ab)
-                                    @if($ab->reason == 'izin')
-                                        <tr class="table-warning">
-                                            <th scope="row">{{ \Carbon\Carbon::parse($idx1)->format('l, F j, Y') }}</th>
-                                            <td>{{ $ab->employee->id_pegawai }}</td>
-                                            <td>{{ $ab->employee->nama }}</td>
-                                            <td>{{ $ab->time ?? '-' }}</td>
-                                            <td>Izin</td>
-                                            <td>{{ $ab->catatan }}</td>
-                                            <td>
-                                                @if ($ab->status == 'confirmed')
-                                                    <span class="label label-success">Dikonfirmasi</span>
-                                                @elseif ($ab->status == 'pending')
-                                                    <span class="label label-warning">Menunggu</span>
-                                                @elseif($ab->status == 'rejected')
-                                                    <span class="label label-danger">Ditolak</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @elseif($ab->reason == 'sakit')
-                                        <tr class="table-info">
-                                            <th scope="row">{{ \Carbon\Carbon::parse($idx1)->format('l, F j, Y') }}</th>
-                                            <td>{{ $ab->employee->id_pegawai }}</td>
-                                            <td>{{ $ab->employee->nama }}</td>
-                                            <td>{{ $ab->time ?? '-' }}</td>
-                                            <td>Sakit</td>
-                                            <td>{{ $ab->catatan }}</td>
-                                            <td>
-                                                @if ($ab->status == 'confirmed')
-                                                    <span class="label label-success">Dikonfirmasi</span>
-                                                @elseif ($ab->status == 'pending')
-                                                    <span class="label label-warning">Menunggu</span>
-                                                @elseif($ab->status == 'rejected')
-                                                    <span class="label label-danger">Ditolak</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            @endif
-                        @endforeach
-                    @empty
-                    @endforelse
+                    @foreach ($employeesWithoutAttendance as $employee)
+                        <tr>
+                            <td>{{ $employee->id_pegawai }}</td>
+                            <td>{{ $employee->nama }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-        </div>
+        @endif
+        </div> --}}
+       
     </div> 
 </div>
 <hr>

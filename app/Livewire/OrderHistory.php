@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class OrderHistory extends Component
 {
-    public $orders_wp, $orders_w, $orders_p, $orders_f, $orders_s, $state;
+    public $orders_wp, $orders_w, $orders_p, $orders_f, $orders_s, $state, $orders_d;
     public $status;
 
     public function mount(){

@@ -468,15 +468,26 @@ class CreateReservationCashier extends Component
         $this->loadProducts();
     }
 
-    public function updatedProductOrders($field)
+    public function updated($field, $value)
     {
+        // Check if the updated field is within the productOrders array and is related to the 'jumlah' field
         if (strpos($field, 'productOrders.') === 0 && strpos($field, '.jumlah') !== false) {
+            // Extract the index of the product order from the field name
             $index = explode('.', $field)[1];
-            if (!is_numeric($this->productOrders[$index]['jumlah']) || $this->productOrders[$index]['jumlah'] <= 0) {
+
+            // Validate the updated jumlah value to ensure it's a positive integer
+            if (!is_numeric($value) || $value <= 0) {
                 session()->flash('error', 'Jumlah harus berupa angka positif.');
                 return;
             }
-            $this->productOrders[$index]['total_harga'] = $this->productOrders[$index]['harga_jual'] * $this->productOrders[$index]['jumlah'];
+
+            // Update the jumlah field for the corresponding product order
+            $this->productOrders[$index]['jumlah'] = $value;
+
+            // Update the total harga for the corresponding product order
+            $this->productOrders[$index]['total_harga'] = $this->productOrders[$index]['harga_jual'] * $value;
+
+            // Recalculate the total harga for all product orders
             $this->calculateOrderPrice();
         }
     }
@@ -486,6 +497,7 @@ class CreateReservationCashier extends Component
         return view('livewire.create-reservation-cashier', [
             'products' => $this->products,
             'total_price' => $this->total_price,
+            'productOrders' => $this->productOrders,
         ]);
     }
 }

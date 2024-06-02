@@ -20,6 +20,7 @@ use App\Http\Controllers\Kasir\OrderTransController;
 use App\Http\Controllers\Kasir\PaymentTransController;
 use App\Http\Controllers\Koki\OrderProsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Console\Scheduling\Schedule;
@@ -42,9 +43,7 @@ use App\Models\Admin\Payment;
 |
 */
 
-Route::get('/', function () {
-    return view('landing-page');
-});
+Route::get('/', [LandingPageController::class, 'index']);
 
 Route::post('/payments/midtrans-notification', [OnlineOrderController::class, 'receive']);
 
