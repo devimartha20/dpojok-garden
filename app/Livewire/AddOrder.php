@@ -9,6 +9,7 @@ use App\Models\Admin\Employee;
 use App\Models\Admin\DetailOrder;
 use App\Models\Admin\Payment;
 use Auth;
+use Illuminate\Support\Facades\File;
 
 class AddOrder extends Component
 {
@@ -129,10 +130,17 @@ class AddOrder extends Component
             $product = Product::find($productOrder['product']);
             if($product){
                 $sourcePath = public_path('images/' . $product->image);
-                if (\File::exists($sourcePath)) {
+
+                if (File::exists($sourcePath)) {
                     $destinationFolder = public_path('images/details');
-                    $destinationPath = $destinationFolder . '/' . $product->image;
-                    \File::copy($sourcePath, $destinationPath);
+
+                    // Ensure the destination folder exists
+                    File::ensureDirectoryExists($destinationFolder);
+
+                    $destinationPath = $destinationFolder . '/' . basename($sourcePath);
+
+                    // Copy the file to the destination folder
+                    File::copy($sourcePath, $destinationPath);
                 }
                 DetailOrder::create([
                     'order_id' => $order->id,
