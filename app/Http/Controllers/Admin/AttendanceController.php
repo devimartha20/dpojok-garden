@@ -27,14 +27,19 @@ class AttendanceController extends Controller
                 $status = $this->getEmployeeStatusForDate($employee, $date);
                 $report[] = [
                     'date' => $date->toDateString(),
-                    'employee' => $employee->nama,
+                    'employee' => $employee,
                     'status' => $status['status'],
                     'details' => $status['details']
                 ];
             }
         }
 
-        return $report;
+        $employeesWithoutAttendance = $this->getEmployeesWithoutAttendance();
+
+        return [
+            'report' => $report,
+            'employeesWithoutAttendance' => $employeesWithoutAttendance
+        ];
     }
 
     private function generateDateRange(Carbon $start_date, Carbon $end_date) {
@@ -90,10 +95,19 @@ class AttendanceController extends Controller
         ];
     }
 
+    private function getEmployeesWithoutAttendance() {
+        $employeesWithAttendance = Attendance::distinct('employee_id')->pluck('employee_id');
+        return Employee::whereNotIn('id', $employeesWithAttendance)->get();
+    }
+
     public function index(Request $request) {
         $start_date = Carbon::parse($request->input('start_date'));
         $end_date = Carbon::parse($request->input('end_date'));
-        $report = $this->generateEmployeeStatusReport($start_date, $end_date);
+        $reportData = $this->generateEmployeeStatusReport($start_date, $end_date);
+
+        $report =  $reportData['report'];
+        $employeesWithoutAttendance = $reportData['employeesWithoutAttendance'];
+
         $currentTime = Carbon::now();
         $random = Str::random(20);
         $code = $currentTime->timestamp . '-' . $currentTime->addSeconds(5)->timestamp.'-'.$random;
@@ -122,6 +136,7 @@ class AttendanceController extends Controller
         $rejected_attendances = Attendance::where('status', 'rejected')->get();
 
         return view('user.admin.attendance.index', compact('qr', 'qrActive', 'report',
+        'employeesWithoutAttendance',
         'attendances',
         'confirmed_attendances',
         'pending_attendances',

@@ -85,7 +85,27 @@
                 </table>
             @endif
         </div>
-        
+        <div class="table-responsive">
+            @if (isset($employeesWithoutAttendance) && $employeesWithoutAttendance->isNotEmpty())
+            <h2>Pegawai tanpa record kehadiran</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID Pegawai</th>
+                        <th>Nama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($employeesWithoutAttendance as $employee)
+                        <tr>
+                            <td>{{ $employee->id_pegawai }}</td>
+                            <td>{{ $employee->nama }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
+        </div>
        
     </div> 
 </div>
