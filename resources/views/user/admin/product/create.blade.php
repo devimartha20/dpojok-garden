@@ -6,6 +6,8 @@
 <style>
     #imagePreview{
         display: none;
+        width: 500px;
+        height: auto;
     }
 </style>
  <!-- Notification.css -->
