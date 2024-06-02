@@ -28,6 +28,12 @@
                     Diterima</a>
                 <div class="slide"></div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $state == 'dibatalkan' ? 'active' : '' }}" data-toggle="tab" href="#dibatalkan" role="tab" aria-expanded="false">
+                    <i class="ti-check-box"></i>
+                    Dibatalkan</a>
+                <div class="slide"></div>
+            </li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content card-block">
@@ -347,6 +353,106 @@
             <div class="tab-pane {{ $state == 'diterima' ? 'active' : '' }}" id="diterima" role="tabpanel" aria-expanded="false">
                 <hr>
                 @forelse ($orders_s as $o)
+                <div class="card borderless-card">
+                    <div class="card-block success-breadcrumb">
+                        <div class="row">
+                            <div class="col">
+                                <div class="breadcrumb-header">
+                                    <h5>No Pesanan : {{ $o->no_pesanan }}</h5>
+                                    <span>Pemesan :
+                                    @if ($o->tipe == 'in_store')
+                                        {{ $o->pemesan }}
+                                    @elseif($o->tipe == 'online')
+                                        {{ $o->customer->name }}
+                                    @endif</span>
+                                    <p>@if ($o->packing == 'dine_in')
+                                        Makan di Tempat
+                                        @elseif($o->packing == 'take_away')
+                                        Dibungkus
+                                    @endif</p>
+                                </div>
+                                <div class="page-header-breadcrumb">
+                                    <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#detail{{ $o->id }}">
+                                        Lihat Detail Pemesanan
+                                    </button>
+                                    <ul class="breadcrumb-title m-t-10">
+                                        <li class="breadcrumb-item"><a href="#!">{{ $o->updated_at }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col float-end text-right">
+                                <span><i>{{ $o->updated_at->diffForHumans() }}</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-success text-left">
+                        @role('pelayan')
+                        <button class="btn btn-info" wire:click="updateStatus('{{ $o->id }}', 'selesai')">< Selesai</button>
+                        @endrole
+                    </div>
+                </div>
+                {{-- Modal Detail --}}
+                <div class="modal fade" id="detail{{ $o->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            Detail Order {{ $o->no_pesanan }}
+                            @if ($o->detailOrders->count() > 0)
+                                @if ($o->packing == 'dine_in')
+                                    <p class="text-uppercase">Makan di Tempat</p>
+                                @elseif($o->packing == 'take_away')
+                                <p class="text-uppercase">Dibungkus</p>
+                                @endif
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Menu</th>
+                                            <th>Jumlah</th>
+                                            <th>Catatan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($o->detailOrders as $do)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $do->nama }}</td>
+                                            <td>{{ $do->jumlah }}</td>
+                                            <td>{{ $do->catatan ?? '-' }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            @endif
+
+
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                @empty
+                <div class="text-center">Tidak Ada Pesanan yang Diterima</d>
+                @endforelse
+
+            </div>
+            <div class="tab-pane {{ $state == 'dibatalkan' ? 'active' : '' }}" id="diterima" role="tabpanel" aria-expanded="false">
+                <hr>
+                @forelse ($orders_d as $o)
                 <div class="card borderless-card">
                     <div class="card-block success-breadcrumb">
                         <div class="row">

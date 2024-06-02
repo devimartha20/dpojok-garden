@@ -21,6 +21,7 @@ class Orders extends Component
         $this->orders_p = Order::where('progress', 'diproses')->orderBy('updated_at', 'asc')->get();
         $this->orders_f = Order::where('progress', 'selesai')->orderBy('updated_at', 'asc')->get();
         $this->orders_s = Order::where('progress', 'diterima')->orderBy('updated_at', 'asc')->get();
+        $this->orders_d = Order::where('progress', 'dibatalkan')->orderBy('updated_at', 'asc')->get();
     }
 
     public function updateStatus($id, $progress){
@@ -33,6 +34,7 @@ class Orders extends Component
         $this->orders_p = Order::where('progress', 'diproses')->orderBy('updated_at', 'asc')->get();
         $this->orders_f = Order::where('progress', 'selesai')->orderBy('updated_at', 'asc')->get();
         $this->orders_s = Order::where('progress', 'diterima')->orderBy('updated_at', 'asc')->get();
+        $this->orders_d = Order::where('progress', 'dibatalkan')->orderBy('updated_at', 'asc')->get();
     }
     public function render()
     {
@@ -42,6 +44,7 @@ class Orders extends Component
             'orders_p' => $this->orders_p,
             'orders_f' => $this->orders_f,
             'orders_s' => $this->orders_s,
+            'orders_d' => $this->orders_d,
             'state' => $this->state,
         ]);
     }

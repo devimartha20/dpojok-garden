@@ -80,7 +80,8 @@
                                 <div class="modal-body">
                                     Apakah Anda yakin untuk menghapus data produk {{ $p->product }} ? <br>
                                     <div class="alert-danger">
-                                        Penghapusan akan menyebabkan pembatalan pada beberapa pemesanan dan pemesanan yang telah dibayar akan tetap dilanjutkan.
+                                        Anda tidak dapat menghapus produk jika data produk terkait sedang digunakan dalam transaksi pembayaran. <br>
+                                        Pesanan dengan produk terkait yang telah dibayar tidak akan terpengaruhi.
                                     </div>
                                 </div>
                                 <div class="modal-footer">

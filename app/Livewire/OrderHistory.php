@@ -23,6 +23,7 @@ class OrderHistory extends Component
         $this->orders_p = Order::where('customer_id', $customer->id)->where('progress', 'diproses')->orderBy('updated_at', 'desc')->get();
         $this->orders_f = Order::where('customer_id', $customer->id)->where('progress', 'selesai')->orderBy('updated_at', 'desc')->get();
         $this->orders_s = Order::where('customer_id', $customer->id)->where('progress', 'diterima')->orderBy('updated_at', 'desc')->get();
+        $this->orders_d = Order::where('customer_id', $customer->id)->where('progress', 'dibatalkan')->orderBy('updated_at', 'desc')->get();
     }
 
 

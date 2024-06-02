@@ -34,6 +34,12 @@
                     Diterima</a>
                 <div class="slide"></div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $state == 'dibatalkan' ? 'active' : '' }}" data-toggle="tab" href="#dibatalkan" role="tab" aria-expanded="false">
+                    <i class="ti-check-box"></i>
+                    Dibatalkan</a>
+                <div class="slide"></div>
+            </li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content card-block">
@@ -169,6 +175,33 @@
                 </div>
                 @empty
                 <div class="text-center">Tidak Ada Pesanan yang Diterima</d>
+                @endforelse
+
+            </div>
+            <div class="tab-pane {{ $state == 'dibatalkan' ? 'active' : '' }}" id="diterima" role="tabpanel" aria-expanded="false">
+                <hr>
+                @forelse ($orders_d as $o)
+                <div class="card">
+                    <div class="card-block caption-breadcrumb card-body">
+                        <div class="breadcrumb-header">
+                            <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                            <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                            <div class="product-details">
+                                <p>
+                                    @foreach ($o->detailOrders as $do)
+                                        {{ $do->nama}} {{ $do->jumlah }}x, <br>
+                                    @endforeach
+                                </p>
+                            </div>
+                            <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                        </div>
+                        <div class="col float-start text-right">
+                            <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a> </i></span>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <div class="text-center">Tidak Ada Pesanan yang Dibatalkan</d>
                 @endforelse
 
             </div>

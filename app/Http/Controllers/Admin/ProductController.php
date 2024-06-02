@@ -169,9 +169,7 @@ class ProductController extends Controller
 
                 // Check if the order status is 'belum_lunas' and progress is 'menunggu_pembayaran'
                 if ($order->status == 'belum_lunas' && $order->progress == 'menunggu_pembayaran') {
-                    // Change the order's progress to 'dibatalkan'
-                    $order->progress = 'dibatalkan';
-                    $order->save();
+                    return redirect()->back()->with('fail', ' Produk tidak dapat dihapus karena terdapat transaksi pesanan yang sedang berlangsung.');
                 }
             }
 
