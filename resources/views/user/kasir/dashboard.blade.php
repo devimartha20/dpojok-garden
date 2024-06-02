@@ -83,7 +83,7 @@
             </div>
             <div class="card-block">
                 <span class="d-block text-c-blue f-24 f-w-600 text-center">{{ $total_pesanan_online + $total_pesanan_offline }}</span>
-                <canvas id="feedback-chart" height="100"></canvas>
+                <canvas id="myChart" height="100"></canvas>
                 <div class="row justify-content-center m-t-15">
                     <div class="col-auto b-r-default m-t-5 m-b-5">
                         <h4>
@@ -348,5 +348,36 @@
 </div>
 @endsection
 @section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('myChart').getContext('2d');
 
+        const onlineOrdersCount = @json($total_pesanan_online);
+        const offlineOrdersCount = @json($total_pesanan_offline);
+
+        const labels = ['Online Orders', 'Offline Orders'];
+        const data = [onlineOrdersCount, offlineOrdersCount];
+
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Orders',
+                    data: data,
+                    backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
 @endsection
