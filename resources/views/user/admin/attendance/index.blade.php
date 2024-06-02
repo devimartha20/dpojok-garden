@@ -64,9 +64,9 @@
                                 <td>{{ $entry['employee']->nama }}</td>
                                 <td>
                                     @if ($entry['details'])
-                                        @if ($entry['status'] == 'attended')
-                                            {{ $entry['details'] }}
-                                        @elseif ($entry['status'] == 'absent' || $entry['status'] == 'on leave')
+                                        @if ($entry['status'] == 'Hadir')
+                                            {{ $entry['details']->time }}
+                                        @elseif ($entry['status'] == 'sakit' || $entry['status'] == 'izin' || $entry['status'] == 'libur' || $entry['status'] == 'Cuti')
                                             {{ $entry['details']->start_date }} - {{ $entry['details']->end_date }}
                                         @endif
                                     @else
