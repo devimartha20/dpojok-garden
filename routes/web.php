@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Info\FacilityController;
 use App\Http\Controllers\Kasir\ReservationController;
 use App\Http\Controllers\Auth\EmployeeLoginController;
 use App\Http\Controllers\Customer\CartController;
@@ -121,6 +122,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('metode', PaymentMethodController::class);
         Route::resource('customer', CustomerController::class);
         Route::resource('pegawai', EmployeeController::class);
+
+        //INFO
+        Route::resource('facility', FacilityController::class);
+
         // Route::resource('reservation', ReservationController::class);
 
 
