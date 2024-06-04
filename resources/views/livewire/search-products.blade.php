@@ -18,7 +18,6 @@
                         <div class="position-relative d-inline-block">
                             <span class="badge badge-danger rounded-circle" style="position: absolute; top: -5px; right: -5px;">{{ $cart->detailCarts->count() }}</span>
                             <a href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart" style="vertical-align: middle;"></i></a>
-
                         </div>
                     </div>
                 </div>
