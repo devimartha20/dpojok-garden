@@ -7638,9 +7638,9 @@ table tbody .border-bottom-info td {
 .pcoded .pcoded-navbar[active-item-theme="theme4"] .pcoded-item .pcoded-hasmenu[subitem-icon="style7"] .pcoded-submenu {
   border-left: 1px solid #d6d6d6; }
   .pcoded .pcoded-navbar[active-item-theme="theme4"] .pcoded-item .pcoded-hasmenu[subitem-icon="style7"] .pcoded-submenu > li.active > a > .pcoded-mtext:after, .pcoded .pcoded-navbar[active-item-theme="theme4"] .pcoded-item .pcoded-hasmenu[subitem-icon="style7"] .pcoded-submenu > li:hover > a > .pcoded-mtext:after {
-    background-color: #4680ff; }
+    background-color: #c8a97e; }
 .pcoded .pcoded-navbar[active-item-theme="theme4"] .searchbar-toggle {
-  color: #4680ff; }
+  color: #c8a97e; }
 .pcoded .pcoded-navbar[active-item-theme="theme5"] .pcoded-item li .pcoded-submenu li.active > a,
 .pcoded .pcoded-navbar[active-item-theme="theme5"] .pcoded-item li .pcoded-submenu li:hover > a {
   color: #FFB64D !important; }
