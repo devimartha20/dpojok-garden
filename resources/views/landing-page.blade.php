@@ -59,9 +59,9 @@
                                       <p>{{ $product->productCategory->nama ?? '-' }}</p>
                                   </div>
                             </div>
-                        </div> 
+                        </div>
                         @endforeach
-                       
+
                       </div>
                   </div>
               </div>
@@ -93,7 +93,7 @@
       </section>
 
 
-      <section class="ftco-section ftco-counter img ftco-no-pt" id="section-counter">
+      {{-- <section class="ftco-section ftco-counter img ftco-no-pt" id="section-counter">
       <div class="container">
           <div class="row d-md-flex">
               <div class="col-md-9">
@@ -137,7 +137,7 @@
         </div>
       </div>
       </div>
-  </section>
+  </section> --}}
 
       <section class="ftco-section bg-light">
           <div class="container">
@@ -234,11 +234,11 @@
                     </div>
                 @endforeach
             </div>
-            
+
         </div>
     </section>
 
-      <section class="ftco-section">
+      {{-- <section class="ftco-section">
           <div class="container">
               <div class="row justify-content-center mb-5 pb-2">
         <div class="col-md-12 text-center heading-section ftco-animate">
@@ -317,7 +317,7 @@
                   </div>
               </div>
           </div>
-      </section>
+      </section> --}}
 
       <section class="ftco-section img" style="background-image: url({{asset('customer-template')}}/images/bg_3.jpg)" data-stellar-background-ratio="0.5">
           <div class="container">
@@ -376,7 +376,7 @@
               </div>
               <div class="col-md-12 mt-3">
                 <div class="form-group text-center">
-                  <input type="submit" value="Make a Reservation" class="btn btn-primary py-3 px-5">
+                    <a href="{{ route('login') }}" class="btn btn-primary">Make a reservation</a>
                 </div>
               </div>
             </div>
