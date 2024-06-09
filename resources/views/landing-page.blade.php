@@ -196,8 +196,9 @@
             <div class="row no-gutters d-flex align-items-stretch">
                 @foreach ($products->take(10) as $product)
                     <div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-                        <div class="menus d-sm-flex ftco-animate align-items-stretch">
+
                             @if($loop->iteration % 2 != 0)
+                            <div class="menus d-sm-flex ftco-animate align-items-stretch">
                                 <div class="text d-flex align-items-center">
                                     <div>
                                         <div class="d-flex">
@@ -214,7 +215,9 @@
                                     </div>
                                 </div>
                                 <div class="menu-img img" style="background-image: url({{ asset('images/' . $product->image) }});"></div>
+                            </div>
                             @else
+                            <div class="menus d-sm-flex ftco-animate align-items-stretch">
                                 <div class="menu-img img" style="background-image: url({{ asset('images/' . $product->image) }});"></div>
                                 <div class="text d-flex align-items-center">
                                     <div>
@@ -231,8 +234,9 @@
                                         <p><a href="{{ route('login') }}" class="btn btn-primary">Pesan sekarang</a></p>
                                     </div>
                                 </div>
+                            </div>
                             @endif
-                        </div>
+
                     </div>
                 @endforeach
             </div>
