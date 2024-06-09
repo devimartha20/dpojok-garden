@@ -204,6 +204,7 @@
                                             <div class="one-half">
                                                 <h3>{{ $product->nama }}</h3>
                                             </div>
+                                            <hr>
                                             <div class="one-forth">
                                                 <span class="price">Rp. {{ $product->harga_jual }}</span>
                                             </div>
@@ -221,6 +222,7 @@
                                             <div class="one-half">
                                                 <h3>{{ $product->nama }}</h3>
                                             </div>
+                                            <hr>
                                             <div class="one-forth">
                                                 <span class="price">Rp. {{ $product->harga_jual }}</span>
                                             </div>
