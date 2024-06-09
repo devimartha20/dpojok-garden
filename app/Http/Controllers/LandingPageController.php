@@ -14,11 +14,11 @@ class LandingPageController extends Controller
 {
     public function index(){
         $products = Product::all();
-        $facilities = Facility::where('shown', true)->orderBy('seq', 'asc')->get();
-        $events = Event::where('shown', true)->orderBy('seq', 'asc')->get();
-        $galleries = Gallery::where('shown', true)->orderBy('seq', 'asc')->get();
-        $company_info = CompanyInformation::all();
-        $social_medias = SocialMedia::where('shown', true)->orderBy('seq', 'asc')->get();
+        // $facilities = Facility::where('shown', true)->orderBy('seq', 'asc')->get();
+        // $events = Event::where('shown', true)->orderBy('seq', 'asc')->get();
+        // $galleries = Gallery::where('shown', true)->orderBy('seq', 'asc')->get();
+        // $company_info = CompanyInformation::all();
+        // $social_medias = SocialMedia::where('shown', true)->orderBy('seq', 'asc')->get();
 
         return view('landing-page', compact('products', 'facilities',
         'events',
