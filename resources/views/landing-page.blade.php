@@ -74,17 +74,17 @@
           <div class="container">
               <div class="row">
                   <div class="col-md-7 d-flex">
-                      <div class="img img-1 mr-md-2" style="background-image: url({{asset('customer-template')}}/images/about.jpg);"></div>
-                      <div class="img img-2 ml-md-2" style="background-image: url({{asset('customer-template')}}/images/about-1.jpg);"></div>
+                      <div class="img img-1 mr-md-2" style="background-image: url({{asset('landing-page-template')}}/images/halaman.jpg);"></div>
+                      <div class="img img-2 ml-md-2" style="background-image: url({{asset('landing-page-template')}}/images/biliard.jpg);"></div>
                   </div>
                   <div class="col-md-5 wrap-about pt-5 pt-md-5 pb-md-3 ftco-animate">
             <div class="heading-section mb-4 my-5 my-md-0">
                 <span class="subheading">About</span>
               <h2 class="mb-4">D'Podjok Garden Coffe Shop</h2>
             </div>
-            <p>Tempat nongkrong yang memberikan suasana hangat dengan harga yang ramah dikantong untuk para remaja</p>
+            <p>Selamat datang di D'Podjok Garden - tempat terbaik untuk remaja yang mencari suasana hangat dan harga ramah di kantong. Nikmati waktu santai bersama teman-teman dalam suasana yang cozy dan nyaman, sambil menikmati berbagai hidangan lezat dan minuman segar.</p>
                       <pc class="time">
-                          <span>Mon - Fri <strong>11 AM - 23 PM</strong></span>
+                          <span>Mon - Fri <strong>11:00 AM - 11:00 PM</strong></span>
                           <span><a href="#">+ 1-978-123-4567</a></span>
                       </p>
                   </div>
@@ -138,7 +138,7 @@
       </div>
       </div>
   </section> --}}
-
+{{--
       <section class="ftco-section bg-light">
           <div class="container">
               <div class="row justify-content-center mb-5 pb-2">
@@ -183,7 +183,7 @@
         </div>
       </div>
           </div>
-      </section>
+      </section> --}}
 
     <section class="ftco-section">
         <div class="container">
@@ -222,7 +222,7 @@
                                                 <h3>{{ $product->nama }}</h3>
                                             </div>
                                             <div class="one-forth">
-                                                <span class="price">${{ $product->harga_jual }}</span>
+                                                <span class="price">Rp. {{ $product->harga_jual }}</span>
                                             </div>
                                         </div>
                                         <p>{{ $product->productCategory->nama ?? '-' }}</p>
@@ -331,47 +331,41 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="">Name</label>
-                  <input type="text" class="form-control" placeholder="Your Name">
+                  <label for="">Start Date</label>
+                  <input type="text" class="form-control" placeholder="Start Date">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="">Email</label>
-                  <input type="text" class="form-control" placeholder="Your Email">
+                  <label for="">Start Time</label>
+                  <input type="text" class="form-control" placeholder="Start Time">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="">Phone</label>
-                  <input type="text" class="form-control" placeholder="Phone">
+                  <label for="">End Time</label>
+                  <input type="text" class="form-control" placeholder="End Time">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="">Phone</label>
-                  <input type="text" class="form-control" id="book_date" placeholder="Date">
+                    <label for="">Person</label>
+                    <div class="select-wrap one-third">
+                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                      <select name="" id="" class="form-control">
+                        <option value="">Person</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4+</option>
+                      </select>
+                    </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="">Time</label>
-                  <input type="text" class="form-control" id="book_time" placeholder="Time">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="">Person</label>
-                  <div class="select-wrap one-third">
-                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                    <select name="" id="" class="form-control">
-                      <option value="">Person</option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                      <option value="">4+</option>
-                    </select>
-                  </div>
+                  <label for="">Note</label>
+                  <input type="text" class="form-control" id="book_time" placeholder="Note">
                 </div>
               </div>
               <div class="col-md-12 mt-3">
@@ -478,8 +472,8 @@
           <div class="container">
               <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center heading-section ftco-animate">
-            <span class="subheading">Blog</span>
-          <h2 class="mb-4">Recent Posts</h2>
+            <span class="subheading">Table</span>
+          <h2 class="mb-4">Tables</h2>
         </div>
       </div>
               <div class="row">
