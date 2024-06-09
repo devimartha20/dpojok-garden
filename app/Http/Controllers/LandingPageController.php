@@ -20,11 +20,12 @@ class LandingPageController extends Controller
         // $company_info = CompanyInformation::all();
         // $social_medias = SocialMedia::where('shown', true)->orderBy('seq', 'asc')->get();
 
-        return view('landing-page', compact('products', 'facilities',
-        'events',
-        'galleries',
-        'company_info',
-        'social_medias',
+        return view('landing-page', compact('products',
+        //  'facilities',
+        // 'events',
+        // 'galleries',
+        // 'company_info',
+        // 'social_medias',
     ));
     }
 }
