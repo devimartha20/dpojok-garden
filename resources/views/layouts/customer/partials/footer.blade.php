@@ -18,13 +18,13 @@
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Open Hours</h2>
             <ul class="list-unstyled open-hours">
-              <li class="d-flex"><span>Monday</span><span>11:00 - 23:00</span></li>
-              <li class="d-flex"><span>Tuesday</span><span>11:00 - 23:00</span></li>
-              <li class="d-flex"><span>Wednesday</span><span>11:00 - 23:00</span></li>
-              <li class="d-flex"><span>Thursday</span><span>11:00 - 23:00</span></li>
-              <li class="d-flex"><span>Friday</span><span>11:00 - 23:00</span></li>
-              <li class="d-flex"><span>Saturday</span><span>11:00 - 23:00</span></li>
-              <li class="d-flex"><span>Sunday</span><span> 11:00 - 23:00</span></li>
+              <li class="d-flex"><span>Monday</span><span>10:00 - 22:00</span></li>
+              <li class="d-flex"><span>Tuesday</span><span>10:00 - 22:00</span></li>
+              <li class="d-flex"><span>Wednesday</span><span>10:00 - 22:00</span></li>
+              <li class="d-flex"><span>Thursday</span><span>10:00 - 22:00</span></li>
+              <li class="d-flex"><span>Friday</span><span>10:00 - 22:00</span></li>
+              <li class="d-flex"><span>Saturday</span><span>10:00 - 22:00</span></li>
+              <li class="d-flex"><span>Sunday</span><span> 10:00 - 22:00</span></li>
             </ul>
           </div>
         </div>
@@ -51,15 +51,15 @@
         </div>
         <div class="col-md-6 col-lg-3">
           <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Login</h2>
-              <p>Masuk ke akunmu</p>
-            <form action="#" class="subscribe-form">
+              <h2 class="ftco-heading-2">Contact</h2>
+              <p>081322455758</p>
+            {{-- <form action="#" class="subscribe-form">
               <div class="form-group">
                 <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
                 <input type="password" class="form-control mb-2 text-center" placeholder="Enter password">
                 <p><a href="{{ route('login') }}" class="btn btn-primary">Login</a></p>
               </div>
-            </form>
+            </form> --}}
           </div>
         </div>
       </div>
