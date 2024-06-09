@@ -6,7 +6,7 @@
         <div class="col-md-6 col-lg-3">
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">D'Podjok Garden</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <p>Tempat terbaik untuk remaja yang mencari suasana hangat dan harga ramah di kantong. Nikmati waktu santai bersama teman-teman dalam suasana yang cozy dan nyaman, sambil menikmati berbagai hidangan lezat dan minuman segar.</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
               <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
               <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -18,13 +18,13 @@
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Open Hours</h2>
             <ul class="list-unstyled open-hours">
-              <li class="d-flex"><span>Monday</span><span>9:00 - 24:00</span></li>
-              <li class="d-flex"><span>Tuesday</span><span>9:00 - 24:00</span></li>
-              <li class="d-flex"><span>Wednesday</span><span>9:00 - 24:00</span></li>
-              <li class="d-flex"><span>Thursday</span><span>9:00 - 24:00</span></li>
-              <li class="d-flex"><span>Friday</span><span>9:00 - 02:00</span></li>
-              <li class="d-flex"><span>Saturday</span><span>9:00 - 02:00</span></li>
-              <li class="d-flex"><span>Sunday</span><span> 9:00 - 02:00</span></li>
+              <li class="d-flex"><span>Monday</span><span>11:00 - 23:00</span></li>
+              <li class="d-flex"><span>Tuesday</span><span>11:00 - 23:00</span></li>
+              <li class="d-flex"><span>Wednesday</span><span>11:00 - 23:00</span></li>
+              <li class="d-flex"><span>Thursday</span><span>11:00 - 23:00</span></li>
+              <li class="d-flex"><span>Friday</span><span>11:00 - 23:00</span></li>
+              <li class="d-flex"><span>Saturday</span><span>11:00 - 23:00</span></li>
+              <li class="d-flex"><span>Sunday</span><span> 11:00 - 23:00</span></li>
             </ul>
           </div>
         </div>
@@ -49,7 +49,7 @@
               </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-3">
+        {{-- <div class="col-md-6 col-lg-3">
           <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Newsletter</h2>
               <p>Far far away, behind the word mountains, far from the countries.</p>
@@ -60,7 +60,7 @@
               </div>
             </form>
           </div>
-        </div>
+        </div> --}}
       </div>
       <div class="row">
         <div class="col-md-12 text-center">
