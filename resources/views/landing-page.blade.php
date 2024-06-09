@@ -226,9 +226,10 @@
                                                 <h3>{{ $product->nama }}</h3>
                                             </div>
                                             <hr>
-                                            <div class="one-forth">
-                                                <span class="price">{{ $product->harga_jual }}</span>
-                                            </div>
+
+                                        </div>
+                                        <div class="one-forth">
+                                            <span class="price">{{ $product->harga_jual }}</span>
                                         </div>
                                         <p>{{ $product->productCategory->nama ?? '-' }}</p>
                                         <p><a href="{{ route('login') }}" class="btn btn-primary">Pesan sekarang</a></p>
