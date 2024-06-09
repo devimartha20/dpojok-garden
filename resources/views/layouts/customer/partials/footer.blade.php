@@ -1,6 +1,6 @@
 @auth
 @else
-<footer class="ftco-footer ftco-bg-dark ftco-section">
+<footer id="contact" class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-6 col-lg-3">
