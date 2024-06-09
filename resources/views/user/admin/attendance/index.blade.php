@@ -115,8 +115,8 @@
             </table>
         @endif
         </div> --}}
-       
-    </div> 
+
+    </div>
 </div>
 <hr>
 <div><h6>Daftar Pengajuan Form Absensi</h6></div>
