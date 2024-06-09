@@ -80,7 +80,7 @@
                   <div class="col-md-5 wrap-about pt-5 pt-md-5 pb-md-3 ftco-animate">
             <div class="heading-section mb-4 my-5 my-md-0">
                 <span class="subheading">About</span>
-              <h2 class="mb-4">D'Podjok Garden Coffe Shop</h2>
+              <h2 class="mb-4">D'Podjok Garden Coffee Shop</h2>
             </div>
             <p>Selamat datang di D'Podjok Garden - tempat terbaik untuk remaja yang mencari suasana hangat dan harga ramah di kantong. Nikmati waktu santai bersama teman-teman dalam suasana yang cozy dan nyaman, sambil menikmati berbagai hidangan lezat dan minuman segar.</p>
                       <pc class="time">
