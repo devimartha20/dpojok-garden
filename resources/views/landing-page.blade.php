@@ -50,7 +50,7 @@
               <div class="col-md-12">
                   <div class="featured">
                       <div class="row">
-                        @foreach ($products as $product)
+                        @foreach ($products->take(4) as $product)
                         <div class="col-md-3">
                             <div class="featured-menus ftco-animate">
                                   <div class="menu-img img" style="background-image: url({{asset('images/'.$product->image)}});"></div>
@@ -70,7 +70,7 @@
   </section>
 
 
-      <section class="ftco-section ftco-wrap-about">
+      <section id="about" class="ftco-section ftco-wrap-about">
           <div class="container">
               <div class="row">
                   <div class="col-md-7 d-flex">
@@ -185,7 +185,7 @@
           </div>
       </section> --}}
 
-    <section class="ftco-section">
+    <section id="menu" class="ftco-section">
         <div class="container">
             <div class="row no-gutters justify-content-center mb-5 pb-2">
                 <div class="col-md-12 text-center heading-section ftco-animate">
@@ -194,7 +194,7 @@
                 </div>
             </div>
             <div class="row no-gutters d-flex align-items-stretch">
-                @foreach ($products as $product)
+                @foreach ($products->take(10) as $product)
                     <div class="col-md-12 col-lg-6 d-flex align-self-stretch">
                         <div class="menus d-sm-flex ftco-animate align-items-stretch">
                             @if($loop->iteration % 2 != 0)
@@ -205,7 +205,7 @@
                                                 <h3>{{ $product->nama }}</h3>
                                             </div>
                                             <div class="one-forth">
-                                                <span class="price">${{ $product->harga_jual }}</span>
+                                                <span class="price">Rp. {{ $product->harga_jual }}</span>
                                             </div>
                                         </div>
                                         <p>{{ $product->productCategory->nama ?? '-' }}</p>
