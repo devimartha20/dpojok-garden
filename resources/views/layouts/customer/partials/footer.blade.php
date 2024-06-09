@@ -49,18 +49,19 @@
               </div>
           </div>
         </div>
-        {{-- <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-3">
           <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Newsletter</h2>
-              <p>Far far away, behind the word mountains, far from the countries.</p>
+              <h2 class="ftco-heading-2">Login</h2>
+              <p>Masuk ke akunmu</p>
             <form action="#" class="subscribe-form">
               <div class="form-group">
                 <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
-                <input type="submit" value="Subscribe" class="form-control submit px-3">
+                <input type="password" class="form-control mb-2 text-center" placeholder="Enter password">
+                <p><a href="{{ route('login') }}" class="btn btn-primary">Login</a></p>
               </div>
             </form>
           </div>
-        </div> --}}
+        </div>
       </div>
       <div class="row">
         <div class="col-md-12 text-center">
