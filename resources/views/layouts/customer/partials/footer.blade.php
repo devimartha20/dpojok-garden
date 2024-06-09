@@ -9,6 +9,7 @@
             <p>Tempat terbaik untuk remaja yang mencari suasana hangat dan harga ramah di kantong. Nikmati waktu santai bersama teman-teman dalam suasana yang cozy dan nyaman, sambil menikmati berbagai hidangan lezat dan minuman segar.</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
               <li class="ftco-animate"><a href="https://wa.me/6281322455758" target="_BLANK"><span class="icon-whatsapp"></span></a></li>
+              <li class="ftco-animate"><a href="tel:+6281322455758" target="_BLANK"><span class="icon-phone"></span></a></li>
               <li class="ftco-animate"><a href="https://www.instagram.com/dpodjok.garden?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_BLANK"><span class="icon-instagram"></span></a></li>
             </ul>
           </div>
@@ -89,7 +90,7 @@
         <div class="col-md-12 text-center">
 
           <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy; Dpodjok Garden<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
         </div>
       </div>

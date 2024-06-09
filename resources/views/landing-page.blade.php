@@ -84,8 +84,8 @@
             </div>
             <p>Selamat datang di D'Podjok Garden - tempat terbaik untuk remaja yang mencari suasana hangat dan harga ramah di kantong. Nikmati waktu santai bersama teman-teman dalam suasana yang cozy dan nyaman, sambil menikmati berbagai hidangan lezat dan minuman segar.</p>
                       <pc class="time">
-                          <span>Mon - Fri <strong>11:00 AM - 11:00 PM</strong></span>
-                          <span><a href="#">+ 1-978-123-4567</a></span>
+                          <span>Mon - Sun<strong>10:00 AM - 10:00 PM</strong></span>
+                          <span><a href="tel:+6281322455758">+62 813-2245-5758</a></span>
                       </p>
                   </div>
               </div>
