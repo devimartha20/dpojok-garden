@@ -82,9 +82,9 @@
                 <span class="subheading">About</span>
               <h2 class="mb-4">D'Podjok Garden Coffe Shop</h2>
             </div>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+            <p>Tempat nongkrong yang memberikan suasana hangat dengan harga yang ramah dikantong untuk para remaja</p>
                       <pc class="time">
-                          <span>Mon - Fri <strong>8 AM - 11 PM</strong></span>
+                          <span>Mon - Fri <strong>11 AM - 23 PM</strong></span>
                           <span><a href="#">+ 1-978-123-4567</a></span>
                       </p>
                   </div>

@@ -100,22 +100,22 @@
                         <i class="ti-angle-down"></i>
                     </a>
                     <ul class="show-notification profile-notification">
-                        <li>
+                        {{-- <li>
                             <a href="#!">
                                 <i class="ti-settings"></i> Settings
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
-                            <a href="user-profile.html">
+                            <a href="">
                                 <i class="ti-user"></i> Profile
                             </a>
                         </li>
 
-                        <li>
+                        {{-- <li>
                             <a href="auth-lock-screen.html">
                                 <i class="ti-lock"></i> Lock Screen
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
                             @auth('employee')
                             <form method="POST" action="{{ route('employee.logout') }}">
