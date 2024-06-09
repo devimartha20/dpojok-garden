@@ -206,7 +206,7 @@
                                                 <h3>{{ $product->nama }}</h3>
                                             </div>
                                         </div>
-                                        <div class="one-forth">
+                                        <div class="">
                                             <span class="price">Rp. {{ $product->harga_jual }}</span>
                                         </div>
                                         <p>{{ $product->productCategory->nama ?? '-' }}</p>
