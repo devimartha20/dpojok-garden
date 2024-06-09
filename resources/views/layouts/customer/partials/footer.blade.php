@@ -8,9 +8,8 @@
             <h2 class="ftco-heading-2">D'Podjok Garden</h2>
             <p>Tempat terbaik untuk remaja yang mencari suasana hangat dan harga ramah di kantong. Nikmati waktu santai bersama teman-teman dalam suasana yang cozy dan nyaman, sambil menikmati berbagai hidangan lezat dan minuman segar.</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              <li class="ftco-animate"><a href="https://wa.me/6281322455758" target="_BLANK"><span class="icon-whatsapp"></span></a></li>
+              <li class="ftco-animate"><a href="https://www.instagram.com/dpodjok.garden?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_BLANK"><span class="icon-instagram"></span></a></li>
             </ul>
           </div>
         </div>
@@ -29,6 +28,29 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
+            <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2">Instagram</h2>
+                <div id="instagram-feed" class="thumb d-flex justify-content-center">
+                    <!-- Local Instagram image will be inserted here -->
+                    <a href="https://www.instagram.com/dpodjok.garden?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="thumb-menu img" style="background-image: url({{ asset('images/instagram-qr.png') }}); width: 100%; height: 200px; background-size: contain; background-position: center; background-repeat: no-repeat;">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2">Tiktok</h2>
+                <div id="instagram-feed" class="thumb d-flex justify-content-center">
+                    <!-- Local Instagram image will be inserted here -->
+                    <a href="https://www.tiktok.com/@dpodjok.garden?_t=8n3ZFnLnfpY&_r=1" target="_blank" class="thumb-menu img" style="background-image: url({{ asset('images/tiktok-qr.jpg') }}); width: 100%; height: 200px; background-size: contain; background-position: center; background-repeat: no-repeat;">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        {{-- <div class="col-md-6 col-lg-3">
            <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Instagram</h2>
             <div class="thumb d-sm-flex">
@@ -48,7 +70,7 @@
                   </a>
               </div>
           </div>
-        </div>
+        </div> --}}
         {{-- <div class="col-md-6 col-lg-3">
           <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Newsletter</h2>

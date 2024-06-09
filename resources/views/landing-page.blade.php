@@ -472,67 +472,35 @@
     </div>
   </section> --}}
 
-      <section class="ftco-section bg-light">
-          <div class="container">
-              <div class="row justify-content-center mb-5">
-        <div class="col-md-7 text-center heading-section ftco-animate">
-            <span class="subheading">Table</span>
-          <h2 class="mb-4">Tables</h2>
-        </div>
-      </div>
-              <div class="row">
-        <div class="col-md-4 ftco-animate">
-          <div class="blog-entry">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-            </a>
-            <div class="text pt-3 pb-4 px-4">
-              <div class="meta">
-                <div><a href="#">Sept. 06, 2019</a></div>
-                <div><a href="#">Admin</a></div>
-              </div>
-              <h3 class="heading"><a href="#">Taste the delicious foods in Asia</a></h3>
-              <p class="clearfix">
-                <a href="#" class="float-left read">Read more</a>
-                <a href="#" class="float-right meta-chat"><span class="icon-chat"></span> 3</a>
-              </p>
+  <section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+                <span class="subheading">Maps</span>
+                <h2 class="mb-4">Location</h2>
             </div>
-          </div>
         </div>
-        <div class="col-md-4 ftco-animate">
-          <div class="blog-entry">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-            </a>
-            <div class="text pt-3 pb-4 px-4">
-              <div class="meta">
-                <div><a href="#">Sept. 06, 2019</a></div>
-                <div><a href="#">Admin</a></div>
-              </div>
-              <h3 class="heading"><a href="#">Taste the delicious foods in Asia</a></h3>
-              <p class="clearfix">
-                <a href="#" class="float-left read">Read more</a>
-                <a href="#" class="float-right meta-chat"><span class="icon-chat"></span> 3</a>
-              </p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="map-container" style="width: 100%; height: 450px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.703726769279!2d107.76318187430363!3d-6.5590338641174135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e693df1e57ac3ed%3A0xbd727532766e8dd7!2sD&#39;Podjok%20GARDEN!5e0!3m2!1sen!2sid!4v1717936705370!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4 ftco-animate">
-          <div class="blog-entry">
-            <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-            </a>
-            <div class="text pt-3 pb-4 px-4">
-              <div class="meta">
-                <div><a href="#">Sept. 06, 2019</a></div>
-                <div><a href="#">Admin</a></div>
-              </div>
-              <h3 class="heading"><a href="#">Taste the delicious foods in Asia</a></h3>
-              <p class="clearfix">
-                <a href="#" class="float-left read">Read more</a>
-                <a href="#" class="float-right meta-chat"><span class="icon-chat"></span> 3</a>
-              </p>
+            <div class="col-md-6">
+                <div class="p-4">
+                    <span class="subheading">Our Location</span>
+                    <h2 class="mb-4">Find Us</h2>
+                    <p>
+                        Gg. Sukagalih No.I No 5, Karanganyar, Kec. Subang, Kabupaten Subang, Jawa Barat 41211 <br>
+                        CQR8+98 Karanganyar, Subang Regency, West Java
+                    </p>
+                    <p>
+                        <a href="https://maps.app.goo.gl/osHfGn94Ged4kkQH9" target="_blank" class="btn btn-primary">Lihat Lokasi</a>
+                    </p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-          </div>
-      </section>
+    </div>
+</section>
+
 @endsection
