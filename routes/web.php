@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Info\FacilityController;
 use App\Http\Controllers\Kasir\ReservationController;
 use App\Http\Controllers\Auth\EmployeeLoginController;
 use App\Http\Controllers\Customer\CartController;
@@ -29,6 +30,10 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Info\CompanyInformationController;
+use App\Http\Controllers\Info\EventController;
+use App\Http\Controllers\Info\GalleryController;
+use App\Http\Controllers\Info\SocialMediaController;
 use App\Http\Controllers\PrintController;
 use App\Models\Admin\Payment;
 
@@ -121,6 +126,14 @@ Route::middleware(['auth', 'verified'])->group(function(){
         Route::resource('metode', PaymentMethodController::class);
         Route::resource('customer', CustomerController::class);
         Route::resource('pegawai', EmployeeController::class);
+
+        //INFO
+        Route::resource('facility', FacilityController::class);
+        Route::resource('event', EventController::class);
+        Route::resource('gallery', GalleryController::class);
+        Route::resource('companyinfo', CompanyInformationController::class);
+        Route::resource('socialmedia', SocialMediaController::class);
+
         // Route::resource('reservation', ReservationController::class);
 
 
