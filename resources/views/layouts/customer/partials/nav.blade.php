@@ -31,11 +31,11 @@
                 <div class="row d-flex">
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-                        <span class="text">081322455758</span>
+                        <span class="text">+62 813-2245-5758</span>
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
-                        <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-                        <span class="text">youremail@email.com</span>
+                        <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-home"></span></div>
+                        <span class="text">Karanganyar, Subang Regency</span>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
                         <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span> <span>10:00AM - 10:00PM</span></p>
@@ -54,12 +54,12 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
             <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
-          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-          <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Sign Up</a></li>
-          <li class="nav-item cta"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Sign Up</a></li>
+            <li class="nav-item cta"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
         </ul>
       </div>
     </div>
