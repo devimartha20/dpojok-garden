@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Edit Produk
+    Edit Menu
 @endsection
 @section('styles')
  <!-- Notification.css -->
@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4>Form Edit Produk</h4>
+        <h4>Form Edit Menu</h4>
         {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
         <div class="card-header-right"><i class="icofont icofont-spinner-alt-5"></i></div>
 
@@ -19,12 +19,12 @@
 
         </div>
         <div class="card-block">
-            {{-- <h4 class="sub-title">Form Tambah Produk</h4> --}}
+            {{-- <h4 class="sub-title">Form Tambah Menu</h4> --}}
             <form action="{{ route('product.update',$product->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Kategori Produk</label>
+                    <label class="col-sm-2 col-form-label">Kategori Menu</label>
                     <div class="col-sm-10">
                         <select name="product_category_id" required class="form-control">
                             @foreach ($productCategory as $c)
@@ -34,15 +34,15 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nama Produk</label>
+                    <label class="col-sm-2 col-form-label">Nama Menu</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan Nama Produk" required value="{{ $product->nama }}" name="nama">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Menu" required value="{{ $product->nama }}" name="nama">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Deskripsi Produk</label>
+                    <label class="col-sm-2 col-form-label">Deskripsi Menu</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Deskripsi Produk" required value="{{ $product->deskripsi }}"name="deskripsi">
+                        <input type="text" class="form-control" placeholder="Deskripsi Menu" required value="{{ $product->deskripsi }}"name="deskripsi">
                     </div>
                 </div>
                 <div class="form-group row">

@@ -16,7 +16,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4>Form Tambah Produk</h4>
+        <h4>Form Tambah Menu</h4>
         {{-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> --}}
         <div class="card-header-right"><i class="icofont icofont-spinner-alt-5"></i></div>
 
@@ -39,7 +39,7 @@
             <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Kategori Produk</label>
+                    <label class="col-sm-2 col-form-label">Kategori Menu</label>
                     <div class="col-sm-10">
                         <select name="product_category_id" required class="form-control" required>
                             <option>Pilih Jenis Kategori</option>
@@ -50,15 +50,15 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nama Produk</label>
+                    <label class="col-sm-2 col-form-label">Nama Menu</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Masukkan Nama Produk" required value="{{ old('nama') }}" name="nama">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Menu" required value="{{ old('nama') }}" name="nama">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Deskripsi Produk</label>
+                    <label class="col-sm-2 col-form-label">Deskripsi Menu</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Deskripsi Produk" required name="deskripsi">
+                        <input type="text" class="form-control" placeholder="Deskripsi Menu" required name="deskripsi">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Upload Gambar Produk</label>
+                    <label class="col-sm-2 col-form-label">Upload Gambar Menu</label>
                     <div class="col-sm-10">
                         <input type="file" accept="image/*" class="form-control" id="imageInput" name="image" onchange="previewImage(event)">
                         <hr>
