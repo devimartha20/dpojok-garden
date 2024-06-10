@@ -27,7 +27,7 @@
             {!! implode('', $errors->all('<div style="color: red;">:message</div>')) !!}
         @endif
         <br>
-        <button type="button" class="btn btn-sm btn-info btn-round" data-toggle="modal" data-target="#tambahModal">
+        <button type="button" class="btn btn-sm btn-primary btn-round" data-toggle="modal" data-target="#tambahModal">
             Tambah Kategori Menu
         </button>
         <br>
@@ -48,7 +48,7 @@
                             <td>{{ $pc->nama }}</td>
                             <td>{{ $pc->deskripsi }}</td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $pc->id }}">
+                                <button type="button" class="btn btn-info btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $pc->id }}">
                                     Edit
                                   </button>
                                 <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $pc->id }}">

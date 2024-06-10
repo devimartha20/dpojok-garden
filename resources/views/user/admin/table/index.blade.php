@@ -27,7 +27,7 @@
             {!! implode('', $errors->all('<div style="color: red;">:message</div>')) !!}
         @endif
         <br>
-        <a href="{{ route('table.create') }}" class="btn btn-sm btn-info btn-round">
+        <a href="{{ route('table.create') }}" class="btn btn-sm btn-primary btn-round">
             Tambah Meja
         </a>
         <br>
@@ -56,7 +56,7 @@
                                 <img src="{{ asset($t->image) }}" alt="Gambar Meja" class="image-fluid" style="max-width: 200px; max-height: auto;">
                             </td>
                             <td>
-                                <a href="{{ route('table.edit',$t->id) }}" type="button" class="btn btn-primary btn-round btn-sm">
+                                <a href="{{ route('table.edit',$t->id) }}" type="button" class="btn btn-info btn-round btn-sm">
                                     Edit
                                 </a>
                                 <a type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $t->id }}">
