@@ -27,7 +27,7 @@
             {!! implode('', $errors->all('<div style="color: red;">:message</div>')) !!}
         @endif
         <br>
-        <a href="{{ route('product.create') }}" class="btn btn-sm btn-info btn-round">
+        <a href="{{ route('product.create') }}" class="btn btn-sm btn-primary btn-round">
             Tambah Menu
         </a>
         <br>
@@ -58,7 +58,7 @@
                                 <img src="{{ asset('images/'.$p->image )}}" style="width: 25%; height:auto"/>
                             </td>
                             <td>
-                                <a href="/product/{{ $p->id }}/edit" type="button" class="btn btn-primary btn-round btn-sm">
+                                <a href="/product/{{ $p->id }}/edit" type="button" class="btn btn-info btn-round btn-sm">
                                     Edit
                                 </a>
                                 <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $p->id }}">
