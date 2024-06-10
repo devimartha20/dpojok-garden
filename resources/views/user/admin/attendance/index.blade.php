@@ -31,7 +31,7 @@
                 <label for="end_date">Tanggal Akhir:</label>
                 <input class="form-control" type="date" id="end_date" name="end_date" required>
             </div>
-            <button class="btn btn-sm btn-primary btn-round" type="submit">Filter Tanggal</button>
+            <button class="btn btn-sm btn-primary" type="submit">Filter Tanggal</button>
         </form>
         @if ($errors->any())
         <div class="alert alert-danger mt-3">
