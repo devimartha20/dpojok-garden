@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Kelola Kategori Produk
+    Kelola Kategori Menu
 @endsection
 @section('styles')
  <!-- Notification.css -->
@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h5>Daftar Kategori Produk</h5>
+        <h5>Daftar Kategori Menu</h5>
         {{-- <span>use class <code>table-hover</code> inside table element</span> --}}
         <div class="card-header-right">
             <ul class="list-unstyled card-option">
@@ -27,8 +27,8 @@
             {!! implode('', $errors->all('<div style="color: red;">:message</div>')) !!}
         @endif
         <br>
-        <button type="button" class="btn btn-sm btn-info btn-round" data-toggle="modal" data-target="#tambahModal">
-            Tambah Kategori Produk
+        <button type="button" class="btn btn-sm btn-primary btn-round" data-toggle="modal" data-target="#tambahModal">
+            Tambah Kategori Menu
         </button>
         <br>
         <div class="table-responsive">
@@ -48,7 +48,7 @@
                             <td>{{ $pc->nama }}</td>
                             <td>{{ $pc->deskripsi }}</td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $pc->id }}">
+                                <button type="button" class="btn btn-info btn-round btn-sm" data-toggle="modal" data-target="#editModal{{ $pc->id }}">
                                     Edit
                                   </button>
                                 <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $pc->id }}">
@@ -61,7 +61,7 @@
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Kategori Produk</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Kategori Menu</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -126,7 +126,7 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori Produk</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori Menu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

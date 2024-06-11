@@ -27,7 +27,7 @@
             {!! implode('', $errors->all('<div style="color: red;">:message</div>')) !!}
         @endif
         <br>
-        <a href="{{ route('pegawai.create') }}" class="btn btn-sm btn-info btn-round">
+        <a href="{{ route('pegawai.create') }}" class="btn btn-sm btn-primary btn-round">
             Tambah Data Pegawai
         </a>
         <br>
@@ -56,7 +56,7 @@
                             <td>{{ $e->alamat }}</td>
                             <td>{{ $e->telepon }}</td>
                             <td>
-                                <a href="/pegawai/{{ $e->id }}/edit" type="button" class="btn btn-primary btn-round btn-sm">
+                                <a href="/pegawai/{{ $e->id }}/edit" type="button" class="btn btn-info btn-round btn-sm">
                                     Edit
                                 </a>
                                 <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $e->id }}">

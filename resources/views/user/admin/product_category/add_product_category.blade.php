@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Kelola Kategori Produk
+    Kelola Kategori Menu
 @endsection
 @section('styles')
 
@@ -8,7 +8,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h5>Tambah Kategori Produk</h5>
+        <h5>Tambah Kategori Menu</h5>
         <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
         <div class="card-header-right"><i class="icofont icofont-spinner-alt-5"></i></div>
         </div>

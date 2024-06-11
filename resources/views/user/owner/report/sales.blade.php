@@ -23,10 +23,10 @@
                             <input type="date" name="end_date" class="form-control mb-2" id="end_date" required>
                         </div>
                         <div class="col-auto">
-                            <button type="submit" class="btn btn-primary mb-2">Filter</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Filter</button>
                         </div>
                         <div class="col-auto">
-                            <a href="{{ route('print.report-sales') }}" class="btn btn-primary mb-2">Print as PDF</a>
+                            <a href="{{ route('print.report-sales') }}" class="btn btn-sm btn-primary">Print as PDF</a>
                         </div>
                     </div>
                 </form>

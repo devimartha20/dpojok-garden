@@ -1,6 +1,6 @@
 @extends('layouts.main.layout')
 @section('title')
-    Kelola Produk
+    Kelola Menu
 @endsection
 @section('styles')
  <!-- Notification.css -->
@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h5>Produk</h5>
+        <h5>Menu</h5>
         {{-- <span>use class <code>table-hover</code> inside table element</span> --}}
         <div class="card-header-right">
             <ul class="list-unstyled card-option">
@@ -27,8 +27,8 @@
             {!! implode('', $errors->all('<div style="color: red;">:message</div>')) !!}
         @endif
         <br>
-        <a href="{{ route('product.create') }}" class="btn btn-sm btn-info btn-round">
-            Tambah Produk
+        <a href="{{ route('product.create') }}" class="btn btn-sm btn-primary btn-round">
+            Tambah Menu
         </a>
         <br>
         <div class="table-responsive">
@@ -36,12 +36,12 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Produk</th>
+                        <th>Nama Menu</th>
                         <th>Deskripsi</th>
                         <th>Harga</th>
                         <th>Stok</th>
-                        <th>Kategori Produk</th>
-                        <th>Gambar Produk</th>
+                        <th>Kategori Menu</th>
+                        <th>Gambar Menu</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -58,7 +58,7 @@
                                 <img src="{{ asset('images/'.$p->image )}}" style="width: 25%; height:auto"/>
                             </td>
                             <td>
-                                <a href="/product/{{ $p->id }}/edit" type="button" class="btn btn-primary btn-round btn-sm">
+                                <a href="/product/{{ $p->id }}/edit" type="button" class="btn btn-info btn-round btn-sm">
                                     Edit
                                 </a>
                                 <button type="button" class="btn btn-danger btn-round btn-sm" data-toggle="modal" data-target="#hapusModal{{ $p->id }}">
@@ -78,10 +78,10 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    Apakah Anda yakin untuk menghapus data produk {{ $p->product }} ? <br>
+                                    Apakah Anda yakin untuk menghapus data menu {{ $p->product }} ? <br>
                                     <div class="alert-danger">
-                                        Anda tidak dapat menghapus produk jika data produk terkait sedang digunakan dalam transaksi pembayaran. <br>
-                                        Pesanan dengan produk terkait yang telah dibayar tidak akan terpengaruhi.
+                                        Anda tidak dapat menghapus menu jika data menu terkait sedang digunakan dalam transaksi pembayaran. <br>
+                                        Pesanan dengan menu terkait yang telah dibayar tidak akan terpengaruhi.
                                     </div>
                                 </div>
                                 <div class="modal-footer">

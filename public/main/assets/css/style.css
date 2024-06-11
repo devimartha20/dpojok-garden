@@ -8644,18 +8644,18 @@ body.menu-bottom #collapse-menu {
 
 /**====== Basic-Buttons css Start ======**/
 .btn-primary, .sweet-alert button.confirm, .wizard > .actions a {
-  background-color: #a3a3a3;
-  border-color: #a3a3a3;
+  background-color: #7D7463;
+  border-color: #7D7463;
   color: #fff;
   cursor: pointer;
   -webkit-transition: all ease-in 0.3s;
   transition: all ease-in 0.3s; }
   .btn-primary:hover, .sweet-alert button.confirm:hover, .wizard > .actions a:hover {
-    background-color: #73b4ff;
-    border-color: #73b4ff; }
+    background-color: #7D7463;
+    border-color: #7D7463; }
   .btn-primary:active, .sweet-alert button.confirm:active, .wizard > .actions a:active {
-    background-color: #0378ff !important;
-    border-color: #0378ff;
+    background-color: #fff !important;
+    border-color: #7D7463;
     -webkit-box-shadow: none;
             box-shadow: none;
     color: #fff; }
@@ -8663,7 +8663,7 @@ body.menu-bottom #collapse-menu {
     -webkit-box-shadow: none;
             box-shadow: none;
     color: #fff;
-    background-color: #73b4ff; }
+    background-color: #7D7463; }
   .btn-primary.disabled, .sweet-alert button.disabled.confirm, .wizard > .actions a.disabled {
     background-color: rgba(64, 153, 255, 0.5);
     border-color: rgba(64, 153, 255, 0.5); }
@@ -8770,18 +8770,18 @@ body.menu-bottom #collapse-menu {
     border-color: rgba(34, 34, 34, 0.5); }
 
 .btn-info {
-  background-color: #c8a97e;
-  border-color: #c8a97e;
+  background-color: #a3a3a3;
+  border-color: #a3a3a3;
   color: #fff;
   cursor: pointer;
   -webkit-transition: all ease-in 0.3s;
   transition: all ease-in 0.3s; }
   .btn-info:hover {
-    background-color: #08e3ff;
-    border-color: #08e3ff; }
+    background-color: #a3a3a3;
+    border-color: #a3a3a3; }
   .btn-info:active {
-    background-color: #008697 !important;
-    border-color: #008697;
+    background-color: #fff !important;
+    border-color: #a3a3a3;
     -webkit-box-shadow: none;
             box-shadow: none;
     color: #fff; }
@@ -8789,7 +8789,7 @@ body.menu-bottom #collapse-menu {
     -webkit-box-shadow: none;
             box-shadow: none;
     color: #fff;
-    background-color: #08e3ff; }
+    background-color: #a3a3a3; }
   .btn-info.disabled {
     background-color: rgba(0, 188, 212, 0.5);
     border-color: rgba(0, 188, 212, 0.5); }
