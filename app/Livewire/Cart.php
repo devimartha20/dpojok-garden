@@ -21,12 +21,12 @@ class Cart extends Component
         // Initialize the selectedItems array with all detail cart IDs set to false
         $this->selectedItems = array_fill_keys($cart->detailCarts->pluck('id')->toArray(), false);
 
-        // Mark the items that exist in the session as true
-        foreach ($this->selectedItems as $itemId => $isChecked) {
-            if (isset($selectedItems[$itemId])) {
-                $this->selectedItems[$itemId] = true;
-            }
-        }
+        // // Mark the items that exist in the session as true
+        // foreach ($this->selectedItems as $itemId => $isChecked) {
+        //     if (isset($selectedItems[$itemId])) {
+        //         $this->selectedItems[$itemId] = true;
+        //     }
+        // }
 
         // Filter out items that do not exist in the session
         $this->selectedItems = array_intersect_key($this->selectedItems, $selectedItems);
