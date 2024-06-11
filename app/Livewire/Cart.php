@@ -28,7 +28,8 @@ class Cart extends Component
             }
         }
 
-        
+        // Filter out items that do not exist in the session
+        $this->selectedItems = array_intersect_key($this->selectedItems, $selectedItems);
     }
 
     public function totalPrice()
