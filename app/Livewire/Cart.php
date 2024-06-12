@@ -117,7 +117,7 @@ class Cart extends Component
                         'image' => $product->image,
                     ];
                 }
-                
+
             }
         }
 
