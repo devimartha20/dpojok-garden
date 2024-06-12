@@ -58,6 +58,7 @@
                                 <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
                             </div>
                             <div class="col float-start text-right">
+                               
                                 <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a></i></span>
                             </div>
                         </div>
@@ -65,7 +66,7 @@
                 @empty
                     <div class="text-center">Tidak Ada Pesanan Menunggu Pembayaran</div>
                 @endforelse
-            </div>
+            </div> 
             <div class="tab-pane {{ $state == 'menunggu' ? 'active' : '' }}" id="menunggu" role="tabpanel" aria-expanded="true">
                 <hr>
                 @forelse ($orders_w as $o)
@@ -84,6 +85,7 @@
                                 <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
                             </div>
                             <div class="col float-start text-right">
+                                <button wire:click="updateStatus({{$o->id}}, 'diproses')" class="btn btn-sm btn-primary">Proses</button>
                                 <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a></i></span>
                             </div>
                         </div>
