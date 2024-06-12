@@ -86,7 +86,7 @@
                             <div class="card-footer">
                                 @role('koki')
                                 <div class="row">
-                                    <div class="col float-start text-right">
+                                    <div class="col text-right">
                                         <button wire:click="updateStatus({{$o->id}}, 'diproses')" class="btn btn-sm btn-primary">Proses ></button>
                                     </div>
                                 </div>
@@ -119,10 +119,10 @@
                             </div>
                             <div class="card-footer">
                                 <div class="row">
-                                <div class="col float-start text-left">
+                                <div class="col text-left">
                                     <button wire:click="updateStatus({{$o->id}}, 'menunggu')" class="btn btn-sm btn-primary">< Menunggu</button>
                                 </div>
-                                <div class="col float-start text-right">
+                                <div class="col text-right">
                                     <button wire:click="updateStatus({{$o->id}}, 'selesai')" class="btn btn-sm btn-primary">Selesai ></button>
                                 </div>
                                 </div>    
