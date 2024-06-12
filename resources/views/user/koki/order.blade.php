@@ -5,14 +5,15 @@
 @section('styles')
 <style>
  .nav-tabs.horizontal-tabs {
-    white-space: nowrap; /* Prevent wrapping of list items */
-    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap; /* Prevent wrapping of items */
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
 }
 
 .nav-tabs.horizontal-tabs li {
-    display: inline-block; /* Display list items horizontally */
+    flex: 0 0 auto; /* Prevent items from growing or shrinking */
     margin-right: 10px; /* Adjust spacing between items as needed */
-    width: auto; /* Let the width be determined by content */
 }
 /* Hide default scrollbar */
 .nav-tabs.horizontal-tabs::-webkit-scrollbar {
