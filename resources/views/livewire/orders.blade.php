@@ -83,10 +83,10 @@
                                     </p>
                                 </div>
                                 <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                                <span><i><button href="">Detail Pesanan</button></i></span>
                             </div>
                             <div class="col float-start text-right">
-                                <button wire:click="updateStatus({{$o->id}}, 'diproses')" class="btn btn-sm btn-primary">Proses</button>
-                                <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a></i></span>
+                                <button wire:click="updateStatus({{$o->id}}, 'diproses')" class="btn btn-sm btn-primary">Proses ></button>
                             </div>
                         </div>
                     </div>
@@ -110,9 +110,13 @@
                                     </p>
                                 </div>
                                 <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                                <span><i><button href="">Detail Pesanan</button></i></span>
+                            </div>
+                            <div class="col float-start text-left">
+                                <button wire:click="updateStatus({{$o->id}}, 'menunggu')" class="btn btn-sm btn-primary">< Menunggu</button>
                             </div>
                             <div class="col float-start text-right">
-                                <span><i><a href="{{ route('order-history.show', $o->id) }}">Detail Pesanan</a></i></span>
+                                <button wire:click="updateStatus({{$o->id}}, 'selesai')" class="btn btn-sm btn-primary">Selesai ></button>
                             </div>
                         </div>
                     </div>
