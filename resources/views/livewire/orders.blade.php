@@ -113,12 +113,15 @@
                                 <span><i><button href="">Detail Pesanan</button></i></span>
                             </div>
                             <div class="card-footer">
+                                <div class="row">
                                 <div class="col float-start text-left">
                                     <button wire:click="updateStatus({{$o->id}}, 'menunggu')" class="btn btn-sm btn-primary">< Menunggu</button>
                                 </div>
                                 <div class="col float-start text-right">
                                     <button wire:click="updateStatus({{$o->id}}, 'selesai')" class="btn btn-sm btn-primary">Selesai ></button>
                                 </div>
+                                </div>
+                                
                             </div>
                            
                         </div>
