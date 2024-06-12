@@ -1,6 +1,6 @@
 <div>
     <div class="row">
-        <div class="col-lg-6 col-xl-12">
+        <div class="col-lg-12 col-xl-12">
             <div class="title">Pemesanan</div>
             <ul class="nav nav-tabs md-tabs justify-content-center" role="tablist">
                 <li class="nav-item">
