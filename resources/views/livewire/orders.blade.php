@@ -84,7 +84,7 @@
                                 <div><i><button class="btn btn-sm btn-secondary">Detail Pesanan</button></i></div>
                             </div>
                             <div class="card-footer">
-                                @role('pelayan')
+                                @role('koki')
                                 <div class="row">
                                     <div class="col float-start text-right">
                                         <button wire:click="updateStatus({{$o->id}}, 'diproses')" class="btn btn-sm btn-primary">Proses ></button>
