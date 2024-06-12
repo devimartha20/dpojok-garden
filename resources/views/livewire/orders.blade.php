@@ -120,10 +120,10 @@
                             <div class="card-footer">
                                 @role('koki')
                                     <div class="row">
-                                        <div class="col text-left">
+                                        <div class="col float-start text-left">
                                             <button wire:click="updateStatus({{$o->id}}, 'menunggu')" class="btn btn-sm btn-primary">< Menunggu</button>
                                         </div>
-                                        <div class="col text-right">
+                                        <div class="col float-end text-right">
                                             <button wire:click="updateStatus({{$o->id}}, 'selesai')" class="btn btn-sm btn-primary">Selesai ></button>
                                         </div>
                                     </div> 
@@ -157,12 +157,12 @@
                                     <div class="row">
                                         @role('koki')
                                             <div class="col text-left">
-                                                <button wire:click="updateStatus({{$o->id}}, 'diproses')" class="btn btn-sm btn-primary">< Menunggu</button>
+                                                <button wire:click="updateStatus({{$o->id}}, 'diproses')" class="btn btn-sm btn-primary">< Diproses</button>
                                             </div>
                                         @endrole
                                         @role('pelayan')
                                             <div class="col text-right">
-                                                <button wire:click="updateStatus({{$o->id}}, 'diterima')" class="btn btn-sm btn-primary">Selesai ></button>
+                                                <button wire:click="updateStatus({{$o->id}}, 'diterima')" class="btn btn-sm btn-primary">Diterima ></button>
                                             </div>
                                         @endrole
                                     </div> 
