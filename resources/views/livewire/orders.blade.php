@@ -100,7 +100,7 @@
                 </div>
                 <div class="tab-pane {{ $state == 'diproses' ? 'active' : '' }}" id="diproses" role="tabpanel" aria-expanded="true">
                     <hr>
-                    @forelse ($orders_w as $o)
+                    @forelse ($orders_p as $o)
                     <div class="card">
                         <div class="card-block caption-breadcrumb card-body">
                             <div class="breadcrumb-header">
@@ -120,10 +120,10 @@
                                 @role('koki')
                                 <div class="row">
                                     <div class="col text-left">
-                                        <button wire:click="updateStatus({{$o->id}}, 'Menunggu')" class="btn btn-sm btn-primary">< Menunggu</button>
+                                        <button wire:click="updateStatus({{$o->id}}, 'menunggu')" class="btn btn-sm btn-primary">< Menunggu</button>
                                     </div>
                                     <div class="col text-right">
-                                        <button wire:click="updateStatus({{$o->id}}, 'Selesai')" class="btn btn-sm btn-primary">Proses ></button>
+                                        <button wire:click="updateStatus({{$o->id}}, 'selesai')" class="btn btn-sm btn-primary">Selesai ></button>
                                     </div>
                                 </div>
                                 @endrole
@@ -131,7 +131,106 @@
                         </div>
                     </div>
                     @empty
-                    <div class="text-center">Tidak Ada Pesanan Menunggu</div>
+                    <div class="text-center">Tidak Ada Pesanan Diproses</div>
+                    @endforelse
+                </div>
+                <div class="tab-pane {{ $state == 'selesai' ? 'active' : '' }}" id="selesai" role="tabpanel" aria-expanded="true">
+                    <hr>
+                    @forelse ($orders_f as $o)
+                    <div class="card">
+                        <div class="card-block caption-breadcrumb card-body">
+                            <div class="breadcrumb-header">
+                                <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                                <div class="product-details">
+                                    <p>
+                                        @foreach ($o->detailOrders as $do)
+                                        {{ $do->nama}} {{ $do->jumlah }}x, <br>
+                                        @endforeach
+                                    </p>
+                                </div>
+                                <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                                <div><i><button class="btn btn-sm btn-secondary">Detail Pesanan</button></i></div>
+                            </div>
+                            <div class="card-footer">
+                                
+                                <div class="row">
+                                    @role('koki')
+                                        <div class="col text-left">
+                                            <button wire:click="updateStatus({{$o->id}}, 'diproses')" class="btn btn-sm btn-primary">< Diproses</button>
+                                        </div>
+                                    @endrole
+                                    @role('pelayan')
+                                        <div class="col text-right">
+                                            <button wire:click="updateStatus({{$o->id}}, 'diterima')" class="btn btn-sm btn-primary">Diterima ></button>
+                                        </div>
+                                    @endrole
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="text-center">Tidak Ada Pesanan Selesai</div>
+                    @endforelse
+                </div>
+                <div class="tab-pane {{ $state == 'diterima' ? 'active' : '' }}" id="diterima" role="tabpanel" aria-expanded="true">
+                    <hr>
+                    @forelse ($orders_s as $o)
+                    <div class="card">
+                        <div class="card-block caption-breadcrumb card-body">
+                            <div class="breadcrumb-header">
+                                <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                                <div class="product-details">
+                                    <p>
+                                        @foreach ($o->detailOrders as $do)
+                                        {{ $do->nama}} {{ $do->jumlah }}x, <br>
+                                        @endforeach
+                                    </p>
+                                </div>
+                                <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                                <div><i><button class="btn btn-sm btn-secondary">Detail Pesanan</button></i></div>
+                            </div>
+                            <div class="card-footer">
+                                
+                                <div class="row">
+                                    @role('pelayan')
+                                        <div class="col text-left">
+                                            <button wire:click="updateStatus({{$o->id}}, 'selesai')" class="btn btn-sm btn-primary">< Selesai</button>
+                                        </div>
+                                    @endrole
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="text-center">Tidak Ada Pesanan Diterima</div>
+                    @endforelse
+                </div>
+                <div class="tab-pane {{ $state == 'dibatalkan' ? 'active' : '' }}" id="dibatalkan" role="tabpanel" aria-expanded="true">
+                    <hr>
+                    @forelse ($orders_d as $o)
+                    <div class="card">
+                        <div class="card-block caption-breadcrumb card-body">
+                            <div class="breadcrumb-header">
+                                <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                <p>Tanggal Pesanan: {{ $o->created_at }}</p>
+                                <div class="product-details">
+                                    <p>
+                                        @foreach ($o->detailOrders as $do)
+                                        {{ $do->nama}} {{ $do->jumlah }}x, <br>
+                                        @endforeach
+                                    </p>
+                                </div>
+                                <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
+                                <div><i><button class="btn btn-sm btn-secondary">Detail Pesanan</button></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="text-center">Tidak Ada Pesanan Dibatalkan</div>
                     @endforelse
                 </div>
             </div>
