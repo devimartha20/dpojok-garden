@@ -90,6 +90,7 @@
                                         <button wire:click="updateStatus({{$o->id}}, 'diproses')" class="btn btn-sm btn-primary">Proses ></button>
                                     </div>
                                 </div>
+                                @endrole
                             </div>
                            
                         </div>
