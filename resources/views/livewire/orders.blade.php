@@ -57,7 +57,7 @@
                                     </p>
                                 </div> 
                                 <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
-                                <div><i><button class="btn btn-sm btn-secondary" type="button" data-toggle="modal" data-target="#detail{{ o->id }}">Detail Pesanan</button></i></div>
+                                <div><i><button class="btn btn-sm btn-secondary" type="button" data-toggle="modal" data-target="#detail{{ $o->id }}">Detail Pesanan</button></i></div>
                             </div>
                         </div>
                     </div>
