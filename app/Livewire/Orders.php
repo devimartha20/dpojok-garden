@@ -7,11 +7,15 @@ use Livewire\Component;
 
 class Orders extends Component
 {
-    public $orders_wp, $orders_w, $orders_p, $orders_f, $orders_s, $state ='menunggu_pembayaran';
+    public $orders_wp, $orders_w, $orders_p, $orders_f, $orders_s, $state;
     public $status;
 
     public function mount(){
-       
+        if(auth()->user()->hasRole('pelayan')){
+            $this->state = 'selesai';
+        }else{
+            $this->state = 'menunggu';
+        }
         $this->orders_wp = Order::where('progress', 'menunggu_pembayaran')->orderBy('updated_at', 'asc')->get();
         $this->orders_w = Order::where('progress', 'menunggu')->orderBy('updated_at', 'asc')->get();
         $this->orders_p = Order::where('progress', 'diproses')->orderBy('updated_at', 'asc')->get();

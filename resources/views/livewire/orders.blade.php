@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12 col-xl-12">
             <div class="title">Pemesanan</div>
-            <ul class="nav nav-tabs md-tabs justify-content-center horizontal-tabs" role="tablist">
+            <ul class="nav nav-tabs md-tabs justify-content-center" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link {{ $state == 'menunggu_pembayaran' ? 'active' : '' }}" data-toggle="tab" href="#menunggu_pembayaran" role="tab" aria-expanded="false">
                         <i class="ti-timer"></i>
