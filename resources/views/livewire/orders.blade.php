@@ -55,12 +55,46 @@
                                         {{ $do->nama }} {{ $do->jumlah }}x, <br>
                                         @endforeach
                                     </p>
-                                </div>
+                                </div> 
                                 <h6>Total: Rp. {{ number_format($o->total_harga) }}</h6>
-                                <div><i><button class="btn btn-sm btn-secondary">Detail Pesanan</button></i></div>
+                                <div><i><button class="btn btn-sm btn-secondary" type="button" data-toggle="modal" data-target="#detail{{ o->id }}">Detail Pesanan</button></i></div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- MODAL -->
+                    <div class="modal fade" id="detail{{ $o->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    @foreach ($o->detailOrders as $do)
+                                    <div class="row">
+                                        <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                        <p>Tanggal Pesanan: {{ $o->created_at }}</p> <br>
+                                        <strong>{{ $o->packing }}</strong>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <strong>Product:</strong> {{ $do->nama }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            <strong>Quantity:</strong> {{ $do->jumlah }}
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     @empty
                     <div class="text-center">Tidak Ada Pesanan Menunggu Pembayaran</div>
                     @endforelse
