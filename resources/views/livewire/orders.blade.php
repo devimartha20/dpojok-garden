@@ -71,24 +71,39 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            </div>
+                            </div>  
                             <div class="modal-body">
-                                @foreach ($o->detailOrders as $do)
-                                <div class="row">
-                                    <h6>No Pesanan: #{{ $o->no_pesanan }}</h6>
-                                    <p>Tanggal Pesanan: {{ $o->created_at }}</p> <br>
-                                    <strong>{{ $o->packing }}</strong>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <strong>Product:</strong> {{ $do->nama }}
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <h6 class="mb-0">No Pesanan: #{{ $o->no_pesanan }}</h6>
+                                        <p class="mb-0">Tanggal Pesanan: {{ $o->created_at }}</p>
                                     </div>
-                                    <div class="col-md-6">
-                                        <strong>Quantity:</strong> {{ $do->jumlah }}
+                                    <div class="col">
+                                        <strong>{{ $o->packing }}</strong>
                                     </div>
                                 </div>
-                                @endforeach
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Ordered Items</h5>
+                                                @foreach ($o->detailOrders as $do)
+                                                <div class="row mb-2">
+                                                    <div class="col-md-6">
+                                                        <strong>Product:</strong> {{ $do->nama }}
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <strong>Quantity:</strong> {{ $do->jumlah }}
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                             </div>
