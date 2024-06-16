@@ -120,13 +120,13 @@
                             <td>{{ \Carbon\Carbon::parse($activity->date)->format('H:i') }}</td>
                             <td>{{ ucfirst($activity->type) }}</td>
                             <td>
-                                @if (ucfirst($activity->status) == 'confirmed')
-                                <span class="label label-success">Dikonfirmasi</span>
-                                @elseif (ucfirst($activity->status) == 'pending')
-                                <span class="label label-warning">Menunggu</span>
-                                @elseif(ucfirst($activity->status) == 'rejected')
-                            <span class="label label-danger">Ditolak</span>
-                            @endif
+                                @if (($activity->status) == 'confirmed')
+                                 <span class="label bg-success">Dikonfirmasi</span>
+                                @elseif (($activity->status) == 'pending')
+                                    <span class="label bg-warning">Menunggu</span>
+                                @elseif(($activity->status) == 'rejected')
+                                    <span class="label bg-danger">Ditolak</span>
+                                @endif
                             </td>
                             <td>{{ $activity->keterangan }}</td>
                             <td>{{ $activity->catatan }}</td>

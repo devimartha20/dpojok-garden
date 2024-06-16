@@ -27,6 +27,11 @@ class ProfileController extends Controller
         }
 
         $user = $request->user();
+        if($user->hasRole('pelanggan')){
+            return view('user.pelanggan.profile', [
+                'user' => $user,
+            ]);
+        }
         return view('user.profile', [
             'user' => $user,
         ]);
@@ -60,17 +65,23 @@ class ProfileController extends Controller
         } elseif($guard == 'web') {
             $user->name = $validatedData['name'];
             $user->email = $validatedData['email'];
-            if ($user->hasRole('customer') && $user->isDirty('email')) {
+            if ($user->hasRole('pelanggan') && $user->isDirty('email')) {
                 $user->email_verified_at = null;
             }
             $user->save();
 
-            if ($user->hasRole('customer')) {
+            if ($user->hasRole('pelanggan')) {
+                $request->validate([
+                    'alamat' => 'required|string',
+                    'telepon' => 'nullable|string',
+                ]);
+
                 Customer::where('user_id', $user->id)->update([
                     'nama' => $user->name,
+                    'alamat' => $request->alamat,
+                    'telepon' => $request->telepon,
                 ]);
-            }
-            if ($user->hasRole('employee')){
+            }else{
                 Employee::where('user_id', $user->id)->update([
                     'email' => $user->email,
                     'nama' => $user->name,

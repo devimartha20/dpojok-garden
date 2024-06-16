@@ -233,9 +233,9 @@ Route::middleware(['role:pelanggan'])->group(function () {
         Route::get('/detail', function () {
             return view('user/pelanggan/reservation/pay');
         })->name('detail.index');
-        Route::get('/edit-profile', function () {
-            return view('user/pelanggan/profile-customer');
-        })->name('customer.profile.update');
+        // Route::get('/edit-profile', function () {
+        //     return view('user/pelanggan/profile-customer');
+        // })->name('customer.profile.update');
     });
 });
 
