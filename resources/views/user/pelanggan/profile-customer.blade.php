@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-header">Edit Profile</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('customer.profile.update') }}">
+                    <form method="POST" action="">
                         @csrf
                         @method('PUT')
                         <div class="form-group row">
