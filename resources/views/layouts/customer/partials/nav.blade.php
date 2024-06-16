@@ -8,18 +8,32 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard') }}" class="nav-link"><strong>Dashboard</strong></a></li>
-                <li class="nav-item {{ request()->routeIs('search-products.index') ? 'active' : '' }}"><a href="{{ route('search-products.index') }}" class="nav-link"><strong>Menu</strong></a></li>
-                <li class="nav-item {{ request()->routeIs('customer.reservation') ? 'active' : '' }}"><a href="{{ route('customer.reservation.index') }}" class="nav-link"><strong>Reservasi</strong></a></li>
-                <li class="nav-item {{ request()->routeIs('order-history.index') ? 'active' : '' }}"><a href="{{ route('order-history.index') }}" class="nav-link"><strong>Riwayat</strong></a></li>
-                <li class="nav-item {{ request()->routeIs('cart.index') ? 'active' : '' }}"><a href="{{ route('cart.index') }}" class="nav-link"><strong>Keranjang</strong></a></li>
-                <li class="nav-item {{ request()->routeIs('profile.edit') ? 'active' : '' }}"><a href="{{ route('profile.edit') }}" class="nav-link"><strong>Akun</strong></a></li>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                <li class="nav-item cta"><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                    this.closest('form').submit();" class="nav-link"><strong>Logout</strong></a></li>
-                </form>
+                <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"><strong>Dashboard</strong></a>
+                </li>
+                <li class="nav-item {{ request()->routeIs('search-products.index') ? 'active' : '' }}">
+                    <a href="{{ route('search-products.index') }}" class="nav-link {{ request()->routeIs('search-products.index') ? 'active' : '' }}"><strong>Menu</strong></a>
+                </li>
+                <li class="nav-item {{ request()->routeIs('customer.reservation.index') ? 'active' : '' }}">
+                    <a href="{{ route('customer.reservation.index') }}" class="nav-link {{ request()->routeIs('customer.reservation.index') ? 'active' : '' }}"><strong>Reservasi</strong></a>
+                </li>
+                <li class="nav-item {{ request()->routeIs('order-history.index') ? 'active' : '' }}">
+                    <a href="{{ route('order-history.index') }}" class="nav-link {{ request()->routeIs('order-history.index') ? 'active' : '' }}"><strong>Riwayat</strong></a>
+                </li>
+                <li class="nav-item {{ request()->routeIs('cart.index') ? 'active' : '' }}">
+                    <a href="{{ route('cart.index') }}" class="nav-link {{ request()->routeIs('cart.index') ? 'active' : '' }}"><strong>Keranjang</strong></a>
+                </li>
+                <li class="nav-item {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
+                    <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}"><strong>Akun</strong></a>
+                </li>
+                <li class="nav-item cta">
+                    <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                        @csrf
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="nav-link"><strong>Logout</strong></a>
+                    </form>
+                </li>
             </ul>
+
         </div>
     </div>
 </nav>

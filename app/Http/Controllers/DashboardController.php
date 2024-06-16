@@ -8,6 +8,7 @@ use App\Models\Admin\Product;
 use DB;
 use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -166,7 +167,53 @@ class DashboardController extends Controller
         else if (Auth::user()->hasRole('pelanggan'))
         {
             $products = Product::where('stok', '>', 0)->get();
-            return view('user.pelanggan.dashboard', compact('products'));
+            $customerId = Auth::user()->customer->id;
+
+            $totalPesananHariIni = Order::where('customer_id', $customerId)
+                ->whereDate('created_at', Carbon::today())
+                ->count();
+
+            $totalPesananDiproses = Order::where('customer_id', $customerId)
+                ->where('progress', 'diproses')
+                ->count();
+
+            $totalPesananSelesai = Order::where('customer_id', $customerId)
+                ->where('progress', 'selesai')
+                ->count();
+
+            $totalPesananDiterima = Order::where('customer_id', $customerId)
+                ->where('progress', 'diterima')
+                ->count();
+
+            $totalPesananMenungguPembayaran = Order::where('customer_id', $customerId)
+                ->where('progress', 'menunggu_pembayaran')
+                ->count();
+
+            $pesananTerbaru = Order::where('customer_id', $customerId)
+                ->orderBy('updated_at', 'desc')
+                ->take(5)
+                ->get();
+
+            $startOfWeek = Carbon::now()->startOfWeek();
+            $endOfWeek = Carbon::now()->endOfWeek();
+
+            $weeklyOrders = Order::where('customer_id', $customerId)
+                ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+                ->selectRaw('DATE(created_at) as date, SUM(total_harga) as total')
+                ->groupBy('date')
+                ->orderBy('date', 'asc')
+                ->get();
+
+            return view('user.pelanggan.dashboard', compact(
+                'products',
+                'totalPesananHariIni',
+                'totalPesananDiproses',
+                'totalPesananSelesai',
+                'totalPesananDiterima',
+                'totalPesananMenungguPembayaran',
+                'pesananTerbaru',
+                'weeklyOrders'
+            ));
         }
 
         return abort('403');
