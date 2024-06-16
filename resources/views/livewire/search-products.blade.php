@@ -42,8 +42,8 @@
                                 <p class="product-price">Rp. {{ number_format($p->harga_jual) }}</p>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button wire:click="addToCart({{ $p->id }})" class="btn btn-success btn-round">Tambah ke Keranjang</button>
-                                <button wire:click="confirm({{ $p }})" class="btn btn-warning btn-round">Pesan Sekarang</button>
+                                <button wire:click="addToCart({{ $p->id }})" class="btn btn-secondary btn-round">Tambah ke Keranjang</button>
+                                <button wire:click="confirm({{ $p }})" class="btn btn-primary btn-round">Pesan Sekarang</button>
                             </div>
                         </div>
                     </div>
