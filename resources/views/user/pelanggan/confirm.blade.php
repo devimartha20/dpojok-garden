@@ -104,13 +104,13 @@
             @endforeach
         </div>
         <div class="card-footer">
-            <a href="{{ route('cart.index') }}" class="btn btn-secondary text-left">Kembali</a>
+            <a href="{{ route('cart.index') }}" class="btn btn-secondary btn-round text-left">Kembali</a>
             <div class="total-items">Total Items: <span id="totalItems">{{ $total_items }}</span></div>
             <div class="total-amount">Total Amount: <span id="totalAmount">Rp. {{ number_format($total_amount) }}</span></div>
 
             <input type="hidden" value="{{ $total_amount }}" name="total_amount" required>
             <input type="hidden" value="{{ $total_items }}" name="total_items" required>
-            <button type="submit" class="btn btn-primary">Konfirmasi Pesanan</button>
+            <button type="submit" class="btn btn-primary btn-round">Konfirmasi Pesanan</button>
         </div>
     </form>
 </div>
