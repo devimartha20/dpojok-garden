@@ -36,7 +36,7 @@
                         <p>Alasan : {{ $pa->reason }}</p>
                         <p>Keterangan : {{ $pa->keterangan ?? '-' }}</p>
                         <div class="float-right">
-                            <button class="btn btn-primary change-status" data-toggle="modal" data-target="#data{{ $pa->id }}">Ubah Status</button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#data{{ $pa->id }}">Ubah Status</button>
                         </div>
                     </div>
                     <div class="modal fade" id="data{{ $pa->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
