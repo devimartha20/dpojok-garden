@@ -95,39 +95,39 @@ class OnlineOrderController extends Controller
 
     }
 
-    public function midtransCallback(Request $request){
-        $serverKey = config('midtrans.server_key');
-        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
-        if($hashed == $request->signature_key){
-            $order = Order::findOrFail($request->order_id);
-            if($request->transaction_status == 'capture' || $request->transaction_status == 'settlement'){
-                //update status order
-                $order = Order::findOrFail($request->order_id)->update([
-                    'status' => 'lunas',
-                    'progress' => 'menunggu',
-                ]);
-                Payment::findOrFail($order->payment_id)->update([
-                    'status' => 'lunas',
-                    'kembali' => 0,
-                    'uang'=> $request->gross_amount,
-                ]);
-            }
+    // public function midtransCallback(Request $request){
+    //     $serverKey = config('midtrans.server_key');
+    //     $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
+    //     if($hashed == $request->signature_key){
+    //         $order = Order::findOrFail($request->order_id);
+    //         if($request->transaction_status == 'capture' || $request->transaction_status == 'settlement'){
+    //             //update status order
+    //             $order = Order::findOrFail($request->order_id)->update([
+    //                 'status' => 'lunas',
+    //                 'progress' => 'menunggu',
+    //             ]);
+    //             Payment::findOrFail($order->payment_id)->update([
+    //                 'status' => 'lunas',
+    //                 'kembali' => 0,
+    //                 'uang'=> $request->gross_amount,
+    //             ]);
+    //         }
 
-            Payment::findOrFail($order->payment_id)->update([
-                'transaction_time' => $request->transaction_time,
-                'transaction_status' => $request->transaction_status,
-                'transaction_id' => $request->transaction_id,
-                'status_code' => $request->status_code,
-                'payment_type' => $request->payment_type,
-                'signature_key' => $request->signature_key,
+    //         Payment::findOrFail($order->payment_id)->update([
+    //             'transaction_time' => $request->transaction_time,
+    //             'transaction_status' => $request->transaction_status,
+    //             'transaction_id' => $request->transaction_id,
+    //             'status_code' => $request->status_code,
+    //             'payment_type' => $request->payment_type,
+    //             'signature_key' => $request->signature_key,
 
-            ]);
-            // return dd($request);
+    //         ]);
+    //         // return dd($request);
 
-        }
-    }
+    //     }
+    // }
 
-    public function finish(Request $request){
-        return dd($request);
-    }
+    // public function finish(Request $request){
+    //     return dd($request);
+    // }
 }

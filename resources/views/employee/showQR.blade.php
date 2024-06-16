@@ -114,7 +114,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
 // Function to periodically check QR code status and update QR code
-async function checkQRCodeStatus() {
+async function checkQRCodeStatus() { //Memeriksa status aktif QR code secara periodik.
     try {
         const response = await fetch('{{ route("checkQRStatus") }}');
         if (!response.ok) {
@@ -133,13 +133,14 @@ async function checkQRCodeStatus() {
 }
 
 // Call checkQRCodeStatus every second
+// Menjalankan fungsi checkQRCodeStatus setiap detik (1000 milidetik).
 setInterval(checkQRCodeStatus, 1000); // 1000 milliseconds = 1 second
 
 // Variable to store the interval ID
 let updateInterval;
 
 // Function to update QR code
-async function updateQRCode() {
+async function updateQRCode() { //Memperbarui QR code secara periodik.
     try {
         const response = await fetch('{{ route("updateQR") }}');
         if (!response.ok) {
@@ -159,6 +160,7 @@ async function updateQRCode() {
 let qrIsActive = {{ $qrActive->isActive }};
 
 // Call updateQRCode every 15 seconds
+// Menjalankan fungsi updateQRCode setiap 10 detik (10000 milidetik).
 updateInterval = setInterval(updateQRCode, 10000); // 10000 milliseconds = 10 seconds
 
       </script>
