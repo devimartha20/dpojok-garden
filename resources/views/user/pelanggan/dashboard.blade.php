@@ -47,7 +47,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid mt-3 ml-3 mr-3">
+<div class="container-fluid">
     <div class="row">
         <!-- Left Column -->
         <div class="col-md-3">
