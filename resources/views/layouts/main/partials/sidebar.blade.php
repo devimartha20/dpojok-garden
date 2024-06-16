@@ -39,6 +39,17 @@
                         </a>
                     </li>
                 </ul>
+
+                {{-- <div class="pcoded-navigatio-lavel">Profil</div>
+                <ul class="pcoded-item pcoded-left-item {{ request()->routeIs('employee.profile*') ? 'active' : ''}}">
+                    <li>
+                        <a href="{{ route('employee.profile.edit') }}">
+                            <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
+                            <span class="pcoded-mtext" >Profil</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul> --}}
             @endauth
         @else
             @auth('web')
@@ -233,8 +244,8 @@
             </ul> --}}
 
             {{-- Profile --}}
-            <div class="pcoded-navigatio-lavel">Profil</div>
-            <ul class="pcoded-item pcoded-left-item request()->RouteIs('check.report.attendances') ? 'active' : ''}}">
+            {{-- <div class="pcoded-navigatio-lavel">Profil</div>
+            <ul class="pcoded-item pcoded-left-item {{  request()->RouteIs('profile.edit') ? 'active' : ''}}">
                 <li>
                     <a href="{{ route('profile.edit') }}">
                         <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
@@ -242,7 +253,7 @@
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
             @endhasrole
 
 
@@ -264,6 +275,16 @@
                     </a>
                 </li> --}}
             </ul>
+            {{-- <div class="pcoded-navigatio-lavel">Profil</div>
+            <ul class="pcoded-item pcoded-left-item {{  request()->RouteIs('profile.edit') ? 'active' : ''}}">
+                <li>
+                    <a href="{{ route('profile.edit') }}">
+                        <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
+                        <span class="pcoded-mtext" >Profil</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul> --}}
             @endhasrole
 
             @hasrole('pelayan')
@@ -284,6 +305,16 @@
                     </a>
                 </li> --}}
             </ul>
+            {{-- <div class="pcoded-navigatio-lavel">Profil</div>
+            <ul class="pcoded-item pcoded-left-item {{  request()->RouteIs('profile.edit') ? 'active' : ''}}">
+                <li>
+                    <a href="{{ route('profile.edit') }}">
+                        <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
+                        <span class="pcoded-mtext" >Profil</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul> --}}
             @endhasrole
 
             @hasrole('kasir')
@@ -311,6 +342,16 @@
                     </a>
                 </li> --}}
             </ul>
+            {{-- <div class="pcoded-navigatio-lavel">Profil</div>
+            <ul class="pcoded-item pcoded-left-item {{  request()->RouteIs('profile.edit') ? 'active' : ''}}">
+                <li>
+                    <a href="{{ route('profile.edit') }}">
+                        <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
+                        <span class="pcoded-mtext" >Profil</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul> --}}
             @endhasrole
 
             @hasrole('owner')
@@ -390,6 +431,16 @@
                     </ul>
                 </li>
             </ul>
+            {{-- <div class="pcoded-navigatio-lavel">Profil</div>
+            <ul class="pcoded-item pcoded-left-item {{  request()->RouteIs('profile.edit') ? 'active' : ''}}">
+                <li>
+                    <a href="{{ route('profile.edit') }}">
+                        <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
+                        <span class="pcoded-mtext" >Profil</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul> --}}
             @endhasrole
 
             @hasrole('pelanggan')

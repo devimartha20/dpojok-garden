@@ -36,6 +36,7 @@ use App\Http\Controllers\Info\GalleryController;
 use App\Http\Controllers\Info\SocialMediaController;
 use App\Http\Controllers\PrintController;
 use App\Models\Admin\Payment;
+use App\Http\Controllers\Auth\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,9 @@ Route::get('/checkQRStatus', [AttendanceController::class, 'checkStatus'])->name
 
 Route::middleware('auth.employee')->group(function () {
     Route::post('employee/logout', [EmployeeLoginController::class, 'logout'])->name('employee.logout');
+    Route::get('/employee/profile', [ProfileController::class, 'edit'])->name('employee.profile.edit');
+    Route::patch('/employee/profile', [ProfileController::class, 'update'])->name('employee.profile.update');
+
     Route::get('employee/dashboard', [EmployeeHrController::class, 'dashboard'])->name('employee.dashboard');
 
     Route::get('employee/attendance', [EmployeeHrController::class, 'attendance'])->name('employee.attendance');
@@ -246,5 +250,5 @@ Route::middleware('auth')->group(function () {
 
 
 
-
+Route::put('employee/password', [PasswordController::class, 'update'])->name('employee.password.update');
 require __DIR__.'/auth.php';
