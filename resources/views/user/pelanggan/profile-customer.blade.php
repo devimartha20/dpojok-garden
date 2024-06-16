@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit Profile</div>
+                <div class="card-header">Edit Account</div>
                 <div class="card-body">
                     <form method="POST" action="">
                         @csrf
@@ -69,7 +69,16 @@
                             Simpan
                         </button>
                     </form>
-                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Edit Password</div>
                     <form method="POST" action="">
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Current Password</label>
