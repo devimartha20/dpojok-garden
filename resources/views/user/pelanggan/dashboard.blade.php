@@ -161,13 +161,20 @@
         var data = [];
 
         var currentDate = new Date();
-        var startOfWeek = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 1)); // Monday
-        var endOfWeek = new Date(startOfWeek.getTime() + 6 * 24 * 60 * 60 * 1000); // Sunday
+        var startOfWeek = new Date(currentDate);
+        startOfWeek.setDate(currentDate.getDate() - currentDate.getDay() + (currentDate.getDay() === 0 ? -6 : 1)); // Monday of current week
+        startOfWeek.setHours(0, 0, 0, 0); // Start of the day
 
+        var endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(startOfWeek.getDate() + 6); // Sunday of current week
+        endOfWeek.setHours(23, 59, 59, 999); // End of the day
+
+        // Loop through each day of the current week
         for (var d = new Date(startOfWeek); d <= endOfWeek; d.setDate(d.getDate() + 1)) {
             var dateString = d.toISOString().split('T')[0];
             labels.push(dateString);
 
+            // Find corresponding order for each date
             var order = weeklyOrders.find(order => order.date === dateString);
             data.push(order ? order.total : 0);
         }
@@ -194,4 +201,5 @@
         });
     });
 </script>
+
 @endsection
