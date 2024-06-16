@@ -71,7 +71,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
 
-                                <img src="{{ asset('images/details/'.$o->detailOrders->first->image) }}" class="activity-product-img" alt="Product">
+                                <img src="{{ asset('images/details/'.$o->detailOrders->value('image') }}" class="activity-product-img" alt="Product">
                                 <div>
                                     <strong>#{{ $o->no_pesanan }}</strong><br>
                                     <small>{{ $o->jumlah_pesanan }} item(s)</small><br>
@@ -135,7 +135,7 @@
                 <div class="card-body">
                     <h3 class="card-title">Pembelian minggu ini</h3>
                     <div class="sales-chart bg-light">
-                        <canvas id="weeklySalesChart" class="sales-chart"></canvas>
+                        <canvas id="weeklySalesChart"></canvas>
                     </div>
                 </div>
             </div>
