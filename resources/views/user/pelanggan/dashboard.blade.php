@@ -1,8 +1,6 @@
 @extends('layouts.customer.layout')
 
-@section('title')
-    Dashboard
-@endsection
+@section('title', 'Dashboard')
 
 @section('styles')
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -10,9 +8,19 @@
     body {
         font-family: Arial, sans-serif;
         background-color: #f8f9fa;
+        margin: 0; /* Reset body margin */
+        padding: 0; /* Reset body padding */
     }
+    .container-fluid {
+            margin-top: 20px; /* Adjust top margin */
+            margin-bottom: 20px; /* Adjust bottom margin */
+            margin-left: 10px; /* Adjust left margin */
+            margin-right: 10px; /* Adjust right margin */
+        }
     .card {
         margin-bottom: 20px;
+        border: none; /* Remove default card borders */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Add subtle shadow */
     }
     .bg-light-yellow {
         background-color: #ffefc5;
@@ -21,12 +29,12 @@
         background-color: #d6f4ff;
     }
     .bg-light-brown {
-        background-color: #fff0d6;
+        background-color: #f5deb3; /* Adjusted light brown color */
     }
     .bg-light-green {
         background-color: #dff4d6;
     }
-    .sales-chart, .top-products {
+    .sales-chart {
         height: 300px;
     }
     .product-img {
@@ -40,10 +48,22 @@
         object-fit: cover;
         margin-right: 10px;
     }
-    .sales-chart {
-        height: 300px;
+    .card-title {
+        font-size: 1.2rem; /* Adjust card title font size */
+        font-weight: bold;
+    }
+    .card-body {
+        padding: 20px;
+    }
+    .display-4 {
+        font-size: 2.5rem; /* Adjust display-4 font size */
+        font-weight: bold;
+    }
+    .text-muted {
+        font-size: 1.5rem; /* Adjust text-muted font size */
     }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 @endsection
 
 @section('content')
@@ -70,8 +90,7 @@
                         @forelse ($pesananTerbaru as $o)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
-
-                                <img src="{{ asset('images/details/'.$o->detailOrders->first->image) }}" class="activity-product-img" alt="Product">
+                                <img src="{{ asset('images/details/'.$o->detailOrders->pluck('image')->first()) }}" class="activity-product-img" alt="Product">
                                 <div>
                                     <strong>#{{ $o->no_pesanan }}</strong><br>
                                     <small>{{ $o->jumlah_pesanan }} item(s)</small><br>
@@ -81,12 +100,8 @@
                             <span>{{ $o->total_harga }}</span>
                         </li>
                         @empty
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    Tidak ada aktivitas terbaru.
-                                </div>
-                            </div>
+                        <li class="list-group-item">
+                            <div class="text-muted">Tidak ada aktivitas terbaru.</div>
                         </li>
                         @endforelse
                     </ul>
@@ -98,43 +113,51 @@
             <div class="row">
                 <!-- Summary Cards -->
                 <div class="col-md-3">
-                    <div class="card bg-light-yellow">
+                    <div class="card bg-light-brown">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Pesanan Hari Ini</h5>
-                            <p>{{ $totalPesananHariIni }}</p>
+                            <i class="fa fa-calendar-minus-o fa-2x text-brown mb-2" aria-hidden="true"></i>
+                            <h5 class="card-title mb-3">Pesanan Hari Ini</h5>
+                            <p class="display-4">{{ $totalPesananHariIni }}</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-3">
                     <div class="card bg-light-brown">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Pesanan Diproses</h5>
-                            <p>{{ $totalPesananDiproses }}</p>
+                            <i class="fa fa-refresh fa-2x text-brown mb-2" aria-hidden="true"></i>
+                            <h5 class="card-title mb-3">Pesanan Diproses</h5>
+                            <p class="display-4">{{ $totalPesananDiproses }}</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-3">
-                    <div class="card bg-light-blue">
+                    <div class="card bg-light-brown">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Pesanan Selesai</h5>
-                            <p>{{ $totalPesananSelesai }}</p>
+                            <i class="fa fa-calendar-check-o fa-2x text-brown mb-2" aria-hidden="true"></i>
+                            <h5 class="card-title mb-3">Pesanan Selesai</h5>
+                            <p class="display-4">{{ $totalPesananSelesai }}</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-3">
-                    <div class="card bg-light-green">
+                    <div class="card bg-light-brown">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Pesanan Diterima</h5>
-                            <p>{{ $totalPesananDiterima }}</p>
+                            <i class="fa fa-cubes fa-2x text-brown mb-2" aria-hidden="true"></i>
+                            <h5 class="card-title mb-3">Pesanan Diterima</h5>
+                            <p class="display-4">{{ $totalPesananDiterima }}</p>
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- Sales Chart -->
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title">Pembelian minggu ini</h3>
-                    <div class="sales-chart bg-light">
+                    <h3 class="card-title">Pembelian Minggu Ini</h3>
+                    <div class="bg-light">
                         <canvas id="weeklySalesChart" class="sales-chart"></canvas>
                     </div>
                 </div>
@@ -159,13 +182,20 @@
         var data = [];
 
         var currentDate = new Date();
-        var startOfWeek = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 1)); // Monday
-        var endOfWeek = new Date(startOfWeek.getTime() + 6 * 24 * 60 * 60 * 1000); // Sunday
+        var startOfWeek = new Date(currentDate);
+        startOfWeek.setDate(currentDate.getDate() - currentDate.getDay() + (currentDate.getDay() === 0 ? -6 : 1)); // Monday of current week
+        startOfWeek.setHours(0, 0, 0, 0); // Start of the day
 
+        var endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(startOfWeek.getDate() + 6); // Sunday of current week
+        endOfWeek.setHours(23, 59, 59, 999); // End of the day
+
+        // Loop through each day of the current week
         for (var d = new Date(startOfWeek); d <= endOfWeek; d.setDate(d.getDate() + 1)) {
             var dateString = d.toISOString().split('T')[0];
             labels.push(dateString);
 
+            // Find corresponding order for each date
             var order = weeklyOrders.find(order => order.date === dateString);
             data.push(order ? order.total : 0);
         }
@@ -177,8 +207,8 @@
                 datasets: [{
                     label: 'Total Pembelian',
                     data: data,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: '#F5DEB3',
+                    borderColor: '#F5DEB3',
                     borderWidth: 1
                 }]
             },
