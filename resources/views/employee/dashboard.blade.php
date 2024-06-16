@@ -125,8 +125,8 @@
                                 @elseif (ucfirst($activity->status) == 'pending')
                                 <span class="label label-warning">Menunggu</span>
                                 @elseif(ucfirst($activity->status) == 'rejected')
-                            <span class="label label-danger">Ditolak</span>
-                            @endif
+                                <span class="label label-danger">Ditolak</span>
+                                @endif
                             </td>
                             <td>{{ $activity->keterangan }}</td>
                             <td>{{ $activity->catatan }}</td>
