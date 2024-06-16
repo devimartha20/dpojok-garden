@@ -222,9 +222,9 @@ class EmployeeHrController extends Controller
         ]);
 
         if($store){
-            return redirect()->back()->with('success', 'Pengajuan Konfirmasi Kehadiran telah Dikirim!');
+            return redirect()->back()->with('success', 'Pengajuan konfirmasi kehadiran telah dikirim!');
         }
-        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+        return redirect()->back()->with('fail', 'Terjadi kesalahan!');
     }
 
     public function addAbsence(){
@@ -249,9 +249,9 @@ class EmployeeHrController extends Controller
         ]);
 
         if($store){
-            return redirect()->back()->with('success', 'Pengajuan Konfirmasi Ketidakhadiran telah Dikirim!');
+            return redirect()->back()->with('success', 'Pengajuan konfirmasi ketidakhadiran telah dikirim!');
         }
-        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+        return redirect()->back()->with('fail', 'Terjadi kesalahan!');
     }
 
     public function indexLeave(){
@@ -282,9 +282,9 @@ class EmployeeHrController extends Controller
         ]);
 
         if($store){
-            return redirect()->route('employee.leave.index')->with('success', 'Pengajuan Cuti telah Dikirim!');
+            return redirect()->route('employee.leave.index')->with('success', 'Pengajuan cuti telah dikirim!');
         }
-        return redirect()->route('employee.leave.index')->with('fail', 'Terjadi Kesalahan!');
+        return redirect()->route('employee.leave.index')->with('fail', 'Terjadi kesalahan!');
     }
 
     public function scan(Request $request){
@@ -309,15 +309,15 @@ class EmployeeHrController extends Controller
                     if($attendance){
                         return redirect()->back()->with('success', 'Absensi'.$type.' berhasil dicatat!');
                     }else{
-                        return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
+                        return redirect()->back()->with('fail', 'Terjadi kesalahan!');
                     }
                 }else{
-                    return redirect()->back()->with('fail', 'QR Code Tidak Valid/Kadaluarsa!');
+                    return redirect()->back()->with('fail', 'QR Code tidak valid/kadaluarsa!');
                 }
             }else{
-                return redirect()->back()->with('fail', 'Tidak Ada Sesi Absensi!');
+                return redirect()->back()->with('fail', 'Tidak ada sesi absensi!');
             }
         }
-        return redirect()->back()->with('fail', 'QR Code Tidak Valid!');
+        return redirect()->back()->with('fail', 'QR Code tidak valid!');
     }
 }
