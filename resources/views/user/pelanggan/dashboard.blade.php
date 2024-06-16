@@ -8,7 +8,15 @@
     body {
         font-family: Arial, sans-serif;
         background-color: #f8f9fa;
+        margin: 0; /* Reset body margin */
+        padding: 0; /* Reset body padding */
     }
+    .container-fluid {
+            margin-top: 20px; /* Adjust top margin */
+            margin-bottom: 20px; /* Adjust bottom margin */
+            margin-left: 10px; /* Adjust left margin */
+            margin-right: 10px; /* Adjust right margin */
+        }
     .card {
         margin-bottom: 20px;
         border: none; /* Remove default card borders */
