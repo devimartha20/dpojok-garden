@@ -226,8 +226,7 @@ class AttendanceController extends Controller
     ));
     }
 
-    public function showQR(){
-
+    public function showQR(){ //Menampilkan halaman yang berisi QR code.
         $qr = null;
         // Create or update the ActiveQR model
         $qrActive = ActiveQR::first();
@@ -242,7 +241,7 @@ class AttendanceController extends Controller
         return view('employee.showQR', compact('qr', 'qrActive'));
     }
 
-    public function checkStatus()
+    public function checkStatus() //Mengecek status aktif dari QR code secara real-time.
     {
         $qrActive = ActiveQR::first();
 
@@ -251,7 +250,7 @@ class AttendanceController extends Controller
         ]);
     }
 
-    public function updateQRStatus(Request $request)
+    public function updateQRStatus(Request $request) //Memperbarui status aktif dari QR code berdasarkan input dari request.
     {
         // Retrieve the value of the 'status' checkbox from the request
         $status = $request->status;
@@ -273,7 +272,7 @@ class AttendanceController extends Controller
         return redirect()->back()->with('success', 'QR session status updated successfully');
     }
 
-    public function updateQR(){
+    public function updateQR(){ //Menghasilkan dan memperbarui kode QR unik jika entri ActiveQR ada dan aktif.
         // Generate a unique code for the QR code
         $currentTime = Carbon::now();
         $random = Str::random(20);

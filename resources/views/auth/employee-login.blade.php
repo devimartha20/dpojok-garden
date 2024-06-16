@@ -27,6 +27,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('main/assets/icon/icofont/css/icofont.css') }}">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('main/assets/css/style.css') }}">
+
+    <style>
+        .common-img-bg {
+            background-image: url('{{ asset('main/assets/images/background-login.jpg') }}');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 
 <body class="fix-menu">
