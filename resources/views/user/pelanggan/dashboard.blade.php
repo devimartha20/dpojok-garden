@@ -71,7 +71,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
 
-                                <img src="{{ $o->detailOrders->pluck('image')->first() }}" class="activity-product-img" alt="Product">
+                                <img src="{{ asset('images/details/'.$o->detailOrders->pluck('image')->first()) }}" class="activity-product-img" alt="Product">
                                 <div>
                                     <strong>#{{ $o->no_pesanan }}</strong><br>
                                     <small>{{ $o->jumlah_pesanan }} item(s)</small><br>
