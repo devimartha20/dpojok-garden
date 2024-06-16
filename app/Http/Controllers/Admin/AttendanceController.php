@@ -135,7 +135,7 @@ class AttendanceController extends Controller
             $qr = QrCode::size(200)->generate($code);
         }
 
-        $attendances = Attendance::all(); 
+        $attendances = Attendance::all();
         $confirmed_attendances = Attendance::where('status', 'confirmed')->get();
         $pending_attendances = Attendance::where('status', 'pending')->get();
         $rejected_attendances = Attendance::where('status', 'rejected')->get();
@@ -197,7 +197,7 @@ class AttendanceController extends Controller
     //         }
     //     }
 
-    //     $attendances = Attendance::all(); 
+    //     $attendances = Attendance::all();
     //     $confirmed_attendances = Attendance::where('status', 'confirmed')->get();
     //     $pending_attendances = Attendance::where('status', 'pending')->get();
     //     $rejected_attendances = Attendance::where('status', 'rejected')->get();
@@ -212,12 +212,12 @@ class AttendanceController extends Controller
 
     public function absenceIndex(){
 
-        $absences = Absence::all(); 
+        $absences = Absence::all();
         $confirmed_absences = Absence::where('status', 'confirmed')->get();
         $pending_absences = Absence::where('status', 'pending')->get();
         $rejected_absences = Absence::where('status', 'rejected')->get();
 
-        
+
         return view('user/admin/absences/index', compact(
         'absences',
         'confirmed_absences',
@@ -301,7 +301,7 @@ class AttendanceController extends Controller
             'status' => 'required'
         ]);
 
-       
+
         $update = Attendance::findOrFail($id)->update([
             'status' => $request->status,
         ]);
@@ -318,7 +318,7 @@ class AttendanceController extends Controller
             'status' => 'required',
             'catatan' => 'nullable'
         ]);
-       
+
         $update = Absence::findOrFail($id)->update([
             'status' => $request->status,
             'catatan' => $request->catatan
@@ -330,5 +330,5 @@ class AttendanceController extends Controller
         return redirect()->back()->with('fail', 'Terjadi Kesalahan!');
     }
 
-    
+
 }

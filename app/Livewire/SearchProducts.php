@@ -13,7 +13,7 @@ class SearchProducts extends Component
     public $products, $search, $categories, $categoryFilter, $cart;
 
     public function mount(){
-        $this->products = Product::where('stok', '<', 0)->get();
+        $this->products = Product::where('stok', '>', 0)->get();
         $this->categories = ProductCategory::all();
         $this->cart = Cart::firstOrCreate([
             'user_id' => auth()->id(),
