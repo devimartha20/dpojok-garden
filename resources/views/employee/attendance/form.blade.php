@@ -114,4 +114,5 @@ var title = "Gagal! ";
 
 notify(nFrom, nAlign, nIcons, nType, nAnimIn, nAnimOut, msg, title);
 </script>
+@endif
 @endsection
