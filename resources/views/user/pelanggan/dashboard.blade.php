@@ -134,8 +134,10 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Pembelian minggu ini</h3>
-                    <div class="sales-chart bg-light">
-                        <canvas id="weeklySalesChart"></canvas>
+
+                    {{ $weeklyOrders }}
+                    <div class="bg-light">
+                        <canvas id="weeklySalesChart" class="sales-chart"></canvas>
                     </div>
                 </div>
             </div>
