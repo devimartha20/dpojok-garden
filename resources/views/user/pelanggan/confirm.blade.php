@@ -58,6 +58,10 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
+    .btn-round {
+        border-radius: 50px; /* Adjust the value as needed */
+        padding: 10px 20px;  /* Adjust the padding as needed */
+    }
 </style>
 @endsection
 
