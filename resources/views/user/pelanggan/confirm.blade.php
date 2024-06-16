@@ -104,6 +104,7 @@
             @endforeach
         </div>
         <div class="card-footer">
+            <a href="{{ route('cart.index') }}" class="btn btn-secondary">Kembali</a>
             <div class="total-items">Total Items: <span id="totalItems">{{ $total_items }}</span></div>
             <div class="total-amount">Total Amount: <span id="totalAmount">Rp. {{ number_format($total_amount) }}</span></div>
 
