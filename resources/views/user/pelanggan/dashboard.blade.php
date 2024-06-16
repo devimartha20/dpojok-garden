@@ -134,8 +134,6 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Pembelian minggu ini</h3>
-
-                    {{ $weeklyOrders }}
                     <div class="bg-light">
                         <canvas id="weeklySalesChart" class="sales-chart"></canvas>
                     </div>
@@ -186,8 +184,8 @@
                 datasets: [{
                     label: 'Total Pembelian',
                     data: data,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: '#E3E1D9',
+                    borderColor: '#E3E1D9',
                     borderWidth: 1
                 }]
             },
