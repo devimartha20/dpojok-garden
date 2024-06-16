@@ -47,7 +47,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid mt-3 ml-3 mr-3">
+<div class="container-fluid">
     <div class="row">
         <!-- Left Column -->
         <div class="col-md-3">
@@ -70,7 +70,8 @@
                         @forelse ($pesananTerbaru as $o)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
-                                <img src="https://via.placeholder.com/30" class="activity-product-img" alt="Product">
+
+                                <img src="{{ asset('images/details/'.$o->detailOrders->first->image) }}" class="activity-product-img" alt="Product">
                                 <div>
                                     <strong>#{{ $o->no_pesanan }}</strong><br>
                                     <small>{{ $o->jumlah_pesanan }} item(s)</small><br>
