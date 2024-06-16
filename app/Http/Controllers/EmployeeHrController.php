@@ -222,7 +222,7 @@ class EmployeeHrController extends Controller
         ]);
 
         if($store){
-            return redirect()->back()->with('success', 'Pengajuan konfirmasi kehadiran telah dikirim!');
+            return redirect()->back()->with('success', 'Pengajuan kehadiran telah dikirim!');
         }
         return redirect()->back()->with('fail', 'Terjadi kesalahan!');
     }
@@ -249,7 +249,7 @@ class EmployeeHrController extends Controller
         ]);
 
         if($store){
-            return redirect()->back()->with('success', 'Pengajuan konfirmasi ketidakhadiran telah dikirim!');
+            return redirect()->back()->with('success', 'Pengajuan ketidakhadiran telah dikirim!');
         }
         return redirect()->back()->with('fail', 'Terjadi kesalahan!');
     }

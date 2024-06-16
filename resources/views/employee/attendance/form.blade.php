@@ -27,8 +27,6 @@
                     <input type="datetime-local" readonly class="form-control" value="{{ now()->format('Y-m-d\TH:i') }}">
                 </div>
             </div>
-
-
             <br>
             <br>
             <button type="submit" class="btn btn-primary waves-effect waves-light m-r-20 float-right" value="submit">Kirim
