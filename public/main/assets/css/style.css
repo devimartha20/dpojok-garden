@@ -8575,8 +8575,8 @@ body.menu-bottom #collapse-menu {
   border-color: #4099ff; }
 
 .show > .btn-primary.dropdown-toggle, .sweet-alert .show > button.dropdown-toggle.confirm, .wizard > .actions .show > a.dropdown-toggle {
-  background-color: #0378ff !important;
-  border-color: #0378ff;
+  background-color: #7D7463 !important;
+  border-color: #7D7463;
   -webkit-box-shadow: none;
           box-shadow: none;
   color: #fff; }
@@ -8805,7 +8805,7 @@ body.menu-bottom #collapse-menu {
 /**====== Basic-Buttons css end ======**/
 /**====== Outline-Buttons css Start ======**/
 .btn-outline-primary {
-  color: #0378ff;
+  color: #7D7463;
   background-color: #fff;
   background-color: transparent; }
 
@@ -8842,7 +8842,7 @@ body.menu-bottom #collapse-menu {
   background-color: transparent; }
 
 .btn-outline-disabled {
-  color: #0378ff;
+  color: #7D7463;
   background-color: #fff; }
 
 /**====== Outline-Buttons css end ======**/
@@ -8888,11 +8888,11 @@ body.menu-bottom #collapse-menu {
       background-position: bottom center; }
 
 .btn-grd-primary {
-  background-image: -webkit-gradient(linear, left top, right top, from(#73b4ff), color-stop(51%, #0378ff), to(#73b4ff));
-  background-image: linear-gradient(to right, #73b4ff 0%, #0378ff 51%, #73b4ff 100%); }
+  background-image: -webkit-gradient(linear, left top, right top, from(#73b4ff), color-stop(51%, #7D7463), to(#73b4ff));
+  background-image: linear-gradient(to right, #73b4ff 0%, #7D7463 51%, #73b4ff 100%); }
   .btn-grd-primary.hor-grd {
-    background-image: -webkit-gradient(linear, left bottom, left top, from(#73b4ff), color-stop(51%, #0378ff), to(#73b4ff));
-    background-image: linear-gradient(to top, #73b4ff 0%, #0378ff 51%, #73b4ff 100%); }
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#73b4ff), color-stop(51%, #7D7463), to(#73b4ff));
+    background-image: linear-gradient(to top, #73b4ff 0%, #7D7463 51%, #73b4ff 100%); }
 
 .btn-grd-warning {
   background-image: -webkit-gradient(linear, left top, right top, from(#f4d03f), color-stop(51%, #b8960b), to(#f4d03f));
@@ -8930,11 +8930,11 @@ body.menu-bottom #collapse-menu {
     background-image: linear-gradient(to top, #08e3ff 0%, #008697 51%, #08e3ff 100%); }
 
 .btn-grd-disabled {
-  background-image: -webkit-gradient(linear, left top, right top, from(#73b4ff), color-stop(51%, #0378ff), to(#73b4ff));
-  background-image: linear-gradient(to right, #73b4ff 0%, #0378ff 51%, #73b4ff 100%); }
+  background-image: -webkit-gradient(linear, left top, right top, from(#73b4ff), color-stop(51%, #7D7463), to(#73b4ff));
+  background-image: linear-gradient(to right, #73b4ff 0%, #7D7463 51%, #73b4ff 100%); }
   .btn-grd-disabled.hor-grd {
-    background-image: -webkit-gradient(linear, left bottom, left top, from(#73b4ff), color-stop(51%, #0378ff), to(#73b4ff));
-    background-image: linear-gradient(to top, #73b4ff 0%, #0378ff 51%, #73b4ff 100%); }
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#73b4ff), color-stop(51%, #7D7463), to(#73b4ff));
+    background-image: linear-gradient(to top, #73b4ff 0%, #7D7463 51%, #73b4ff 100%); }
 
 /**====== gradient-Buttons css end ======**/
 /**====== matrialized-Buttons css Start ======**/
@@ -8960,7 +8960,7 @@ body.menu-bottom #collapse-menu {
 .btn-primary.btn-mat, .sweet-alert button.btn-mat.confirm, .wizard > .actions a.btn-mat {
   background-color: #4099ff; }
   .btn-primary.btn-mat:before, .sweet-alert button.btn-mat.confirm:before, .wizard > .actions a.btn-mat:before {
-    background-color: #0378ff; }
+    background-color: #7D7463; }
 
 .btn-warning.btn-mat {
   background-color: #f1c40f; }
@@ -8990,7 +8990,7 @@ body.menu-bottom #collapse-menu {
 .btn-outline-disabled {
   background-color: #4099ff; }
   .btn-outline-disabled:before {
-    background-color: #0378ff; }
+    background-color: #7D7463; }
 
 /**====== matrialized css end ======**/
 /**====== Button-Size css start ======**/
