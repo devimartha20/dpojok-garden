@@ -38,6 +38,8 @@
         </form>
     </div>
 </div>
+@endsection
+@section('scripts')
 <!-- notification js -->
 <script type="text/javascript" src="{{ asset('main/assets/js/bootstrap-growl.min.js') }}"></script>
 <script>
