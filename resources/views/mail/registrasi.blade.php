@@ -79,6 +79,7 @@
         <p>Thank you for signing up! To complete your registration, please verify your email address.</p>
         <p>We've sent an email to <strong>YourEmail@example.com</strong> with a verification link. Please check your inbox (including spam folder).</p>
         <a href="#" class="button">Resend Verification Email</a>
+        <a href="#" class="link">Update Email Address</a>
     </div>
 </body>
 </html>
