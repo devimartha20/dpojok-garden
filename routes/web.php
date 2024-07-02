@@ -241,7 +241,7 @@ Route::middleware(['role:pelanggan'])->group(function () {
 
 Route::get('/regis', function () {
     return view('mail/registrasi');
-})->name('detail.index');
+});
 
 
 Route::middleware('auth')->group(function () {

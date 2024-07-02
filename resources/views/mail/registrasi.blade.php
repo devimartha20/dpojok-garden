@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #e0f7fa;
+            background-color: #FFF2D7;
             margin: 0;
             padding: 0;
             display: flex;
@@ -29,7 +29,6 @@
             margin-bottom: 20px;
         }
         h1 {
-            color: #00796b;
             font-size: 26px;
             margin-bottom: 20px;
         }
@@ -45,7 +44,7 @@
             margin: 10px 0;
             font-size: 16px;
             color: #ffffff;
-            background-color: #00796b;
+            background-color: #A79277 ;
             border: none;
             border-radius: 5px;
             text-decoration: none;
@@ -53,12 +52,12 @@
             transition: background-color 0.3s ease;
         }
         .button:hover {
-            background-color: #004d40;
+            background-color: #8c620f ;
         }
         .link {
             display: block;
             margin-top: 20px;
-            color: #00796b;
+            color: #A79277;
             text-decoration: none;
             font-size: 14px;
         }
@@ -74,12 +73,12 @@
 </head>
 <body>
     <div class="container">
-        <h1><strong>D'PODJOK GARDEN</strong></h1>
-        <h1>Email Verification</h1>
+        <h1 style="color: black"><strong>D'PODJOK GARDEN</strong></h1>
+        <h1 style="color: #A79277">Email Verification</h1>
         <p>Thank you for signing up! To complete your registration, please verify your email address.</p>
         <p>We've sent an email to <strong>YourEmail@example.com</strong> with a verification link. Please check your inbox (including spam folder).</p>
         <a href="#" class="button">Resend Verification Email</a>
-        <a href="#" class="link">Update Email Address</a>
+        <a href="#" class="link">Logout</a>
     </div>
 </body>
 </html>
