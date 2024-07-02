@@ -54,14 +54,18 @@
         .button:hover {
             background-color: #8c620f ;
         }
-        #link {
-            display: block;
+        .link {
             margin-top: 20px;
             color: #A79277;
             text-decoration: none;
             font-size: 14px;
+            background: none;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
         }
-        #link:hover {
+        .link:hover {
             text-decoration: underline;
         }
         #footer {
@@ -87,7 +91,7 @@
         </form>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button id="link">Logout</button>
+            <button type="submit" class="link">Logout</button>
         </form>
     </div>
 </body>
