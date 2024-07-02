@@ -54,17 +54,17 @@
         .button:hover {
             background-color: #8c620f ;
         }
-        .link {
+        #link {
             display: block;
             margin-top: 20px;
             color: #A79277;
             text-decoration: none;
             font-size: 14px;
         }
-        .link:hover {
+        #link:hover {
             text-decoration: underline;
         }
-        .footer {
+        #footer {
             margin-top: 30px;
             font-size: 14px;
             color: #777;
@@ -77,7 +77,7 @@
         <h1 style="color: #A79277">Email Verification</h1>
         <p>Thank you for signing up! To complete your registration, please verify your email address.</p>
         @if (session('status') == 'verification-link-sent')
-            <p>We've sent an email to <strong>YourEmail@example.com</strong> with a verification link. Please check your inbox (including spam folder).</p>
+            <p>We've sent an email with a verification link. Please check your inbox (including spam folder).</p>
         @endif
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
@@ -87,7 +87,7 @@
         </form>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="link">Logout</button>
+            <button id="link">Logout</button>
         </form>
     </div>
 </body>
